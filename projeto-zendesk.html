@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aplicativo de Suporte Inteligente no Zendesk · Alan Lemos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1C2430;
+  --graphite:#3A3A38;
+  --paper:#FAF9F5;
+  --paper-dim:#F2F0EA;
+  --line:#E4E1D8;
+  --stone:#9B9990;
+  --ink:#22201C;
+  --terracotta:#C48A5A;
+  --terracotta-d:#AD744A;
+  --font-display:'Fraunces',serif;
+  --font-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:960px;margin:0 auto;padding:0 32px}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--graphite)}
+.logo-mark{width:38px;height:38px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:38px;height:38px}
+.back-link{font-size:13.5px;color:var(--stone);display:flex;align-items:center;gap:6px;transition:color .15s}
+.back-link:hover{color:var(--terracotta-d)}
+
+/* HERO / HEADER DO PROJETO */
+.project-hero{padding:36px 0 44px;border-bottom:1px solid var(--line)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
+.h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,48px);line-height:1.12;color:var(--navy);max-width:16ch;margin-bottom:16px}
+.hero-sub{color:var(--stone);font-size:16px;max-width:52ch;margin-bottom:28px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:13px 24px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:all .18s}
+.btn-primary{background:var(--terracotta);color:#fff}
+.btn-primary:hover{background:var(--terracotta-d);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--graphite);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--stone)}
+
+/* SECTIONS */
+section{padding:56px 0}
+.section-line{border-top:1px solid var(--line)}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--terracotta-d);margin-bottom:10px}
+.section-title{font-family:var(--font-display);font-weight:500;font-size:28px;color:var(--navy);margin-bottom:36px;max-width:24ch}
+
+/* PROBLEMA -> SOLUCAO -> RESULTADO */
+.psr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.psr-card{padding:30px 28px;position:relative}
+.psr-card + .psr-card{border-left:1px solid var(--line)}
+.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.psr-num::before{content:'';width:16px;height:1px;background:var(--terracotta)}
+.psr-heading{font-family:var(--font-display);font-size:19px;color:var(--navy);margin-bottom:12px;font-weight:500}
+.psr-text{font-size:14.5px;color:#5b584f;line-height:1.7}
+.psr-card.result{background:var(--navy);color:#fff}
+.psr-card.result .psr-num{color:rgba(255,255,255,.55)}
+.psr-card.result .psr-heading{color:#fff}
+.psr-card.result .psr-text{color:rgba(255,255,255,.78)}
+.psr-arrow{position:absolute;top:30px;right:-13px;width:26px;height:26px;background:var(--paper);border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--stone);z-index:2}
+
+@media(max-width:760px){
+  .psr-grid{grid-template-columns:1fr}
+  .psr-card + .psr-card{border-left:none;border-top:1px solid var(--line)}
+  .psr-arrow{display:none}
+}
+
+/* DEMO FRAME */
+.demo-intro{max-width:58ch;color:#5b584f;font-size:15px;margin-bottom:28px}
+.browser-chrome{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25)}
+.chrome-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--paper-dim);border-bottom:1px solid var(--line)}
+.chrome-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.chrome-url{flex:1;text-align:center;font-size:11.5px;color:var(--stone);font-family:var(--font-body)}
+.demo-frame-wrap{width:100%;max-width:420px;margin:0 auto}
+.demo-caption{text-align:center;font-size:12.5px;color:var(--stone);margin-top:14px}
+
+/* TECH STACK: grid fechado, 5 colunas iguais, sem sobra */
+.tech-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tech-item{background:#fff;padding:22px 20px;display:flex;flex-direction:column}
+.tech-name{font-weight:600;font-size:14px;color:var(--navy);margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;line-height:1.3}
+.tech-dot{width:7px;height:7px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:6px}
+.tech-desc{font-size:12.5px;color:var(--stone);line-height:1.55;padding-left:15px}
+
+@media(max-width:900px){
+  .tech-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  .tech-grid{grid-template-columns:1fr}
+  .tech-item{padding:18px 20px}
+}
+
+/* CTA FINAL */
+.final-cta{background:var(--navy);border-radius:18px;padding:56px 48px;text-align:center;color:#fff}
+.final-cta .section-title{color:#fff;margin:0 auto 12px;font-size:26px}
+.final-cta p{color:rgba(255,255,255,.65);max-width:44ch;margin:0 auto 30px;font-size:14.5px}
+.final-cta .cta-row{justify-content:center}
+.final-cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.28)}
+.final-cta .btn-ghost:hover{border-color:#fff}
+
+footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)}
+
+/* ===== DEMO EMBUTIDA (escopada em #demoEmbed) ===== */
+#demoEmbed{
+  --or:#F15A29;--ord:#d44e22;--orl:#fff3ef;--orb:#ffd0bf;
+  --g1:#f7f8fa;--g2:#eef0f3;--g3:#e2e5ea;--g5:#8a94a6;--g7:#4a5568;--g9:#1a202c;
+  --gn:#276749;--gnb:#f0fff4;--gnbr:#c6f6d5;
+  --bl:#2b6cb0;--blb:#ebf8ff;--blbr:#bee3f8;
+  --pu:#6b46c1;--pub:#f5f3ff;--pubr:#c4b5fd;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:var(--g9);font-size:13px;line-height:1.5;
+}
+#demoEmbed *,#demoEmbed *::before,#demoEmbed *::after{box-sizing:border-box}
+#demoEmbed input,#demoEmbed textarea{width:100%;padding:6px 9px;font-size:12px;border:1px solid var(--g3);border-radius:6px;background:var(--g1);color:var(--g9);outline:none;font-family:inherit;transition:border-color .15s}
+#demoEmbed input:focus,#demoEmbed textarea:focus{border-color:var(--or);background:#fff;box-shadow:0 0 0 2px var(--orl)}
+#demoEmbed textarea{resize:vertical;line-height:1.6}
+#demoEmbed button{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;font-size:12px;font-weight:700;border-radius:6px;border:none;cursor:pointer;font-family:inherit;transition:all .15s;line-height:1}
+#demoEmbed button:disabled{opacity:.5;cursor:not-allowed}
+#demoEmbed .bor{background:var(--or);color:#fff}#demoEmbed .bor:hover:not(:disabled){background:var(--ord)}
+#demoEmbed .bgr{background:#38a169;color:#fff}#demoEmbed .bgr:hover:not(:disabled){background:#2f855a}
+#demoEmbed .bgy{background:var(--g2);color:var(--g7)}#demoEmbed .bgy:hover:not(:disabled){background:var(--g3)}
+#demoEmbed .dhdr{background:#111;padding:0 12px;display:flex;align-items:center;height:42px;gap:10px}
+#demoEmbed .dhdr-tag{font-size:10px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+#demoEmbed .dhdr-name{color:#fff;font-size:12px;font-weight:700}
+#demoEmbed .ticker{background:var(--orl);border-bottom:1px solid var(--orb);padding:7px 12px;font-size:11.5px;color:var(--ord);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px}
+#demoEmbed .sbadge{font-size:9.5px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:rgba(241,90,41,.15);color:var(--or)}
+#demoEmbed .dmain{padding:10px}
+#demoEmbed .lbl{font-size:10px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px}
+#demoEmbed .card{background:var(--g1);border:1px solid var(--g3);border-radius:8px;padding:10px;margin-bottom:8px}
+#demoEmbed .mb6{margin-bottom:6px}#demoEmbed .mb8{margin-bottom:8px}
+#demoEmbed .tabs{display:flex;border-bottom:2px solid var(--g2);margin-bottom:10px;overflow-x:auto}
+#demoEmbed .tab{flex:1;min-width:0;padding:8px 3px;font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:inherit;color:var(--g5);background:transparent;text-align:center;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s}
+#demoEmbed .tab:hover{color:var(--or)}#demoEmbed .tab.on{color:var(--or);border-bottom-color:var(--or)}
+#demoEmbed .titulo-card{background:var(--blb);border:1px solid var(--blbr);border-radius:8px;padding:10px;margin-bottom:8px}
+#demoEmbed .titulo-text{font-size:12px;font-weight:600;color:var(--bl);margin-bottom:8px;line-height:1.5}
+#demoEmbed .sla-card{background:var(--pub);border:1px solid var(--pubr);border-radius:8px;padding:10px;margin-bottom:8px}
+#demoEmbed .sla-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--pubr)}
+#demoEmbed .sla-row:last-child{border-bottom:none}
+#demoEmbed .sla-val{font-weight:700;color:var(--pu);font-size:12px}
+#demoEmbed .tpl-btn{width:100%;display:flex;align-items:center;gap:8px;padding:9px 11px;margin-bottom:6px;border:1px solid var(--g3);border-radius:8px;background:#fff;cursor:pointer;text-align:left;font-family:inherit;transition:all .15s}
+#demoEmbed .tpl-btn:hover:not(:disabled){border-color:var(--or);background:var(--orl)}
+#demoEmbed .tpl-btn.sel{border-color:var(--or);background:var(--orl)}
+#demoEmbed .tpl-ico{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;background:var(--g2)}
+#demoEmbed .sugg-box{background:#fff;border:2px solid var(--or);border-radius:10px;padding:12px;margin-bottom:10px}
+#demoEmbed .sugg-txt{font-size:12px;line-height:1.85;white-space:pre-wrap;color:var(--g9);background:var(--g1);border:1px solid var(--g3);border-radius:6px;padding:10px 11px;margin-bottom:8px}
+#demoEmbed .script-pre{background:var(--g1);border:1px solid var(--g3);border-radius:8px;padding:10px 12px;font-size:12px;line-height:1.85;white-space:pre-wrap;margin-bottom:8px}
+#demoEmbed .dnote{font-size:10.5px;color:var(--g5);line-height:1.6;padding:8px 0 2px}
+#demoEmbed .hidden{display:none}
+@keyframes dspin{to{transform:rotate(360deg)}}
+#demoEmbed .spin{animation:dspin .9s linear infinite;display:inline-block}
+#demoEmbed hr{border:none;border-top:1px solid var(--g2);margin:10px 0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav">
+    <a href="../index.html" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(25,20)">
+            <path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/>
+            <line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/>
+          </g>
+        </svg>
+      </span>
+      Alan Lemos
+    </a>
+    <a href="../portfolio.html" class="back-link">← Voltar ao portfólio</a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <header class="project-hero">
+    <div class="tags">
+      <span class="tag">Automação de atendimento</span>
+      <span class="tag">IA aplicada</span>
+      <span class="tag">Zendesk Apps</span>
+    </div>
+    <h1 class="h1">Aplicativo de Suporte Inteligente no Zendesk</h1>
+    <p class="hero-sub">App nativo na sidebar do ticket que usa IA para classificar chamados, redigir respostas e montar scripts de escalonamento, reduzindo o tempo que os agentes gastam preenchendo e interpretando cada chamado manualmente.</p>
+    <div class="cta-row">
+      <a href="#demo" class="btn btn-primary">▶ Testar demonstração</a>
+    </div>
+  </header>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Como o projeto nasceu</div>
+    <h2 class="section-title">Do formulário manual à classificação automática</h2>
+    <div class="psr-grid">
+      <div class="psr-card">
+        <div class="psr-num">Problema</div>
+        <h3 class="psr-heading">Tempo perdido em classificação manual</h3>
+        <p class="psr-text">Os agentes perdiam tempo significativo preenchendo formulários e classificando cada chamado (prioridade, motivo, produto) de acordo com a política de SLA. Um processo repetitivo, manual e sujeito a inconsistência entre atendentes.</p>
+        <div class="psr-arrow">→</div>
+      </div>
+      <div class="psr-card">
+        <div class="psr-num">Solução</div>
+        <h3 class="psr-heading">Um app com IA embutida no ticket</h3>
+        <p class="psr-text">App nativo do Zendesk, integrado à API da OpenAI, que lê a descrição do chamado, classifica automaticamente, sugere título, gera diagnóstico técnico, redige respostas ao cliente e monta o script de escalonamento para o time de N3.</p>
+        <div class="psr-arrow">→</div>
+      </div>
+      <div class="psr-card result">
+        <div class="psr-num">Resultado</div>
+        <h3 class="psr-heading">Respostas mais rápidas e padronizadas</h3>
+        <p class="psr-text">Redução no tempo de resposta e maior padronização na classificação e na comunicação entre os agentes, com toda a análise aplicada direto no ticket em um clique.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="section-line" id="demo">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Experimente</div>
+    <h2 class="section-title">A ferramenta, funcionando</h2>
+    <p class="demo-intro">Abaixo está a interface real do app rodando com um chamado de exemplo. Clique em <strong>Analisar</strong>, gere uma resposta ou monte o script: as respostas de IA aqui são simuladas para funcionar sem uma chave de API real; no ambiente de produção, cada ação chama a API da OpenAI e grava direto no ticket via Zendesk Apps Framework.</p>
+    <div class="demo-frame-wrap">
+      <div class="browser-chrome">
+        <div class="chrome-bar">
+          <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+          <span class="chrome-url">sidebar do ticket · zendesk</span>
+        </div>
+
+        <!-- ===== DEMO EMBUTIDA ===== -->
+        <div id="demoEmbed">
+          <div class="dhdr">
+            <span class="dhdr-name">🎫 Suporte Inteligente</span>
+            <span class="dhdr-tag">Sidebar do ticket · demonstração</span>
+          </div>
+          <div class="ticker">
+            <span><strong>#4821</strong> · Construtora Horizonte · App Mobile</span>
+            <span class="sbadge">demo com dados fictícios</span>
+          </div>
+
+          <div class="dmain">
+            <div class="tabs">
+              <button class="tab on" data-tab="0">🔍 Analisar</button>
+              <button class="tab" data-tab="1">💬 Mensagem</button>
+              <button class="tab" data-tab="2">📋 Script N3</button>
+            </div>
+
+            <!-- TAB 0: ANALISAR -->
+            <div id="dtab0">
+              <div class="mb8">
+                <label class="lbl">Descrição do chamado</label>
+                <textarea id="dprob" style="min-height:96px">Cliente relata que não consegue anexar fotos de vistoria da obra pelo aplicativo mobile. Ao tentar enviar, o app trava e fecha sozinho. Já tentou reinstalar e o erro persiste. Obra: Residencial Vista Verde. Versão do app: 4.2.1.</textarea>
+              </div>
+              <button class="bor" id="dBtnAnalyze" style="width:100%;justify-content:center;margin-bottom:10px">🔍 Analisar chamado com IA</button>
+
+              <div id="danaResult" class="hidden">
+                <div class="titulo-card">
+                  <div class="lbl" style="color:var(--bl)">Título sugerido</div>
+                  <div class="titulo-text" id="danaTitulo"></div>
+                  <button class="bgy" style="font-size:11px">✓ Aplicar ao ticket</button>
+                </div>
+                <div class="sla-card">
+                  <div class="lbl" style="color:var(--pu)">Classificação (regras de SLA)</div>
+                  <div class="sla-row"><span>Prioridade</span><span class="sla-val" id="danaPrio">···</span></div>
+                  <div class="sla-row"><span>Tipo</span><span class="sla-val" id="danaTipo">···</span></div>
+                  <div class="sla-row"><span>Motivo</span><span class="sla-val" id="danaMotivo">···</span></div>
+                  <div class="sla-row"><span>Produto</span><span class="sla-val" id="danaProduto">···</span></div>
+                </div>
+                <div class="card">
+                  <div class="lbl">Notas técnicas (diagnóstico)</div>
+                  <div style="font-size:11.5px;line-height:1.65;color:var(--g7)" id="danaNotas"></div>
+                </div>
+                <button class="bgr" style="width:100%;justify-content:center">✓ Aplicar classificação ao ticket</button>
+              </div>
+            </div>
+
+            <!-- TAB 1: MENSAGEM -->
+            <div id="dtab1" class="hidden">
+              <div class="lbl mb6">Escolha o tipo de resposta</div>
+              <button class="tpl-btn sel" data-tpl="0"><span class="tpl-ico">📩</span><div><div style="font-weight:700;font-size:12px">Confirmar recebimento e prazo</div><div style="font-size:10.5px;color:var(--g5)">Avisa o cliente que o chamado foi priorizado e dá previsão de retorno</div></div></button>
+              <button class="tpl-btn" data-tpl="1"><span class="tpl-ico">❓</span><div><div style="font-weight:700;font-size:12px">Solicitar mais informações</div><div style="font-size:10.5px;color:var(--g5)">Pede detalhes adicionais para reprodução do problema</div></div></button>
+              <button class="tpl-btn" data-tpl="2"><span class="tpl-ico">✅</span><div><div style="font-weight:700;font-size:12px">Informar solução aplicada</div><div style="font-size:10.5px;color:var(--g5)">Comunica que o problema foi corrigido e orienta o próximo passo</div></div></button>
+              <button class="bor" id="dBtnMsg" style="width:100%;justify-content:center;margin:10px 0">✨ Gerar resposta com IA</button>
+              <div id="dmsgResult" class="hidden sugg-box">
+                <div class="lbl">Prévia da resposta</div>
+                <div class="sugg-txt" id="dmsgText"></div>
+                <div style="display:flex;gap:6px">
+                  <button class="bgr" style="flex:1;justify-content:center">💬 Inserir no ticket</button>
+                  <button class="bgy">📋 Copiar</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: SCRIPT N3 -->
+            <div id="dtab2" class="hidden">
+              <div class="dnote mb6">Monta o script de escalonamento no formato esperado pelo time de N3, pronto para virar nota interna.</div>
+              <button class="bor" id="dBtnScript" style="width:100%;justify-content:center;margin-bottom:10px">📋 Gerar script com IA</button>
+              <div id="dscrResult" class="hidden">
+                <div class="lbl" style="margin-bottom:6px">Prévia</div>
+                <div class="script-pre" id="dscrText"></div>
+                <button class="bgr" style="width:100%;justify-content:center">📝 Salvar como nota interna</button>
+              </div>
+            </div>
+
+            <div class="dnote" style="margin-top:6px;border-top:1px solid var(--g2);padding-top:10px">
+              Nesta demonstração as respostas da IA são simuladas para funcionar sem uma chave de API real. No app em produção, cada clique aqui dispara uma chamada real à API da OpenAI e aplica o resultado direto no ticket via Zendesk Apps Framework.
+            </div>
+          </div>
+        </div>
+        <!-- ===== FIM DEMO EMBUTIDA ===== -->
+
+      </div>
+    </div>
+    <p class="demo-caption">Dados fictícios. Nenhuma informação real de cliente é usada nesta demonstração.</p>
+  </section>
+</div>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Sob o capô</div>
+    <h2 class="section-title">Tecnologias usadas</h2>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Zendesk Apps Framework</div>
+        <div class="tech-desc">App nativo embutido na sidebar do ticket (ZAF SDK).</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>React / JavaScript</div>
+        <div class="tech-desc">Interface do app, com estado e abas de análise, mensagem e script.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>OpenAI API (GPT-4o-mini)</div>
+        <div class="tech-desc">Classificação por SLA, diagnóstico técnico e geração de texto.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Zendesk REST API</div>
+        <div class="tech-desc">Aplicação de campos, vínculo de organizações, notas e comentários.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Claude</div>
+        <div class="tech-desc">Apoio no desenvolvimento e na prototipagem do app.</div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="final-cta">
+      <h2 class="section-title">Gostou do que viu?</h2>
+      <p>Esse é um dos projetos de planejamento e gestão com IA aplicada que já implementei. Veja outros cases do portfólio para conhecer o restante do trabalho.</p>
+      <div class="cta-row">
+        <a href="../portfolio.html" class="btn btn-primary">← Voltar ao portfólio</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>Alan Lemos · Planejamento e Gestão de projetos, produtos e dados com IA aplicada.</footer>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  function spin(btn,label){btn.disabled=true;btn.dataset.orig=btn.innerHTML;btn.innerHTML='<span class="spin">⏳</span> '+label;}
+  function unspin(btn){btn.disabled=false;btn.innerHTML=btn.dataset.orig;}
+
+  var root=document.getElementById('demoEmbed');
+
+  root.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      root.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      t.classList.add('on');
+      [0,1,2].forEach(function(i){$('dtab'+i).classList.add('hidden');});
+      $('dtab'+t.dataset.tab).classList.remove('hidden');
+    });
+  });
+
+  $('dBtnAnalyze').addEventListener('click',function(){
+    var btn=this;spin(btn,'Analisando...');
+    $('danaResult').classList.add('hidden');
+    setTimeout(function(){
+      $('danaTitulo').textContent='[ Construtora Horizonte - Residencial Vista Verde - App Mobile ] Falha ao anexar fotos de vistoria';
+      $('danaPrio').textContent='Alta';
+      $('danaTipo').textContent='Bug';
+      $('danaMotivo').textContent='Erro no aplicativo';
+      $('danaProduto').textContent='App Mobile';
+      $('danaNotas').textContent='Provável falha ao processar upload de imagem em memória no app mobile. Verificar logs de crash do dispositivo e testar envio com fotos de tamanhos variados. Cliente já reinstalou o app e o erro persiste na versão 4.2.1, o que sugere regressão introduzida nesta versão.';
+      $('danaResult').classList.remove('hidden');
+      unspin(btn);
+    },1100);
+  });
+
+  var tplSel=0;
+  root.querySelectorAll('.tpl-btn').forEach(function(t){
+    t.addEventListener('click',function(){
+      root.querySelectorAll('.tpl-btn').forEach(function(x){x.classList.remove('sel');});
+      t.classList.add('sel');
+      tplSel=parseInt(t.dataset.tpl,10);
+      $('dmsgResult').classList.add('hidden');
+    });
+  });
+  var MSGS=[
+  "Olá, Marina!\n\nRecebemos o seu chamado sobre a falha ao anexar fotos de vistoria no aplicativo mobile e já classificamos como prioridade alta. Nossa equipe técnica está analisando o comportamento reportado na versão 4.2.1 e retornaremos com uma atualização em até 1 dia útil.\n\nEnquanto isso, se possível, nos informe o modelo do seu celular e o tamanho aproximado das fotos que estava tentando enviar. Isso ajuda a acelerar o diagnóstico.",
+  "Olá, Marina!\n\nPara darmos continuidade à análise da falha ao anexar fotos de vistoria, poderia nos confirmar:\n\n1. O erro acontece com qualquer quantidade de fotos ou só ao selecionar várias de uma vez?\n2. O aplicativo chega a travar antes ou depois de tocar em \"enviar\"?\n3. Consegue nos enviar um print da tela no momento da falha?\n\nCom essas informações conseguimos reproduzir o problema e agilizar a correção.",
+  "Olá, Marina!\n\nA falha ao anexar fotos de vistoria no aplicativo mobile foi corrigida e já está disponível na versão mais recente. Recomendamos atualizar o app pela loja de aplicativos e testar novamente o envio.\n\nSe o problema persistir após a atualização, pode responder por aqui que damos sequência imediatamente."
+  ];
+  $('dBtnMsg').addEventListener('click',function(){
+    var btn=this;spin(btn,'Gerando...');
+    $('dmsgResult').classList.add('hidden');
+    setTimeout(function(){
+      $('dmsgText').textContent=MSGS[tplSel];
+      $('dmsgResult').classList.remove('hidden');
+      unspin(btn);
+    },1000);
+  });
+
+  $('dBtnScript').addEventListener('click',function(){
+    var btn=this;spin(btn,'Montando script...');
+    $('dscrResult').classList.add('hidden');
+    setTimeout(function(){
+      $('dscrText').textContent=
+"OBRA: Residencial Vista Verde\nINTERFACE: App Mobile\nVERSÃO: 4.2.1\nUSUÁRIO: marina@construtorahorizonte.com.br\n\nEVIDÊNCIA DO PROBLEMA:\nApp fecha inesperadamente ao tentar anexar fotos na tela de vistoria, após seleção de 3 ou mais imagens simultâneas. Cliente já reinstalou o app; erro persiste.\n\nRESULTADO ESPERADO:\nUpload de fotos de vistoria concluído sem travamentos, independentemente da quantidade de imagens selecionadas.";
+      $('dscrResult').classList.remove('hidden');
+      unspin(btn);
+    },1100);
+  });
+})();
+</script>
+
+</body>
+</html>

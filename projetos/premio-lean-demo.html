@@ -300,11 +300,11 @@
   <div id="login-screen" class="center-screen">
     <div id="login-card" class="card">
       <div class="brand">
-        <span class="logo-mark"><img src="../assets/agilean-logo.png" alt="" /></span>
-        <span class="wordmark">Agilean</span>
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5f1f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/></svg></span>
+        <span class="wordmark">Prêmio Eficiência Lean</span>
       </div>
-      <h1>Prêmio Eficiência Lean</h1>
-      <p class="subtitle">Entre com seu login da Agilean.</p>
+      <h1>Acesse sua conta</h1>
+      <p class="subtitle">Entre com seu login da plataforma.</p>
       <div class="demo-note">Demonstração com <strong>dados fictícios</strong>. Não precisa de senha: é só clicar em Entrar. Nada aqui é enviado ou salvo.</div>
       <form id="login-form">
         <label for="email">E-mail</label>
@@ -321,7 +321,7 @@
     <header class="top-bar">
       <div>
         <div class="brand">
-          <span class="logo-mark"><img src="../assets/agilean-logo.png" alt="" /></span>
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5f1f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/></svg></span>
           <span class="wordmark">Prêmio Eficiência Lean</span>
           <span class="badge demo">DEMONSTRAÇÃO · DADOS FICTÍCIOS</span>
         </div>
@@ -585,7 +585,7 @@
       <p class="hint">Regulamento do prêmio, disponível só para quem está logado.</p>
       <div class="edital-placeholder">
         📄 No sistema real, o PDF do edital abre aqui dentro, com opção de abrir em outra aba ou baixar.<br />
-        Nesta demonstração o documento não é exibido, porque é material interno da Agilean.
+        Nesta demonstração o documento não é exibido, porque é material interno do cliente.
       </div>
       <div class="modal-actions">
         <button class="secondary" id="edital-close" type="button">Fechar</button>
@@ -1461,10 +1461,9 @@ async function drawCertificate(canvas, row) {
   wrapCanvasText(ctx, "Esta conquista reflete o compromisso diário da equipe com a excelência na gestão Lean, disciplina, consistência e evolução que fazem a diferença em cada etapa da obra. Parabéns!", W / 2, 648, 700, 35);
   try {
     const emblemCx = W / 2, emblemCy = 920, logoSize = 175;
-    const logoImg = await loadImage("../assets/agilean-logo.png");
     drawLaurelArc(ctx, emblemCx, emblemCy, logoSize * 0.58, logoSize * 0.78, -1, "#f15a29");
     drawLaurelArc(ctx, emblemCx, emblemCy, logoSize * 0.58, logoSize * 0.78, 1, "#f15a29");
-    ctx.drawImage(logoImg, emblemCx - logoSize / 2, emblemCy - logoSize / 2, logoSize, logoSize);
+    drawStar(ctx, emblemCx, emblemCy, 5, 62, 26, "#f15a29");
   } catch (e) {}
   const footerY = H - 110;
   ctx.strokeStyle = "rgba(190,175,140,0.7)";
@@ -1472,13 +1471,10 @@ async function drawCertificate(canvas, row) {
   ctx.beginPath(); ctx.moveTo(W / 2 - 200, footerY - 55); ctx.lineTo(W / 2 + 200, footerY - 55); ctx.stroke();
   ctx.fillStyle = navy;
   ctx.font = "800 27px Arial, sans-serif";
-  ctx.fillText("Agilean", W / 2, footerY);
+  ctx.fillText("Prêmio Construção com Eficiência Lean", W / 2, footerY);
   ctx.fillStyle = slate;
   ctx.font = "500 16px Arial, sans-serif";
-  ctx.fillText("Prêmio Construção com Eficiência Lean", W / 2, footerY + 28);
-  ctx.fillStyle = "rgba(90,94,104,0.55)";
-  ctx.font = "500 13px Arial, sans-serif";
-  ctx.fillText("Demonstração com dados fictícios", W / 2, H - 52);
+  ctx.fillText("Demonstração com dados fictícios", W / 2, footerY + 28);
 }
 function slugify(s) {
   return (s || "obra").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-");
@@ -1547,7 +1543,7 @@ async function generatePresentation(row, btn) {
     const winnerRow = top3.find((r) => r.position === 1) || row;
     const ORANGE = "F15A29", GOLD = "F2B134", NAVY = "1C2131";
     let logoDataUrl = null;
-    try { logoDataUrl = await loadImageAsDataUrl("../assets/agilean-logo.png"); } catch (e) {}
+    // sem logo de empresa nesta demonstração
 
     const s1 = pptx.addSlide();
     s1.background = { color: "FFFFFF" };
@@ -1608,9 +1604,9 @@ async function generatePresentation(row, btn) {
     const s4 = pptx.addSlide();
     s4.background = { color: ORANGE };
     s4.addShape(pptx.ShapeType.ellipse, { x: 0.5, y: 0.5, w: 1.3, h: 1.3, fill: { color: "FFFFFF" }, line: { type: "none" } });
-    s4.addText("Agilean", { x: 0.5, y: 0.5, w: 1.3, h: 1.3, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 15, color: ORANGE });
+    s4.addText("★", { x: 0.5, y: 0.5, w: 1.3, h: 1.3, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 30, color: ORANGE });
     s4.addText("CONTA PRA GENTE", { x: 0.6, y: 3.3, w: 8, h: 0.9, fontFace: "Arial", fontSize: 34, color: "FFFFFF", charSpacing: 2 });
-    s4.addText("Como a Agilean tem te ajudado a alcançar esse resultado?", { x: 0.6, y: 4.05, w: 8, h: 0.5, fontFace: "Arial", fontSize: 15, color: "FFF7F0" });
+    s4.addText("Como a gestão Lean tem te ajudado a alcançar esse resultado?", { x: 0.6, y: 4.05, w: 8, h: 0.5, fontFace: "Arial", fontSize: 15, color: "FFF7F0" });
 
     await pptx.writeFile({ fileName: `apresentacao-${slugify(row.project_name)}-${currentMonth}.pptx` });
   } catch (err) {
@@ -1720,7 +1716,7 @@ function genChecklist(month, historical) {
   const top3 = mo.rows.filter((r) => r.position && r.position <= 3).sort((a, b) => a.position - b.position);
   const T = (o) => ({ id: `task-${++checklistSeq}`, status: "pendente", notes: "", ...o });
   const tasks = [
-    T({ scope: "global", title: "Publicar o pódio do mês no LinkedIn da Agilean", team: "marketing", due_date: isoDayAfterMonth(month, 14) }),
+    T({ scope: "global", title: "Publicar o pódio do mês no LinkedIn da empresa", team: "marketing", due_date: isoDayAfterMonth(month, 14) }),
     T({ scope: "global", title: "Atualizar a página pública do prêmio com o resultado", team: "marketing", due_date: isoDayAfterMonth(month, 12) }),
     T({ scope: "global", title: "Enviar e-mail de resultado para todas as obras participantes", team: "cs", due_date: isoDayAfterMonth(month, 13) }),
   ];

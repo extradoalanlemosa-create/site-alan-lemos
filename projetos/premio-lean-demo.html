@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Prêmio Eficiência Lean: Ranking (demonstração)</title>
+<!-- Recriação da área logada do Prêmio Construção com Eficiência Lean para o
+     portfólio de Alan Lemos. Mesma interface do sistema em produção, mas com
+     DADOS FICTÍCIOS gerados aqui mesmo no navegador: não há login real, nem
+     chamada a banco de dados, nem nada salvo. -->
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<link rel="preconnect" href="https://fonts.cdnfonts.com" />
+<link href="https://fonts.cdnfonts.com/css/geist" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f5f4f2;
+    --card: #ffffff;
+    --border: #e7e4df;
+    --text: #1c1d21;
+    --muted: #6b6f78;
+    --navy: #0f0e17;
+    --navy-soft: #211f30;
+    --accent: #ff5f1f;
+    --accent-dark: #e04f14;
+    --accent-soft: #ffe9de;
+    --ok: #0f9d58;
+    --ok-soft: #e6f7ee;
+    --warn: #b45309;
+    --warn-soft: #fef3e2;
+    --bad: #c02626;
+    --bad-soft: #fde9e9;
+    --gold: #a16207;
+    --gold-soft: #fef8e7;
+    --shadow: 0 1px 2px rgba(16,24,40,0.05), 0 2px 6px rgba(16,24,40,0.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Geist, "Geist Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  .logo-mark { width: 26px; height: 26px; position: relative; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .logo-mark img { width: 100%; height: 100%; display: block; object-fit: contain; }
+  .wordmark { font-weight: 800; letter-spacing: -0.01em; }
+
+  /* ===================== LOGIN ===================== */
+  .center-screen {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 16px;
+    background: var(--navy);
+    background-image: radial-gradient(circle at 15% 10%, #232a3c 0%, var(--navy) 55%);
+  }
+  .card { background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow); }
+  #login-card { width: 100%; max-width: 400px; padding: 38px 34px; }
+  #login-card .brand { display: flex; align-items: center; gap: 9px; margin-bottom: 22px; }
+  #login-card .brand .wordmark { font-size: 19px; color: var(--navy); }
+  #login-card h1 { font-size: 21px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  #login-card p.subtitle { color: var(--muted); margin: 0 0 18px; font-size: 14px; }
+  .demo-note { background: var(--gold-soft); border: 1px solid #f3e3b4; color: #6b4c02; font-size: 12.5px; line-height: 1.5; padding: 9px 12px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; margin-top: 16px; color: #374151; }
+  input[type="email"], input[type="password"], input[type="text"], input[type="number"], textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+    font-size: 14px; font-family: inherit; background: #fff;
+  }
+  input[readonly] { background: #fafafa; color: var(--muted); }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+  button { cursor: pointer; border: none; font-size: 14px; font-weight: 700; font-family: inherit; }
+  #login-form button[type="submit"] { width: 100%; margin-top: 26px; padding: 12px; background: var(--accent); color: white; }
+  #login-form button[type="submit"]:hover { background: var(--accent-dark); }
+
+  /* ===================== APP ===================== */
+  #app-screen { display: none; }
+  .top-bar {
+    background: var(--navy); color: white; padding: 16px 22px; display: flex;
+    align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .top-bar .brand { display: flex; align-items: center; gap: 9px; }
+  .top-bar .brand .wordmark { font-size: 16px; color: white; }
+  .top-bar .who { font-size: 12.5px; color: #aeb3c0; margin-top: 2px; }
+  .badge { display: inline-block; padding: 2px 9px; font-size: 11px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+  .badge.admin { background: rgba(241,90,41,0.18); color: #ff9a6e; }
+  .badge.demo { background: rgba(255,255,255,0.1); color: #d6d8df; letter-spacing: 0.04em; }
+  .badge.audited { background: var(--ok-soft); color: var(--ok); }
+  .badge.stalled { background: var(--bad-soft); color: var(--bad); }
+  #logout-btn, #edital-btn { background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.16); padding: 9px 15px; }
+  #logout-btn:hover, #edital-btn:hover { background: rgba(255,255,255,0.16); }
+
+  #app-content { max-width: 1180px; margin: 0 auto; padding: 26px 20px 70px; }
+  .section-title { font-size: 26px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.01em; margin: 0 0 4px; }
+  .section-subtitle { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+
+  .next-result-banner {
+    background: var(--accent-soft); border: 1px solid #fad2bd; color: #8a3212;
+    padding: 10px 16px; font-size: 13px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+  }
+  .sim-banner {
+    background: var(--gold-soft); border: 1px solid #f3e3b4; color: #6b4c02;
+    padding: 9px 16px; font-size: 13px; margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  }
+  #exit-sim-btn { background: white; border: 1px solid #e8cf8a; color: #6b4c02; padding: 6px 12px; font-size: 12.5px; }
+
+  .period-nav-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .period-nav-current { font-size: 13.5px; font-weight: 700; color: white; background: var(--navy-soft); padding: 7px 14px; }
+  .period-nav-label { font-size: 12.5px; color: var(--muted); margin: 0; }
+  #period-select { padding: 7px 12px; border: 1px solid var(--border); font-size: 13px; background: white; }
+  .period-option-tag { font-size: 10px; }
+
+  .toolbar { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+  .toolbar .group { display: flex; align-items: center; gap: 8px; }
+  .toolbar button.secondary { background: white; border: 1px solid var(--border); color: var(--text); padding: 8px 13px; font-size: 13px; }
+  .toolbar button.secondary:hover { background: #fafafa; }
+  select { padding: 9px 11px; border: 1px solid var(--border); font-size: 14px; background: white; font-family: inherit; }
+  #summary { font-size: 13px; color: var(--muted); }
+  #audit-btn { background: var(--ok); color: white; padding: 8px 14px; }
+  #audit-btn:hover { background: #0c7d47; }
+  #audit-btn:disabled { opacity: 0.5; cursor: default; }
+  #testimonials-badge { background: var(--accent); color: white; font-size: 10.5px; padding: 1px 6px; margin-left: 4px; }
+
+  .winner-card {
+    background: linear-gradient(135deg, var(--navy), #2b2440 120%);
+    padding: 26px 28px; margin-bottom: 24px; color: white;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap; box-shadow: var(--shadow);
+  }
+  .winner-card .medal-big { width: 46px; height: 46px; line-height: 1; flex-shrink: 0; color: #f5b83d; }
+  .winner-card .medal-big svg { width: 100%; height: 100%; }
+  .winner-card .winner-label { text-transform: uppercase; font-size: 11px; letter-spacing: 0.08em; color: var(--accent); font-weight: 800; margin-bottom: 6px; }
+  .winner-card .winner-name { font-size: 20px; font-weight: 800; margin: 0 0 2px; }
+  .winner-card .winner-company { font-size: 13px; color: #b9bcc9; }
+  .winner-card .winner-score { margin-left: auto; text-align: right; }
+  .winner-card .winner-score .num { font-size: 30px; font-weight: 800; color: var(--accent); }
+  .winner-card .winner-score .lbl { font-size: 11px; color: #b9bcc9; text-transform: uppercase; letter-spacing: 0.06em; }
+  .winner-card .winner-logo { width: 52px; height: 52px; background: white; display: flex; align-items: center; justify-content: center; padding: 6px; flex-shrink: 0; }
+  .winner-card .winner-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  .company-cell { display: flex; align-items: center; gap: 8px; }
+  .company-cell .company-logo { width: 24px; height: 24px; background: white; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 2px; flex-shrink: 0; }
+  .company-cell .company-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  .logo-upload-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .logo-upload-row:last-child { border-bottom: none; }
+  .logo-upload-row .logo-preview { width: 44px; height: 44px; background: #f5f5f4; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; padding: 4px; flex-shrink: 0; overflow: hidden; }
+  .logo-upload-row .logo-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .logo-upload-row .logo-preview.missing { color: var(--muted); font-size: 10px; text-align: center; line-height: 1.2; }
+  .logo-upload-row .logo-info { flex: 1; min-width: 0; }
+  .logo-upload-row .logo-info .position-tag { font-size: 11px; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+  .logo-upload-row .logo-info .company-name { font-weight: 700; font-size: 14px; }
+  .logo-upload-row .logo-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .logo-upload-row .logo-actions input[type="file"] { max-width: 190px; font-size: 12px; }
+  .logo-upload-row .logo-status { font-size: 11.5px; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow); }
+  th, td { padding: 11px 13px; text-align: left; font-size: 13.5px; border-bottom: 1px solid var(--border); }
+  th { background: #fafafa; font-weight: 700; color: var(--muted); text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.04em; }
+  #ranking-table thead th { position: sticky; top: 0; z-index: 5; box-shadow: 0 1px 0 var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr.destaque-row { background: linear-gradient(to right, var(--accent-soft), transparent 60%); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th.num { text-align: right; }
+  td.pos { font-weight: 700; text-align: center; width: 42px; }
+  td.pos .medal { display: inline-flex; width: 18px; height: 18px; vertical-align: middle; }
+  .medal { display: inline-flex; vertical-align: middle; }
+  .medal svg { width: 100%; height: 100%; }
+  .medal.medal-gold { color: #d4a017; }
+  .medal.medal-silver { color: #9aa0a8; }
+  .medal.medal-bronze { color: #b5651d; }
+  .status-pill { display: inline-block; padding: 2px 9px; font-size: 11px; font-weight: 700; }
+  .status-pill.elegivel { background: var(--ok-soft); color: var(--ok); }
+  .status-pill.inelegivel { background: var(--warn-soft); color: var(--warn); }
+  .status-pill.desclassificado { background: var(--bad-soft); color: var(--bad); }
+
+  .action-icons { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; }
+  .action-btn {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; padding: 0; margin: 0;
+    background: none; border: 1px solid var(--border); color: var(--text);
+    cursor: pointer; flex-shrink: 0;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+  .action-btn svg { width: 16px; height: 16px; }
+  .action-btn:hover { background: #f5f5f4; transform: translateY(-1px); }
+  .action-btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+  .action-btn.tips-btn { color: #92620a; border-color: #f0dfa8; background: var(--gold-soft); }
+  .action-btn.tips-btn:hover { background: #f5e6b8; }
+  .action-btn.testimonial-btn { color: white; background: var(--accent); border-color: var(--accent); }
+  .action-btn.testimonial-btn:hover { background: var(--accent-dark); }
+  .action-btn.evolution-btn { color: #2a5db4; border-color: #cddaf0; background: #eef3fd; }
+  .action-btn.evolution-btn:hover { background: #e0e9fb; }
+  .action-btn.certificate-btn { color: #7a4d00; border-color: #e8cf8a; background: #fff3d6; }
+  .action-btn.certificate-btn:hover { background: #ffecb8; }
+  .action-btn.presentation-btn { color: #3a3d8a; border-color: #cfd0f0; background: #edeefc; }
+  .action-btn.presentation-btn:hover { background: #dfe0f8; }
+  .action-btn.admin-edit-btn { color: #6b3f00; border-color: #e8cf8a; background: #fff8e8; }
+  .action-btn.admin-edit-btn:hover { background: #fdedc4; }
+  .action-btn.has-badge::after {
+    content: attr(data-badge); position: absolute; top: -6px; right: -6px;
+    min-width: 15px; height: 15px; padding: 0 3px;
+    background: var(--accent); color: white; font-size: 9.5px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; line-height: 1;
+  }
+  .action-btn[data-tooltip] { overflow: visible; }
+  .action-btn[data-tooltip]::before {
+    content: attr(data-tooltip); position: absolute; bottom: calc(100% + 7px); left: 50%;
+    transform: translateX(-50%) translateY(2px); background: var(--navy); color: white;
+    font-size: 11px; font-weight: 600; padding: 5px 9px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity 0.12s ease, transform 0.12s ease; z-index: 50;
+  }
+  .action-btn[data-tooltip]:hover { z-index: 51; }
+  .action-btn[data-tooltip]:hover::before { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .detail-row td { background: #fafafa; padding: 14px 16px; }
+  .tip-card { border: 1px solid var(--border); padding: 12px 14px; margin-bottom: 10px; background: white; }
+  .tip-card:last-child { margin-bottom: 0; }
+  .tip-card.sev-atencao { border-left: 3px solid var(--warn); }
+  .tip-card.sev-info { border-left: 3px solid var(--accent); }
+  .tip-card.type-destaque { border-left: 3px solid var(--gold); background: var(--gold-soft); }
+  .tip-card .tip-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .tip-card .tip-body { font-size: 12.5px; color: #3b3f46; line-height: 1.5; }
+  .notes-plain { font-size: 12px; color: var(--muted); white-space: pre-wrap; }
+
+  #empty-state, #loading-state { padding: 44px; text-align: center; color: var(--muted); font-size: 14px; }
+  .dash { color: var(--muted); }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,17,22,0.5); align-items: center; justify-content: center; padding: 20px; z-index: 60; overflow-y: auto; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { width: 100%; max-width: 460px; padding: 26px; max-height: 88vh; overflow-y: auto; margin: auto; }
+  .modal-box h2 { font-size: 17px; margin: 0 0 4px; }
+  .modal-box p.hint { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+  .modal-box button.secondary { background: transparent; border: 1px solid var(--border); padding: 10px 16px; color: var(--text); }
+  .modal-box button.primary { background: var(--accent); color: white; padding: 10px 16px; }
+  .modal-box button.primary:hover { background: var(--accent-dark); }
+  .modal-box button:disabled { opacity: 0.55; cursor: default; }
+  .modal-msg { font-size: 13px; margin-top: 12px; }
+  .modal-msg.ok { color: var(--ok); }
+  .modal-msg.err { color: var(--bad); }
+  .modal-box.wide { max-width: 680px; }
+
+  #evolution-chart-wrap { border: 1px solid var(--border); padding: 10px 6px 4px; background: #fcfcfb; }
+  #evolution-table-wrap { margin-top: 16px; max-height: 220px; overflow-y: auto; }
+  #evolution-table { width: 100%; border-collapse: collapse; box-shadow: none; }
+  #evolution-table th, #evolution-table td { padding: 7px 10px; font-size: 12.5px; border-bottom: 1px solid var(--border); text-align: left; }
+  #evolution-table th { color: var(--muted); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: 0.03em; }
+  #evolution-empty { padding: 30px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  #checklist-body { max-height: 60vh; overflow-y: auto; margin-top: 4px; }
+  .checklist-group-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); margin: 18px 0 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .checklist-group:first-child .checklist-group-title { margin-top: 0; }
+  .checklist-add-inline { background: none; border: none; color: var(--accent); font-size: 11.5px; font-weight: 700; text-transform: none; letter-spacing: 0; cursor: pointer; padding: 0; }
+  .checklist-row { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-left: 4px solid var(--border); padding: 6px 8px; background: #fff; }
+  .checklist-row-title { font-size: 13px; font-weight: 600; flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .checklist-row-due { font-size: 11px; color: var(--muted); white-space: nowrap; flex: 0 0 auto; }
+  .checklist-row select.checklist-status-select { font-size: 11.5px; padding: 4px 6px; border: 1px solid var(--border); background: white; flex: 0 0 auto; }
+  .checklist-team-badge { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; padding: 3px 7px; border: 1px solid transparent; flex: 0 0 auto; cursor: pointer; }
+  .checklist-team-badge.team-cs { background: #eaf2ff; color: #1d4f9c; border-color: #cfe0fb; }
+  .checklist-team-badge.team-marketing { background: #fdeee0; color: #a85416; border-color: #f7d9bd; }
+  .checklist-notes-toggle { flex: 0 0 auto; background: none; border: none; cursor: pointer; font-size: 13px; opacity: 0.55; padding: 2px 4px; }
+  .checklist-notes-toggle.has-notes { opacity: 1; }
+  .checklist-row.status-andamento { background: #eaf2ff; border-color: #a9c6f5; border-left-color: #3b74d1; }
+  .checklist-row.status-concluida { background: #e2f7e9; border-color: #9adcb4; border-left-color: #2f9e57; }
+  .checklist-row.status-concluida .checklist-row-title { text-decoration: line-through; color: var(--muted); }
+  .checklist-row.status-cancelada { background: #fbeae7; border-color: #f0b3a8; border-left-color: #c94a3a; opacity: 0.8; }
+  .checklist-row.status-cancelada .checklist-row-title { text-decoration: line-through; }
+  .checklist-row-wrap { margin-bottom: 6px; }
+  .checklist-row-wrap.is-hidden-by-filter { display: none; }
+  .checklist-filter-toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); cursor: pointer; margin: 6px 0 12px; user-select: none; font-weight: 400; }
+  .checklist-filter-toggle input { margin: 0; }
+  .checklist-notes-panel { display: none; padding: 6px 8px 2px 8px; }
+  .checklist-notes-panel.open { display: block; }
+  .checklist-notes-panel input[type="text"] { width: 100%; font-size: 12px; padding: 6px 8px; border: 1px solid var(--border); }
+  .checklist-new-form { display: none; gap: 8px; align-items: center; border: 1px dashed var(--border); padding: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .checklist-new-form.open { display: flex; }
+  .checklist-new-form input[type="text"] { flex: 1 1 220px; font-size: 12.5px; padding: 6px 8px; border: 1px solid var(--border); width: auto; }
+  .checklist-new-form input[type="date"] { font-size: 12.5px; padding: 5px 6px; border: 1px solid var(--border); font-family: inherit; }
+  .checklist-new-form select { font-size: 12.5px; padding: 5px 6px; border: 1px solid var(--border); }
+
+  .modal-box.edital-box { max-width: 760px; }
+  .edital-placeholder { border: 1px dashed var(--border); background: #fcfcfb; padding: 40px 24px; text-align: center; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+
+  @media (max-width: 640px) {
+    .logo-upload-row { flex-wrap: wrap; }
+    .logo-upload-row .logo-actions { width: 100%; }
+    #app-content { padding: 20px 14px 50px; }
+    .section-title { font-size: 22px; }
+  }
+  /* telas estreitas: a tabela rola de lado em vez de espremer as colunas */
+  @media (max-width: 1080px) {
+    .table-scroll { overflow-x: auto; }
+    #ranking-table { min-width: 1020px; }
+  }
+
+  *, *::before, *::after { border-radius: 0 !important; }
+</style>
+</head>
+<body>
+
+  <!-- ===================== TELA DE LOGIN ===================== -->
+  <div id="login-screen" class="center-screen">
+    <div id="login-card" class="card">
+      <div class="brand">
+        <span class="logo-mark"><img src="../assets/agilean-logo.png" alt="" /></span>
+        <span class="wordmark">Agilean</span>
+      </div>
+      <h1>Prêmio Eficiência Lean</h1>
+      <p class="subtitle">Entre com seu login da Agilean.</p>
+      <div class="demo-note">Demonstração com <strong>dados fictícios</strong>. Não precisa de senha: é só clicar em Entrar. Nada aqui é enviado ou salvo.</div>
+      <form id="login-form">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" value="demo@alanlemos.com.br" readonly />
+        <label for="password">Senha</label>
+        <input type="password" id="password" value="demonstracao" readonly />
+        <button type="submit" id="login-submit">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== TELA DO RANKING ===================== -->
+  <div id="app-screen">
+    <header class="top-bar">
+      <div>
+        <div class="brand">
+          <span class="logo-mark"><img src="../assets/agilean-logo.png" alt="" /></span>
+          <span class="wordmark">Prêmio Eficiência Lean</span>
+          <span class="badge demo">DEMONSTRAÇÃO · DADOS FICTÍCIOS</span>
+        </div>
+        <div class="who" id="who-line"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <a href="projeto-premio-lean.html" target="_top" style="color:#aeb3c0;font-size:12.5px;text-decoration:none;">← página do projeto</a>
+        <button id="edital-btn" type="button">Edital do prêmio</button>
+        <button id="logout-btn" type="button">Sair</button>
+      </div>
+    </header>
+
+    <div id="app-content">
+      <h1 class="section-title">Destaques Mensais</h1>
+      <p class="section-subtitle">Obras que se destacaram pela excelência em gestão Lean.</p>
+
+      <div id="next-result-banner" class="next-result-banner" style="display:none;"></div>
+      <div id="sim-banner" class="sim-banner" style="display:none;">
+        <span id="sim-banner-text"></span>
+        <button id="exit-sim-btn" type="button">sair da simulação</button>
+      </div>
+
+      <div class="period-nav-wrap">
+        <span class="period-nav-current" id="period-nav-current"></span>
+        <label for="period-select" class="period-nav-label">Ver outro período:</label>
+        <select id="period-select"></select>
+      </div>
+
+      <div id="logo-upload-panel" class="card" style="display:none; margin-bottom:18px; padding:16px 18px;">
+        <div style="font-weight:700; font-size:13.5px; margin-bottom:4px;">🖼️ Logos das empresas deste mês</div>
+        <div style="font-size:12.5px; color:var(--muted); margin-bottom:12px;">
+          Antes de confirmar a auditoria, confira se a vencedora e as empresas destaque têm logo cadastrada. Uma vez enviada, a logo vale para os próximos meses também.
+        </div>
+        <div id="logo-upload-list"></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="group" id="admin-view-as-group" style="display:none;">
+          <label for="view-as-select" style="margin:0;">Ver como obra:</label>
+          <select id="view-as-select"><option value="">(visão de superusuário)</option></select>
+        </div>
+        <button id="audit-btn" type="button" style="display:none;">✓ Marcar como auditado</button>
+        <button id="checklist-btn" type="button" class="secondary" style="display:none;">📋 Checklist do mês</button>
+        <span id="summary"></span>
+      </div>
+
+      <div class="toolbar" id="admin-filter-group" style="display:none;">
+        <div class="group">
+          <input type="text" id="filter-obra-input" placeholder="Filtrar por obra..." style="max-width:180px;" />
+          <input type="text" id="filter-construtora-input" placeholder="Filtrar por construtora..." style="max-width:180px;" />
+        </div>
+        <button id="calc-runs-btn" type="button" class="secondary">🔁 Rodagens deste mês</button>
+        <button id="export-csv-btn" type="button" class="secondary">⬇ Exportar CSV</button>
+        <button id="testimonials-btn" type="button" class="secondary">💬 Depoimentos <span id="testimonials-badge" style="display:none;"></span></button>
+      </div>
+
+      <div id="winner-card-slot"></div>
+
+      <div id="loading-state" style="display:none;">Carregando...</div>
+      <div id="empty-state" style="display:none;">Nenhum resultado disponível pra esse período ainda.</div>
+      <div class="table-scroll">
+        <table id="ranking-table" style="display:none;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Obra</th>
+              <th>Construtora</th>
+              <th class="num">IDC</th>
+              <th class="num">IDP</th>
+              <th class="num">PPC</th>
+              <th class="num">IRR</th>
+              <th class="num" id="ppcq-th">PPCQ</th>
+              <th class="num">Score</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="ranking-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DE DEPOIMENTO ===================== -->
+  <div id="testimonial-modal" class="modal-overlay">
+    <div class="modal-box card">
+      <h2>Enviar depoimento 🏆</h2>
+      <p class="hint" id="testimonial-hint"></p>
+      <label for="testimonial-message">Sua mensagem</label>
+      <textarea id="testimonial-message" rows="4" placeholder="Conte como foi o mês, o que funcionou bem na obra..."></textarea>
+      <label for="testimonial-files">Vídeo(s) ou imagem(ns) (opcional, até 5 arquivos)</label>
+      <input type="file" id="testimonial-files" multiple accept="video/*,image/*" />
+      <div id="testimonial-msg" class="modal-msg"></div>
+      <div class="modal-actions">
+        <button class="secondary" id="testimonial-cancel" type="button">Cancelar</button>
+        <button class="primary" id="testimonial-submit" type="button">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DE EVOLUÇÃO DA OBRA ===================== -->
+  <div id="evolution-modal" class="modal-overlay">
+    <div class="modal-box card wide">
+      <h2 id="evolution-title">Evolução da obra</h2>
+      <p class="hint" id="evolution-hint">Score final e posição em cada mês em que a obra competiu.</p>
+      <div id="evolution-loading" style="padding:30px;text-align:center;color:var(--muted);font-size:13px;">Carregando...</div>
+      <div id="evolution-empty" style="display:none;">Essa obra ainda não tem histórico suficiente pra montar o gráfico.</div>
+      <div id="evolution-body" style="display:none;">
+        <div id="evolution-chart-wrap"></div>
+        <div id="evolution-table-wrap">
+          <table id="evolution-table">
+            <thead><tr><th>Mês</th><th>Posição</th><th>Score</th><th>Status</th></tr></thead>
+            <tbody id="evolution-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary" id="evolution-close" type="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DE CERTIFICADO ===================== -->
+  <div id="certificate-modal" class="modal-overlay">
+    <div class="modal-box card wide">
+      <h2>Certificado 🏅</h2>
+      <p class="hint" id="certificate-hint"></p>
+      <div style="display:flex;justify-content:center;">
+        <canvas id="certificate-canvas" style="width:100%;max-width:380px;height:auto;box-shadow:var(--shadow);"></canvas>
+      </div>
+      <div id="certificate-share-msg" class="modal-msg"></div>
+      <p style="font-size:11px;color:var(--muted);margin:10px 0 0;">
+        No celular, "Compartilhar no LinkedIn" abre o menu nativo de compartilhamento do sistema. No computador, a imagem é
+        baixada automaticamente e o LinkedIn abre pra você anexar o certificado na publicação.
+      </p>
+      <div class="modal-actions" style="flex-wrap:wrap;">
+        <button class="secondary" id="certificate-close" type="button">Fechar</button>
+        <button class="secondary" id="certificate-linkedin" type="button">Compartilhar no LinkedIn</button>
+        <button class="primary" id="certificate-download" type="button">⬇ Baixar certificado</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DE CHECKLIST DO MÊS ===================== -->
+  <div id="checklist-modal" class="modal-overlay">
+    <div class="modal-box card wide">
+      <h2>Checklist do mês 📋</h2>
+      <p class="hint" id="checklist-hint">Tarefas de rotina pós-resultado (marketing e CS).</p>
+      <label class="checklist-filter-toggle"><input type="checkbox" id="checklist-filter-pending" /> Mostrar só pendentes</label>
+      <div id="checklist-new-form" class="checklist-new-form">
+        <input type="text" id="checklist-new-title" placeholder="Título da nova tarefa" />
+        <input type="date" id="checklist-new-due" />
+        <select id="checklist-new-team">
+          <option value="cs">CS</option>
+          <option value="marketing">Marketing</option>
+        </select>
+        <button class="secondary" id="checklist-new-cancel" type="button" style="padding:5px 10px;font-size:12px;">Cancelar</button>
+        <button class="primary" id="checklist-new-save" type="button" style="padding:5px 12px;font-size:12px;">Adicionar</button>
+      </div>
+      <div id="checklist-body"></div>
+      <div class="modal-actions">
+        <button class="secondary" id="checklist-close" type="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DE RODAGENS DO MÊS (ADMIN) ===================== -->
+  <div id="calc-runs-modal" class="modal-overlay">
+    <div class="modal-box card wide">
+      <h2>Rodagens deste mês 🔁</h2>
+      <p class="hint">Cada rodagem (calc_run) é um cálculo independente. Só a rodagem marcada como oficial é a que os clientes veem.</p>
+      <div style="border:1px solid var(--border);padding:14px;margin-bottom:16px;background:#fafafa;">
+        <div style="font-weight:600;font-size:13px;margin-bottom:8px;">Forçar novo cálculo</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <input type="text" id="force-calc-month-input" placeholder="AAAA-MM (ex.: 2026-08)" style="width:150px;" />
+          <button class="primary" id="force-calc-run-btn" type="button">▶ Rodar agora</button>
+          <span id="force-calc-progress" style="font-size:12.5px;color:var(--muted);"></span>
+        </div>
+        <p class="hint" style="margin:8px 0 0;font-size:12px;">
+          Cria uma rodagem nova e independente — não apaga nem sobrescreve o resultado que já existir pra esse mês.
+          Depois de terminar, escolha abaixo qual rodagem vira a oficial.
+        </p>
+      </div>
+      <div id="calc-runs-body"></div>
+      <div id="calc-runs-msg" class="modal-msg"></div>
+      <div class="modal-actions">
+        <button class="secondary" id="calc-runs-close" type="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DE DEPOIMENTOS (ADMIN) ===================== -->
+  <div id="testimonials-modal" class="modal-overlay">
+    <div class="modal-box card wide">
+      <h2>Depoimentos 💬</h2>
+      <p class="hint">Depoimentos enviados pelas obras destaque (top 3). Marque como lido depois de repassar ao marketing.</p>
+      <div style="display:flex;gap:14px;align-items:center;margin-bottom:10px;flex-wrap:wrap;">
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;margin:0;font-weight:400;">
+          <input type="checkbox" id="testimonials-only-unread" checked />
+          Mostrar só não lidos
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;margin:0;font-weight:400;">
+          Mês:
+          <select id="testimonials-month-filter" style="width:auto;padding:5px 8px;font-size:13px;">
+            <option value="">Todos</option>
+          </select>
+        </label>
+        <span id="testimonials-count" style="font-size:12.5px;color:var(--muted);"></span>
+      </div>
+      <div id="testimonials-empty" style="display:none;padding:30px;text-align:center;color:var(--muted);font-size:13px;">Nenhum depoimento por aqui ainda.</div>
+      <div id="testimonials-body" style="max-height:60vh;overflow-y:auto;"></div>
+      <div class="modal-actions">
+        <button class="secondary" id="testimonials-close" type="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DE EDIÇÃO MANUAL (ADMIN) ===================== -->
+  <div id="admin-edit-modal" class="modal-overlay">
+    <div class="modal-box card">
+      <h2>Editar obra (admin) ✎</h2>
+      <p class="hint" id="admin-edit-hint"></p>
+      <label for="admin-edit-action">Ação</label>
+      <select id="admin-edit-action" style="width:100%;">
+        <option value="set_ineligible">Tornar inelegível (com motivo)</option>
+        <option value="edit_indicator">Editar valor de um indicador</option>
+        <option value="reposition">Mover para outra posição</option>
+      </select>
+      <div id="admin-edit-fields-ineligible">
+        <label for="admin-edit-reason">Motivo</label>
+        <textarea id="admin-edit-reason" rows="3" placeholder="Explique por que essa obra deve ficar inelegível neste mês..."></textarea>
+      </div>
+      <div id="admin-edit-fields-indicator" style="display:none;">
+        <label for="admin-edit-indicator">Indicador</label>
+        <select id="admin-edit-indicator" style="width:100%;">
+          <option value="idc">IDC</option>
+          <option value="idp">IDP</option>
+          <option value="ppc">PPC</option>
+          <option value="irr">IRR</option>
+          <option value="q" id="ppcq-option">PPCQ</option>
+        </select>
+        <label for="admin-edit-value">Novo valor (decimal, ex: 0,85 pra 85%)</label>
+        <input type="text" id="admin-edit-value" placeholder="0,85" />
+      </div>
+      <div id="admin-edit-fields-position" style="display:none;">
+        <label for="admin-edit-position">Nova posição</label>
+        <input type="number" id="admin-edit-position" min="1" step="1" placeholder="1" />
+      </div>
+      <div id="admin-edit-msg" class="modal-msg"></div>
+      <div class="modal-actions">
+        <button class="secondary" id="admin-edit-cancel" type="button">Cancelar</button>
+        <button class="primary" id="admin-edit-save" type="button">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DO EDITAL ===================== -->
+  <div id="edital-modal" class="modal-overlay">
+    <div class="modal-box card wide edital-box">
+      <h2>Edital do Prêmio Construção com Eficiência Lean</h2>
+      <p class="hint">Regulamento do prêmio, disponível só para quem está logado.</p>
+      <div class="edital-placeholder">
+        📄 No sistema real, o PDF do edital abre aqui dentro, com opção de abrir em outra aba ou baixar.<br />
+        Nesta demonstração o documento não é exibido, porque é material interno da Agilean.
+      </div>
+      <div class="modal-actions">
+        <button class="secondary" id="edital-close" type="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+// ======================================================================
+// DADOS FICTÍCIOS — gerados aqui mesmo, de forma determinística.
+// Nenhum nome, número ou e-mail abaixo corresponde a cliente real.
+// ======================================================================
+const MONTHS = ["2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09"];
+const KEYS = ["idc", "idp", "ppc", "irr", "q"];
+const PPCQ_RENAME_CUTOFF = "2026-09";
+
+const PROJECTS = [
+  { id: "p01", name: "Residencial Alameda das Flores", company: "Construtora Vértice", base: 0.90, trend: 0.011 },
+  { id: "p02", name: "Parque Imperial Torre B", company: "Horizonte Engenharia", base: 0.89, trend: 0.006 },
+  { id: "p03", name: "Bosque Alto Fase 2", company: "Construtora Pilar Norte", base: 0.86, trend: 0.010 },
+  { id: "p04", name: "Edifício Mirante do Lago", company: "Atlântica Incorporações", base: 0.88, trend: 0.002 },
+  { id: "p05", name: "Condomínio Vila Serena", company: "Construtora Vértice", base: 0.84, trend: 0.004 },
+  { id: "p06", name: "Torre Empresarial Aurora", company: "Nova Base Engenharia", base: 0.87, trend: -0.002 },
+  { id: "p07", name: "Residencial Jardim das Águas", company: "Horizonte Engenharia", base: 0.82, trend: 0.006 },
+  { id: "p08", name: "Edifício Pinhal", company: "Construtora Pilar Norte", base: 0.85, trend: 0.000 },
+  { id: "p09", name: "Solar das Palmeiras", company: "Atlântica Incorporações", base: 0.80, trend: 0.008 },
+  { id: "p10", name: "Centro Logístico Litoral", company: "Nova Base Engenharia", base: 0.83, trend: 0.001 },
+];
+
+const OVERRIDES = {
+  "2026-09": {
+    p08: { status: "inelegível", missing: "irr", reason: "IRR não foi lançado na plataforma até o fechamento do mês." },
+    p10: { status: "desclassificado", reason: "Dados de PPC divergentes do diário de obra, identificados na auditoria." },
+  },
+  "2026-08": { p06: { status: "inelegível", missing: "q", reason: "Indicador de qualidade sem inspeções registradas no mês." } },
+  "2026-06": { p09: { status: "inelegível", missing: "idc", reason: "Orçamento da obra em revisão; IDC não apurado no período." } },
+};
+const NOTES = {
+  "2026-09": { p04: "Obra entrou em fase de acabamento; PPC apurado sobre 4 semanas de programação." },
+  "2026-08": { p02: "Mudança de engenheiro residente no meio do mês, sem impacto nos lançamentos." },
+};
+const ADVICE = {
+  idc: "Reveja as medições de custo das últimas semanas e o que ficou fora do previsto no orçamento.",
+  idp: "Confira as atividades do caminho crítico que atrasaram e replaneje os próximos pacotes.",
+  ppc: "Pacotes não concluídos costumam vir de restrições não removidas: vale reforçar a reunião semanal de planejamento.",
+  irr: "Antecipe a análise de restrições das próximas 4 a 6 semanas para remover mais restrições no prazo.",
+  q: "Registre as inspeções de qualidade no momento da conclusão de cada pacote.",
+};
+
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+function computeScore(r) {
+  const vals = KEYS.map((k) => r[k]);
+  if (vals.some((v) => v === null || v === undefined)) return null;
+  return vals.reduce((a, b) => a + b, 0) / vals.length;
+}
+
+const DB = { months: {}, companyLogos: {}, testimonials: [] };
+
+MONTHS.forEach((m, mi) => {
+  const rows = PROJECTS.map((p, pi) => {
+    const offRnd = mulberry32(7 + pi * 31);
+    const offsets = KEYS.map(() => (offRnd() - 0.5) * 0.08);
+    const rnd = mulberry32(1000 + pi * 97 + mi * 13);
+    const r = {
+      project_id: p.id, project_name: p.name, company_name: p.company, month: m,
+      status: "elegível", notes: "", disqualified_reason: "",
+    };
+    KEYS.forEach((k, ki) => {
+      r[k] = Math.round(clamp(p.base + offsets[ki] + p.trend * mi + (rnd() - 0.5) * 0.05, 0.6, 0.99) * 1000) / 1000;
+    });
+    const ov = (OVERRIDES[m] || {})[p.id];
+    if (ov) {
+      r.status = ov.status;
+      r.disqualified_reason = ov.reason;
+      if (ov.missing) r[ov.missing] = null;
+    }
+    if (NOTES[m] && NOTES[m][p.id]) r.notes = NOTES[m][p.id];
+    r.score_final = computeScore(r);
+    return r;
+  });
+  DB.months[m] = { month: m, audited: m !== "2026-09", rows, order: null, checklist: null, runs: null };
+  rerank(m);
+});
+
+DB.testimonials = [
+  {
+    id: "t1", project_id: firstOf("2026-08", 1).project_id, project_name: firstOf("2026-08", 1).project_name, month: "2026-08",
+    created_at: "2026-09-16T10:12:00-03:00", submitted_by_name: "Mariana Costa", submitted_by_email: "mariana.costa@exemplo.com.br",
+    message: "Ver a equipe no topo do ranking foi um combustível enorme. A reunião semanal de planejamento virou ritual sagrado aqui na obra!",
+    files: [], read_at: "2026-09-17T09:40:00-03:00", read_by: "Alan Lemos",
+  },
+  {
+    id: "t2", project_id: firstOf("2026-09", 2).project_id, project_name: firstOf("2026-09", 2).project_name, month: "2026-09",
+    created_at: "2026-10-14T16:05:00-03:00", submitted_by_name: "Rafael Nogueira", submitted_by_email: "rafael.nogueira@exemplo.com.br",
+    message: "Segundo lugar com a obra em plena estrutura. O IRR subiu muito depois que passamos a olhar as restrições com 6 semanas de antecedência.",
+    files: [{ name: "equipe-obra.jpg" }], read_at: null, read_by: null,
+  },
+  {
+    id: "t3", project_id: firstOf("2026-09", 3).project_id, project_name: firstOf("2026-09", 3).project_name, month: "2026-09",
+    created_at: "2026-10-15T08:47:00-03:00", submitted_by_name: "Juliana Prado", submitted_by_email: "juliana.prado@exemplo.com.br",
+    message: "", files: [{ name: "video-depoimento-equipe.mp4" }, { name: "placa-obra-destaque.jpg" }], read_at: null, read_by: null,
+  },
+];
+
+function firstOf(month, position) {
+  return DB.months[month].rows.find((r) => r.position === position) || DB.months[month].rows[0];
+}
+
+// ordena e numera as obras elegíveis do mês (ou respeita a ordem manual do
+// admin, se ele moveu alguma obra de posição) e recalcula as dicas.
+function rerank(month) {
+  const mo = DB.months[month];
+  const elig = mo.rows.filter((r) => r.status === "elegível" && r.score_final !== null);
+  let ordered;
+  if (mo.order) {
+    ordered = mo.order.map((id) => elig.find((r) => r.project_id === id)).filter(Boolean);
+    elig.slice().sort((a, b) => b.score_final - a.score_final).forEach((r) => { if (!ordered.includes(r)) ordered.push(r); });
+  } else {
+    ordered = elig.slice().sort((a, b) => b.score_final - a.score_final);
+  }
+  mo.rows.forEach((r) => (r.position = null));
+  ordered.forEach((r, i) => (r.position = i + 1));
+  mo.rows.sort((a, b) => {
+    if (a.position && b.position) return a.position - b.position;
+    if (a.position) return -1;
+    if (b.position) return 1;
+    return a.project_name.localeCompare(b.project_name);
+  });
+  mo.rows.forEach((r) => (r.tips = buildTips(r, mo)));
+}
+
+function labelOf(k, month) {
+  return { idc: "IDC", idp: "IDP", ppc: "PPC", irr: "IRR", q: qualityLabel(month) }[k];
+}
+
+function topTwoIndicators(row, month) {
+  const entries = KEYS.map((k) => ({ label: labelOf(k, month), value: row[k] })).filter((e) => e.value !== null && e.value !== undefined);
+  entries.sort((a, b) => b.value - a.value);
+  return entries.slice(0, 2).map((e) => e.label);
+}
+
+function buildTips(r, mo) {
+  const tips = [];
+  const ml = formatMonthLabel(mo.month);
+  if (r.position && r.position <= 3) {
+    tips.push({ type: "destaque", icon: "🏆", title: "Obra destaque do mês", body: `Entre os 3 melhores scores de ${ml}. Os pontos mais fortes foram ${topTwoIndicators(r, mo.month).join(" e ")}.` });
+  }
+  KEYS.forEach((k) => {
+    const v = r[k];
+    if (v !== null && v !== undefined && v < 0.8) {
+      tips.push({ severity: "atencao", icon: "⚠️", title: `${labelOf(k, mo.month)} abaixo de 80%`, body: ADVICE[k] });
+    }
+  });
+  if (r.position && r.position >= 4 && r.position <= 6) {
+    const third = mo.rows.find((x) => x.position === 3);
+    if (third) {
+      const diff = ((third.score_final - r.score_final) * 100).toFixed(1).replace(".", ",");
+      tips.push({ severity: "info", icon: "💡", title: "Perto do pódio", body: `Faltaram ${diff} pontos percentuais para alcançar o 3º lugar.` });
+    }
+  }
+  return tips;
+}
+
+// ======================================================================
+// helpers de formatação (iguais aos do sistema)
+// ======================================================================
+function fmtPct(v) {
+  if (v === null || v === undefined) return '<span class="dash">–</span>';
+  return (v * 100).toFixed(1).replace(".", ",") + "%";
+}
+function fmtPctPlain(v) {
+  if (v === null || v === undefined) return "";
+  return (v * 100).toFixed(1).replace(".", ",");
+}
+function statusPill(status) {
+  const cls = status === "elegível" ? "elegivel" : status === "inelegível" ? "inelegivel" : "desclassificado";
+  return `<span class="status-pill ${cls}">${escapeHtml(status)}</span>`;
+}
+function formatMonthLabel(month) {
+  const [y, m] = month.split("-");
+  const names = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+  return `${names[parseInt(m, 10) - 1]}/${y}`;
+}
+function formatMonthOnly(month) {
+  const [, m] = month.split("-");
+  const names = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+  return names[parseInt(m, 10) - 1];
+}
+function formatMonthYear(month) {
+  return `${formatMonthOnly(month)} ${month.split("-")[0]}`;
+}
+function escapeHtml(s) {
+  const div = document.createElement("div");
+  div.textContent = s ?? "";
+  return div.innerHTML;
+}
+function qualityLabel(month) {
+  if (!month) return "Qualidade";
+  return month < PPCQ_RENAME_CUTOFF ? "PPCQ" : "Qualidade";
+}
+function nextMonthOf(month) {
+  const [y, m] = month.split("-").map(Number);
+  return m === 12 ? [y + 1, 1] : [y, m + 1];
+}
+function isoDayAfterMonth(month, day) {
+  const [ny, nm] = nextMonthOf(month);
+  return `${ny}-${String(nm).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+function formatDateTime(iso) {
+  if (!iso) return "–";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "–";
+  return d.toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+const wait = (ms) => new Promise((res) => setTimeout(res, ms));
+
+// ======================================================================
+// ícones (mesmos SVGs do sistema)
+// ======================================================================
+const SVG_TROPHY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4"/><path d="M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/></svg>';
+const SVG_MEDAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="6"/><circle cx="12" cy="15" r="2.5" fill="currentColor" stroke="none"/><path d="M8.5 9.5 6 3h3l2 5"/><path d="M15.5 9.5 18 3h-3l-2 5"/></svg>';
+const ICON = {
+  notes: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M10 12h4"/><path d="M10 16h4"/></svg>',
+  tips: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2Z"/></svg>',
+  testimonial: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  certificate: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>',
+  presentation: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>',
+  evolution: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
+  edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>',
+};
+function medalHtml(pos, size) {
+  const style = size ? ` style="width:${size}px;height:${size}px;"` : "";
+  if (pos === 1) return `<span class="medal medal-gold"${style}>${SVG_TROPHY}</span>`;
+  if (pos === 2) return `<span class="medal medal-silver"${style}>${SVG_MEDAL}</span>`;
+  if (pos === 3) return `<span class="medal medal-bronze"${style}>${SVG_MEDAL}</span>`;
+  return "";
+}
+
+// ======================================================================
+// estado da tela
+// ======================================================================
+const SESSION = { name: "Usuário de demonstração", email: "demo@alanlemos.com.br", isAdmin: true };
+let currentMonth = null;
+let viewAsProjectId = "";
+let lastRankingDisplayRows = [];
+let lastRankingActingAsClient = false;
+
+const loginScreen = document.getElementById("login-screen");
+const appScreen = document.getElementById("app-screen");
+
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById("login-submit");
+  btn.disabled = true;
+  btn.textContent = "Entrando...";
+  await wait(450);
+  btn.disabled = false;
+  btn.textContent = "Entrar";
+  showApp();
+});
+
+document.getElementById("logout-btn").addEventListener("click", () => {
+  exitSimulation();
+  appScreen.style.display = "none";
+  loginScreen.style.display = "flex";
+});
+
+function showApp() {
+  loginScreen.style.display = "none";
+  appScreen.style.display = "block";
+  document.getElementById("who-line").innerHTML =
+    `${escapeHtml(SESSION.name)} (${escapeHtml(SESSION.email)})` + `<span class="badge admin">SUPERUSUÁRIO</span>`;
+  document.getElementById("admin-view-as-group").style.display = "flex";
+  renderNextResultBanner();
+  const months = monthsDesc();
+  renderPeriodNav(months[0], false);
+  loadRanking(months[0]);
+}
+
+function renderNextResultBanner() {
+  const banner = document.getElementById("next-result-banner");
+  const now = new Date();
+  let nextDay11 = new Date(now.getFullYear(), now.getMonth(), 11);
+  if (now.getDate() >= 11) nextDay11 = new Date(now.getFullYear(), now.getMonth() + 1, 11);
+  const diffDays = Math.ceil((nextDay11 - now) / 86400000);
+  const monthNames = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  const refMonth = new Date(nextDay11.getFullYear(), nextDay11.getMonth() - 1, 1);
+  const refLabel = `${monthNames[refMonth.getMonth()]}/${refMonth.getFullYear()}`;
+  const dayLabel = String(nextDay11.getDate()).padStart(2, "0") + "/" + String(nextDay11.getMonth() + 1).padStart(2, "0") + "/" + nextDay11.getFullYear();
+  banner.style.display = "block";
+  banner.innerHTML = `📅 O resultado de <strong>${refLabel}</strong> sai a partir de <strong>${dayLabel}</strong> (em ${diffDays} dia${diffDays === 1 ? "" : "s"}).`;
+}
+
+function monthsDesc() {
+  return MONTHS.slice().reverse();
+}
+
+// mesma regra do sistema: ao simular a visão de um cliente, só aparecem os
+// meses que um cliente de verdade enxergaria.
+const CLIENT_HISTORY_CUTOFF_MONTH = "2026-09";
+function isMonthVisibleToSimulatedClient(month) {
+  return month >= CLIENT_HISTORY_CUTOFF_MONTH;
+}
+
+function renderPeriodNav(active, simulating) {
+  const all = monthsDesc();
+  const visibleMonths = simulating ? all.filter(isMonthVisibleToSimulatedClient) : all;
+  const currentEl = document.getElementById("period-nav-current");
+  const selectEl = document.getElementById("period-select");
+  const activeMonth = visibleMonths.includes(active) ? active : visibleMonths[0];
+  const isMostRecent = activeMonth === visibleMonths[0];
+  const audited = DB.months[activeMonth].audited;
+  const tag = !simulating ? ` <span class="period-option-tag">(${audited ? "✓ auditado" : "em análise"})</span>` : "";
+  currentEl.innerHTML = `${isMostRecent ? "Resultado mais recente: " : ""}<strong>${formatMonthYear(activeMonth)}</strong>${tag}`;
+  selectEl.innerHTML = visibleMonths
+    .map((m) => {
+      const label = !simulating ? `${formatMonthYear(m)} ${DB.months[m].audited ? "· auditado" : "· em análise"}` : formatMonthYear(m);
+      return `<option value="${m}" ${m === activeMonth ? "selected" : ""}>${label}</option>`;
+    })
+    .join("");
+  return activeMonth;
+}
+
+document.getElementById("period-select").addEventListener("change", (e) => {
+  const simulating = !!viewAsProjectId;
+  renderPeriodNav(e.target.value, simulating);
+  loadRanking(e.target.value);
+});
+
+function exitSimulation() {
+  viewAsProjectId = "";
+  document.getElementById("view-as-select").value = "";
+  document.getElementById("sim-banner").style.display = "none";
+}
+
+document.getElementById("view-as-select").addEventListener("change", (e) => {
+  viewAsProjectId = e.target.value;
+  const month = renderPeriodNav(currentMonth, !!viewAsProjectId);
+  loadRanking(month);
+});
+document.getElementById("exit-sim-btn").addEventListener("click", () => {
+  exitSimulation();
+  renderPeriodNav(currentMonth, false);
+  loadRanking(currentMonth);
+});
+
+async function loadRanking(month, opts) {
+  currentMonth = month;
+  const quiet = opts && opts.quiet;
+  const loading = document.getElementById("loading-state");
+  const empty = document.getElementById("empty-state");
+  const table = document.getElementById("ranking-table");
+  const summary = document.getElementById("summary");
+  const auditBtn = document.getElementById("audit-btn");
+  const checklistBtn = document.getElementById("checklist-btn");
+  const simBanner = document.getElementById("sim-banner");
+  const winnerSlot = document.getElementById("winner-card-slot");
+  const adminFilterGroup = document.getElementById("admin-filter-group");
+
+  if (!quiet) {
+    loading.style.display = "block";
+    empty.style.display = "none";
+    table.style.display = "none";
+    summary.textContent = "";
+    auditBtn.style.display = "none";
+    checklistBtn.style.display = "none";
+    adminFilterGroup.style.display = "none";
+    winnerSlot.innerHTML = "";
+    document.getElementById("logo-upload-panel").style.display = "none";
+    await wait(320);
+    if (currentMonth !== month) return;
+  }
+
+  const mo = DB.months[month];
+  const fullRows = mo.rows;
+  loading.style.display = "none";
+
+  auditBtn.style.display = "inline-block";
+  auditBtn.disabled = !!mo.audited;
+  auditBtn.textContent = mo.audited ? "✓ Já auditado" : "✓ Marcar como auditado";
+  checklistBtn.style.display = mo.audited ? "inline-block" : "none";
+  adminFilterGroup.style.display = "flex";
+  populateViewAsSelect(fullRows);
+  renderLogoUploadPanel(fullRows, mo.audited);
+  updateTestimonialsBadge();
+
+  const simulating = !!viewAsProjectId;
+  const displayRows = simulating ? fullRows.filter((r) => r.project_id === viewAsProjectId) : fullRows;
+
+  if (simulating) {
+    const proj = displayRows[0];
+    simBanner.style.display = "flex";
+    document.getElementById("sim-banner-text").innerHTML =
+      `👤 Visualizando como se fosse o cliente de <strong>${escapeHtml(proj ? proj.project_name : "")}</strong>.`;
+  } else {
+    simBanner.style.display = "none";
+  }
+
+  if (displayRows.length === 0) {
+    empty.style.display = "block";
+    empty.textContent = "Nenhum resultado disponível pra esse período ainda.";
+    table.style.display = "none";
+    winnerSlot.innerHTML = "";
+    return;
+  }
+  empty.style.display = "none";
+
+  const winner = displayRows.find((r) => r.position === 1);
+  winnerSlot.innerHTML = winner
+    ? `
+      <div class="winner-card">
+        <div class="medal-big">${SVG_TROPHY}</div>
+        ${DB.companyLogos[winner.company_name] ? `<div class="winner-logo"><img src="${DB.companyLogos[winner.company_name]}" alt="" /></div>` : ""}
+        <div>
+          <div class="winner-label">Obra Vencedora · ${formatMonthLabel(month)}</div>
+          <div class="winner-name">${escapeHtml(winner.project_name)}</div>
+          <div class="winner-company">${escapeHtml(winner.company_name)}</div>
+        </div>
+        <div class="winner-score">
+          <div class="num">${fmtPct(winner.score_final)}</div>
+          <div class="lbl">score final</div>
+        </div>
+      </div>`
+    : "";
+
+  lastRankingDisplayRows = displayRows;
+  lastRankingActingAsClient = simulating;
+  renderRankingRows();
+}
+
+function populateViewAsSelect(rows) {
+  const select = document.getElementById("view-as-select");
+  const current = viewAsProjectId;
+  const sorted = rows.slice().sort((a, b) => a.project_name.localeCompare(b.project_name));
+  select.innerHTML =
+    `<option value="">(visão de superusuário)</option>` +
+    sorted.map((r) => `<option value="${r.project_id}">${escapeHtml(r.project_name)}</option>`).join("");
+  select.value = current;
+}
+
+function renderLogoUploadPanel(rows, audited) {
+  const panel = document.getElementById("logo-upload-panel");
+  const list = document.getElementById("logo-upload-list");
+  if (audited || viewAsProjectId) {
+    panel.style.display = "none";
+    return;
+  }
+  const top3 = rows.filter((r) => r.position && r.position <= 3).sort((a, b) => a.position - b.position);
+  if (!top3.length) {
+    panel.style.display = "none";
+    return;
+  }
+  panel.style.display = "block";
+  const tagFor = (pos) => `${medalHtml(pos, 14)} ${pos === 1 ? "Vencedora" : "Destaque"}`;
+  list.innerHTML = top3
+    .map((r, idx) => {
+      const logo = DB.companyLogos[r.company_name];
+      return `
+      <div class="logo-upload-row" id="logo-row-${idx}">
+        <div class="logo-preview ${logo ? "" : "missing"}">${logo ? `<img src="${logo}" alt="" />` : "sem logo"}</div>
+        <div class="logo-info">
+          <div class="position-tag">${tagFor(r.position)}</div>
+          <div class="company-name">${escapeHtml(r.company_name)}</div>
+        </div>
+        <div class="logo-actions">
+          <input type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp" class="logo-file-input" />
+          <span class="logo-status"></span>
+        </div>
+      </div>`;
+    })
+    .join("");
+  top3.forEach((r, idx) => {
+    const rowEl = document.getElementById(`logo-row-${idx}`);
+    const input = rowEl.querySelector(".logo-file-input");
+    const status = rowEl.querySelector(".logo-status");
+    input.addEventListener("change", () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      status.textContent = "Enviando...";
+      const reader = new FileReader();
+      reader.onload = async () => {
+        await wait(400);
+        DB.companyLogos[r.company_name] = String(reader.result);
+        status.textContent = "✓ salvo";
+        loadRanking(currentMonth, { quiet: true });
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+}
+
+["filter-obra-input", "filter-construtora-input"].forEach((id) => {
+  document.getElementById(id).addEventListener("input", renderRankingRows);
+});
+
+function renderRankingRows() {
+  const table = document.getElementById("ranking-table");
+  const tbody = document.getElementById("ranking-tbody");
+  const summary = document.getElementById("summary");
+  const actingAsClient = lastRankingActingAsClient;
+
+  const obraFilter = document.getElementById("filter-obra-input").value.trim().toLowerCase();
+  const construtoraFilter = document.getElementById("filter-construtora-input").value.trim().toLowerCase();
+  const rows = lastRankingDisplayRows.filter((r) => {
+    const matchesObra = !obraFilter || r.project_name.toLowerCase().includes(obraFilter);
+    const matchesConstrutora = !construtoraFilter || r.company_name.toLowerCase().includes(construtoraFilter);
+    return matchesObra && matchesConstrutora;
+  });
+
+  const eligibleCount = lastRankingDisplayRows.filter((r) => r.status === "elegível").length;
+  summary.textContent =
+    rows.length === lastRankingDisplayRows.length
+      ? `${lastRankingDisplayRows.length} obra(s), ${eligibleCount} elegível(is)`
+      : `${rows.length} de ${lastRankingDisplayRows.length} obra(s) (filtro ativo)`;
+
+  table.style.display = "table";
+  tbody.innerHTML = "";
+  document.getElementById("ppcq-th").textContent = qualityLabel(currentMonth);
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="11" style="text-align:center;color:var(--muted);padding:24px;">Nenhuma obra encontrada com esse filtro.</td></tr>`;
+    return;
+  }
+
+  rows.forEach((r) => {
+    const isDestaque = r.position && r.position <= 3;
+    const tr = document.createElement("tr");
+    if (isDestaque) tr.className = "destaque-row";
+    const tips = r.tips || [];
+    const logo = DB.companyLogos[r.company_name];
+    tr.innerHTML = `
+      <td class="pos">${medalHtml(r.position) || (r.position ?? "–")}</td>
+      <td>${escapeHtml(r.project_name)}</td>
+      <td><div class="company-cell">${logo ? `<span class="company-logo"><img src="${logo}" alt="" /></span>` : ""}<span>${escapeHtml(r.company_name)}</span></div></td>
+      <td class="num">${fmtPct(r.idc)}</td>
+      <td class="num">${fmtPct(r.idp)}</td>
+      <td class="num">${fmtPct(r.ppc)}</td>
+      <td class="num">${fmtPct(r.irr)}</td>
+      <td class="num">${fmtPct(r.q)}</td>
+      <td class="num"><strong>${fmtPct(r.score_final)}</strong></td>
+      <td>${statusPill(r.status)}</td>
+      <td>
+        <div class="action-icons">
+          ${r.notes || r.disqualified_reason ? `<button class="action-btn" data-kind="notes" data-tooltip="Notas">${ICON.notes}</button>` : ""}
+          ${tips.length ? `<button class="action-btn tips-btn has-badge" data-kind="tips" data-tooltip="Dicas" data-badge="${tips.length}">${ICON.tips}</button>` : ""}
+          ${isDestaque && actingAsClient ? `<button class="action-btn testimonial-btn" data-kind="testimonial" data-tooltip="Enviar depoimento">${ICON.testimonial}</button>` : ""}
+          ${isDestaque && actingAsClient ? `<button class="action-btn certificate-btn" data-kind="certificate" data-tooltip="Certificado">${ICON.certificate}</button>` : ""}
+          ${isDestaque ? `<button class="action-btn presentation-btn" data-kind="presentation" data-tooltip="Apresentação">${ICON.presentation}</button>` : ""}
+          <button class="action-btn evolution-btn" data-kind="evolution" data-tooltip="Evolução">${ICON.evolution}</button>
+          <button class="action-btn admin-edit-btn" data-kind="admin-edit" data-tooltip="Editar">${ICON.edit}</button>
+        </div>
+      </td>`;
+    tbody.appendChild(tr);
+
+    if (r.notes || r.disqualified_reason) {
+      const notesTr = document.createElement("tr");
+      notesTr.className = "detail-row";
+      notesTr.style.display = "none";
+      const reasonHtml = r.disqualified_reason
+        ? `<div class="notes-plain"><strong>Motivo (${escapeHtml(r.status)}):</strong> ${escapeHtml(r.disqualified_reason)}</div>`
+        : "";
+      const notesHtml = r.notes ? `<div class="notes-plain" style="margin-top:${reasonHtml ? "8px" : "0"};">${escapeHtml(r.notes)}</div>` : "";
+      notesTr.innerHTML = `<td colspan="11">${reasonHtml}${notesHtml}</td>`;
+      tbody.appendChild(notesTr);
+      tr.querySelector('[data-kind="notes"]').addEventListener("click", () => {
+        notesTr.style.display = notesTr.style.display === "none" ? "table-row" : "none";
+      });
+    }
+
+    if (tips.length) {
+      const tipsTr = document.createElement("tr");
+      tipsTr.className = "detail-row";
+      tipsTr.style.display = "none";
+      tipsTr.innerHTML = `<td colspan="11">${tips.map(renderTipCard).join("")}</td>`;
+      tbody.appendChild(tipsTr);
+      tr.querySelector('[data-kind="tips"]').addEventListener("click", () => {
+        tipsTr.style.display = tipsTr.style.display === "none" ? "table-row" : "none";
+      });
+    }
+
+    const on = (kind, fn) => {
+      const b = tr.querySelector(`[data-kind="${kind}"]`);
+      if (b) b.addEventListener("click", () => fn(r, b));
+    };
+    on("testimonial", openTestimonialModal);
+    on("certificate", openCertificateModal);
+    on("presentation", generatePresentation);
+    on("evolution", openEvolutionModal);
+    on("admin-edit", openAdminEditModal);
+  });
+}
+
+function renderTipCard(t) {
+  const cls = t.type === "destaque" ? "type-destaque" : `sev-${t.severity || "info"}`;
+  return `<div class="tip-card ${cls}"><div class="tip-title">${t.icon || ""} ${escapeHtml(t.title)}</div><div class="tip-body">${escapeHtml(t.body)}</div></div>`;
+}
+
+// ---------------- modais: abrir/fechar ----------------
+function bindModal(id, closeId) {
+  const el = document.getElementById(id);
+  const close = () => el.classList.remove("open");
+  document.getElementById(closeId).addEventListener("click", close);
+  el.addEventListener("click", (e) => { if (e.target === el) close(); });
+  return { el, open: () => el.classList.add("open"), close };
+}
+const testimonialModal = bindModal("testimonial-modal", "testimonial-cancel");
+const evolutionModal = bindModal("evolution-modal", "evolution-close");
+const certificateModal = bindModal("certificate-modal", "certificate-close");
+const checklistModal = bindModal("checklist-modal", "checklist-close");
+const calcRunsModal = bindModal("calc-runs-modal", "calc-runs-close");
+const testimonialsModal = bindModal("testimonials-modal", "testimonials-close");
+const adminEditModal = bindModal("admin-edit-modal", "admin-edit-cancel");
+const editalModal = bindModal("edital-modal", "edital-close");
+document.getElementById("edital-btn").addEventListener("click", editalModal.open);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") document.querySelectorAll(".modal-overlay.open").forEach((m) => m.classList.remove("open"));
+});
+
+// ---------------- depoimento (visão do cliente) ----------------
+let testimonialTargetRow = null;
+function openTestimonialModal(row) {
+  testimonialTargetRow = row;
+  document.getElementById("testimonial-hint").textContent =
+    `${row.project_name}, obra destaque do mês. Conte sua experiência pra usarmos com nosso time de marketing.`;
+  document.getElementById("testimonial-message").value = "";
+  document.getElementById("testimonial-files").value = "";
+  const msg = document.getElementById("testimonial-msg");
+  msg.textContent = "";
+  msg.className = "modal-msg";
+  testimonialModal.open();
+}
+document.getElementById("testimonial-submit").addEventListener("click", async () => {
+  const btn = document.getElementById("testimonial-submit");
+  const msgEl = document.getElementById("testimonial-msg");
+  const message = document.getElementById("testimonial-message").value.trim();
+  const files = Array.from(document.getElementById("testimonial-files").files || []);
+  if (files.length > 5) {
+    msgEl.textContent = "Máximo de 5 arquivos por envio.";
+    msgEl.className = "modal-msg err";
+    return;
+  }
+  if (!message && !files.length) {
+    msgEl.textContent = "Escreva uma mensagem ou anexe pelo menos um arquivo.";
+    msgEl.className = "modal-msg err";
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+  await wait(700);
+  DB.testimonials.unshift({
+    id: "t" + Date.now(), project_id: testimonialTargetRow.project_id, project_name: testimonialTargetRow.project_name,
+    month: currentMonth, created_at: new Date().toISOString(), submitted_by_name: SESSION.name, submitted_by_email: SESSION.email,
+    message, files: files.map((f) => ({ name: f.name })), read_at: null, read_by: null,
+  });
+  updateTestimonialsBadge();
+  msgEl.textContent = "Depoimento enviado! Nosso time de marketing já foi avisado. Obrigado 🎉";
+  msgEl.className = "modal-msg ok";
+  btn.disabled = false;
+  btn.textContent = "Enviar";
+  setTimeout(testimonialModal.close, 2200);
+});
+
+// ---------------- evolução da obra ----------------
+async function openEvolutionModal(row) {
+  document.getElementById("evolution-title").textContent = `Evolução: ${row.project_name}`;
+  document.getElementById("evolution-hint").textContent = `${row.company_name}, score final e posição em cada mês em que a obra competiu.`;
+  document.getElementById("evolution-loading").style.display = "block";
+  document.getElementById("evolution-empty").style.display = "none";
+  document.getElementById("evolution-body").style.display = "none";
+  evolutionModal.open();
+  await wait(350);
+  const visible = viewAsProjectId ? MONTHS.filter(isMonthVisibleToSimulatedClient) : MONTHS;
+  const history = visible
+    .map((m) => DB.months[m].rows.find((r) => r.project_id === row.project_id))
+    .filter(Boolean)
+    .map((r) => ({ month: r.month, position: r.position, score_final: r.score_final, status: r.status, disqualified_reason: r.disqualified_reason }));
+  document.getElementById("evolution-loading").style.display = "none";
+  if (!history.length) {
+    document.getElementById("evolution-empty").style.display = "block";
+    return;
+  }
+  document.getElementById("evolution-body").style.display = "block";
+  document.getElementById("evolution-chart-wrap").innerHTML = buildEvolutionChartSvg(history);
+  document.getElementById("evolution-tbody").innerHTML = history
+    .slice()
+    .reverse()
+    .map((h) => {
+      const reasonRow = h.disqualified_reason
+        ? `<tr><td></td><td colspan="3" style="color:var(--muted);font-size:11.5px;padding-top:0;">Motivo: ${escapeHtml(h.disqualified_reason)}</td></tr>`
+        : "";
+      return `<tr><td>${formatMonthLabel(h.month)}</td><td>${h.position ?? '<span class="dash">–</span>'}</td><td>${fmtPct(h.score_final)}</td><td>${statusPill(h.status)}</td></tr>${reasonRow}`;
+    })
+    .join("");
+}
+
+function buildEvolutionChartSvg(history) {
+  const W = 620, H = 220, padL = 46, padR = 16, padT = 16, padB = 30;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+  const scored = history.filter((h) => h.status === "elegível" && h.score_final !== null && h.score_final > 0);
+  const n = scored.length;
+  const gridCount = 4;
+  const maxScore = n ? Math.max(...scored.map((h) => h.score_final)) : 1;
+  const yMax = Math.max(0.2, maxScore * 1.15);
+  const yOf = (v) => padT + innerH - (v / yMax) * innerH;
+  let gridSvg = "";
+  for (let g = 0; g <= gridCount; g++) {
+    const v = (yMax * g) / gridCount;
+    const y = yOf(v);
+    gridSvg += `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W - padR}" y2="${y.toFixed(1)}" stroke="#e7e4df" stroke-width="1" />`;
+    gridSvg += `<text x="${padL - 8}" y="${(y + 3.5).toFixed(1)}" font-size="10" fill="#6b6f78" text-anchor="end">${(v * 100).toFixed(0)}%</text>`;
+  }
+  if (!n) {
+    return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" xmlns="http://www.w3.org/2000/svg">${gridSvg}<text x="${W / 2}" y="${H / 2}" font-size="12" fill="#6b6f78" text-anchor="middle">Sem meses com score suficiente pra montar o gráfico ainda</text></svg>`;
+  }
+  const xOf = (i) => (n > 1 ? padL + (i * innerW) / (n - 1) : padL + innerW / 2);
+  const lineSvg = `<polyline points="${scored.map((h, i) => `${xOf(i).toFixed(1)},${yOf(h.score_final).toFixed(1)}`).join(" ")}" fill="none" stroke="#f15a29" stroke-width="2.5" />`;
+  const pointsSvg = scored
+    .map((h, i) => {
+      const fill = h.position && h.position <= 3 ? "#a16207" : "#f15a29";
+      return `<circle cx="${xOf(i).toFixed(1)}" cy="${yOf(h.score_final).toFixed(1)}" r="4.5" fill="${fill}"><title>${formatMonthLabel(h.month)}: ${(h.score_final * 100).toFixed(1)}%${h.position ? ", posição " + h.position : ""}</title></circle>`;
+    })
+    .join("");
+  const labelsSvg = scored
+    .map((h, i) => `<text x="${xOf(i).toFixed(1)}" y="${H - 8}" font-size="10" fill="#6b6f78" text-anchor="middle">${formatMonthLabel(h.month)}</text>`)
+    .join("");
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" xmlns="http://www.w3.org/2000/svg">${gridSvg}${lineSvg}${pointsSvg}${labelsSvg}</svg>`;
+}
+
+// ---------------- certificado ----------------
+let certificateTargetRow = null;
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+function roundRectPath(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+function wrapCanvasText(ctx, text, cx, y, maxWidth, lineHeight) {
+  const words = text.split(" ");
+  let line = "";
+  const lines = [];
+  for (const w of words) {
+    const test = line ? line + " " + w : w;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = w;
+    } else line = test;
+  }
+  if (line) lines.push(line);
+  lines.forEach((l, i) => ctx.fillText(l, cx, y + i * lineHeight));
+}
+function drawStar(ctx, cx, cy, spikes, outerR, innerR, fill) {
+  let rot = (Math.PI / 2) * 3;
+  const step = Math.PI / spikes;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - outerR);
+  for (let i = 0; i < spikes; i++) {
+    ctx.lineTo(cx + Math.cos(rot) * outerR, cy + Math.sin(rot) * outerR);
+    rot += step;
+    ctx.lineTo(cx + Math.cos(rot) * innerR, cy + Math.sin(rot) * innerR);
+    rot += step;
+  }
+  ctx.closePath();
+  ctx.fillStyle = fill;
+  ctx.fill();
+}
+function drawLeaf(ctx, cx, cy, rx, ry, angle, fill) {
+  ctx.beginPath();
+  ctx.ellipse(cx, cy, rx, ry, angle, 0, Math.PI * 2);
+  ctx.fillStyle = fill;
+  ctx.fill();
+}
+function drawLaurelArc(ctx, cx, cy, rx, ry, side, color, leafCount) {
+  leafCount = leafCount || 7;
+  const thStart = side === 1 ? 80 : 100;
+  const thEnd = side === 1 ? -80 : 260;
+  const toRad = (d) => (d * Math.PI) / 180;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i <= 40; i++) {
+    const th = toRad(thStart + (thEnd - thStart) * (i / 40));
+    const x = cx + rx * Math.cos(th);
+    const y = cy + ry * Math.sin(th);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  for (let i = 0; i < leafCount; i++) {
+    const t = i / (leafCount - 1);
+    const th = toRad(thStart + (thEnd - thStart) * t);
+    drawLeaf(ctx, cx + rx * Math.cos(th), cy + ry * Math.sin(th), 15 - t * 7, 6.5 - t * 3, th + Math.PI / 2, color);
+  }
+}
+async function drawCertificate(canvas, row) {
+  const W = 1000, H = 1300;
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  const gold = "#b0823c", navy = "#1c2131", slate = "#5a5e68";
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, "#faf7f0");
+  grad.addColorStop(1, "#f0e9d8");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = gold;
+  ctx.lineWidth = 2;
+  roundRectPath(ctx, 34, 34, W - 68, H - 68, 20);
+  ctx.stroke();
+  ctx.strokeStyle = "rgba(190,175,140,0.7)";
+  ctx.lineWidth = 1;
+  roundRectPath(ctx, 44, 44, W - 88, H - 88, 16);
+  ctx.stroke();
+  const badgeCx = W / 2, badgeCy = 150;
+  ctx.strokeStyle = gold;
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(badgeCx, badgeCy, 48, 0, Math.PI * 2); ctx.stroke();
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(badgeCx, badgeCy, 40, 0, Math.PI * 2); ctx.stroke();
+  drawStar(ctx, badgeCx, badgeCy, 5, 27, 12, gold);
+  ctx.textAlign = "center";
+  ctx.fillStyle = slate;
+  ctx.font = "700 15px Arial, sans-serif";
+  ctx.fillText("P R Ê M I O   C O N S T R U Ç Ã O   C O M   E F I C I Ê N C I A   L E A N", W / 2, 224);
+  ctx.fillStyle = navy;
+  ctx.font = "800 66px Arial, sans-serif";
+  ctx.fillText(row.position === 1 ? "OBRA CAMPEÃ" : "OBRA DESTAQUE", W / 2, 290);
+  ctx.fillStyle = gold;
+  ctx.font = "800 24px Arial, sans-serif";
+  ctx.fillText(`DO MÊS · ${formatMonthLabel(currentMonth).toUpperCase()}`, W / 2, 372);
+  ctx.strokeStyle = gold;
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(W / 2 - 140, 422); ctx.lineTo(W / 2 + 140, 422); ctx.stroke();
+  ctx.fillStyle = navy;
+  let nameSize = 54;
+  ctx.font = `800 ${nameSize}px Arial, sans-serif`;
+  while (ctx.measureText(row.project_name.toUpperCase()).width > 860 && nameSize > 30) {
+    nameSize -= 2;
+    ctx.font = `800 ${nameSize}px Arial, sans-serif`;
+  }
+  ctx.fillText(row.project_name.toUpperCase(), W / 2, 478);
+  ctx.fillStyle = slate;
+  ctx.font = "600 26px Arial, sans-serif";
+  ctx.fillText(row.company_name, W / 2, 528);
+  const top2 = topTwoIndicators(row, currentMonth);
+  if (top2.length) {
+    ctx.fillStyle = gold;
+    ctx.font = "500 22px Arial, sans-serif";
+    ctx.fillText(`Destaque em ${top2.join(" e ")} neste mês`, W / 2, 582);
+  }
+  ctx.fillStyle = "#3c404a";
+  ctx.font = "400 23px Arial, sans-serif";
+  wrapCanvasText(ctx, "Esta conquista reflete o compromisso diário da equipe com a excelência na gestão Lean, disciplina, consistência e evolução que fazem a diferença em cada etapa da obra. Parabéns!", W / 2, 648, 700, 35);
+  try {
+    const emblemCx = W / 2, emblemCy = 920, logoSize = 175;
+    const logoImg = await loadImage("../assets/agilean-logo.png");
+    drawLaurelArc(ctx, emblemCx, emblemCy, logoSize * 0.58, logoSize * 0.78, -1, "#f15a29");
+    drawLaurelArc(ctx, emblemCx, emblemCy, logoSize * 0.58, logoSize * 0.78, 1, "#f15a29");
+    ctx.drawImage(logoImg, emblemCx - logoSize / 2, emblemCy - logoSize / 2, logoSize, logoSize);
+  } catch (e) {}
+  const footerY = H - 110;
+  ctx.strokeStyle = "rgba(190,175,140,0.7)";
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(W / 2 - 200, footerY - 55); ctx.lineTo(W / 2 + 200, footerY - 55); ctx.stroke();
+  ctx.fillStyle = navy;
+  ctx.font = "800 27px Arial, sans-serif";
+  ctx.fillText("Agilean", W / 2, footerY);
+  ctx.fillStyle = slate;
+  ctx.font = "500 16px Arial, sans-serif";
+  ctx.fillText("Prêmio Construção com Eficiência Lean", W / 2, footerY + 28);
+  ctx.fillStyle = "rgba(90,94,104,0.55)";
+  ctx.font = "500 13px Arial, sans-serif";
+  ctx.fillText("Demonstração com dados fictícios", W / 2, H - 52);
+}
+function slugify(s) {
+  return (s || "obra").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-");
+}
+async function openCertificateModal(row) {
+  certificateTargetRow = row;
+  document.getElementById("certificate-hint").textContent = `${row.project_name}: gere e baixe o certificado pra compartilhar.`;
+  const msgEl = document.getElementById("certificate-share-msg");
+  msgEl.textContent = "";
+  msgEl.className = "modal-msg";
+  certificateModal.open();
+  await drawCertificate(document.getElementById("certificate-canvas"), row);
+}
+function downloadCertificateImage() {
+  try {
+    const link = document.createElement("a");
+    link.download = `certificado-${slugify(certificateTargetRow.project_name)}-${currentMonth}.png`;
+    link.href = document.getElementById("certificate-canvas").toDataURL("image/png");
+    link.click();
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+document.getElementById("certificate-download").addEventListener("click", () => {
+  const msgEl = document.getElementById("certificate-share-msg");
+  const ok = downloadCertificateImage();
+  msgEl.textContent = ok ? "" : "Não foi possível baixar o certificado agora.";
+  msgEl.className = ok ? "modal-msg" : "modal-msg err";
+});
+document.getElementById("certificate-linkedin").addEventListener("click", () => {
+  const msgEl = document.getElementById("certificate-share-msg");
+  const ok = downloadCertificateImage();
+  msgEl.textContent = ok
+    ? "Certificado baixado. No sistema real, o LinkedIn abre em seguida pra você anexar a imagem na publicação (desativado nesta demonstração)."
+    : "Não foi possível baixar o certificado agora.";
+  msgEl.className = ok ? "modal-msg ok" : "modal-msg err";
+});
+
+// ---------------- apresentação .pptx ----------------
+function pptNum(v) { return v === null || v === undefined ? "-" : v.toFixed(2).replace(".", ","); }
+function pptPct(v) { return v === null || v === undefined ? "-" : (v * 100).toFixed(2).replace(".", ",") + "%"; }
+function loadImageAsDataUrl(src) {
+  return loadImage(src).then((img) => {
+    const c = document.createElement("canvas");
+    c.width = img.naturalWidth;
+    c.height = img.naturalHeight;
+    c.getContext("2d").drawImage(img, 0, 0);
+    return c.toDataURL("image/png");
+  });
+}
+async function generatePresentation(row, btn) {
+  if (typeof PptxGenJS === "undefined") {
+    alert("Não foi possível carregar o gerador de apresentação (verifique sua conexão) e tente de novo.");
+    return;
+  }
+  btn.disabled = true;
+  btn.setAttribute("data-tooltip", "Gerando...");
+  try {
+    const pptx = new PptxGenJS();
+    pptx.layout = "LAYOUT_16x9";
+    const isWinner = row.position === 1;
+    const monthWord = `${formatMonthOnly(currentMonth).toUpperCase()} DE ${currentMonth.split("-")[0]}`;
+    const kicker = isWinner ? `VENCEDOR DE ${monthWord}` : `DESTAQUE DE ${monthWord}`;
+    const top3 = DB.months[currentMonth].rows.filter((r) => r.position && r.position <= 3).sort((a, b) => a.position - b.position);
+    const winnerRow = top3.find((r) => r.position === 1) || row;
+    const ORANGE = "F15A29", GOLD = "F2B134", NAVY = "1C2131";
+    let logoDataUrl = null;
+    try { logoDataUrl = await loadImageAsDataUrl("../assets/agilean-logo.png"); } catch (e) {}
+
+    const s1 = pptx.addSlide();
+    s1.background = { color: "FFFFFF" };
+    s1.addShape(pptx.ShapeType.ellipse, { x: -1.6, y: -1.7, w: 4.2, h: 4.2, fill: { color: ORANGE }, line: { type: "none" } });
+    s1.addShape(pptx.ShapeType.ellipse, { x: 1.05, y: 1.15, w: 0.5, h: 0.5, fill: { color: ORANGE }, line: { type: "none" } });
+    s1.addShape(pptx.ShapeType.ellipse, { x: 7.6, y: 3.0, w: 3.6, h: 3.6, fill: { color: GOLD }, line: { type: "none" } });
+    s1.addShape(pptx.ShapeType.ellipse, { x: 8.85, y: 2.55, w: 0.4, h: 0.4, fill: { color: GOLD }, line: { type: "none" } });
+    if (logoDataUrl) s1.addImage({ data: logoDataUrl, x: 4.4, y: 0.35, w: 1.1, h: 1.1 });
+    s1.addText("PRÊMIO CONSTRUÇÃO COM\nEFICIÊNCIA LEAN", { x: 0.5, y: 1.55, w: 9, h: 0.9, align: "center", fontFace: "Arial", fontSize: 20, color: NAVY, charSpacing: 2 });
+    s1.addText(`${row.project_name} - ${row.company_name}`, { x: 0.6, y: 2.7, w: 8.8, h: 0.7, align: "left", fontFace: "Arial", bold: true, fontSize: 28, color: NAVY });
+    s1.addShape(pptx.ShapeType.rect, { x: 0.6, y: 3.55, w: 5.6, h: 0.5, fill: { color: ORANGE }, line: { type: "none" } });
+    s1.addText(kicker, { x: 0.6, y: 3.55, w: 5.6, h: 0.5, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 13, color: "FFFFFF", charSpacing: 1 });
+    s1.addText("Demonstração com dados fictícios", { x: 0.6, y: 5.1, w: 6, h: 0.3, fontFace: "Arial", fontSize: 9, color: "8A8F99" });
+
+    const s2 = pptx.addSlide();
+    s2.background = { color: "FFFFFF" };
+    s2.addShape(pptx.ShapeType.rect, { x: 0.6, y: 0.5, w: 3.0, h: 0.55, fill: { color: ORANGE }, line: { type: "none" } });
+    s2.addText("RESULTADOS", { x: 0.6, y: 0.5, w: 3.0, h: 0.55, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 18, color: "FFFFFF" });
+    const indicators = [
+      { label: "IDP", full: "Índice de Desempenho de Prazo", value: pptNum(row.idp) },
+      { label: "IDC", full: "Índice de Desempenho de Custo", value: pptNum(row.idc) },
+      { label: "PPC", full: "Percentual de Pacotes Concluídos", value: pptPct(row.ppc) },
+      { label: "IRR", full: "Índice de Remoção de Restrições", value: pptPct(row.irr) },
+      { label: qualityLabel(currentMonth), full: currentMonth < PPCQ_RENAME_CUTOFF ? "Percentual de Pacotes Concluídos com Qualidade" : "Percentual de inspeções conformes no período", value: pptPct(row.q) },
+    ];
+    const colW = 1.75, gap = 0.15, startX = 0.55, circleY = 1.45, circleSize = 1.35, boxY = 2.95, boxH = 2.0;
+    indicators.forEach((ind, i) => {
+      const color = i % 2 === 0 ? ORANGE : GOLD;
+      const cx = startX + i * (colW + gap);
+      s2.addShape(pptx.ShapeType.ellipse, { x: cx, y: circleY, w: circleSize, h: circleSize, fill: { color }, line: { type: "none" } });
+      s2.addText(ind.value, { x: cx, y: circleY, w: circleSize, h: circleSize, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 20, color: NAVY });
+      s2.addShape(pptx.ShapeType.roundRect, { x: cx - 0.05, y: boxY, w: colW + 0.1, h: boxH, rectRadius: 0.12, fill: { color }, line: { type: "none" } });
+      s2.addText([{ text: ind.label, options: { bold: true, fontSize: 15, align: "center", breakLine: true } }, { text: ind.full, options: { fontSize: 10.5, align: "center" } }],
+        { x: cx + 0.08, y: boxY + 0.12, w: colW - 0.16, h: boxH - 0.24, align: "center", valign: "middle", fontFace: "Arial", color: "FFFFFF", lineSpacingMultiple: 1.15 });
+    });
+
+    const s3 = pptx.addSlide();
+    s3.background = { color: "FFFFFF" };
+    s3.addShape(pptx.ShapeType.rect, { x: 0.6, y: 0.5, w: 3.0, h: 0.55, fill: { color: ORANGE }, line: { type: "none" } });
+    s3.addText("SCORE FINAL", { x: 0.6, y: 0.5, w: 3.0, h: 0.55, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 18, color: "FFFFFF" });
+    s3.addText("1ª Colocação", { x: 0.6, y: 1.5, w: 3, h: 0.4, fontFace: "Arial", bold: true, fontSize: 14, color: NAVY });
+    s3.addText(pptNum(winnerRow.score_final), { x: 0.6, y: 1.95, w: 3, h: 1.1, fontFace: "Arial", bold: true, fontSize: 48, color: ORANGE });
+    const barBaseY = 5.0, barMaxH = 2.7, barW = 1.15, barGap = 0.25, barsStartX = 5.1;
+    [3, 2, 1].forEach((pos, i) => {
+      const posRow = top3.find((r) => r.position === pos);
+      const bx = barsStartX + i * (barW + barGap);
+      const barH = barMaxH * (pos === 1 ? 1 : pos === 2 ? 0.72 : 0.5);
+      s3.addShape(pptx.ShapeType.roundRect, { x: bx, y: barBaseY - barH, w: barW, h: barH, rectRadius: 0.35, fill: { color: ORANGE }, line: { type: "none" } });
+      s3.addText(`${pos}º`, { x: bx, y: barBaseY - 0.55, w: barW, h: 0.4, align: "center", fontFace: "Arial", bold: true, fontSize: 16, color: "FFFFFF" });
+      s3.addShape(pptx.ShapeType.ellipse, { x: bx + barW / 2 - 0.55, y: barBaseY - barH - 1.25, w: 1.1, h: 1.1, fill: { color: "FFFFFF" }, line: { color: ORANGE, width: 2 } });
+      if (pos !== 1 || !logoDataUrl) {
+        s3.addText(posRow ? pptNum(posRow.score_final) : "-", { x: bx + barW / 2 - 0.55, y: barBaseY - barH - 1.25, w: 1.1, h: 1.1, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 18, color: ORANGE });
+      } else {
+        s3.addImage({ data: logoDataUrl, x: bx + barW / 2 - 0.32, y: barBaseY - barH - 1.02, w: 0.64, h: 0.64 });
+      }
+    });
+
+    const s4 = pptx.addSlide();
+    s4.background = { color: ORANGE };
+    s4.addShape(pptx.ShapeType.ellipse, { x: 0.5, y: 0.5, w: 1.3, h: 1.3, fill: { color: "FFFFFF" }, line: { type: "none" } });
+    s4.addText("Agilean", { x: 0.5, y: 0.5, w: 1.3, h: 1.3, align: "center", valign: "middle", fontFace: "Arial", bold: true, fontSize: 15, color: ORANGE });
+    s4.addText("CONTA PRA GENTE", { x: 0.6, y: 3.3, w: 8, h: 0.9, fontFace: "Arial", fontSize: 34, color: "FFFFFF", charSpacing: 2 });
+    s4.addText("Como a Agilean tem te ajudado a alcançar esse resultado?", { x: 0.6, y: 4.05, w: 8, h: 0.5, fontFace: "Arial", fontSize: 15, color: "FFF7F0" });
+
+    await pptx.writeFile({ fileName: `apresentacao-${slugify(row.project_name)}-${currentMonth}.pptx` });
+  } catch (err) {
+    alert("Não foi possível gerar a apresentação: " + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.setAttribute("data-tooltip", "Apresentação");
+  }
+}
+
+// ---------------- edição manual (admin) ----------------
+let adminEditTargetRow = null;
+function updateAdminEditFieldsVisibility() {
+  const action = document.getElementById("admin-edit-action").value;
+  document.getElementById("admin-edit-fields-ineligible").style.display = action === "set_ineligible" ? "block" : "none";
+  document.getElementById("admin-edit-fields-indicator").style.display = action === "edit_indicator" ? "block" : "none";
+  document.getElementById("admin-edit-fields-position").style.display = action === "reposition" ? "block" : "none";
+}
+document.getElementById("admin-edit-action").addEventListener("change", updateAdminEditFieldsVisibility);
+function openAdminEditModal(row) {
+  adminEditTargetRow = row;
+  document.getElementById("admin-edit-hint").textContent =
+    `${row.project_name} · ${row.company_name} (posição atual: ${row.position ?? "sem posição, inelegível"})`;
+  document.getElementById("admin-edit-action").value = "set_ineligible";
+  document.getElementById("ppcq-option").textContent = qualityLabel(currentMonth);
+  document.getElementById("admin-edit-reason").value = "";
+  document.getElementById("admin-edit-indicator").value = "idc";
+  document.getElementById("admin-edit-value").value = "";
+  document.getElementById("admin-edit-position").value = row.position ?? "";
+  const msg = document.getElementById("admin-edit-msg");
+  msg.textContent = "";
+  msg.className = "modal-msg";
+  updateAdminEditFieldsVisibility();
+  adminEditModal.open();
+}
+document.getElementById("admin-edit-save").addEventListener("click", async () => {
+  const row = adminEditTargetRow;
+  if (!row) return;
+  const mo = DB.months[currentMonth];
+  const action = document.getElementById("admin-edit-action").value;
+  const msgEl = document.getElementById("admin-edit-msg");
+  const saveBtn = document.getElementById("admin-edit-save");
+  const fail = (t) => { msgEl.textContent = t; msgEl.className = "modal-msg err"; };
+  let apply;
+  if (action === "set_ineligible") {
+    const reason = document.getElementById("admin-edit-reason").value.trim();
+    if (!reason) return fail("Preencha o motivo.");
+    apply = () => { row.status = "inelegível"; row.disqualified_reason = reason; };
+  } else if (action === "edit_indicator") {
+    const raw = document.getElementById("admin-edit-value").value.trim().replace(",", ".");
+    const value = parseFloat(raw);
+    if (raw === "" || Number.isNaN(value)) return fail("Informe um valor numérico válido (ex: 0,85).");
+    const key = document.getElementById("admin-edit-indicator").value;
+    apply = () => {
+      row[key] = value;
+      row.score_final = computeScore(row);
+      mo.order = null;
+      const ann = `Indicador ${labelOf(key, currentMonth)} ajustado manualmente pelo admin para ${(value * 100).toFixed(1).replace(".", ",")}%.`;
+      row.notes = row.notes ? row.notes + "\n" + ann : ann;
+    };
+  } else {
+    const newPosition = parseInt(document.getElementById("admin-edit-position").value, 10);
+    if (!newPosition || newPosition < 1) return fail("Informe uma posição válida (número inteiro >= 1).");
+    if (row.status !== "elegível") return fail("Só obras elegíveis têm posição no ranking.");
+    apply = () => {
+      const order = mo.rows.filter((r) => r.position).sort((a, b) => a.position - b.position).map((r) => r.project_id).filter((id) => id !== row.project_id);
+      order.splice(Math.min(newPosition, order.length + 1) - 1, 0, row.project_id);
+      mo.order = order;
+    };
+  }
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Salvando...";
+  msgEl.textContent = "";
+  msgEl.className = "modal-msg";
+  await wait(500);
+  apply();
+  rerank(currentMonth);
+  msgEl.textContent = "Alteração salva!";
+  msgEl.className = "modal-msg ok";
+  saveBtn.disabled = false;
+  saveBtn.textContent = "Salvar";
+  loadRanking(currentMonth, { quiet: true });
+  setTimeout(adminEditModal.close, 900);
+});
+
+// ---------------- auditoria do mês ----------------
+document.getElementById("audit-btn").addEventListener("click", async () => {
+  const btn = document.getElementById("audit-btn");
+  const mo = DB.months[currentMonth];
+  if (mo.audited) return;
+  btn.disabled = true;
+  btn.textContent = "Auditando...";
+  await wait(700);
+  mo.audited = true;
+  mo.checklist = genChecklist(currentMonth, false);
+  renderPeriodNav(currentMonth, !!viewAsProjectId);
+  loadRanking(currentMonth, { quiet: true });
+});
+
+// ---------------- checklist do mês ----------------
+const CHECKLIST_STATUS_LABELS = { pendente: "Pendente", andamento: "Em andamento", concluida: "Concluída", cancelada: "Cancelada" };
+const CHECKLIST_TEAM_LABELS = { cs: "CS", marketing: "Marketing" };
+let checklistSeq = 0;
+
+function genChecklist(month, historical) {
+  const mo = DB.months[month];
+  const top3 = mo.rows.filter((r) => r.position && r.position <= 3).sort((a, b) => a.position - b.position);
+  const T = (o) => ({ id: `task-${++checklistSeq}`, status: "pendente", notes: "", ...o });
+  const tasks = [
+    T({ scope: "global", title: "Publicar o pódio do mês no LinkedIn da Agilean", team: "marketing", due_date: isoDayAfterMonth(month, 14) }),
+    T({ scope: "global", title: "Atualizar a página pública do prêmio com o resultado", team: "marketing", due_date: isoDayAfterMonth(month, 12) }),
+    T({ scope: "global", title: "Enviar e-mail de resultado para todas as obras participantes", team: "cs", due_date: isoDayAfterMonth(month, 13) }),
+  ];
+  top3.forEach((r) => {
+    const base = { scope: "destaque", project_id: r.project_id, project_name: r.project_name, company_name: r.company_name };
+    tasks.push(T({ ...base, title: "Ligar para o gestor da obra e dar a notícia", team: "cs", due_date: isoDayAfterMonth(month, 12) }));
+    tasks.push(T({ ...base, title: `Enviar certificado e placa de ${r.position === 1 ? "Obra Campeã" : "Obra Destaque"}`, team: "cs", due_date: isoDayAfterMonth(month, 18) }));
+    tasks.push(T({ ...base, title: "Pedir depoimento em vídeo da equipe da obra", team: "marketing", due_date: isoDayAfterMonth(month, 20) }));
+  });
+  if (historical) {
+    const isLatest = month === "2026-08";
+    tasks.forEach((t, i) => {
+      t.status = !isLatest ? "concluida" : i === tasks.length - 1 ? "pendente" : i % 3 === 2 ? "andamento" : "concluida";
+    });
+    if (isLatest) tasks[0].notes = "Post agendado para terça às 10h.";
+  }
+  return tasks;
+}
+
+function getChecklist(month) {
+  const mo = DB.months[month];
+  if (!mo.checklist) mo.checklist = genChecklist(month, true);
+  return mo.checklist;
+}
+
+function formatChecklistDate(iso) {
+  if (!iso) return "sem prazo";
+  const [, m, d] = iso.split("-");
+  return `${d}/${m}`;
+}
+
+function renderChecklistRow(task) {
+  const statusOptions = Object.entries(CHECKLIST_STATUS_LABELS).map(([v, l]) => `<option value="${v}" ${task.status === v ? "selected" : ""}>${l}</option>`).join("");
+  const team = task.team === "marketing" ? "marketing" : "cs";
+  const teamOptions = Object.entries(CHECKLIST_TEAM_LABELS).map(([v, l]) => `<option value="${v}" ${team === v ? "selected" : ""}>${l}</option>`).join("");
+  const hasNotes = !!(task.notes && task.notes.trim());
+  return `
+    <div class="checklist-row-wrap" data-task-id="${task.id}">
+      <div class="checklist-row status-${task.status}">
+        <select class="checklist-status-select">${statusOptions}</select>
+        <div class="checklist-row-title" title="${escapeHtml(task.title)}">${escapeHtml(task.title)}</div>
+        <select class="checklist-team-badge team-${team}">${teamOptions}</select>
+        <div class="checklist-row-due">${formatChecklistDate(task.due_date)}</div>
+        <button type="button" class="checklist-notes-toggle ${hasNotes ? "has-notes" : ""}" title="Notas">📝</button>
+      </div>
+      <div class="checklist-notes-panel ${hasNotes ? "open" : ""}">
+        <input type="text" class="checklist-notes-input" placeholder="Notas (opcional)" value="${escapeHtml(task.notes || "")}" />
+      </div>
+    </div>`;
+}
+
+function renderChecklistBody(tasks) {
+  const globalTasks = tasks.filter((t) => t.scope === "global");
+  const byProject = new Map();
+  tasks.filter((t) => t.scope === "destaque").forEach((t) => {
+    if (!byProject.has(t.project_id)) byProject.set(t.project_id, { name: t.project_name, company: t.company_name, tasks: [] });
+    byProject.get(t.project_id).tasks.push(t);
+  });
+  let html = `<div class="checklist-group" data-group="global" data-always-visible="1">`;
+  html += `<div class="checklist-group-title">Tarefas gerais <button type="button" class="checklist-add-inline" id="checklist-add-btn">+ nova tarefa</button></div>`;
+  html += globalTasks.map(renderChecklistRow).join("") || `<div style="font-size:12px;color:var(--muted);padding:4px 0 10px;">Nenhuma tarefa geral ainda.</div>`;
+  html += `</div>`;
+  for (const group of byProject.values()) {
+    html += `<div class="checklist-group" data-group="destaque"><div class="checklist-group-title">${escapeHtml(group.name)} · ${escapeHtml(group.company)}</div>`;
+    html += group.tasks.map(renderChecklistRow).join("");
+    html += `</div>`;
+  }
+  return html;
+}
+
+function applyChecklistPendingFilter() {
+  const onlyPending = document.getElementById("checklist-filter-pending").checked;
+  const bodyEl = document.getElementById("checklist-body");
+  bodyEl.querySelectorAll(".checklist-row-wrap").forEach((w) => {
+    const status = w.querySelector(".checklist-status-select").value;
+    w.classList.toggle("is-hidden-by-filter", onlyPending && status !== "pendente");
+  });
+  bodyEl.querySelectorAll(".checklist-group").forEach((g) => {
+    if (g.dataset.alwaysVisible) return;
+    const anyVisible = Array.from(g.querySelectorAll(".checklist-row-wrap")).some((w) => !w.classList.contains("is-hidden-by-filter"));
+    g.style.display = anyVisible ? "" : "none";
+  });
+}
+document.getElementById("checklist-filter-pending").addEventListener("change", applyChecklistPendingFilter);
+
+function renderChecklistModal() {
+  const tasks = getChecklist(currentMonth);
+  const bodyEl = document.getElementById("checklist-body");
+  bodyEl.innerHTML = renderChecklistBody(tasks);
+  bodyEl.querySelectorAll(".checklist-row-wrap").forEach((wrapEl) => {
+    const task = tasks.find((t) => t.id === wrapEl.dataset.taskId);
+    const rowEl = wrapEl.querySelector(".checklist-row");
+    const statusSelect = rowEl.querySelector(".checklist-status-select");
+    const teamSelect = rowEl.querySelector(".checklist-team-badge");
+    const notesToggle = rowEl.querySelector(".checklist-notes-toggle");
+    const notesPanel = wrapEl.querySelector(".checklist-notes-panel");
+    const notesInput = notesPanel.querySelector(".checklist-notes-input");
+    statusSelect.addEventListener("change", () => {
+      task.status = statusSelect.value;
+      rowEl.className = `checklist-row status-${statusSelect.value}`;
+      applyChecklistPendingFilter();
+    });
+    teamSelect.addEventListener("change", () => {
+      task.team = teamSelect.value;
+      teamSelect.className = `checklist-team-badge team-${teamSelect.value}`;
+    });
+    notesToggle.addEventListener("click", () => {
+      notesPanel.classList.toggle("open");
+      if (notesPanel.classList.contains("open")) notesInput.focus();
+    });
+    notesInput.addEventListener("input", () => {
+      task.notes = notesInput.value;
+      notesToggle.classList.toggle("has-notes", !!notesInput.value.trim());
+    });
+  });
+  bodyEl.querySelector("#checklist-add-btn").addEventListener("click", () => {
+    document.getElementById("checklist-new-form").classList.add("open");
+    document.getElementById("checklist-new-title").focus();
+  });
+  applyChecklistPendingFilter();
+}
+
+function closeChecklistNewForm() {
+  document.getElementById("checklist-new-form").classList.remove("open");
+  document.getElementById("checklist-new-title").value = "";
+  document.getElementById("checklist-new-due").value = "";
+  document.getElementById("checklist-new-team").value = "cs";
+}
+document.getElementById("checklist-new-cancel").addEventListener("click", closeChecklistNewForm);
+document.getElementById("checklist-new-save").addEventListener("click", () => {
+  const title = document.getElementById("checklist-new-title").value.trim();
+  if (!title) {
+    alert("Digite um título pra tarefa.");
+    return;
+  }
+  getChecklist(currentMonth).push({
+    id: `task-${++checklistSeq}`, scope: "global", title, status: "pendente", notes: "",
+    team: document.getElementById("checklist-new-team").value,
+    due_date: document.getElementById("checklist-new-due").value || null,
+  });
+  closeChecklistNewForm();
+  renderChecklistModal();
+});
+document.getElementById("checklist-btn").addEventListener("click", () => {
+  document.getElementById("checklist-hint").textContent = `Tarefas de rotina pós-resultado de ${formatMonthLabel(currentMonth)} (marketing e CS).`;
+  closeChecklistNewForm();
+  renderChecklistModal();
+  checklistModal.open();
+});
+
+// ---------------- rodagens do mês ----------------
+function getRuns(month) {
+  const mo = DB.months[month];
+  if (mo.runs) return mo.runs;
+  const [ny, nm] = nextMonthOf(month);
+  const pre = `${ny}-${String(nm).padStart(2, "0")}`;
+  const eligible = mo.rows.filter((r) => r.status === "elegível").length;
+  const runs = [{ id: `${month}-auto`, started_at: `${pre}-10T03:00:00-03:00`, trigger_type: "automatic", status: "concluída", eligible_count: eligible, failures: [], is_official: true }];
+  if (month === "2026-09") {
+    runs.unshift({ id: `${month}-man`, started_at: `${pre}-10T14:22:00-03:00`, trigger_type: "manual", triggered_by: "Alan Lemos", status: "concluída", eligible_count: eligible, failures: [{}], is_official: false });
+  }
+  if (month === "2026-08") {
+    runs.unshift({ id: `${month}-stall`, started_at: `${pre}-09T22:05:00-03:00`, trigger_type: "manual", triggered_by: "Alan Lemos", status: "processando", eligible_count: null, failures: [], is_official: false, stalled: true, minutes_since_progress: 47 });
+  }
+  mo.runs = runs;
+  return runs;
+}
+
+function renderCalcRunRow(run) {
+  const trigger = run.trigger_type === "manual" ? "Manual" : "Automática";
+  const triggeredBy = run.trigger_type === "manual" && run.triggered_by ? ` (${escapeHtml(run.triggered_by)})` : "";
+  const officialBadge = run.is_official ? `<span class="badge audited">OFICIAL</span>` : "";
+  const stalledBadge = run.stalled ? `<span class="badge stalled">TRAVADA</span>` : "";
+  const stalledHint = run.stalled
+    ? `<div style="font-size:12px;color:var(--bad);margin-top:2px;font-weight:600;">⚠️ sem progresso há ${run.minutes_since_progress} min — o lote parou de avançar, provavelmente precisa ser retomado manualmente (ver botão "Rodar agora")</div>`
+    : "";
+  const officialBtn = run.is_official
+    ? `<button class="secondary" type="button" disabled>Já é oficial</button>`
+    : run.stalled
+    ? `<button class="secondary" type="button" disabled>Incompleta</button>`
+    : `<button class="primary calc-run-set-official-btn" type="button" data-run-id="${run.id}">Tornar oficial</button>`;
+  return `
+    <div class="checklist-row-wrap">
+      <div class="checklist-row" style="flex-wrap:wrap;gap:8px 14px;">
+        <div style="flex:1 1 220px;">
+          <strong>${formatDateTime(run.started_at)}</strong>${officialBadge}${stalledBadge}
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">${trigger}${triggeredBy} · status: ${escapeHtml(run.status)}</div>
+          ${stalledHint}
+        </div>
+        <div style="font-size:12px;color:var(--muted);flex:0 0 auto;">elegíveis: <strong>${run.eligible_count ?? "–"}</strong> · falhas: <strong>${run.failures.length}</strong></div>
+        <div style="flex:0 0 auto;">${officialBtn}</div>
+      </div>
+    </div>`;
+}
+
+function renderCalcRuns(month) {
+  const bodyEl = document.getElementById("calc-runs-body");
+  bodyEl.innerHTML = getRuns(month).map(renderCalcRunRow).join("");
+  bodyEl.querySelectorAll(".calc-run-set-official-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const msgEl = document.getElementById("calc-runs-msg");
+      msgEl.className = "modal-msg";
+      msgEl.textContent = "Atualizando rodagem oficial...";
+      await wait(500);
+      getRuns(month).forEach((r) => (r.is_official = r.id === btn.dataset.runId));
+      msgEl.className = "modal-msg ok";
+      msgEl.textContent = "Rodagem oficial atualizada.";
+      renderCalcRuns(month);
+    });
+  });
+}
+
+document.getElementById("calc-runs-btn").addEventListener("click", () => {
+  document.getElementById("force-calc-month-input").value = currentMonth;
+  document.getElementById("force-calc-progress").textContent = "";
+  const msgEl = document.getElementById("calc-runs-msg");
+  msgEl.textContent = "";
+  msgEl.className = "modal-msg";
+  renderCalcRuns(currentMonth);
+  calcRunsModal.open();
+});
+
+document.getElementById("force-calc-run-btn").addEventListener("click", async () => {
+  const btn = document.getElementById("force-calc-run-btn");
+  const progress = document.getElementById("force-calc-progress");
+  const month = document.getElementById("force-calc-month-input").value.trim();
+  if (!/^\d{4}-\d{2}$/.test(month)) {
+    progress.textContent = "Use o formato AAAA-MM.";
+    return;
+  }
+  if (!DB.months[month]) {
+    progress.textContent = "Na demonstração só existem resultados de abr/2026 a set/2026.";
+    return;
+  }
+  btn.disabled = true;
+  const total = 3;
+  for (let i = 1; i <= total; i++) {
+    progress.textContent = `Processando lote ${i} de ${total}...`;
+    await wait(650);
+  }
+  const eligible = DB.months[month].rows.filter((r) => r.status === "elegível").length;
+  getRuns(month).unshift({
+    id: `${month}-new-${Date.now()}`, started_at: new Date().toISOString(), trigger_type: "manual",
+    triggered_by: SESSION.name, status: "concluída", eligible_count: eligible, failures: [], is_official: false,
+  });
+  progress.textContent = "✓ Rodagem concluída. Escolha abaixo se ela vira a oficial.";
+  btn.disabled = false;
+  if (month === currentMonth) renderCalcRuns(month);
+});
+
+// ---------------- depoimentos (caixa de entrada do admin) ----------------
+function updateTestimonialsBadge() {
+  const unread = DB.testimonials.filter((t) => !t.read_at).length;
+  const badge = document.getElementById("testimonials-badge");
+  badge.style.display = unread ? "inline-block" : "none";
+  badge.textContent = unread;
+}
+
+function renderTestimonialRow(item) {
+  const isRead = !!item.read_at;
+  const filesHtml = item.files.map((f) => `<span style="margin-right:10px;">📎 ${escapeHtml(f.name)}</span>`).join("");
+  const readInfo = isRead
+    ? `<span style="font-size:12px;color:var(--muted);">lido em ${formatDateTime(item.read_at)}${item.read_by ? " por " + escapeHtml(item.read_by) : ""}</span>`
+    : `<span class="badge" style="background:var(--accent-soft);color:var(--accent-dark);">novo</span>`;
+  const actionBtn = isRead
+    ? `<button class="secondary testimonial-toggle-btn" type="button" data-id="${item.id}" style="padding:7px 12px;font-size:12.5px;">Marcar como não lido</button>`
+    : `<button class="primary testimonial-toggle-btn" type="button" data-id="${item.id}" style="padding:7px 12px;font-size:12.5px;">Marcar como lido</button>`;
+  return `
+    <div class="checklist-row-wrap" style="${isRead ? "opacity:0.75;" : ""}">
+      <div class="checklist-row" style="flex-direction:column;align-items:stretch;gap:8px;">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+          <div><strong>${escapeHtml(item.project_name)}</strong><span style="font-size:12px;color:var(--muted);"> · ${escapeHtml(item.month)} · ${formatDateTime(item.created_at)}</span></div>
+          ${readInfo}
+        </div>
+        <div style="font-size:12.5px;color:var(--muted);">${escapeHtml(item.submitted_by_name)} (${escapeHtml(item.submitted_by_email)})</div>
+        ${item.message ? `<p style="margin:0;white-space:pre-wrap;font-size:13.5px;">${escapeHtml(item.message)}</p>` : `<p style="margin:0;color:var(--muted);font-style:italic;font-size:13.5px;">(sem texto, só arquivo)</p>`}
+        ${filesHtml ? `<div style="font-size:13px;">${filesHtml}</div>` : ""}
+        <div>${actionBtn}</div>
+      </div>
+    </div>`;
+}
+
+function renderTestimonialsList() {
+  const onlyUnread = document.getElementById("testimonials-only-unread").checked;
+  const month = document.getElementById("testimonials-month-filter").value;
+  const items = DB.testimonials.filter((t) => (!onlyUnread || !t.read_at) && (!month || t.month === month));
+  const bodyEl = document.getElementById("testimonials-body");
+  document.getElementById("testimonials-count").textContent = `${items.length} depoimento(s)`;
+  document.getElementById("testimonials-empty").style.display = items.length ? "none" : "block";
+  bodyEl.innerHTML = items.map(renderTestimonialRow).join("");
+  bodyEl.querySelectorAll(".testimonial-toggle-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = DB.testimonials.find((t) => t.id === btn.dataset.id);
+      if (item.read_at) {
+        item.read_at = null;
+        item.read_by = null;
+      } else {
+        item.read_at = new Date().toISOString();
+        item.read_by = SESSION.name;
+      }
+      updateTestimonialsBadge();
+      renderTestimonialsList();
+    });
+  });
+}
+document.getElementById("testimonials-only-unread").addEventListener("change", renderTestimonialsList);
+document.getElementById("testimonials-month-filter").addEventListener("change", renderTestimonialsList);
+document.getElementById("testimonials-btn").addEventListener("click", () => {
+  const sel = document.getElementById("testimonials-month-filter");
+  const months = Array.from(new Set(DB.testimonials.map((t) => t.month))).sort().reverse();
+  const current = sel.value;
+  sel.innerHTML = `<option value="">Todos</option>` + months.map((m) => `<option value="${m}">${formatMonthLabel(m)}</option>`).join("");
+  sel.value = months.includes(current) ? current : "";
+  renderTestimonialsList();
+  testimonialsModal.open();
+});
+
+// ---------------- exportar CSV ----------------
+function csvField(v) {
+  const s = String(v ?? "");
+  return /[";\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+document.getElementById("export-csv-btn").addEventListener("click", () => {
+  const obraFilter = document.getElementById("filter-obra-input").value.trim().toLowerCase();
+  const construtoraFilter = document.getElementById("filter-construtora-input").value.trim().toLowerCase();
+  const rows = lastRankingDisplayRows.filter(
+    (r) => (!obraFilter || r.project_name.toLowerCase().includes(obraFilter)) && (!construtoraFilter || r.company_name.toLowerCase().includes(construtoraFilter)),
+  );
+  const header = ["Posição", "Obra", "Construtora", "IDC (%)", "IDP (%)", "PPC (%)", "IRR (%)", `${qualityLabel(currentMonth)} (%)`, "Score (%)", "Status"];
+  const lines = [header.join(";")].concat(
+    rows.map((r) => [r.position ?? "", r.project_name, r.company_name, fmtPctPlain(r.idc), fmtPctPlain(r.idp), fmtPctPlain(r.ppc), fmtPctPlain(r.irr), fmtPctPlain(r.q), fmtPctPlain(r.score_final), r.status].map(csvField).join(";")),
+  );
+  const blob = new Blob(["﻿" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `ranking-${currentMonth}-demo.csv`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+});
+</script>
+</body>
+</html>

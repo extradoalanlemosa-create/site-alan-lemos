@@ -3,12 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Serviços · Alan Lemos</title>
+<title>Serviços · Sites e apps personalizados · Alan Lemos</title>
+<meta name="description" content="Construção de sites e apps personalizados, do primeiro rascunho até a publicação no seu domínio. Veja exemplos e peça um orçamento.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  /* vitrine de exemplos */
+  .showcase{display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:center; padding:36px 0; border-top:1px solid var(--line);}
+  .showcase:first-of-type{border-top:none; padding-top:0;}
+  .showcase.flip .shot{order:2;}
+  .showcase .shot{display:block; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper-2); box-shadow:0 18px 40px -22px rgba(27,42,56,.35); transition:transform .2s ease, box-shadow .2s ease;}
+  .showcase .shot:hover{transform:translateY(-3px); box-shadow:0 24px 48px -22px rgba(27,42,56,.4);}
+  .showcase .shot img{display:block; width:100%; aspect-ratio:1100/650; object-fit:cover;}
+  .showcase .kind{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--terracotta);}
+  .showcase h3{font-family:'Fraunces', serif; font-weight:500; font-size:28px; line-height:1.15; color:var(--navy); margin:8px 0 12px;}
+  .showcase p{color:var(--ink-soft); font-size:15px; margin-bottom:14px;}
+  .feat{list-style:none; display:grid; gap:7px; margin:0 0 22px;}
+  .feat li{position:relative; padding-left:18px; font-size:14px; color:var(--ink);}
+  .feat li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:7px; border-radius:50%; background:var(--terracotta);}
+  .showcase .actions{display:flex; gap:12px; flex-wrap:wrap;}
+  .showcase .note{font-size:12.5px; color:var(--ink-soft); margin-top:12px;}
+
+  /* passos */
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; counter-reset:step;}
+  .step{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px;}
+  .step::before{counter-increment:step; content:"0" counter(step); font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--terracotta);}
+  .step h3{font-family:'Fraunces', serif; font-weight:500; font-size:19px; color:var(--navy); margin:8px 0 6px;}
+  .step p{font-size:14px; color:var(--ink-soft);}
+
+  .offer-list{list-style:none; display:grid; gap:6px; margin:4px 0 0;}
+  .offer-list li{font-size:14px; color:var(--ink-soft); padding-left:16px; position:relative;}
+  .offer-list li::before{content:"→"; position:absolute; left:0; color:var(--terracotta); font-size:12px; top:2px;}
+
+  @media (max-width:900px){
+    .showcase, .showcase.flip{grid-template-columns:1fr; gap:24px;}
+    .showcase.flip .shot{order:0;}
+    .steps{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .steps{grid-template-columns:1fr;}
+    .showcase h3{font-size:24px;}
+  }
+</style>
 </head>
 <body>
 
@@ -30,43 +69,147 @@
   </div>
 </header>
 
-<section class="hero" style="padding-bottom:44px;">
-  <div class="wrap" style="max-width:720px;">
-    <span class="eyebrow">Consultoria disponível · palestras e cursos sob consulta</span>
-    <h1 class="hero-title">Serviços</h1>
-    <p class="hero-lede">Consultoria em planejamento e formação em Lean Construction aplicado a novas tecnologias. A consultoria já está com as primeiras vagas abertas.</p>
+<section class="hero" style="padding-bottom:52px;">
+  <div class="wrap" style="max-width:760px;">
+    <span class="eyebrow">Serviços · agenda aberta para novos projetos</span>
+    <h1 class="hero-title">Sites e apps personalizados</h1>
+    <p class="hero-lede">Crio sites e aplicativos sob medida para pessoas e negócios, do primeiro rascunho até a publicação no seu domínio. Uso IA aplicada no desenvolvimento para entregar rápido, sem abrir mão do acabamento e dos detalhes que fazem o projeto ter a sua cara.</p>
+    <div class="hero-actions">
+      <a href="mailto:contato@alanlemos.com.br?subject=Or%C3%A7amento%20de%20site%20ou%20app%20personalizado" class="btn btn-primary">Pedir um orçamento</a>
+      <a href="#exemplos" class="btn btn-ghost">Ver exemplos</a>
+    </div>
   </div>
 </section>
 
-<section style="padding-top:0;">
+<section>
   <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">O que eu construo</span>
+        <h2 class="section-title">Do convite ao aplicativo</h2>
+      </div>
+    </div>
     <div class="role-grid">
       <div class="role-card">
         <span class="num">01</span>
-        <h3>Consultoria em Planejamento de Obras e Produtos</h3>
-        <p>Diagnóstico e estruturação de planejamento, unindo visão de engenharia civil e gestão de produto: do cronograma à priorização de backlog.</p>
-        <a class="dl" href="servicos/consultoria-obras-produtos.html">Saiba mais →</a>
+        <h3>Sites personalizados</h3>
+        <p>Páginas pensadas para o seu objetivo, com identidade própria e funcionando bem no celular.</p>
+        <ul class="offer-list">
+          <li>Sites de casamento, aniversário e eventos</li>
+          <li>Páginas de apresentação e de vendas</li>
+          <li>Sites profissionais e portfólios</li>
+          <li>Formulários, mapas, lista de presentes e área restrita</li>
+        </ul>
       </div>
       <div class="role-card">
         <span class="num">02</span>
-        <h3>Palestras e Cursos</h3>
-        <div class="tags">
-          <span class="tag">Gestão Lean de Obras</span>
-          <span class="tag">Planejamento Lean de Obras</span>
-          <span class="tag">Temas sob demanda</span>
+        <h3>Apps personalizados</h3>
+        <p>Aplicativos web que abrem em qualquer navegador e podem ser instalados na tela inicial do celular.</p>
+        <ul class="offer-list">
+          <li>Apps de uso pessoal: hábitos, treino, finanças</li>
+          <li>Ferramentas internas e painéis para o seu negócio</li>
+          <li>Áreas logadas e sistemas com banco de dados</li>
+          <li>Protótipos clicáveis para validar uma ideia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tinted" id="exemplos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Exemplos</span>
+        <h2 class="section-title">Projetos que eu construí</h2>
+      </div>
+      <p class="section-lede">Abra e mexa à vontade: são as versões reais, rodando aqui no site.</p>
+    </div>
+
+    <div class="showcase">
+      <a class="shot" href="exemplos/site-casamento/index.html" target="_blank" rel="noopener" aria-label="Abrir o site de casamento">
+        <img src="assets/thumb-site-casamento.jpg" alt="Convite digital do site de casamento de Márcio e Luana, com envelope e lacre de cera">
+      </a>
+      <div>
+        <span class="kind">Site personalizado</span>
+        <h3>Site de casamento de Márcio &amp; Luana</h3>
+        <p>Convite digital para o casamento da minha irmã: o convidado abre o envelope tocando no lacre, com música e pétalas caindo, e encontra tudo o que precisa num só lugar.</p>
+        <ul class="feat">
+          <li>Convite animado com trilha sonora do casal</li>
+          <li>História, cerimônia e recepção com mapa e rota</li>
+          <li>Lista de presentes por cotas, com pagamento via Pix</li>
+          <li>Confirmação de presença individual</li>
+          <li>Painel dos noivos com acesso protegido para acompanhar tudo</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="exemplos/site-casamento/index.html" target="_blank" rel="noopener">Ver o site ↗</a>
         </div>
-        <p>Palestras e cursos sobre gestão e planejamento Lean de obras aplicados a novas tecnologias. Contratação por hora, com deslocamento e estadia cobertos pelo contratante quando necessário.</p>
+        <p class="note">Cópia de demonstração: confirmações e presentes feitos nela não são enviados aos noivos.</p>
+      </div>
+    </div>
+
+    <div class="showcase flip">
+      <a class="shot" href="exemplos/fit-pepe/index.html" target="_blank" rel="noopener" aria-label="Abrir o app Fit Pepe">
+        <img src="assets/thumb-fit-pepe.jpg" alt="Três telas do app Fit Pepe: resumo do dia com o mascote Pepe, ficha de treino e evolução de peso">
+      </a>
+      <div>
+        <span class="kind">App personalizado · protótipo</span>
+        <h3>Fit Pepe</h3>
+        <p>Diário de treino, dieta e progresso corporal com o Pepe, um mascote que reage ao seu dia: fica feliz quando treino e refeições estão em dia.</p>
+        <ul class="feat">
+          <li>Calorias e macros do dia, a partir do plano de dieta</li>
+          <li>Ficha de treino com séries, cargas e ciclo automático</li>
+          <li>Evolução mensal de peso e % de gordura</li>
+          <li>Instala no celular e funciona offline</li>
+          <li>Dados guardados só no aparelho de quem usa</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="exemplos/fit-pepe/index.html" target="_blank" rel="noopener">Abrir o app ↗</a>
+        </div>
+        <p class="note">Melhor experiência no celular. Ele já abre com dados de exemplo para você explorar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Como funciona</span>
+        <h2 class="section-title">Do primeiro papo ao site no ar</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Conversa</h3>
+        <p>Entendo o objetivo, quem vai usar, o que precisa ter e as referências de que você gosta.</p>
+      </div>
+      <div class="step">
+        <h3>Protótipo</h3>
+        <p>Você recebe uma primeira versão navegável para ver e clicar, em vez de só imaginar.</p>
+      </div>
+      <div class="step">
+        <h3>Ajustes</h3>
+        <p>Refinamos juntos textos, cores e funcionalidades até ficar com a sua cara.</p>
+      </div>
+      <div class="step">
+        <h3>Publicação</h3>
+        <p>Coloco no ar, no seu domínio, e te mostro como acompanhar e usar no dia a dia.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="tinted">
-  <div class="wrap" style="text-align:center; max-width:560px;">
-    <span class="eyebrow">Palestras e cursos</span>
-    <h2 class="section-title" style="margin:12px 0 24px;">Quer levar um tema pro seu time ou evento?</h2>
-    <p class="section-lede" style="margin:0 auto 24px;">Me conta o contexto: público, formato (palestra ou curso), carga horária e local. Assim eu te retorno com uma proposta.</p>
-    <a href="mailto:contato@alanlemos.com.br?subject=Proposta de palestra ou curso" class="btn btn-navy">contato@alanlemos.com.br</a>
+  <div class="wrap" style="text-align:center; max-width:600px;">
+    <span class="eyebrow">Contrate</span>
+    <h2 class="section-title" style="margin:12px 0 16px;">Tem uma ideia de site ou app?</h2>
+    <p class="section-lede" style="margin:0 auto 26px;">Me conta o que você precisa: para quem é, o que ele deve fazer, se já tem domínio e quais referências você gosta. Eu te retorno com uma proposta.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="mailto:contato@alanlemos.com.br?subject=Or%C3%A7amento%20de%20site%20ou%20app%20personalizado" class="btn btn-primary">contato@alanlemos.com.br</a>
+      <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener" class="btn btn-ghost">Falar pelo LinkedIn</a>
+    </div>
   </div>
 </section>
 

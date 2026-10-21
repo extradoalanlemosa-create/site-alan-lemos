@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prêmio Construção com Eficiência Lean · Alan Lemos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1C2430;
+  --graphite:#3A3A38;
+  --paper:#FAF9F5;
+  --paper-dim:#F2F0EA;
+  --line:#E4E1D8;
+  --stone:#9B9990;
+  --ink:#22201C;
+  --terracotta:#C48A5A;
+  --terracotta-d:#AD744A;
+  --font-display:'Fraunces',serif;
+  --font-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:960px;margin:0 auto;padding:0 32px}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--graphite)}
+.logo-mark{width:38px;height:38px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:38px;height:38px}
+.back-link{font-size:13.5px;color:var(--stone);display:flex;align-items:center;gap:6px;transition:color .15s}
+.back-link:hover{color:var(--terracotta-d)}
+
+/* HERO / HEADER DO PROJETO */
+.project-hero{padding:36px 0 44px;border-bottom:1px solid var(--line)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
+.h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,48px);line-height:1.12;color:var(--navy);max-width:18ch;margin-bottom:16px}
+.hero-sub{color:var(--stone);font-size:16px;max-width:56ch;margin-bottom:22px}
+.client-badge{display:flex;align-items:center;gap:9px;margin-bottom:26px}
+.client-badge img{width:22px;height:22px}
+.client-badge span{font-size:12.5px;color:var(--stone)}
+.client-badge strong{color:var(--graphite);font-weight:600}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:13px 24px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:all .18s}
+.btn-primary{background:var(--terracotta);color:#fff}
+.btn-primary:hover{background:var(--terracotta-d);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--graphite);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--stone)}
+
+/* SECTIONS */
+section{padding:56px 0}
+.section-line{border-top:1px solid var(--line)}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--terracotta-d);margin-bottom:10px}
+.section-title{font-family:var(--font-display);font-weight:500;font-size:28px;color:var(--navy);margin-bottom:36px;max-width:26ch}
+
+/* PROBLEMA -> SOLUCAO -> RESULTADO */
+.psr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.psr-card{padding:30px 28px;position:relative}
+.psr-card + .psr-card{border-left:1px solid var(--line)}
+.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.psr-num::before{content:'';width:16px;height:1px;background:var(--terracotta)}
+.psr-heading{font-family:var(--font-display);font-size:19px;color:var(--navy);margin-bottom:12px;font-weight:500}
+.psr-text{font-size:14.5px;color:#5b584f;line-height:1.7}
+.psr-card.result{background:var(--navy);color:#fff}
+.psr-card.result .psr-num{color:rgba(255,255,255,.55)}
+.psr-card.result .psr-heading{color:#fff}
+.psr-card.result .psr-text{color:rgba(255,255,255,.78)}
+.psr-arrow{position:absolute;top:30px;right:-13px;width:26px;height:26px;background:var(--paper);border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--stone);z-index:2}
+
+@media(max-width:760px){
+  .psr-grid{grid-template-columns:1fr}
+  .psr-card + .psr-card{border-left:none;border-top:1px solid var(--line)}
+  .psr-arrow{display:none}
+}
+
+/* EVIDENCIA / FOTO */
+.evidence-lede{max-width:60ch;color:#5b584f;font-size:15px;margin-bottom:24px}
+.evidence-frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25);max-width:620px;margin:0 auto}
+.evidence-frame img{width:100%;display:block}
+.evidence-caption{text-align:center;font-size:12.5px;color:var(--stone);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto}
+
+/* DEMO FRAME */
+.demo-intro{max-width:62ch;color:#5b584f;font-size:15px;margin-bottom:28px}
+.browser-chrome{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25)}
+.chrome-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--paper-dim);border-bottom:1px solid var(--line)}
+.chrome-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.chrome-url{flex:1;text-align:center;font-size:11.5px;color:var(--stone);font-family:var(--font-body)}
+.demo-frame-wrap{width:100%;max-width:480px;margin:0 auto}
+.demo-caption{text-align:center;font-size:12.5px;color:var(--stone);margin-top:14px}
+
+/* TECH STACK */
+.tech-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tech-item{background:#fff;padding:22px 20px;display:flex;flex-direction:column}
+.tech-name{font-weight:600;font-size:14px;color:var(--navy);margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;line-height:1.3}
+.tech-dot{width:7px;height:7px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:6px}
+.tech-desc{font-size:12.5px;color:var(--stone);line-height:1.55;padding-left:15px}
+
+@media(max-width:900px){
+  .tech-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  .tech-grid{grid-template-columns:1fr}
+  .tech-item{padding:18px 20px}
+}
+
+/* CTA FINAL */
+.final-cta{background:var(--navy);border-radius:18px;padding:56px 48px;text-align:center;color:#fff}
+.final-cta .section-title{color:#fff;margin:0 auto 12px;font-size:26px}
+.final-cta p{color:rgba(255,255,255,.65);max-width:44ch;margin:0 auto 30px;font-size:14.5px}
+.final-cta .cta-row{justify-content:center}
+.final-cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.28)}
+.final-cta .btn-ghost:hover{border-color:#fff}
+
+footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)}
+
+/* ===== DEMO EMBUTIDA (escopada em #demoEmbed) — identidade Agilean (navy/laranja) ===== */
+#demoEmbed{
+  --or:#FF5F1F;--ord:#E04F14;--orl:#FFF0E9;--orb:#FFD4BC;
+  --g1:#f7f8fa;--g2:#eef0f3;--g3:#e2e5ea;--g5:#8a94a6;--g7:#4a5568;--g9:#1a202c;
+  --gn:#0F9D58;--gnb:#E8F7EF;--gnbr:#BFE8D1;
+  --bl:#2b6cb0;--blb:#ebf8ff;--blbr:#bee3f8;
+  --nv:#0F0E17;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:var(--g9);font-size:13px;line-height:1.5;
+}
+#demoEmbed *,#demoEmbed *::before,#demoEmbed *::after{box-sizing:border-box}
+#demoEmbed select{width:100%;padding:6px 9px;font-size:12px;border:1px solid var(--g3);border-radius:6px;background:var(--g1);color:var(--g9);outline:none;font-family:inherit}
+#demoEmbed button{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;font-size:12px;font-weight:700;border-radius:6px;border:none;cursor:pointer;font-family:inherit;transition:all .15s;line-height:1}
+#demoEmbed button:disabled{opacity:.6;cursor:not-allowed}
+#demoEmbed .bor{background:var(--or);color:#fff}#demoEmbed .bor:hover:not(:disabled){background:var(--ord)}
+#demoEmbed .bgn{background:var(--gn);color:#fff}
+#demoEmbed .bgy{background:var(--g2);color:var(--g7)}#demoEmbed .bgy:hover:not(:disabled){background:var(--g3)}
+#demoEmbed .dhdr{background:var(--nv);padding:0 12px;display:flex;align-items:center;height:42px;gap:10px}
+#demoEmbed .dhdr-tag{font-size:10px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+#demoEmbed .dhdr-name{color:#fff;font-size:12px;font-weight:700}
+#demoEmbed .ticker{background:var(--orl);border-bottom:1px solid var(--orb);padding:7px 12px;font-size:11.5px;color:var(--ord);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px}
+#demoEmbed .sbadge{font-size:9.5px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:rgba(255,95,31,.15);color:var(--or)}
+#demoEmbed .dmain{padding:10px}
+#demoEmbed .lbl{font-size:10px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px}
+#demoEmbed .card{background:var(--g1);border:1px solid var(--g3);border-radius:8px;padding:10px;margin-bottom:8px}
+#demoEmbed .mb6{margin-bottom:6px}#demoEmbed .mb8{margin-bottom:8px}
+#demoEmbed .tabs{display:flex;border-bottom:2px solid var(--g2);margin-bottom:10px;overflow-x:auto}
+#demoEmbed .tab{flex:1;min-width:0;padding:8px 3px;font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:inherit;color:var(--g5);background:transparent;text-align:center;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s}
+#demoEmbed .tab:hover{color:var(--or)}#demoEmbed .tab.on{color:var(--or);border-bottom-color:var(--or)}
+#demoEmbed .hidden{display:none}
+#demoEmbed hr{border:none;border-top:1px solid var(--g2);margin:10px 0}
+#demoEmbed .dnote{font-size:10.5px;color:var(--g5);line-height:1.6;padding:8px 0 2px}
+
+/* winner card */
+#demoEmbed .winner-card{background:linear-gradient(135deg,var(--nv),#2b2440 120%);border-radius:8px;padding:14px 16px;margin-bottom:10px;color:#fff;display:flex;align-items:center;gap:12px}
+#demoEmbed .winner-medal{font-size:26px;line-height:1;flex-shrink:0}
+#demoEmbed .winner-label{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--or);font-weight:800;margin-bottom:3px}
+#demoEmbed .winner-name{font-size:13px;font-weight:800;margin-bottom:1px}
+#demoEmbed .winner-company{font-size:10.5px;color:#b9bcc9}
+#demoEmbed .winner-score{margin-left:auto;text-align:right}
+#demoEmbed .winner-score .num{font-size:18px;font-weight:800;color:var(--or);line-height:1}
+#demoEmbed .winner-score .lbl{font-size:9px;color:#b9bcc9;text-transform:uppercase;letter-spacing:.05em}
+
+/* ranking table */
+#demoEmbed table.rank-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--g3);border-radius:8px;overflow:hidden}
+#demoEmbed table.rank-table th,#demoEmbed table.rank-table td{padding:8px 9px;text-align:left;font-size:11px;border-bottom:1px solid var(--g2)}
+#demoEmbed table.rank-table th{background:var(--g1);font-weight:700;color:var(--g5);text-transform:uppercase;font-size:9px;letter-spacing:.03em}
+#demoEmbed table.rank-table tr:last-child td{border-bottom:none}
+#demoEmbed table.rank-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+#demoEmbed .status-pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9.5px;font-weight:700}
+#demoEmbed .status-pill.elegivel{background:var(--gnb);color:var(--gn)}
+#demoEmbed .status-pill.inelegivel{background:var(--orl);color:var(--ord)}
+
+/* auditoria */
+#demoEmbed .run-row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border:1px solid var(--g3);border-radius:8px;margin-bottom:6px;font-size:11.5px}
+#demoEmbed .run-row.oficial{border-color:var(--gnbr);background:var(--gnb)}
+#demoEmbed .run-tag{font-size:9px;font-weight:800;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:var(--g2);color:var(--g7)}
+#demoEmbed .run-row.oficial .run-tag{background:var(--gn);color:#fff}
+#demoEmbed .audit-status{display:flex;align-items:center;gap:8px;margin-top:10px}
+#demoEmbed .audit-status .badge-audited{display:none;font-size:10.5px;font-weight:700;color:var(--gn);background:var(--gnb);padding:4px 10px;border-radius:20px;align-items:center;gap:5px}
+#demoEmbed .audit-status.done .badge-audited{display:inline-flex}
+#demoEmbed .audit-status.done #dAuditBtn{display:none}
+
+/* checklist */
+#demoEmbed .chk-row{display:flex;align-items:center;gap:8px;border:1px solid var(--g3);border-left:4px solid var(--g3);border-radius:6px;padding:8px 9px;margin-bottom:6px;background:#fff;transition:border-color .15s,background .15s}
+#demoEmbed .chk-row.st-andamento{background:var(--blb);border-left-color:var(--bl)}
+#demoEmbed .chk-row.st-concluida{background:var(--gnb);border-left-color:var(--gn)}
+#demoEmbed .chk-row.st-concluida .chk-title{text-decoration:line-through;color:var(--g5)}
+#demoEmbed .chk-title{font-size:11.5px;font-weight:600;flex:1;min-width:0}
+#demoEmbed .chk-team{font-size:9px;font-weight:700;text-transform:uppercase;padding:3px 7px;border-radius:20px;flex-shrink:0}
+#demoEmbed .chk-team.cs{background:#eaf2ff;color:#1d4f9c}
+#demoEmbed .chk-team.mkt{background:#fdeee0;color:#a85416}
+#demoEmbed .chk-row select{width:auto;flex-shrink:0;font-size:10.5px;padding:4px 6px}
+
+@keyframes dspin{to{transform:rotate(360deg)}}
+#demoEmbed .spin{animation:dspin .9s linear infinite;display:inline-block}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav">
+    <a href="../index.html" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(25,20)">
+            <path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/>
+            <line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/>
+          </g>
+        </svg>
+      </span>
+      Alan Lemos
+    </a>
+    <a href="../portfolio.html" class="back-link">← Voltar ao portfólio</a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <header class="project-hero">
+    <div class="tags">
+      <span class="tag">Gestão de obras</span>
+      <span class="tag">Dados &amp; governança</span>
+      <span class="tag">Auditoria</span>
+    </div>
+    <h1 class="h1">Prêmio Construção com Eficiência Lean</h1>
+    <p class="hero-sub">Sistema de ranking mensal da Agilean que reconhece obras clientes pela excelência em gestão Lean — com cálculo automático dos indicadores, auditoria dos resultados antes de publicar, e uma área logada para cada obra acompanhar sua evolução.</p>
+    <div class="client-badge">
+      <img src="../assets/agilean-logo.png" alt="Agilean">
+      <span>Projeto construído para <strong>Agilean</strong> — software de gestão Lean para construção civil</span>
+    </div>
+    <div class="cta-row">
+      <a href="https://premio.agilean.com.br/" target="_blank" rel="noopener" class="btn btn-primary">↗ Ver site público</a>
+      <a href="#demo" class="btn btn-ghost">Ver protótipo da área logada</a>
+    </div>
+  </header>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Como o projeto nasceu</div>
+    <h2 class="section-title">De planilha solta a trilha de auditoria</h2>
+    <div class="psr-grid">
+      <div class="psr-card">
+        <div class="psr-num">Problema</div>
+        <h3 class="psr-heading">Ranking mensal sem trilha de auditoria</h3>
+        <p class="psr-text">Calcular o destaque mensal a partir dos indicadores Lean de cada obra (IDC, IDP, PPC, IRR, PPCQ) e decidir quem sobe ao pódio dependia de conferência manual: nenhum histórico de quem alterou o quê, nenhuma trava antes de publicar um número errado, e as tarefas de pós-resultado — logo, certificado, contato com a obra vencedora — ficavam soltas entre os times.</p>
+        <div class="psr-arrow">→</div>
+      </div>
+      <div class="psr-card">
+        <div class="psr-num">Solução</div>
+        <h3 class="psr-heading">Cálculo automático, auditoria e governança</h3>
+        <p class="psr-text">Backend em Supabase calcula o ranking do mês a partir dos indicadores lançados por obra. Antes de qualquer resultado ir ao ar, o admin audita em tela própria: compara rodagens de cálculo, pode sobrescrever um indicador com motivo registrado ou tornar uma obra inelegível, e só libera o mês com um clique em "marcar como auditado". Cada obra destaque recebe um checklist automático de tarefas por time, e ganha área logada própria para ver sua evolução, baixar certificado e enviar depoimento.</p>
+        <div class="psr-arrow">→</div>
+      </div>
+      <div class="psr-card result">
+        <div class="psr-num">Resultado</div>
+        <h3 class="psr-heading">2º lugar na competição interna de IA da Agilean</h3>
+        <p class="psr-text">O painel está em produção em premio.agilean.com.br, é a cara pública do prêmio mensal da empresa, e trocou planilhas soltas por uma trilha única de auditoria e governança de dados — o tema que levou este projeto ao 2º lugar na competição interna de uso de IA da Agilean.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Bastidores</div>
+    <h2 class="section-title">O prêmio, entregue de verdade</h2>
+    <p class="evidence-lede">Construtoras como Mota Machado, Terra Brasilis, Trinus, Berg Engenharia e CMM Engenharia já subiram ao pódio mensal do prêmio. A foto abaixo registra a equipe Agilean com as placas de um dos meses, prontas para entrega às obras destaque.</p>
+    <div class="evidence-frame">
+      <img src="../assets/premio-lean-diretores.jpg" alt="Equipe Agilean segurando as placas de Obra Destaque e Obra Campeã de um dos meses do prêmio, das construtoras Terra Brasilis, Almaa e CMM Engenharia.">
+    </div>
+    <p class="evidence-caption">Equipe Agilean com as placas de "Obra Destaque" e "Obra Campeã" do mês, prontas para entrega às construtoras.</p>
+  </section>
+</div>
+</div>
+
+<div class="section-line" id="demo">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Experimente</div>
+    <h2 class="section-title">A área logada, em protótipo</h2>
+    <p class="demo-intro">Abaixo está uma recriação da área pós-login, com dados fictícios: a área real trabalha com números e nomes de clientes da Agilean e não pode ser exposta aqui. As três abas mostram o ranking do mês, o fluxo de auditoria antes de publicar um resultado e o checklist de governança que cada resultado dispara automaticamente.</p>
+    <div class="demo-frame-wrap">
+      <div class="browser-chrome">
+        <div class="chrome-bar">
+          <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+          <span class="chrome-url">área logada · prêmio eficiência lean</span>
+        </div>
+
+        <!-- ===== DEMO EMBUTIDA ===== -->
+        <div id="demoEmbed">
+          <div class="dhdr">
+            <span class="dhdr-name">🏗️ Prêmio Eficiência Lean</span>
+            <span class="dhdr-tag">Painel pós-login · protótipo</span>
+          </div>
+          <div class="ticker">
+            <span><strong>Outubro/2026</strong> · 24 obras avaliadas</span>
+            <span class="sbadge">dados fictícios</span>
+          </div>
+
+          <div class="dmain">
+            <div class="tabs">
+              <button class="tab on" data-tab="0">🏆 Ranking</button>
+              <button class="tab" data-tab="1">✓ Auditoria</button>
+              <button class="tab" data-tab="2">📋 Checklist</button>
+            </div>
+
+            <!-- TAB 0: RANKING -->
+            <div id="dtab0">
+              <div class="winner-card">
+                <div class="winner-medal">🥇</div>
+                <div>
+                  <div class="winner-label">Obra campeã · Outubro 2026</div>
+                  <div class="winner-name">Residencial Alameda das Flores</div>
+                  <div class="winner-company">Construtora Vértice</div>
+                </div>
+                <div class="winner-score"><div class="num">94.2</div><div class="lbl">score</div></div>
+              </div>
+              <table class="rank-table">
+                <thead><tr><th>#</th><th>Obra</th><th class="num">Score</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Res. Alameda das Flores</td><td class="num">94.2</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
+                  <tr><td>2</td><td>Parque Imperial — Torre B</td><td class="num">91.6</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
+                  <tr><td>3</td><td>Bosque Alto — Fase 2</td><td class="num">88.9</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
+                  <tr><td>4</td><td>Edifício Pinhal</td><td class="num">—</td><td><span class="status-pill inelegivel">Dados incompletos</span></td></tr>
+                </tbody>
+              </table>
+              <div class="dnote" style="margin-top:8px">Cada linha abre o histórico da obra (posição e score mês a mês) e dá acesso a certificado e depoimento — omitido aqui por não usar dados reais.</div>
+            </div>
+
+            <!-- TAB 1: AUDITORIA -->
+            <div id="dtab1" class="hidden">
+              <div class="lbl mb6">Rodagens de cálculo deste mês</div>
+              <div class="run-row oficial"><span>Rodagem #3 · concluída às 09:42</span><span class="run-tag">oficial</span></div>
+              <div class="run-row"><span>Rodagem #2 · concluída às 08:15</span><span class="run-tag">arquivada</span></div>
+              <div class="card" style="margin-top:4px">
+                <div class="lbl">Antes de publicar</div>
+                <div style="font-size:11.5px;color:var(--g7);line-height:1.6">O admin confere o ranking, pode sobrescrever um indicador com motivo registrado ou tornar uma obra inelegível. O mês só fica visível às obras depois do clique abaixo.</div>
+              </div>
+              <div class="audit-status" id="dAuditStatus">
+                <button class="bor" id="dAuditBtn">✓ Marcar como auditado</button>
+                <span class="badge-audited">✓ Auditado às <span id="dAuditTime"></span></span>
+              </div>
+            </div>
+
+            <!-- TAB 2: CHECKLIST -->
+            <div id="dtab2" class="hidden">
+              <div class="lbl mb6">Tarefas geradas pelo resultado deste mês</div>
+              <div class="chk-row st-andamento">
+                <span class="chk-title">Anexar logo da obra campeã ao card do pódio</span>
+                <span class="chk-team cs">CS</span>
+                <select class="dChkSelect">
+                  <option>Pendente</option>
+                  <option selected>Em andamento</option>
+                  <option>Concluída</option>
+                </select>
+              </div>
+              <div class="chk-row st-concluida">
+                <span class="chk-title">Gerar certificado e enviar à obra vencedora</span>
+                <span class="chk-team cs">CS</span>
+                <select class="dChkSelect">
+                  <option>Pendente</option>
+                  <option>Em andamento</option>
+                  <option selected>Concluída</option>
+                </select>
+              </div>
+              <div class="chk-row">
+                <span class="chk-title">Publicar destaque do mês no LinkedIn da Agilean</span>
+                <span class="chk-team mkt">Marketing</span>
+                <select class="dChkSelect">
+                  <option selected>Pendente</option>
+                  <option>Em andamento</option>
+                  <option>Concluída</option>
+                </select>
+              </div>
+              <div class="dnote">Mude o status de qualquer tarefa acima — é só pra sentir o fluxo, nada é salvo.</div>
+            </div>
+
+            <div class="dnote" style="margin-top:6px;border-top:1px solid var(--g2);padding-top:10px">
+              Este é um protótipo com dados fictícios, recriado para o portfólio. No ambiente em produção, cada ação aqui chama uma function do Supabase e grava direto no banco de dados real da Agilean.
+            </div>
+          </div>
+        </div>
+        <!-- ===== FIM DEMO EMBUTIDA ===== -->
+
+      </div>
+    </div>
+    <p class="demo-caption">Dados fictícios. Nenhuma informação real de cliente é usada nesta demonstração.</p>
+  </section>
+</div>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Sob o capô</div>
+    <h2 class="section-title">Tecnologias usadas</h2>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Supabase</div>
+        <div class="tech-desc">Postgres + Edge Functions: cálculo do ranking, autenticação por papel (obra/admin) e trilha de auditoria.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>JavaScript vanilla</div>
+        <div class="tech-desc">Área logada inteira roda em um único HTML, sem framework, consumindo as functions direto.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>pptxgenjs</div>
+        <div class="tech-desc">Monta a apresentação mensal dos destaques em .pptx direto no navegador, sob clique do admin.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>RD Station</div>
+        <div class="tech-desc">Capta os leads do formulário "Agendar demonstração" na página pública do prêmio.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Claude</div>
+        <div class="tech-desc">Apoio no desenvolvimento, na modelagem da trilha de auditoria e na prototipagem desta página.</div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="final-cta">
+      <h2 class="section-title">Gostou do que viu?</h2>
+      <p>Esse é um dos projetos de planejamento e gestão com IA aplicada que já implementei. Veja outros cases do portfólio para conhecer o restante do trabalho.</p>
+      <div class="cta-row">
+        <a href="../portfolio.html" class="btn btn-primary">← Voltar ao portfólio</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>Alan Lemos · Planejamento e Gestão de projetos, produtos e dados com IA aplicada.</footer>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var root=document.getElementById('demoEmbed');
+
+  root.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      root.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      t.classList.add('on');
+      [0,1,2].forEach(function(i){$('dtab'+i).classList.add('hidden');});
+      $('dtab'+t.dataset.tab).classList.remove('hidden');
+    });
+  });
+
+  var auditBtn=$('dAuditBtn');
+  auditBtn.addEventListener('click',function(){
+    var btn=this;
+    btn.disabled=true;
+    btn.innerHTML='<span class="spin">⏳</span> Auditando...';
+    setTimeout(function(){
+      var now=new Date();
+      var hh=String(now.getHours()).padStart(2,'0');
+      var mm=String(now.getMinutes()).padStart(2,'0');
+      $('dAuditTime').textContent=hh+':'+mm;
+      $('dAuditStatus').classList.add('done');
+    },900);
+  });
+
+  root.querySelectorAll('.dChkSelect').forEach(function(sel){
+    sel.addEventListener('change',function(){
+      var row=sel.closest('.chk-row');
+      row.classList.remove('st-andamento','st-concluida');
+      if(sel.value==='Em andamento') row.classList.add('st-andamento');
+      if(sel.value==='Concluída') row.classList.add('st-concluida');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

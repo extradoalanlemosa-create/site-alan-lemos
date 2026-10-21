@@ -80,12 +80,6 @@ section{padding:56px 0}
   .psr-arrow{display:none}
 }
 
-/* EVIDENCIA / FOTO */
-.evidence-lede{max-width:60ch;color:#5b584f;font-size:15px;margin-bottom:24px}
-.evidence-frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25);max-width:620px;margin:0 auto}
-.evidence-frame img{width:100%;display:block}
-.evidence-caption{text-align:center;font-size:12.5px;color:var(--stone);margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto}
-
 /* DEMO FRAME */
 .demo-intro{max-width:62ch;color:#5b584f;font-size:15px;margin-bottom:28px}
 .browser-chrome{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25)}
@@ -148,7 +142,7 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 #demoEmbed .tabs{display:flex;border-bottom:2px solid var(--g2);margin-bottom:10px;overflow-x:auto}
 #demoEmbed .tab{flex:1;min-width:0;padding:8px 3px;font-size:10px;font-weight:700;border:none;cursor:pointer;font-family:inherit;color:var(--g5);background:transparent;text-align:center;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s}
 #demoEmbed .tab:hover{color:var(--or)}#demoEmbed .tab.on{color:var(--or);border-bottom-color:var(--or)}
-#demoEmbed .hidden{display:none}
+#demoEmbed .hidden{display:none!important}
 #demoEmbed hr{border:none;border-top:1px solid var(--g2);margin:10px 0}
 #demoEmbed .dnote{font-size:10.5px;color:var(--g5);line-height:1.6;padding:8px 0 2px}
 
@@ -192,6 +186,58 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 #demoEmbed .chk-team.cs{background:#eaf2ff;color:#1d4f9c}
 #demoEmbed .chk-team.mkt{background:#fdeee0;color:#a85416}
 #demoEmbed .chk-row select{width:auto;flex-shrink:0;font-size:10.5px;padding:4px 6px}
+
+/* ranking detail view */
+#demoEmbed .back-sm{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--g5);cursor:pointer;background:none;border:none;padding:0;margin-bottom:12px;font-family:inherit}
+#demoEmbed .back-sm:hover{color:var(--or)}
+#demoEmbed .detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}
+#demoEmbed .detail-name{font-size:13.5px;font-weight:800;color:var(--g9)}
+#demoEmbed .detail-company{font-size:11px;color:var(--g5);margin-top:1px}
+#demoEmbed .detail-score{text-align:right;flex-shrink:0}
+#demoEmbed .detail-score .num{font-size:20px;font-weight:800;color:var(--or);line-height:1}
+#demoEmbed .detail-score .lbl{font-size:8.5px;color:var(--g5);text-transform:uppercase}
+#demoEmbed .indicator-row{margin-bottom:9px}
+#demoEmbed .indicator-top{display:flex;justify-content:space-between;gap:8px;font-size:10.5px;color:var(--g7);margin-bottom:3px}
+#demoEmbed .indicator-top b{color:var(--g9)}
+#demoEmbed .indicator-bar{height:6px;background:var(--g2);border-radius:20px;overflow:hidden}
+#demoEmbed .indicator-bar-fill{height:100%;background:var(--or);border-radius:20px}
+#demoEmbed .spark{display:flex;align-items:flex-end;gap:4px;height:40px;margin:8px 0 2px}
+#demoEmbed .spark-bar{flex:1;background:var(--orb);border-radius:3px 3px 0 0}
+#demoEmbed .spark-bar.cur{background:var(--or)}
+#demoEmbed .detail-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#demoEmbed .toast-ok{font-size:11px;font-weight:700;color:var(--gn);background:var(--gnb);border:1px solid var(--gnbr);border-radius:6px;padding:8px 10px;margin-top:8px;display:flex;align-items:center;gap:6px}
+#demoEmbed textarea{width:100%;font-family:inherit;font-size:11.5px;border:1px solid var(--g3);border-radius:6px;padding:8px;resize:vertical;min-height:54px;outline:none;background:#fff;color:var(--g9)}
+#demoEmbed .ineligible-card{background:var(--orl);border:1px solid var(--orb);border-radius:8px;padding:10px}
+
+/* ranking rows clickable */
+#demoEmbed table.rank-table tbody tr{cursor:pointer;transition:background .12s}
+#demoEmbed table.rank-table tbody tr:hover{background:var(--g1)}
+
+/* auditoria diff */
+#demoEmbed .run-row{cursor:pointer}
+#demoEmbed .run-row.has-open{border-radius:8px 8px 0 0;margin-bottom:0}
+#demoEmbed .diff-panel{border:1px solid var(--g3);border-top:none;border-radius:0 0 8px 8px;overflow:hidden;background:#fff;margin-bottom:6px}
+#demoEmbed .diff-row{display:flex;align-items:center;gap:6px;padding:8px 10px;font-size:10.5px;border-bottom:1px solid var(--g2)}
+#demoEmbed .diff-row:last-child{border-bottom:none}
+#demoEmbed .diff-obra{flex:1;min-width:0;color:var(--g7)}
+#demoEmbed .diff-obra b{color:var(--g9)}
+#demoEmbed .diff-vals{display:flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+#demoEmbed .diff-old{color:var(--g5);text-decoration:line-through}
+#demoEmbed .diff-new{font-weight:800;color:var(--gn)}
+#demoEmbed .pencil{background:none;border:none;cursor:pointer;font-size:12px;padding:2px 5px;color:var(--g5);flex-shrink:0}
+#demoEmbed .pencil:hover{color:var(--or)}
+#demoEmbed .edit-inline{display:flex;gap:6px;align-items:center;padding:8px 10px;background:var(--g1);flex-wrap:wrap}
+#demoEmbed .edit-inline input[type=number]{width:54px;font-size:11px;padding:4px 6px;border:1px solid var(--g3);border-radius:5px}
+#demoEmbed .edit-inline input[type=text]{flex:1;min-width:90px;font-size:10.5px;padding:4px 6px;border:1px solid var(--g3);border-radius:5px}
+#demoEmbed .edited-tag{font-size:8.5px;font-weight:800;text-transform:uppercase;color:var(--bl);background:var(--blb);padding:1px 6px;border-radius:20px;margin-left:5px}
+#demoEmbed .diff-static-note{padding:9px 10px;font-size:10.5px;color:var(--g5);line-height:1.6}
+
+/* checklist add / remove */
+#demoEmbed .add-task{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+#demoEmbed .add-task input[type=text]{flex:1;min-width:120px;font-size:11.5px;padding:7px 9px;border:1px solid var(--g3);border-radius:6px}
+#demoEmbed .add-task select{width:auto;flex-shrink:0}
+#demoEmbed .chk-remove{background:none;border:none;color:var(--g5);cursor:pointer;font-size:14px;padding:0 2px;flex-shrink:0;line-height:1}
+#demoEmbed .chk-remove:hover{color:var(--ord)}
 
 @keyframes dspin{to{transform:rotate(360deg)}}
 #demoEmbed .spin{animation:dspin .9s linear infinite;display:inline-block}
@@ -265,26 +311,12 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 </div>
 </div>
 
-<div class="section-line">
-<div class="wrap">
-  <section>
-    <div class="eyebrow">Bastidores</div>
-    <h2 class="section-title">O prêmio, entregue de verdade</h2>
-    <p class="evidence-lede">Construtoras como Mota Machado, Terra Brasilis, Trinus, Berg Engenharia e CMM Engenharia já subiram ao pódio mensal do prêmio. A foto abaixo registra a equipe Agilean com as placas de um dos meses, prontas para entrega às obras destaque.</p>
-    <div class="evidence-frame">
-      <img src="../assets/premio-lean-diretores.jpg" alt="Equipe Agilean segurando as placas de Obra Destaque e Obra Campeã de um dos meses do prêmio, das construtoras Terra Brasilis, Almaa e CMM Engenharia.">
-    </div>
-    <p class="evidence-caption">Equipe Agilean com as placas de "Obra Destaque" e "Obra Campeã" do mês, prontas para entrega às construtoras.</p>
-  </section>
-</div>
-</div>
-
 <div class="section-line" id="demo">
 <div class="wrap">
   <section>
     <div class="eyebrow">Experimente</div>
     <h2 class="section-title">A área logada, em protótipo</h2>
-    <p class="demo-intro">Abaixo está uma recriação da área pós-login, com dados fictícios: a área real trabalha com números e nomes de clientes da Agilean e não pode ser exposta aqui. As três abas mostram o ranking do mês, o fluxo de auditoria antes de publicar um resultado e o checklist de governança que cada resultado dispara automaticamente.</p>
+    <p class="demo-intro">Abaixo está uma recriação navegável da área pós-login, com dados fictícios: a área real trabalha com números e nomes de clientes da Agilean e não pode ser exposta aqui. Clique em uma obra do ranking para ver indicadores e enviar depoimento, abra uma rodagem na auditoria para comparar e editar indicadores, e mexa no checklist de governança — tudo funciona de verdade, só não é salvo em lugar nenhum.</p>
     <div class="demo-frame-wrap">
       <div class="browser-chrome">
         <div class="chrome-bar">
@@ -312,37 +344,58 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 
             <!-- TAB 0: RANKING -->
             <div id="dtab0">
-              <div class="winner-card">
-                <div class="winner-medal">🥇</div>
-                <div>
-                  <div class="winner-label">Obra campeã · Outubro 2026</div>
-                  <div class="winner-name">Residencial Alameda das Flores</div>
-                  <div class="winner-company">Construtora Vértice</div>
+              <div id="rankingList">
+                <div class="winner-card">
+                  <div class="winner-medal">🥇</div>
+                  <div>
+                    <div class="winner-label">Obra campeã · Outubro 2026</div>
+                    <div class="winner-name">Residencial Alameda das Flores</div>
+                    <div class="winner-company">Construtora Vértice</div>
+                  </div>
+                  <div class="winner-score"><div class="num">94.2</div><div class="lbl">score</div></div>
                 </div>
-                <div class="winner-score"><div class="num">94.2</div><div class="lbl">score</div></div>
+                <table class="rank-table">
+                  <thead><tr><th>#</th><th>Obra</th><th class="num">Score</th><th>Status</th></tr></thead>
+                  <tbody>
+                    <tr data-obra="0"><td>1</td><td>Res. Alameda das Flores</td><td class="num">94.2</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
+                    <tr data-obra="1"><td>2</td><td>Parque Imperial — Torre B</td><td class="num">91.6</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
+                    <tr data-obra="2"><td>3</td><td>Bosque Alto — Fase 2</td><td class="num">88.9</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
+                    <tr data-obra="3"><td>4</td><td>Edifício Pinhal</td><td class="num">—</td><td><span class="status-pill inelegivel">Dados incompletos</span></td></tr>
+                  </tbody>
+                </table>
+                <div class="dnote" style="margin-top:8px">Clique em uma obra para ver o histórico de indicadores, baixar certificado e enviar depoimento.</div>
               </div>
-              <table class="rank-table">
-                <thead><tr><th>#</th><th>Obra</th><th class="num">Score</th><th>Status</th></tr></thead>
-                <tbody>
-                  <tr><td>1</td><td>Res. Alameda das Flores</td><td class="num">94.2</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
-                  <tr><td>2</td><td>Parque Imperial — Torre B</td><td class="num">91.6</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
-                  <tr><td>3</td><td>Bosque Alto — Fase 2</td><td class="num">88.9</td><td><span class="status-pill elegivel">Elegível</span></td></tr>
-                  <tr><td>4</td><td>Edifício Pinhal</td><td class="num">—</td><td><span class="status-pill inelegivel">Dados incompletos</span></td></tr>
-                </tbody>
-              </table>
-              <div class="dnote" style="margin-top:8px">Cada linha abre o histórico da obra (posição e score mês a mês) e dá acesso a certificado e depoimento — omitido aqui por não usar dados reais.</div>
+              <div id="rankingDetail" class="hidden"></div>
             </div>
 
             <!-- TAB 1: AUDITORIA -->
             <div id="dtab1" class="hidden">
-              <div class="lbl mb6">Rodagens de cálculo deste mês</div>
-              <div class="run-row oficial"><span>Rodagem #3 · concluída às 09:42</span><span class="run-tag">oficial</span></div>
-              <div class="run-row"><span>Rodagem #2 · concluída às 08:15</span><span class="run-tag">arquivada</span></div>
-              <div class="card" style="margin-top:4px">
+              <div class="lbl mb6">Rodagens de cálculo deste mês <span style="text-transform:none;font-weight:400;color:var(--g5)">· clique para comparar</span></div>
+              <div class="run-row oficial" data-run="3" id="runRow3"><span>Rodagem #3 · concluída às 09:42</span><span class="run-tag">oficial</span></div>
+              <div class="diff-panel hidden" id="diffPanel3"></div>
+              <div class="run-row" data-run="2" id="runRow2" style="margin-top:6px"><span>Rodagem #2 · concluída às 08:15</span><span class="run-tag">arquivada</span></div>
+              <div class="diff-panel hidden" id="diffPanel2"></div>
+
+              <div class="card" style="margin-top:10px">
                 <div class="lbl">Antes de publicar</div>
-                <div style="font-size:11.5px;color:var(--g7);line-height:1.6">O admin confere o ranking, pode sobrescrever um indicador com motivo registrado ou tornar uma obra inelegível. O mês só fica visível às obras depois do clique abaixo.</div>
+                <div style="font-size:11.5px;color:var(--g7);line-height:1.6">O admin confere o ranking, pode sobrescrever um indicador com motivo registrado (abra a Rodagem #3 e clique no ✎) ou tornar uma obra inelegível. O mês só fica visível às obras depois do clique abaixo.</div>
               </div>
-              <div class="audit-status" id="dAuditStatus">
+
+              <div class="lbl mb6" style="margin-top:14px">Obra com pendência</div>
+              <div class="ineligible-card" id="pendCard">
+                <div style="font-size:11.5px;font-weight:700;color:var(--g9);margin-bottom:2px">Edifício Pinhal · CMM Engenharia</div>
+                <div style="font-size:11px;color:var(--g7);line-height:1.6;margin-bottom:9px">IRR (Índice de Retrabalho) não foi lançado neste mês — a obra fica inelegível até a pendência ser resolvida.</div>
+                <div id="pendActions" class="detail-actions">
+                  <button class="bor" id="dIneligBtn">Marcar obra como inelegível</button>
+                </div>
+                <div id="pendForm" class="hidden" style="margin-top:8px">
+                  <textarea id="dIneligReason" placeholder="Motivo (ex.: indicador obrigatório não lançado)"></textarea>
+                  <div class="detail-actions"><button class="bgn" id="dIneligConfirm">Confirmar</button><button class="bgy" id="dIneligCancel">Cancelar</button></div>
+                </div>
+                <div id="pendDone"></div>
+              </div>
+
+              <div class="audit-status" id="dAuditStatus" style="margin-top:16px">
                 <button class="bor" id="dAuditBtn">✓ Marcar como auditado</button>
                 <span class="badge-audited">✓ Auditado às <span id="dAuditTime"></span></span>
               </div>
@@ -351,34 +404,47 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
             <!-- TAB 2: CHECKLIST -->
             <div id="dtab2" class="hidden">
               <div class="lbl mb6">Tarefas geradas pelo resultado deste mês</div>
-              <div class="chk-row st-andamento">
-                <span class="chk-title">Anexar logo da obra campeã ao card do pódio</span>
-                <span class="chk-team cs">CS</span>
-                <select class="dChkSelect">
-                  <option>Pendente</option>
-                  <option selected>Em andamento</option>
-                  <option>Concluída</option>
-                </select>
+              <div id="chkList">
+                <div class="chk-row st-andamento">
+                  <span class="chk-title">Anexar logo da obra campeã ao card do pódio</span>
+                  <span class="chk-team cs">CS</span>
+                  <select class="dChkSelect">
+                    <option>Pendente</option>
+                    <option selected>Em andamento</option>
+                    <option>Concluída</option>
+                  </select>
+                  <button class="chk-remove" title="Remover tarefa">×</button>
+                </div>
+                <div class="chk-row st-concluida">
+                  <span class="chk-title">Gerar certificado e enviar à obra vencedora</span>
+                  <span class="chk-team cs">CS</span>
+                  <select class="dChkSelect">
+                    <option>Pendente</option>
+                    <option>Em andamento</option>
+                    <option selected>Concluída</option>
+                  </select>
+                  <button class="chk-remove" title="Remover tarefa">×</button>
+                </div>
+                <div class="chk-row">
+                  <span class="chk-title">Publicar destaque do mês no LinkedIn da Agilean</span>
+                  <span class="chk-team mkt">Marketing</span>
+                  <select class="dChkSelect">
+                    <option selected>Pendente</option>
+                    <option>Em andamento</option>
+                    <option>Concluída</option>
+                  </select>
+                  <button class="chk-remove" title="Remover tarefa">×</button>
+                </div>
               </div>
-              <div class="chk-row st-concluida">
-                <span class="chk-title">Gerar certificado e enviar à obra vencedora</span>
-                <span class="chk-team cs">CS</span>
-                <select class="dChkSelect">
-                  <option>Pendente</option>
-                  <option>Em andamento</option>
-                  <option selected>Concluída</option>
+              <div class="add-task">
+                <input type="text" id="dNewTaskText" placeholder="Nova tarefa...">
+                <select id="dNewTaskTeam">
+                  <option value="cs">CS</option>
+                  <option value="mkt">Marketing</option>
                 </select>
+                <button class="bor" id="dNewTaskBtn">+ Adicionar</button>
               </div>
-              <div class="chk-row">
-                <span class="chk-title">Publicar destaque do mês no LinkedIn da Agilean</span>
-                <span class="chk-team mkt">Marketing</span>
-                <select class="dChkSelect">
-                  <option selected>Pendente</option>
-                  <option>Em andamento</option>
-                  <option>Concluída</option>
-                </select>
-              </div>
-              <div class="dnote">Mude o status de qualquer tarefa acima — é só pra sentir o fluxo, nada é salvo.</div>
+              <div class="dnote" style="margin-top:8px">Mude o status, remova ou adicione tarefas acima — é só pra sentir o fluxo, nada é salvo.</div>
             </div>
 
             <div class="dnote" style="margin-top:6px;border-top:1px solid var(--g2);padding-top:10px">
@@ -445,6 +511,7 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
   function $(id){return document.getElementById(id);}
   var root=document.getElementById('demoEmbed');
 
+  /* ---------- abas ---------- */
   root.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click',function(){
       root.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
@@ -452,6 +519,159 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
       [0,1,2].forEach(function(i){$('dtab'+i).classList.add('hidden');});
       $('dtab'+t.dataset.tab).classList.remove('hidden');
     });
+  });
+
+  /* ---------- RANKING: detalhe da obra, certificado, depoimento ---------- */
+  var OBRAS=[
+    { nome:"Residencial Alameda das Flores", empresa:"Construtora Vértice", score:94.2, elegivel:true,
+      indicadores:[["IDC","Índice de Desvio de Custo",96],["IDP","Índice de Desvio de Prazo",93],["PPC","% Programação Concluída",95],["IRR","Índice de Retrabalho",92],["PPCQ","% Conformidade de Qualidade",97]],
+      historico:[85,87,89,91,93,94.2] },
+    { nome:"Parque Imperial — Torre B", empresa:"Construtora Horizonte", score:91.6, elegivel:true,
+      indicadores:[["IDC","Índice de Desvio de Custo",90],["IDP","Índice de Desvio de Prazo",89],["PPC","% Programação Concluída",92],["IRR","Índice de Retrabalho",90],["PPCQ","% Conformidade de Qualidade",94]],
+      historico:[80,83,86,88,90,91.6] },
+    { nome:"Bosque Alto — Fase 2", empresa:"Mota Machado", score:88.9, elegivel:true,
+      indicadores:[["IDC","Índice de Desvio de Custo",87],["IDP","Índice de Desvio de Prazo",85],["PPC","% Programação Concluída",90],["IRR","Índice de Retrabalho",86],["PPCQ","% Conformidade de Qualidade",91]],
+      historico:[78,80,83,85,87,88.9] },
+    { nome:"Edifício Pinhal", empresa:"CMM Engenharia", score:null, elegivel:false,
+      motivo:"O indicador IRR (Índice de Retrabalho) não foi lançado neste mês — a obra entra automaticamente como inelegível até a pendência ser resolvida.",
+      indicadores:[["IDC","Índice de Desvio de Custo",88],["IDP","Índice de Desvio de Prazo",84],["PPC","% Programação Concluída",90],["IRR","Índice de Retrabalho",null],["PPCQ","% Conformidade de Qualidade",89]] }
+  ];
+
+  function renderIndicadores(lista){
+    return lista.map(function(ind){
+      var sigla=ind[0],nome=ind[1],val=ind[2];
+      if(val==null){
+        return '<div class="indicator-row"><div class="indicator-top"><span><b>'+sigla+'</b> · '+nome+'</span><span style="color:var(--ord)">não lançado</span></div><div class="indicator-bar"></div></div>';
+      }
+      return '<div class="indicator-row"><div class="indicator-top"><span><b>'+sigla+'</b> · '+nome+'</span><span>'+val+'</span></div><div class="indicator-bar"><div class="indicator-bar-fill" style="width:'+val+'%"></div></div></div>';
+    }).join('');
+  }
+
+  function renderSpark(hist){
+    var min=Math.min.apply(null,hist),max=Math.max.apply(null,hist),range=(max-min)||1;
+    return hist.map(function(v,i){
+      var h=Math.round(20+((v-min)/range)*80);
+      var cur=i===hist.length-1?' cur':'';
+      return '<div class="spark-bar'+cur+'" style="height:'+h+'%" title="'+v+'"></div>';
+    }).join('');
+  }
+
+  function openObra(i){
+    var o=OBRAS[i];
+    var html='<button class="back-sm" id="dBackBtn">← Voltar ao ranking</button>';
+    html+='<div class="detail-head"><div><div class="detail-name">'+o.nome+'</div><div class="detail-company">'+o.empresa+'</div></div>';
+    html+= o.elegivel ? '<div class="detail-score"><div class="num">'+o.score+'</div><div class="lbl">score</div></div>' : '';
+    html+='</div>';
+    if(!o.elegivel){
+      html+='<div class="ineligible-card" style="margin-bottom:14px"><div style="font-size:11.5px;color:var(--g7);line-height:1.6">'+o.motivo+'</div></div>';
+    }
+    html+='<div class="lbl mb6">Indicadores do mês</div>'+renderIndicadores(o.indicadores);
+    if(o.elegivel){
+      html+='<div class="lbl mb6" style="margin-top:14px">Histórico de score (6 meses)</div><div class="spark">'+renderSpark(o.historico)+'</div>';
+      html+='<div class="detail-actions"><button class="bor" id="dCertBtn">📄 Baixar certificado</button></div><div id="dCertMsg"></div>';
+      html+='<div class="lbl mb6" style="margin-top:14px">Depoimento</div>';
+      html+='<div id="dDepoWrap"><textarea id="dDepoText" placeholder="Como foi participar do prêmio este mês?"></textarea><div class="detail-actions"><button class="bgn" id="dDepoBtn">Enviar depoimento</button></div></div>';
+    }
+    $('rankingDetail').innerHTML=html;
+    $('rankingDetail').classList.remove('hidden');
+    $('rankingList').classList.add('hidden');
+
+    $('dBackBtn').addEventListener('click',function(){
+      $('rankingDetail').classList.add('hidden');
+      $('rankingList').classList.remove('hidden');
+    });
+
+    if(o.elegivel){
+      $('dCertBtn').addEventListener('click',function(){
+        var btn=this;
+        btn.disabled=true;
+        btn.innerHTML='<span class="spin">⏳</span> Gerando...';
+        setTimeout(function(){
+          btn.innerHTML='✓ Certificado baixado';
+          $('dCertMsg').innerHTML='<div class="toast-ok">✓ Certificado gerado em PDF (demonstração — nada é salvo de verdade)</div>';
+        },900);
+      });
+      $('dDepoBtn').addEventListener('click',function(){
+        var txt=$('dDepoText').value.trim();
+        $('dDepoWrap').innerHTML='<div class="toast-ok">✓ Depoimento enviado'+(txt?(': “'+txt+'”'):'!')+'</div>';
+      });
+    }
+  }
+
+  root.querySelectorAll('#rankingList table.rank-table tbody tr').forEach(function(tr){
+    tr.addEventListener('click',function(){
+      openObra(parseInt(tr.dataset.obra,10));
+    });
+  });
+
+  /* ---------- AUDITORIA: comparar rodagens e editar indicadores ---------- */
+  var DIFFS=[
+    {obra:"Res. Alameda das Flores",sigla:"IDC",nome:"Índice de Desvio de Custo",old:94,cur:96,edited:false},
+    {obra:"Res. Alameda das Flores",sigla:"PPC",nome:"% Programação Concluída",old:89,cur:95,edited:false},
+    {obra:"Parque Imperial — Torre B",sigla:"IRR",nome:"Índice de Retrabalho",old:87,cur:90,edited:false}
+  ];
+
+  function diffRowHtml(d,i){
+    return '<div class="diff-row" data-i="'+i+'">'+
+      '<div class="diff-obra"><b>'+d.obra+'</b> · '+d.sigla+' · '+d.nome+'</div>'+
+      '<div class="diff-vals"><span class="diff-old">'+d.old+'</span><span>→</span><span class="diff-new">'+d.cur+'</span>'+(d.edited?'<span class="edited-tag">editado</span>':'')+'</div>'+
+      '<button class="pencil" data-i="'+i+'" title="Editar indicador">✎</button>'+
+    '</div>';
+  }
+
+  function renderDiffPanel(){
+    var panel=$('diffPanel3');
+    panel.innerHTML=DIFFS.map(function(d,i){return diffRowHtml(d,i);}).join('');
+    panel.querySelectorAll('.pencil').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var i=parseInt(btn.dataset.i,10),d=DIFFS[i];
+        var row=panel.querySelector('.diff-row[data-i="'+i+'"]');
+        var editDiv=document.createElement('div');
+        editDiv.className='edit-inline';
+        editDiv.innerHTML='<span style="font-size:10.5px;color:var(--g7)">'+d.obra+' · '+d.sigla+'</span>'+
+          '<input type="number" class="dEditVal" value="'+d.cur+'">'+
+          '<input type="text" class="dEditReason" placeholder="Motivo da alteração">'+
+          '<button class="bgn dEditSave">Salvar</button>'+
+          '<button class="bgy dEditCancel">Cancelar</button>';
+        row.replaceWith(editDiv);
+        editDiv.querySelector('.dEditSave').addEventListener('click',function(){
+          var v=parseFloat(editDiv.querySelector('.dEditVal').value);
+          if(!isNaN(v)){ d.cur=v; d.edited=true; }
+          renderDiffPanel();
+        });
+        editDiv.querySelector('.dEditCancel').addEventListener('click',renderDiffPanel);
+      });
+    });
+  }
+
+  $('runRow3').addEventListener('click',function(){
+    var panel=$('diffPanel3');
+    var opening=panel.classList.contains('hidden');
+    panel.classList.toggle('hidden');
+    $('runRow3').classList.toggle('has-open',opening);
+    if(opening) renderDiffPanel();
+  });
+
+  $('runRow2').addEventListener('click',function(){
+    var panel=$('diffPanel2');
+    var opening=panel.classList.contains('hidden');
+    panel.classList.toggle('hidden');
+    $('runRow2').classList.toggle('has-open',opening);
+    if(opening) panel.innerHTML='<div class="diff-static-note">Rodagem anterior, substituída pela oficial após recálculo. Sem alterações manuais registradas nesta rodagem.</div>';
+  });
+
+  $('dIneligBtn').addEventListener('click',function(){
+    $('pendActions').classList.add('hidden');
+    $('pendForm').classList.remove('hidden');
+  });
+  $('dIneligCancel').addEventListener('click',function(){
+    $('pendForm').classList.add('hidden');
+    $('pendActions').classList.remove('hidden');
+  });
+  $('dIneligConfirm').addEventListener('click',function(){
+    var motivo=$('dIneligReason').value.trim();
+    $('pendForm').classList.add('hidden');
+    $('pendDone').innerHTML='<div class="toast-ok">✓ Edifício Pinhal marcada como inelegível neste mês'+(motivo?(' — motivo: “'+motivo+'”'):'')+'</div>';
   });
 
   var auditBtn=$('dAuditBtn');
@@ -468,13 +688,56 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
     },900);
   });
 
-  root.querySelectorAll('.dChkSelect').forEach(function(sel){
-    sel.addEventListener('change',function(){
-      var row=sel.closest('.chk-row');
-      row.classList.remove('st-andamento','st-concluida');
-      if(sel.value==='Em andamento') row.classList.add('st-andamento');
-      if(sel.value==='Concluída') row.classList.add('st-concluida');
-    });
+  /* ---------- CHECKLIST: mudar status, adicionar e remover tarefa ---------- */
+  var chkList=$('chkList');
+
+  chkList.addEventListener('change',function(e){
+    if(!e.target.classList.contains('dChkSelect')) return;
+    var row=e.target.closest('.chk-row');
+    row.classList.remove('st-andamento','st-concluida');
+    if(e.target.value==='Em andamento') row.classList.add('st-andamento');
+    if(e.target.value==='Concluída') row.classList.add('st-concluida');
+  });
+
+  chkList.addEventListener('click',function(e){
+    if(e.target.classList.contains('chk-remove')) e.target.closest('.chk-row').remove();
+  });
+
+  $('dNewTaskBtn').addEventListener('click',function(){
+    var input=$('dNewTaskText');
+    var text=input.value.trim();
+    if(!text) return;
+    var team=$('dNewTaskTeam').value;
+    var teamLabel=team==='cs'?'CS':'Marketing';
+
+    var row=document.createElement('div');
+    row.className='chk-row';
+
+    var title=document.createElement('span');
+    title.className='chk-title';
+    title.textContent=text;
+
+    var teamSpan=document.createElement('span');
+    teamSpan.className='chk-team '+team;
+    teamSpan.textContent=teamLabel;
+
+    var select=document.createElement('select');
+    select.className='dChkSelect';
+    select.innerHTML='<option selected>Pendente</option><option>Em andamento</option><option>Concluída</option>';
+
+    var removeBtn=document.createElement('button');
+    removeBtn.className='chk-remove';
+    removeBtn.title='Remover tarefa';
+    removeBtn.textContent='×';
+
+    row.appendChild(title);
+    row.appendChild(teamSpan);
+    row.appendChild(select);
+    row.appendChild(removeBtn);
+    chkList.appendChild(row);
+
+    input.value='';
+    input.focus();
   });
 })();
 </script>

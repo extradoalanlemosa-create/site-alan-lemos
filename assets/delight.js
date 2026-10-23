@@ -19,24 +19,22 @@
   var DESK = 1280; /* a partir dessa largura há margem lateral para a trena */
 
   var css = [
-    /* ---------- trena (computador) ---------- */
-    ".dl-tape{position:fixed;right:30px;top:16vh;width:48px;z-index:60;pointer-events:none;opacity:0;transition:opacity .6s ease}",
+    /* ---------- trena (computador): desenho de traço, no estilo do logo ---------- */
+    ".dl-tape{position:fixed;right:34px;top:16vh;width:40px;z-index:60;pointer-events:none;opacity:0;transition:opacity .6s ease}",
     ".dl-ready .dl-tape{opacity:1}",
-    ".dl-case{position:relative;display:block;width:48px;height:48px;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}",
-    ".dl-case svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 9px rgba(193,80,46,.22));transition:transform .25s cubic-bezier(.3,1.6,.5,1)}",
-    ".dl-case:hover svg{transform:rotate(-8deg) scale(1.05)}",
+    ".dl-case{position:relative;z-index:2;display:block;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}",
+    ".dl-case svg{display:block;width:100%;height:100%;overflow:visible;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}",
+    ".dl-case:hover svg{transform:rotate(-8deg)}",
     ".dl-case:active svg{transform:scale(.94)}",
-    ".dl-case:focus-visible{outline:2px solid " + G1 + ";outline-offset:5px;border-radius:12px}",
-    ".dl-tip{position:absolute;right:58px;top:50%;transform:translate(6px,-50%);white-space:nowrap;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#5B5A56;background:rgba(247,246,242,.96);border:1px solid #DEDAD0;border-radius:999px;padding:6px 10px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}",
+    ".dl-case:focus-visible{outline:2px solid " + G1 + ";outline-offset:5px;border-radius:10px}",
+    ".dl-tip{position:absolute;right:50px;top:50%;transform:translate(6px,-50%);white-space:nowrap;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#5B5A56;background:rgba(247,246,242,.96);border:1px solid #DEDAD0;border-radius:999px;padding:6px 10px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}",
     ".dl-case:hover .dl-tip,.dl-case:focus-visible .dl-tip{opacity:1;transform:translate(0,-50%)}",
-    /* a fita sai da boca da trena, na base do corpo */
-    ".dl-blade{position:absolute;left:12px;top:42px;width:11px;height:0;border-radius:0 0 1px 1px;" +
-      "background-color:#FBEBD6;" +
-      "background-image:repeating-linear-gradient(to top,rgba(43,53,64,.55) 0 1px,transparent 1px 30px),repeating-linear-gradient(to top,rgba(43,53,64,.38) 0 1px,transparent 1px 6px);" +
-      "background-size:100% 100%,4px 100%;background-repeat:no-repeat;background-position:left bottom,left bottom;" +
-      "box-shadow:inset -1px 0 0 rgba(240,163,94,.65),inset 1px 0 0 rgba(193,80,46,.25)}",
-    ".dl-end{position:absolute;left:0;top:42px;width:36px;height:46px;will-change:transform}",
-    ".dl-end svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:17px 2px}",
+    /* fita: duas linhas finas com marquinhas espaçadas */
+    ".dl-blade{position:absolute;z-index:0;left:9px;top:34px;width:7px;height:0;box-sizing:border-box;border-left:1.4px solid #3A3A38;border-right:1.4px solid #3A3A38;" +
+      "background-image:repeating-linear-gradient(to top,#3A3A38 0 1.2px,transparent 1.2px 48px),repeating-linear-gradient(to top,rgba(58,58,56,.7) 0 1px,transparent 1px 12px);" +
+      "background-size:100% 100%,3px 100%;background-repeat:no-repeat;background-position:left bottom}",
+    ".dl-end{position:absolute;z-index:1;left:0;top:33px;width:40px;height:40px;will-change:transform}",
+    ".dl-end svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:12.5px 2px}",
 
     /* ---------- bolinha (telas menores) ---------- */
     ".dl-dot{position:fixed;right:16px;bottom:16px;width:46px;height:46px;padding:0;border:0;border-radius:50%;background:rgba(247,246,242,.94);box-shadow:0 4px 16px rgba(27,42,56,.14),inset 0 0 0 1.5px #DEDAD0;cursor:pointer;z-index:61;overflow:hidden;opacity:0;transform:translateY(12px) scale(.9);pointer-events:none;transition:opacity .35s ease,transform .35s ease;-webkit-tap-highlight-color:transparent}",
@@ -109,28 +107,25 @@
     return '<svg viewBox="0 0 34 34"><path d="M5 3 L5 31 L31 31 Z" fill="none" stroke="' + c + '" stroke-width="2.2" stroke-linejoin="round"/><path d="M5 23 H13" stroke="' + c + '" stroke-width="2" stroke-linecap="round"/></svg>';
   }
 
-  /* corpo da trena: caixa arredondada em gradiente, com o miolo e a trava */
+  /* corpo da trena em traço: caixa, trava, miolo com um toque de gradiente e a boca por onde sai a fita */
+  var LINE = 'fill="none" stroke="#3A3A38" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
   var CASE_SVG =
-    '<svg viewBox="0 0 48 48" aria-hidden="true">' +
-    '<rect x="26" y="3" width="10" height="5" rx="2.5" fill="' + INK + '"/>' +
-    '<path d="M10 6 H38 A8 8 0 0 1 46 14 V36 A8 8 0 0 1 38 44 H24 V42 H11 V44 H10 A8 8 0 0 1 2 36 V14 A8 8 0 0 1 10 6 Z" fill="url(#dl-cg)"/>' +
-    '<circle cx="26" cy="25" r="10" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.6"/>' +
-    '<circle cx="26" cy="25" r="3.2" fill="#fff" fill-opacity=".85"/>' +
-    '<rect x="10" y="41" width="15" height="3" rx="1.2" fill="' + INK + '" fill-opacity=".85"/>' +
+    '<svg viewBox="0 0 40 40" aria-hidden="true">' +
+    '<path d="M24 3.5 H30" ' + LINE + '/>' +
+    '<path d="M9 34 H5.5 A2.5 2.5 0 0 1 3 31.5 V13 A8 8 0 0 1 11 5 H29 A8 8 0 0 1 37 13 V26 A8 8 0 0 1 29 34 H17" fill="#F7F6F2" stroke="#3A3A38" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<circle cx="22" cy="19" r="7" fill="none" stroke="url(#dl-cg)" stroke-width="2"/>' +
+    '<circle cx="22" cy="19" r="1.6" fill="#3A3A38"/>' +
     "</svg>";
 
-  /* ponta da fita: o gancho de metal e a mãozinha que puxa */
+  /* ponta da fita: o gancho e uma mãozinha em traço que puxa */
   var END_SVG =
-    '<svg viewBox="0 0 36 46" aria-hidden="true">' +
-    '<rect x="10" y="0" width="15" height="3.2" rx="1" fill="' + INK + '"/>' +
-    /* manga em gradiente */
-    '<path d="M14 31.5 h9 l1.4 12.5 h-11.8 z" fill="url(#dl-cg)"/>' +
-    /* punho fechado segurando o gancho, com os dedos dobrados */
-    '<path d="M12 8 C12 5 14 4 17 4 H23 C26 4 28 5.5 28 8 C28 10.5 26.5 11.2 25.5 11.2 C27.5 11.4 28.6 13 28.4 15 C28.2 17 26.8 17.8 25.6 17.8 C27.4 18.2 28.2 19.8 28 21.6 C27.6 24 26 24.6 25 24.6 C25.5 28.5 22.5 31.5 19 31.5 H17.5 C14 31.5 12 28.8 12 25.5 Z" fill="#FFF8F1" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>' +
-    '<path d="M21 11.2 H25.5 M21 17.8 H25.6 M21.5 24.6 H25" stroke="' + INK + '" stroke-width="1.3" stroke-linecap="round" fill="none"/>' +
-    /* polegar por cima do gancho */
-    '<path d="M12 22 C9 20.8 7.8 15.5 9.6 12 C11 9.2 13.6 7 16.6 6 C18.3 5.5 19.3 7.3 18 8.5 C16.3 10 15 11.8 14.8 14.2" fill="#FFF8F1" stroke="' + INK + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-    "</svg>";
+    '<svg viewBox="0 0 40 40" aria-hidden="true">' +
+    '<path d="M7.5 2 H17.5" fill="none" stroke="#3A3A38" stroke-width="2.2" stroke-linecap="round"/>' +
+    '<g transform="translate(-1.5,2.5) scale(.7)">' +
+    '<path d="M12 8 C12 5 14 4 17 4 H23 C26 4 28 5.5 28 8 C28 10.5 26.5 11.2 25.5 11.2 C27.5 11.4 28.6 13 28.4 15 C28.2 17 26.8 17.8 25.6 17.8 C27.4 18.2 28.2 19.8 28 21.6 C27.6 24 26 24.6 25 24.6 C25.5 28.5 22.5 31.5 19 31.5 H17.5 C14 31.5 12 28.8 12 25.5 Z" fill="#F7F6F2" stroke="#3A3A38" stroke-width="2.2" stroke-linejoin="round"/>' +
+    '<path d="M12 22 C9 20.8 7.8 15.5 9.6 12 C11 9.2 13.6 7 16.6 6 C18.3 5.5 19.3 7.3 18 8.5 C16.3 10 15 11.8 14.8 14.2" fill="#F7F6F2" stroke="#3A3A38" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<path d="M16 31.5 V40 M22 31 V40" fill="none" stroke="#3A3A38" stroke-width="2.2" stroke-linecap="round"/>' +
+    "</g></svg>";
 
   function setupMenu() {
     var bar = document.querySelector(".topbar .wrap");

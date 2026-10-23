@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Do projeto interno de IA ao Lovable Day · Alan Lemos</title>
+<meta property="og:image" content="https://alanlemos.com.br/assets/conteudos/lovable-day-capa.jpg">
 <meta name="description" content="Como uma competição interna de projetos de IA me levou ao Lovable Day, em São Paulo.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +29,11 @@
   .related a.r-title{font-family:'Fraunces',serif; font-size:20px; color:var(--navy); text-decoration:none;}
   .related a.r-title:hover{color:var(--terracotta);}
   .related p{font-size:14px; color:var(--ink-soft); margin-top:6px;}
+  .photo-pair{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:8px 0 30px;}
+  .photo-pair figure{margin:0;}
+  .photo-pair img{display:block; width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:var(--radius); border:1px solid var(--line);}
+  .photo-pair figcaption{font-size:13px; color:var(--ink-soft); margin-top:8px; line-height:1.45;}
+  @media (max-width:560px){ .photo-pair{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -64,6 +70,16 @@
     <article class="article">
       <p class="lead">Fala, pessoal! Na sexta-feira, dia 16 de outubro, eu vivi uma experiência incrível no Lovable Day, em São Paulo. Mas essa história não começou lá, começou um pouco antes, quando a empresa onde trabalho promoveu uma competição interna de projetos de inteligência artificial.</p>
       <p>Eu e um colega fomos nomeados como melhores projetos, e esse reconhecimento nos rendeu a oportunidade de participar desse evento como premiação.</p>
+      <div class="photo-pair">
+        <figure>
+          <img src="../assets/conteudos/lovable-day-apresentacao.jpg" alt="Alan apresentando o projeto para a banca, com o slide Três lacunas que o produto fechou projetado ao fundo" loading="lazy">
+          <figcaption>Apresentando o projeto na competição interna de IA.</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/conteudos/lovable-day-cracha.jpg" alt="Crachá do Lovable Day com o nome de Alan Lemos, com o palco do evento ao fundo" loading="lazy">
+          <figcaption>A premiação: o crachá do Lovable Day, em São Paulo.</figcaption>
+        </figure>
+      </div>
       <p>O que mais me chamou atenção no Lovable Day foi perceber como a empresa está atenta às tendências do mercado de IA, incentivando competições internas que estimulam a inovação e o aprendizado. Além disso, a organização do evento foi excelente, proporcionando um ambiente rico para conectar com outros profissionais e trocar experiências sobre o futuro da inteligência artificial.</p>
       <p>Fica o agradecimento à equipe pela oportunidade e a empolgação para aplicar na prática tudo que vi.</p>
       <div class="article-actions">

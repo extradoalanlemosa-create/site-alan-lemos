@@ -383,3 +383,39 @@ footer .flinks a:hover{color:var(--terracotta);}
   .about-photo img{aspect-ratio:16/10;}
   nav.main-nav{display:none;}
 }
+
+/* ===================================================================
+   Detalhes lúdicos (out/2026): gradientes pequenos, só como acento.
+   Paleta do gradiente: terracota do site -> damasco -> lavanda.
+   =================================================================== */
+:root{
+  --apricot:#F0A35E;
+  --lavender:#9DB4E8;
+  --grad:linear-gradient(120deg, var(--terracotta) 0%, var(--apricot) 52%, var(--lavender) 100%);
+}
+
+/* sublinhado do menu em gradiente */
+nav.main-nav a::after{height:2px; border-radius:2px; background:var(--grad);}
+
+/* brilho que atravessa o botão ao passar o mouse */
+.btn{position:relative; overflow:hidden; isolation:isolate;}
+.btn::before{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(110deg, transparent 32%, rgba(255,255,255,.30) 50%, transparent 68%);
+  transform:translateX(-120%); transition:transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.btn:hover::before{transform:translateX(120%);}
+.btn-ghost::before{background:linear-gradient(110deg, transparent 32%, rgba(240,163,94,.22) 50%, transparent 68%);}
+
+/* borda em gradiente nos cards ao passar o mouse */
+.p-card:hover, .role-card:hover{
+  border-color:transparent;
+  background:linear-gradient(var(--white), var(--white)) padding-box, var(--grad) border-box;
+}
+
+/* seleção de texto com um toque do gradiente */
+::selection{background:#F7D9C0; color:var(--navy);}
+
+@media (prefers-reduced-motion: reduce){
+  .btn::before{display:none;}
+}

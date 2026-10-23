@@ -2,9 +2,9 @@
    Detalhes do site (out/2026)
    0. Menu para telas menores (tablet e celular).
    1. A trena: no computador, o corpo da trena fica parado na lateral e
-      a fita (amarela, numerada) estica conforme a leitura avança,
-      puxada por uma mãozinha. Clicar no corpo recolhe a fita (volta ao
-      topo). Em telas menores, vira uma bolinha que vai se enchendo.
+      a fita estica conforme a leitura avança, puxada por uma mãozinha.
+      Clicar no corpo recolhe a fita (volta ao topo). Em telas menores,
+      vira uma bolinha que vai se enchendo.
    2. Formas em gradiente (discos, bolinhas e triângulos do logo) presas
       a elementos da página — foto do topo, títulos, grades de cards,
       chamadas finais — girando devagar, cada uma no seu ritmo.
@@ -17,32 +17,26 @@
   var G1 = "#C1502E", G2 = "#F0A35E", G3 = "#9DB4E8", INK = "#2B3540";
   var GRAD = "linear-gradient(140deg," + G1 + " 0%," + G2 + " 50%," + G3 + " 100%)";
   var DESK = 1280; /* a partir dessa largura há margem lateral para a trena */
-  var TICK = 40;   /* px entre números da fita (cada um vale 10 cm) */
 
   var css = [
     /* ---------- trena (computador) ---------- */
-    ".dl-tape{position:fixed;right:28px;top:15vh;width:54px;z-index:60;pointer-events:none;opacity:0;transition:opacity .6s ease}",
+    ".dl-tape{position:fixed;right:30px;top:16vh;width:48px;z-index:60;pointer-events:none;opacity:0;transition:opacity .6s ease}",
     ".dl-ready .dl-tape{opacity:1}",
-    ".dl-case{position:relative;z-index:2;display:block;width:54px;height:54px;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}",
-    ".dl-case svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 9px rgba(193,80,46,.22));transition:transform .25s cubic-bezier(.3,1.6,.5,1);transform-origin:20px 50px}",
-    ".dl-case:hover svg{transform:rotate(-6deg)}",
+    ".dl-case{position:relative;display:block;width:48px;height:48px;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}",
+    ".dl-case svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 9px rgba(193,80,46,.22));transition:transform .25s cubic-bezier(.3,1.6,.5,1)}",
+    ".dl-case:hover svg{transform:rotate(-8deg) scale(1.05)}",
     ".dl-case:active svg{transform:scale(.94)}",
     ".dl-case:focus-visible{outline:2px solid " + G1 + ";outline-offset:5px;border-radius:12px}",
-    ".dl-tip{position:absolute;right:64px;top:50%;transform:translate(6px,-50%);white-space:nowrap;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#5B5A56;background:rgba(247,246,242,.96);border:1px solid #DEDAD0;border-radius:999px;padding:6px 10px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}",
+    ".dl-tip{position:absolute;right:58px;top:50%;transform:translate(6px,-50%);white-space:nowrap;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#5B5A56;background:rgba(247,246,242,.96);border:1px solid #DEDAD0;border-radius:999px;padding:6px 10px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}",
     ".dl-case:hover .dl-tip,.dl-case:focus-visible .dl-tip{opacity:1;transform:translate(0,-50%)}",
-    /* fita: sai pela boca, na base do corpo; a escala é presa à ponta e anda junto com o gancho */
-    ".dl-blade{position:absolute;z-index:0;left:13px;top:50px;width:15px;height:0;overflow:hidden;" +
-      "background:linear-gradient(90deg,rgba(120,80,0,.10),rgba(255,255,255,.30) 45%,rgba(120,80,0,.12)),#F6D46A;" +
-      "box-shadow:inset 0 0 0 .6px rgba(120,80,0,.35)}",
-    ".dl-scale{position:absolute;left:0;right:0;bottom:0;" +
-      "background-image:repeating-linear-gradient(to top,rgba(43,53,64,.85) 0 1px,transparent 1px " + TICK + "px)," +
-      "repeating-linear-gradient(to top,rgba(43,53,64,.7) 0 1px,transparent 1px " + TICK / 2 + "px)," +
-      "repeating-linear-gradient(to top,rgba(43,53,64,.5) 0 1px,transparent 1px " + TICK / 10 + "px);" +
-      "background-size:10px 100%,6px 100%,3.5px 100%;background-repeat:no-repeat;background-position:left bottom}",
-    ".dl-scale b{position:absolute;right:1px;writing-mode:vertical-rl;transform:rotate(180deg);font:700 7px/1 'IBM Plex Mono',monospace;letter-spacing:-.02em;color:" + INK + "}",
-    ".dl-scale b.dl-m{color:" + G1 + "}",
-    ".dl-end{position:absolute;z-index:1;left:0;top:41px;width:40px;height:53px;will-change:transform}",
-    ".dl-end svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:19px 9px}",
+    /* a fita sai da boca da trena, na base do corpo */
+    ".dl-blade{position:absolute;left:12px;top:42px;width:11px;height:0;border-radius:0 0 1px 1px;" +
+      "background-color:#FBEBD6;" +
+      "background-image:repeating-linear-gradient(to top,rgba(43,53,64,.55) 0 1px,transparent 1px 30px),repeating-linear-gradient(to top,rgba(43,53,64,.38) 0 1px,transparent 1px 6px);" +
+      "background-size:100% 100%,4px 100%;background-repeat:no-repeat;background-position:left bottom,left bottom;" +
+      "box-shadow:inset -1px 0 0 rgba(240,163,94,.65),inset 1px 0 0 rgba(193,80,46,.25)}",
+    ".dl-end{position:absolute;left:0;top:42px;width:36px;height:46px;will-change:transform}",
+    ".dl-end svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:17px 2px}",
 
     /* ---------- bolinha (telas menores) ---------- */
     ".dl-dot{position:fixed;right:16px;bottom:16px;width:46px;height:46px;padding:0;border:0;border-radius:50%;background:rgba(247,246,242,.94);box-shadow:0 4px 16px rgba(27,42,56,.14),inset 0 0 0 1.5px #DEDAD0;cursor:pointer;z-index:61;overflow:hidden;opacity:0;transform:translateY(12px) scale(.9);pointer-events:none;transition:opacity .35s ease,transform .35s ease;-webkit-tap-highlight-color:transparent}",
@@ -106,7 +100,6 @@
   var DEFS =
     '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' +
     '<linearGradient id="dl-cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + G1 + '"/><stop offset=".55" stop-color="' + G2 + '"/><stop offset="1" stop-color="' + G3 + '"/></linearGradient>' +
-    '<linearGradient id="dl-mt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E979F"/><stop offset=".45" stop-color="#E3E7EA"/><stop offset="1" stop-color="#858E96"/></linearGradient>' +
     "</defs></svg>";
 
   /* triângulo do logo (esquadro com a travessa do A) */
@@ -116,31 +109,27 @@
     return '<svg viewBox="0 0 34 34"><path d="M5 3 L5 31 L31 31 Z" fill="none" stroke="' + c + '" stroke-width="2.2" stroke-linejoin="round"/><path d="M5 23 H13" stroke="' + c + '" stroke-width="2" stroke-linecap="round"/></svg>';
   }
 
-  /* corpo da trena: caixa em gradiente, para-choque escuro, trava, clipe de cinto e o miolo com parafuso */
+  /* corpo da trena: caixa arredondada em gradiente, com o miolo e a trava */
   var CASE_SVG =
-    '<svg viewBox="0 0 54 54" aria-hidden="true">' +
-    '<rect x="48" y="12" width="5" height="28" rx="2.5" fill="' + INK + '" fill-opacity=".9"/>' +
-    '<path d="M9 4 H41 A8 8 0 0 1 49 12 V42 A8 8 0 0 1 41 50 H9 A7 7 0 0 1 2 43 V11 A7 7 0 0 1 9 4 Z" fill="url(#dl-cg)"/>' +
-    '<path d="M2 38 H33 V50 H9 A7 7 0 0 1 2 43 Z" fill="' + INK + '"/>' +
-    '<rect x="12" y="46.6" width="17" height="2.2" rx="1" fill="#11181F"/>' +
-    '<rect x="6" y="9" width="8" height="17" rx="2.5" fill="' + INK + '"/>' +
-    '<path d="M8 14 H12 M8 17.5 H12 M8 21 H12" stroke="#fff" stroke-opacity=".45" stroke-width="1" stroke-linecap="round"/>' +
-    '<circle cx="31" cy="23" r="11.5" fill="#fff" fill-opacity=".14" stroke="#fff" stroke-opacity=".75" stroke-width="1.6"/>' +
-    '<circle cx="31" cy="23" r="4.2" fill="#fff" fill-opacity=".9"/>' +
-    '<path d="M29.2 21.2 L32.8 24.8" stroke="' + INK + '" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round"/>' +
-    '<text x="44" y="46.2" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="6.5" font-weight="700" fill="#fff" fill-opacity=".85">5m</text>' +
+    '<svg viewBox="0 0 48 48" aria-hidden="true">' +
+    '<rect x="26" y="3" width="10" height="5" rx="2.5" fill="' + INK + '"/>' +
+    '<path d="M10 6 H38 A8 8 0 0 1 46 14 V36 A8 8 0 0 1 38 44 H24 V42 H11 V44 H10 A8 8 0 0 1 2 36 V14 A8 8 0 0 1 10 6 Z" fill="url(#dl-cg)"/>' +
+    '<circle cx="26" cy="25" r="10" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.6"/>' +
+    '<circle cx="26" cy="25" r="3.2" fill="#fff" fill-opacity=".85"/>' +
+    '<rect x="10" y="41" width="15" height="3" rx="1.2" fill="' + INK + '" fill-opacity=".85"/>' +
     "</svg>";
 
-  /* ponta da fita: placa de metal com rebites, o gancho dobrado e a mãozinha que puxa */
+  /* ponta da fita: o gancho de metal e a mãozinha que puxa */
   var END_SVG =
-    '<svg viewBox="0 -7 40 53" aria-hidden="true">' +
-    '<rect x="12" y="-7" width="17" height="10" rx="1.2" fill="url(#dl-mt)" stroke="#6C757D" stroke-width=".5"/>' +
-    '<circle cx="16.5" cy="-2" r="1.3" fill="#5D666E"/><circle cx="24.5" cy="-2" r="1.3" fill="#5D666E"/>' +
-    '<rect x="9.5" y="2" width="22" height="3.4" rx="1.1" fill="url(#dl-mt)" stroke="#5D666E" stroke-width=".6"/>' +
-    '<path d="M15 33.5 h9 l1.4 12.5 h-11.8 z" fill="url(#dl-cg)"/>' +
-    '<path d="M13 10 C13 7 15 6 18 6 H24 C27 6 29 7.5 29 10 C29 12.5 27.5 13.2 26.5 13.2 C28.5 13.4 29.6 15 29.4 17 C29.2 19 27.8 19.8 26.6 19.8 C28.4 20.2 29.2 21.8 29 23.6 C28.6 26 27 26.6 26 26.6 C26.5 30.5 23.5 33.5 20 33.5 H18.5 C15 33.5 13 30.8 13 27.5 Z" fill="#FFF8F1" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>' +
-    '<path d="M22 13.2 H26.5 M22 19.8 H26.6 M22.5 26.6 H26" stroke="' + INK + '" stroke-width="1.3" stroke-linecap="round" fill="none"/>' +
-    '<path d="M13 24 C10 22.8 8.8 17.5 10.6 14 C12 11.2 14.6 9 17.6 8 C19.3 7.5 20.3 9.3 19 10.5 C17.3 12 16 13.8 15.8 16.2" fill="#FFF8F1" stroke="' + INK + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<svg viewBox="0 0 36 46" aria-hidden="true">' +
+    '<rect x="10" y="0" width="15" height="3.2" rx="1" fill="' + INK + '"/>' +
+    /* manga em gradiente */
+    '<path d="M14 31.5 h9 l1.4 12.5 h-11.8 z" fill="url(#dl-cg)"/>' +
+    /* punho fechado segurando o gancho, com os dedos dobrados */
+    '<path d="M12 8 C12 5 14 4 17 4 H23 C26 4 28 5.5 28 8 C28 10.5 26.5 11.2 25.5 11.2 C27.5 11.4 28.6 13 28.4 15 C28.2 17 26.8 17.8 25.6 17.8 C27.4 18.2 28.2 19.8 28 21.6 C27.6 24 26 24.6 25 24.6 C25.5 28.5 22.5 31.5 19 31.5 H17.5 C14 31.5 12 28.8 12 25.5 Z" fill="#FFF8F1" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>' +
+    '<path d="M21 11.2 H25.5 M21 17.8 H25.6 M21.5 24.6 H25" stroke="' + INK + '" stroke-width="1.3" stroke-linecap="round" fill="none"/>' +
+    /* polegar por cima do gancho */
+    '<path d="M12 22 C9 20.8 7.8 15.5 9.6 12 C11 9.2 13.6 7 16.6 6 C18.3 5.5 19.3 7.3 18 8.5 C16.3 10 15 11.8 14.8 14.2" fill="#FFF8F1" stroke="' + INK + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
     "</svg>";
 
   function setupMenu() {
@@ -274,27 +263,12 @@
     var tape = document.createElement("div");
     tape.className = "dl-tape";
     tape.innerHTML =
-      '<div class="dl-blade"><div class="dl-scale"></div></div>' +
+      '<div class="dl-blade"></div>' +
       '<div class="dl-end">' + END_SVG + "</div>" +
       '<button type="button" class="dl-case" aria-label="Voltar ao topo">' + CASE_SVG + '<span class="dl-tip">recolher a trena · voltar ao topo</span></button>';
     var blade = tape.querySelector(".dl-blade");
-    var scale = tape.querySelector(".dl-scale");
     var end = tape.querySelector(".dl-end");
     var hand = tape.querySelector(".dl-end svg");
-
-    /* números da fita: 10, 20, 30... a partir do gancho; múltiplos de 100 em terracota */
-    var builtFor = 0;
-    function buildScale(L) {
-      if (Math.abs(L - builtFor) < 2) return;
-      builtFor = L;
-      var h = Math.ceil(L) + TICK, html = "";
-      for (var i = 1; i * TICK < h; i++) {
-        var n = i * 10;
-        html += '<b class="' + (n % 100 === 0 ? "dl-m" : "") + '" style="bottom:' + (i * TICK + 3) + 'px">' + n + "</b>";
-      }
-      scale.style.height = h + "px";
-      scale.innerHTML = html;
-    }
 
     /* ---------- bolinha ---------- */
     var dot = document.createElement("button");
@@ -339,8 +313,7 @@
 
       tape.style.display = desk && scrollable ? "" : "none";
       if (desk) {
-        var L = window.innerHeight * 0.6;
-        buildScale(L);
+        var L = window.innerHeight * 0.62;
         var len = p * L;
         blade.style.height = len.toFixed(1) + "px";
         end.style.transform = "translate3d(0," + len.toFixed(1) + "px,0)";

@@ -8,7 +8,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261022e">
+<link rel="stylesheet" href="assets/style.css?v=20261024a">
+<style>
+  /* Linha do tempo da trajetória */
+  .tl-grid{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr); gap:64px; align-items:start;}
+  .tl-intro{position:sticky; top:120px;}
+  .tl-intro p{color:var(--ink-soft); font-size:16px; max-width:36ch;}
+  .timeline{list-style:none; margin:0; padding:0; position:relative;}
+  /* um trecho de linha entre cada ponto; o último ponto encerra a linha */
+  .timeline li::after{content:""; position:absolute; left:7px; top:22px; bottom:-4px; width:1.5px; border-radius:2px; background:var(--apricot); opacity:.55;}
+  .timeline li:nth-child(-n+3)::after{background:var(--terracotta);}
+  .timeline li:nth-last-child(-n+3)::after{background:var(--lavender);}
+  .timeline li:last-child::after{display:none;}
+  .timeline li{position:relative; padding:0 0 36px 42px;}
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{content:""; position:absolute; left:0; top:5px; width:15px; height:15px; border-radius:50%;
+    background:var(--paper); border:1.5px solid var(--terracotta); box-sizing:border-box;}
+  .timeline li.now::before{background:var(--grad); border:0; box-shadow:0 0 0 6px rgba(240,163,94,.18);}
+  .tl-when{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--terracotta);}
+  .tl-title{font-family:'Fraunces', serif; font-weight:500; font-size:21px; line-height:1.3; color:var(--navy); margin:6px 0 8px;}
+  .tl-text{color:var(--ink-soft); font-size:15.5px; max-width:58ch; margin:0;}
+  @media (max-width:820px){
+    .tl-grid{grid-template-columns:1fr; gap:28px;}
+    .tl-intro{position:static;}
+    .tl-intro p{max-width:none;}
+  }
+</style>
 </head>
 <body>
 
@@ -37,7 +62,7 @@
       <span class="eyebrow">Sobre mim</span>
       <h1 class="hero-title" style="font-size:clamp(30px,4vw,44px); margin:14px 0 22px;">Gosto de resolver problemas e ajudar pessoas unindo meus conhecimentos em engenharia e tecnologia.</h1>
       <p>Sou <strong>engenheiro civil</strong> com <strong>mestrado em Ciência da Computação</strong>, especializado em transformar processos complexos em soluções escaláveis por meio de dados, tecnologia e gestão.</p>
-      <p>Ao longo da carreira, evoluí da gestão de obras e planejamento para liderar iniciativas de melhoria operacional, automação de processos, análise de dados e implementação de inteligência artificial em produtos de tecnologia.</p>
+      <p>Me formei com a <strong>sustentabilidade</strong> como norte: meu TCC tratou de sustentabilidade na construção civil. Hoje levo essa mesma visão para os negócios, usando tecnologia para controle de dados e melhoria de processos, para que as empresas cresçam de forma sustentável.</p>
       <div class="pill-row">
         <span class="pill">Eng. Civil · IFCE</span>
         <span class="pill">Pós em Gestão e Análise de Dados · PUC-MG</span>
@@ -49,17 +74,68 @@
 
 <section class="tinted">
   <div class="wrap" style="max-width:820px;">
-    <span class="eyebrow">Trajetória</span>
+    <span class="eyebrow">Hoje</span>
     <h2 class="section-title" style="margin:12px 0 24px;">O que eu faço hoje</h2>
-    <p style="color:var(--ink-soft); font-size:16px; margin-bottom:18px;">Atualmente atuo como <strong>Especialista de Suporte em uma empresa de software para construção civil</strong>, onde lidero a operação de suporte, desenvolvo indicadores estratégicos, padronizo processos, implemento automações com IA e conduzo projetos voltados à melhoria da experiência do cliente e da eficiência operacional. Participei da implementação do atendimento com IA da empresa e desenvolvi soluções internas para automatizar fluxos utilizando ferramentas como Zendesk, Jira e plataformas de IA.</p>
-    <div class="pull-quote"><p>Sempre com a mesma pergunta em mente: como usar tecnologia pra gerar valor real pro negócio e pras pessoas envolvidas.</p></div>
-    <p style="color:var(--ink-soft); font-size:16px; margin-bottom:18px;">Tenho experiência na construção de dashboards, definição de KPIs, gestão de processos, mapeamento em BPMN e análise de dados para tomada de decisão.</p>
-    <p style="color:var(--ink-soft); font-size:16px; margin-bottom:18px;">Antes disso, atuei nas áreas de <strong>planejamento e gestão de obras</strong>, fiscalização, orçamento e Customer Success, experiência que fortaleceu minha visão de negócio e minha capacidade de conectar necessidades dos clientes com soluções tecnológicas.</p>
-    <p style="color:var(--ink-soft); font-size:16px;">Além da experiência profissional, concluí um mestrado com foco em gestão de projetos, possuo pós-graduação em Gestão e Análise de Dados e atuei voluntariamente no <strong>PMI Ceará</strong> em iniciativas de mapeamento e melhoria de processos. Tenho interesse em atuar em posições estratégicas nas áreas de Produto, Gestão de Projetos, Processos, Operações e Dados.</p>
+    <p style="color:var(--ink-soft); font-size:16px; margin-bottom:18px;">Atuo em uma <strong>empresa de software para construção civil</strong>, onde junto gestão, tecnologia e construção no mesmo trabalho: apoio o <strong>planejamento de obras</strong>, faço a <strong>gestão de equipes de suporte</strong> e desenvolvo <strong>projetos de IA para atendimento e suporte</strong>.</p>
+    <p style="color:var(--ink-soft); font-size:16px; margin-bottom:18px;">Participei da implementação do atendimento com IA da empresa, criei soluções internas que automatizam fluxos com Zendesk, Jira e plataformas de IA, e cuido de indicadores e da padronização dos processos da operação.</p>
+    <div class="pull-quote"><p>Meu foco é a sustentabilidade dos negócios: dar controle sobre os dados e melhorar processos, para que a empresa cresça sem desperdício.</p></div>
+    <p style="color:var(--ink-soft); font-size:16px;">No dia a dia, isso passa por dashboards, definição de KPIs, mapeamento de processos em BPMN e análise de dados para tomada de decisão. Tenho interesse em posições estratégicas nas áreas de Produto, Gestão de Projetos, Processos, Operações e Dados.</p>
   </div>
 </section>
 
 <section>
+  <div class="wrap tl-grid">
+    <div class="tl-intro">
+      <span class="eyebrow">Trajetória</span>
+      <h2 class="section-title" style="margin:12px 0 16px;">Do primeiro emprego aos projetos de IA</h2>
+      <p>Trabalho desde os 17 anos. Cada etapa somou uma peça: a técnica da manutenção, a base de exatas da faculdade, a obra na prática e, por fim, a tecnologia aplicada à gestão.</p>
+    </div>
+    <ol class="timeline">
+      <li>
+        <span class="tl-when">Aos 17 anos</span>
+        <h3 class="tl-title">Primeiro emprego, em manutenção de telecom</h3>
+        <p class="tl-text">Comecei como estagiário de manutenção de máquinas de telecomunicação, meu primeiro contato com rotina de trabalho, diagnóstico e resolução de problemas.</p>
+      </li>
+      <li>
+        <span class="tl-when">Na faculdade</span>
+        <h3 class="tl-title">Pesquisa e monitoria</h3>
+        <p class="tl-text">Durante a graduação em Engenharia Civil no IFCE, fui bolsista de pesquisa e monitor de matemática e física, ajudando colegas nas disciplinas de base.</p>
+      </li>
+      <li>
+        <span class="tl-when">Primeira obra</span>
+        <h3 class="tl-title">Fiscalização de obras na SEINF</h3>
+        <p class="tl-text">Minha primeira experiência na construção civil foi um estágio de fiscalização de obras na SEINF, a Secretaria de Infraestrutura de Fortaleza.</p>
+      </li>
+      <li>
+        <span class="tl-when">Formatura</span>
+        <h3 class="tl-title">TCC sobre sustentabilidade na construção civil</h3>
+        <p class="tl-text">Fechei a graduação estudando como tornar a construção mais sustentável, tema que até hoje orienta o meu trabalho.</p>
+      </li>
+      <li>
+        <span class="tl-when">Gestão de obras</span>
+        <h3 class="tl-title">Coordenação, orçamentos e medições</h3>
+        <p class="tl-text">Em uma empresa que prestava serviços de construção civil para a Prefeitura de Fortaleza, coordenei obras e fiz orçamentos e medições.</p>
+      </li>
+      <li>
+        <span class="tl-when">Em paralelo</span>
+        <h3 class="tl-title">Analista de processos no PMI Ceará</h3>
+        <p class="tl-text">Como voluntário no PMI Ceará, atuei como analista de processos, mapeando e melhorando a forma como as iniciativas do capítulo funcionam.</p>
+      </li>
+      <li>
+        <span class="tl-when">Formação</span>
+        <h3 class="tl-title">Dados e gestão de projetos</h3>
+        <p class="tl-text">Fiz pós-graduação em Gestão e Análise de Dados na PUC-MG e mestrado em Ciência da Computação no CIn-UFPE, com foco em gestão de projetos.</p>
+      </li>
+      <li class="now">
+        <span class="tl-when">Hoje</span>
+        <h3 class="tl-title">Gestão, tecnologia e construção no mesmo lugar</h3>
+        <p class="tl-text">Planejamento de obras, gestão de equipes de suporte e projetos de IA para atendimento e suporte em uma empresa de software para construção civil.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="tinted">
   <div class="wrap">
     <span class="eyebrow">Fora do trabalho</span>
     <h2 class="section-title" style="margin:12px 0 28px;">O que me equilibra</h2>
@@ -67,7 +143,7 @@
   </div>
 </section>
 
-<section class="tinted">
+<section>
   <div class="wrap" style="text-align:center; max-width:640px;">
     <h2 class="section-title" style="margin-bottom:16px;">Vamos colaborar?</h2>
     <p class="section-lede" style="margin:0 auto 28px;">Veja as frentes em que posso contribuir com o seu time ou projeto.</p>
@@ -89,6 +165,6 @@
   </div>
 </footer>
 
-<script src="assets/delight.js?v=20261022e" defer></script>
+<script src="assets/delight.js?v=20261024a" defer></script>
 </body>
 </html>

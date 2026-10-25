@@ -8,24 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261024a">
-<style>
-  .pf-tabs{display:inline-flex; gap:4px; padding:4px; margin-bottom:22px; border:1px solid var(--line); border-radius:999px; background:var(--white);}
-  .pf-tab{display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border:0; border-radius:999px; background:transparent;
-    font:600 14px/1 'Manrope', sans-serif; color:var(--ink-soft); cursor:pointer; transition:background .2s ease, color .2s ease;}
-  .pf-tab:hover{color:var(--ink);}
-  .pf-tab[aria-selected="true"]{background:var(--navy); color:var(--white);}
-  .pf-count{display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px;
-    font:500 11.5px/1 'IBM Plex Mono', monospace; background:rgba(58,58,56,.08); color:inherit;}
-  .pf-tab[aria-selected="true"] .pf-count{background:var(--grad); color:var(--white);}
-  .pf-intro{color:var(--ink-soft); font-size:15.5px; max-width:62ch; margin:0 0 24px;}
-  .pf-panel + .pf-panel{margin-top:56px;}
-  .pf-js .pf-panel + .pf-panel{margin-top:0;}
-  .pf-panel[hidden]{display:none;}
-  html:not(.pf-js) .pf-tabs{display:none;}
-  .pf-tab{white-space:nowrap;}
-  @media (max-width:520px){ .pf-tabs{display:flex;} .pf-tab{flex:1; justify-content:center; gap:6px; padding:10px 8px; font-size:12.5px;} }
-</style>
+<link rel="stylesheet" href="assets/style.css?v=20261025b">
 </head>
 <body>
 
@@ -144,7 +127,7 @@
         panels[k].hidden = !on;
       });
       if (focus) tabs[i].focus();
-      try { history.replaceState(null, '', i === 1 ? '#pessoais' : '#empresa'); } catch (e) {}
+      if (document.body.dataset.pfHash !== 'off') { try { history.replaceState(null, '', i === 1 ? '#pessoais' : '#empresa'); } catch (e) {} }
     }
     tabs.forEach(function (t, i) {
       t.addEventListener('click', function () { show(i); });
@@ -170,6 +153,6 @@
   </div>
 </footer>
 
-<script src="assets/delight.js?v=20261024a" defer></script>
+<script src="assets/delight.js?v=20261025b" defer></script>
 </body>
 </html>

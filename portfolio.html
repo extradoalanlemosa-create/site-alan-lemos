@@ -9,6 +9,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css?v=20261024a">
+<style>
+  .pf-tabs{display:inline-flex; gap:4px; padding:4px; margin-bottom:22px; border:1px solid var(--line); border-radius:999px; background:var(--white);}
+  .pf-tab{display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border:0; border-radius:999px; background:transparent;
+    font:600 14px/1 'Manrope', sans-serif; color:var(--ink-soft); cursor:pointer; transition:background .2s ease, color .2s ease;}
+  .pf-tab:hover{color:var(--ink);}
+  .pf-tab[aria-selected="true"]{background:var(--navy); color:var(--white);}
+  .pf-count{display:inline-flex; align-items:center; justify-content:center; min-width:22px; height:22px; padding:0 6px; border-radius:999px;
+    font:500 11.5px/1 'IBM Plex Mono', monospace; background:rgba(58,58,56,.08); color:inherit;}
+  .pf-tab[aria-selected="true"] .pf-count{background:var(--grad); color:var(--white);}
+  .pf-intro{color:var(--ink-soft); font-size:15.5px; max-width:62ch; margin:0 0 24px;}
+  .pf-panel + .pf-panel{margin-top:56px;}
+  .pf-js .pf-panel + .pf-panel{margin-top:0;}
+  .pf-panel[hidden]{display:none;}
+  html:not(.pf-js) .pf-tabs{display:none;}
+  .pf-tab{white-space:nowrap;}
+  @media (max-width:520px){ .pf-tabs{display:flex;} .pf-tab{flex:1; justify-content:center; gap:6px; padding:10px 8px; font-size:12.5px;} }
+</style>
 </head>
 <body>
 
@@ -34,15 +51,22 @@
   <div class="wrap" style="max-width:720px;">
     <span class="eyebrow">Trabalhos selecionados</span>
     <h1 class="hero-title">Portfólio</h1>
-    <p class="hero-lede">Projetos que unem planejamento, dados e IA aplicada aos temas de atendimento, gestão de projetos e automação de processos.</p>
+    <p class="hero-lede">Projetos que unem planejamento, dados e IA aplicada: os que desenvolvi na empresa onde trabalho e os que criei por conta própria.</p>
   </div>
 </section>
 
 <section style="padding-top:0;">
   <div class="wrap">
-    <div class="card-grid">
+    <div class="pf-tabs" role="tablist" aria-label="Tipos de projeto">
+      <button type="button" role="tab" id="tab-empresa" aria-controls="painel-empresa" aria-selected="true" class="pf-tab">Na empresa <span class="pf-count">3</span></button>
+      <button type="button" role="tab" id="tab-pessoais" aria-controls="painel-pessoais" aria-selected="false" class="pf-tab">Projetos pessoais <span class="pf-count">3</span></button>
+    </div>
+
+    <div class="pf-panel" role="tabpanel" id="painel-empresa" aria-labelledby="tab-empresa">
+      <p class="pf-intro">Projetos que desenvolvi na empresa onde trabalho, uma empresa de software de gestão para construção civil, unindo suporte, dados e IA.</p>
+      <div class="card-grid">
       <a href="projetos/atendente-virtual.html" class="p-card">
-        <div class="thumb"><img src="assets/thumb-atendente-virtual.png" alt="Atendente Virtual Nível 1"></div>
+        <div class="thumb"><img src="assets/thumb-atendente-virtual.png" alt="Atendente Virtual Nível 1" loading="lazy"></div>
         <div class="body">
           <div class="tags"><span class="tag">IA</span><span class="tag">Atendimento</span></div>
           <h3>Atendente Virtual Nível 1</h3>
@@ -50,17 +74,8 @@
           <div class="cta">Ver projeto →</div>
         </div>
       </a>
-      <a href="projetos/observatorios-projeto.html" class="p-card">
-        <div class="thumb"><img src="assets/capa-observatorio.png" alt="Guia para Observatório de Projetos"></div>
-        <div class="body">
-          <div class="tags"><span class="tag">Metodologia</span><span class="tag">Gestão</span></div>
-          <h3>Guia para Observatório de Projetos</h3>
-          <p>Modelo MPO aplicado à concepção prática de observatórios de projetos.</p>
-          <div class="cta">Ver projeto →</div>
-        </div>
-      </a>
       <a href="projetos/projeto-zendesk.html" class="p-card">
-        <div class="thumb"><img src="assets/thumb-zendesk.png" alt="Aplicativo de suporte no Zendesk" style="object-position:top center;"></div>
+        <div class="thumb"><img src="assets/thumb-zendesk.png" alt="Aplicativo de suporte no Zendesk" style="object-position:top center;" loading="lazy"></div>
         <div class="body">
           <div class="tags"><span class="tag">Automação</span><span class="tag">Zendesk</span></div>
           <h3>Aplicativo de suporte no Zendesk</h3>
@@ -69,17 +84,77 @@
         </div>
       </a>
       <a href="projetos/projeto-premio-lean.html" class="p-card">
-        <div class="thumb"><img src="assets/thumb-premio-lean.png" alt="Prêmio Construção com Eficiência Lean" style="object-position:top left;"></div>
+        <div class="thumb"><img src="assets/thumb-premio-lean.png" alt="Prêmio Construção com Eficiência Lean" style="object-position:top left;" loading="lazy"></div>
         <div class="body">
           <div class="tags"><span class="tag">Dados</span><span class="tag">Obras</span></div>
           <h3>Prêmio Construção com Eficiência Lean</h3>
-          <p>Ranking mensal, auditoria de resultados e governança de dados para uma empresa de software de construção.</p>
+          <p>Ranking mensal, auditoria de resultados e governança de dados para obras clientes da empresa.</p>
           <div class="cta">Ver projeto →</div>
         </div>
       </a>
+      </div>
+    </div>
+
+    <div class="pf-panel" role="tabpanel" id="painel-pessoais" aria-labelledby="tab-pessoais">
+      <p class="pf-intro">Produtos e estudos que criei por conta própria, da ideia ao app funcionando.</p>
+      <div class="card-grid">
+      <a href="produtos.html#fit-pepe" class="p-card">
+        <div class="thumb"><img src="assets/thumb-fit-pepe.jpg" alt="Telas do app My Fit Pepe" loading="lazy"></div>
+        <div class="body">
+          <div class="tags"><span class="tag">App</span><span class="tag">Saúde</span></div>
+          <h3>My Fit Pepe</h3>
+          <p>Dieta, treino e evolução no mesmo app, com o Pepe, um mascote que reage ao seu dia.</p>
+          <div class="cta">Ver o app →</div>
+        </div>
+      </a>
+      <a href="produtos.html#medidor-estudos" class="p-card">
+        <div class="thumb"><img src="assets/produtos/medidor-painel.jpg" alt="Painel do Medidor de Estudos" style="object-position:top left;" loading="lazy"></div>
+        <div class="body">
+          <div class="tags"><span class="tag">App</span><span class="tag">Educação</span></div>
+          <h3>Medidor de Estudos</h3>
+          <p>Plataforma para turmas e para quem estuda sozinho acompanhar trilha, tempo, questões e desempenho.</p>
+          <div class="cta">Ver o app →</div>
+        </div>
+      </a>
+      <a href="projetos/observatorios-projeto.html" class="p-card">
+        <div class="thumb"><img src="assets/capa-observatorio.png" alt="Guia para Observatório de Projetos" loading="lazy"></div>
+        <div class="body">
+          <div class="tags"><span class="tag">Pesquisa</span><span class="tag">Gestão</span></div>
+          <h3>Guia para Observatório de Projetos</h3>
+          <p>Modelo MPO aplicado à concepção prática de observatórios de projetos, fruto do meu mestrado.</p>
+          <div class="cta">Ver projeto →</div>
+        </div>
+      </a>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  /* Abas do portfólio: "Na empresa" e "Projetos pessoais". Sem JavaScript, as duas listas aparecem uma embaixo da outra. */
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll('.pf-tab'));
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    document.documentElement.classList.add('pf-js');
+    function show(i, focus) {
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        panels[k].hidden = !on;
+      });
+      if (focus) tabs[i].focus();
+      try { history.replaceState(null, '', i === 1 ? '#pessoais' : '#empresa'); } catch (e) {}
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show((i + 1) % tabs.length, true); }
+      });
+    });
+    show(location.hash === '#pessoais' ? 1 : 0);
+  })();
+</script>
 
 <footer>
   <div class="wrap">

@@ -341,7 +341,7 @@
     var sel = [
       ".section-head", "section h2.section-title", ".p-card", ".role-card", ".step", ".showcase",
       ".about-photo", ".about-body", ".hobby", ".related", ".photo-pair figure", ".article h2", ".article h3",
-      ".psr-card", ".tech-item", ".final-cta", ".browser-chrome", ".func-card", ".timeline li", ".mini", ".case"
+      ".psr-card", ".tech-item", ".final-cta", ".browser-chrome", ".func-card", ".timeline li", ".mini", ".case", ".post-feature"
     ].join(",");
     var nodes = Array.prototype.slice.call(document.querySelectorAll(sel)).filter(function (el) {
       if (hero && hero.contains(el)) return false;

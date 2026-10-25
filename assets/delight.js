@@ -186,9 +186,11 @@
     var used = [];
     function inHero(el) { return hero && hero.contains(el); }
 
-    /* topo com foto: um triângulo pequeno no canto de baixo (sem bolas de gradiente: mais minimalista) */
+    /* topo com foto: disco em gradiente atrás do canto e um triângulo pequeno embaixo */
     var photo = hero && hero.querySelector(".stack");
     if (photo) {
+      hero.classList.add("dl-iso");
+      accent(photo, "disc", "hd", { back: true, t: 40, k: 0.08 });
       accent(photo, "tri", "ht", { t: 22, k: -0.05 });
     }
 
@@ -218,12 +220,24 @@
     /* foto fora do topo (ex.: "Sobre mim" na página inicial) */
     var stack2 = Array.prototype.find.call(document.querySelectorAll(".stack"), function (el) { return !inHero(el); });
     if (stack2) {
+      accent(stack2, "disc", "sd", { back: true, t: 34, rev: true, k: 0.06 });
       accent(stack2, "blue", "st", { t: 26, rev: true, k: -0.04 });
     }
 
-    /* primeira grade de cards: um triângulo pequeno no canto */
+    /* primeira grade de cards: disco espiando atrás do canto do último card da primeira linha */
     var grid = Array.prototype.find.call(document.querySelectorAll(".card-grid, .func-grid, .role-grid"), function (el) { return !inHero(el); });
     if (grid) {
+      var gd = accent(grid, "disc", "gd", { back: true, t: 30, k: 0.05 });
+      accent(grid, "tri", "gt", { t: 20, rev: true, k: -0.03 });
+      var placeGrid = function () {
+        var kids = Array.prototype.filter.call(grid.children, function (c) { return !c.classList.contains("dl-acc"); });
+        if (!kids.length) return;
+        var last = kids[0];
+        kids.forEach(function (c) { if (c.offsetTop === kids[0].offsetTop) last = c; });
+        gd.style.marginRight = Math.max(0, grid.clientWidth - (last.offsetLeft + last.offsetWidth)) + "px";
+      };
+      placeGrid();
+      window.addEventListener("resize", placeGrid);
     }
   }
 

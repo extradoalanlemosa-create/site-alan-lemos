@@ -482,3 +482,47 @@ nav.main-nav a::after{height:2px; border-radius:2px; background:var(--grad);}
   html:not(.pf-js) .pf-tabs{display:none;}
   .pf-tab{white-space:nowrap;}
   @media (max-width:520px){ .pf-tabs{display:flex;} .pf-tab{flex:1; justify-content:center; gap:6px; padding:10px 8px; font-size:12.5px;} }
+
+/* ===== Página inicial: vitrine compacta do portfólio ===== */
+.mini-lede{color:var(--ink-soft); font-size:15px; margin:10px 0 0; max-width:52ch;}
+.mini-cols{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px;}
+.mini-col{display:grid; gap:12px; align-content:start;}
+.mini-head{font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--terracotta); margin:0 0 4px;}
+.mini{display:grid; grid-template-columns:132px minmax(0,1fr); gap:18px; align-items:center; padding:12px; border:1px solid var(--line); border-radius:var(--radius);
+  background:var(--white); text-decoration:none; color:var(--ink); transition:transform .2s ease, border-color .2s ease;}
+.mini:hover{transform:translateY(-2px); border-color:transparent; background:linear-gradient(var(--white), var(--white)) padding-box, var(--grad) border-box;}
+.mini-thumb{display:block; aspect-ratio:4/3; border-radius:10px; overflow:hidden; background:var(--paper-2);}
+.mini-thumb img{width:100%; height:100%; object-fit:cover;}
+.mini-body{display:grid; gap:8px; min-width:0;}
+.mini-title{font-family:'Fraunces', serif; font-weight:500; font-size:18px; line-height:1.25; color:var(--navy);}
+.mini-chip{display:inline-flex; align-items:center; gap:7px; font-size:13px; color:var(--ink-soft);}
+.mini-chip::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--grad); flex-shrink:0;}
+@media (max-width:820px){ .mini-cols{grid-template-columns:1fr; gap:32px;} }
+@media (max-width:440px){ .mini{grid-template-columns:96px minmax(0,1fr); gap:14px;} .mini-title{font-size:16.5px;} }
+
+/* ===== Portfólio: cada projeto como um caso ===== */
+.cases{display:grid;}
+.case{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:52px; align-items:center; padding:44px 0; border-top:1px solid var(--line);}
+.case:first-child{border-top:0; padding-top:8px;}
+.case:nth-child(even) .case-media{order:2;}
+.case-media{display:block; aspect-ratio:16/10; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line-strong); background:var(--paper-2);
+  box-shadow:0 24px 44px -30px rgba(27,42,56,.45); transition:transform .25s ease;}
+.case-media:hover{transform:translateY(-3px);}
+.case-media img{width:100%; height:100%; object-fit:cover;}
+.case-title{font-family:'Fraunces', serif; font-weight:500; font-size:clamp(22px,2.4vw,27px); line-height:1.2; margin:12px 0 18px;}
+.case-title a{color:var(--navy); text-decoration:none;}
+.case-title a:hover{color:var(--terracotta);}
+.case-steps{display:grid; gap:12px; margin:0 0 18px;}
+.case-steps div{display:grid; grid-template-columns:104px minmax(0,1fr); gap:14px; align-items:baseline;}
+.case-steps dt{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.04em; color:var(--terracotta);}
+.case-steps dd{margin:0; font-size:15px; color:var(--ink-soft);}
+.case-steps div:last-child dd{color:var(--ink); font-weight:600;}
+.case-tools{list-style:none; display:flex; flex-wrap:wrap; gap:6px; padding:0; margin:0 0 22px;}
+.case-tools li{font-family:'IBM Plex Mono', monospace; font-size:11.5px; padding:5px 10px; border-radius:999px; border:1px solid var(--line); color:var(--ink-soft); background:var(--white);}
+.case-actions{display:flex; flex-wrap:wrap; gap:10px;}
+.case-actions .btn{padding:11px 20px; font-size:13.5px;}
+@media (max-width:820px){
+  .case{grid-template-columns:1fr; gap:24px; padding:36px 0;}
+  .case:nth-child(even) .case-media{order:0;}
+  .case-steps div{grid-template-columns:1fr; gap:4px;}
+}

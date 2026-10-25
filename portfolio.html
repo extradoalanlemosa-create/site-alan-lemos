@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261025b">
+<link rel="stylesheet" href="assets/style.css?v=20261025c">
 </head>
 <body>
 
@@ -34,7 +34,7 @@
   <div class="wrap" style="max-width:720px;">
     <span class="eyebrow">Trabalhos selecionados</span>
     <h1 class="hero-title">Portfólio</h1>
-    <p class="hero-lede">Projetos que unem planejamento, dados e IA aplicada: os que desenvolvi na empresa onde trabalho e os que criei por conta própria.</p>
+    <p class="hero-lede">Cada projeto contado como um caso: o problema, o que eu fiz, o resultado e as ferramentas. De um lado, o que desenvolvi na empresa onde trabalho; do outro, o que criei por conta própria.</p>
   </div>
 </section>
 
@@ -47,67 +47,97 @@
 
     <div class="pf-panel" role="tabpanel" id="painel-empresa" aria-labelledby="tab-empresa">
       <p class="pf-intro">Projetos que desenvolvi na empresa onde trabalho, uma empresa de software de gestão para construção civil, unindo suporte, dados e IA.</p>
-      <div class="card-grid">
-      <a href="projetos/atendente-virtual.html" class="p-card">
-        <div class="thumb"><img src="assets/thumb-atendente-virtual.png" alt="Atendente Virtual Nível 1" loading="lazy"></div>
-        <div class="body">
+      <div class="cases">
+      <article class="case" id="atendente">
+        <a class="case-media" href="projetos/atendente-virtual.html" tabindex="-1" aria-hidden="true"><img src="assets/thumb-atendente-virtual.png" alt="Widget da ClaudIA em atendimento no site" loading="lazy"></a>
+        <div class="case-body">
           <div class="tags"><span class="tag">IA</span><span class="tag">Atendimento</span></div>
-          <h3>Atendente Virtual Nível 1</h3>
-          <p>Automação de atendimento com IA aplicada, do primeiro contato à resolução.</p>
-          <div class="cta">Ver projeto →</div>
+          <h3 class="case-title"><a href="projetos/atendente-virtual.html">Atendente Virtual Nível 1</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>Engenheiros gastavam tempo constante respondendo dúvidas recorrentes de clientes, em vez de cuidar do trabalho estratégico.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Um agente de IA de nível 1 na central telefônica, no widget do site e no e-mail, com base de conhecimento revisada e fluxos que reconhecem quem está falando.</dd></div>
+            <div><dt>Resultado</dt><dd>30% dos atendimentos resolvidos pela IA já no primeiro mês, nos três principais canais de contato.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>Cloudhumans</li><li>n8n</li><li>Bizagi</li><li>Zendesk</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/atendente-virtual.html">Ver o caso completo</a></div>
         </div>
-      </a>
-      <a href="projetos/projeto-zendesk.html" class="p-card">
-        <div class="thumb"><img src="assets/thumb-zendesk.png" alt="Aplicativo de suporte no Zendesk" style="object-position:top center;" loading="lazy"></div>
-        <div class="body">
+      </article>
+      <article class="case" id="zendesk">
+        <a class="case-media" href="projetos/projeto-zendesk.html" tabindex="-1" aria-hidden="true"><img src="assets/thumb-zendesk.png" alt="App de suporte inteligente na barra lateral do Zendesk" style="object-position:top center;" loading="lazy"></a>
+        <div class="case-body">
           <div class="tags"><span class="tag">Automação</span><span class="tag">Zendesk</span></div>
-          <h3>Aplicativo de suporte no Zendesk</h3>
-          <p>Solução de automação para times de suporte, integrada ao fluxo real de atendimento.</p>
-          <div class="cta">Ver projeto →</div>
+          <h3 class="case-title"><a href="projetos/projeto-zendesk.html">Aplicativo de suporte no Zendesk</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>Os agentes perdiam tempo classificando cada chamado e preenchendo formulários à mão, com resultados diferentes de pessoa para pessoa.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Um app na barra lateral do ticket que classifica pelo SLA, sugere título, faz o diagnóstico, redige respostas e monta o script para o time de N3.</dd></div>
+            <div><dt>Resultado</dt><dd>Respostas mais rápidas e classificação padronizada, aplicadas direto no ticket.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>Zendesk Apps</li><li>React</li><li>OpenAI API</li><li>Zendesk API</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/projeto-zendesk.html">Ver o caso completo</a><a class="btn btn-ghost" href="projetos/projeto-zendesk.html#demo">Testar a demonstração</a></div>
         </div>
-      </a>
-      <a href="projetos/projeto-premio-lean.html" class="p-card">
-        <div class="thumb"><img src="assets/thumb-premio-lean.png" alt="Prêmio Construção com Eficiência Lean" style="object-position:top left;" loading="lazy"></div>
-        <div class="body">
+      </article>
+      <article class="case" id="premio">
+        <a class="case-media" href="projetos/projeto-premio-lean.html" tabindex="-1" aria-hidden="true"><img src="assets/thumb-premio-lean.png" alt="Ranking mensal do Prêmio Construção com Eficiência Lean" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
           <div class="tags"><span class="tag">Dados</span><span class="tag">Obras</span></div>
-          <h3>Prêmio Construção com Eficiência Lean</h3>
-          <p>Ranking mensal, auditoria de resultados e governança de dados para obras clientes da empresa.</p>
-          <div class="cta">Ver projeto →</div>
+          <h3 class="case-title"><a href="projetos/projeto-premio-lean.html">Prêmio Construção com Eficiência Lean</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>O ranking mensal das obras era calculado à mão, sem histórico de alterações nem trava antes de publicar um número errado.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Cálculo automático dos indicadores Lean, tela de auditoria antes de publicar, checklist por time e uma área logada para cada obra.</dd></div>
+            <div><dt>Resultado</dt><dd>Em produção como a cara pública do prêmio, e 2º lugar na competição interna de uso de IA da empresa.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>Supabase</li><li>JavaScript</li><li>pptxgenjs</li><li>RD Station</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/projeto-premio-lean.html">Ver o caso completo</a><a class="btn btn-ghost" href="projetos/projeto-premio-lean.html#demo">Testar a área logada</a></div>
         </div>
-      </a>
+      </article>
       </div>
     </div>
 
     <div class="pf-panel" role="tabpanel" id="painel-pessoais" aria-labelledby="tab-pessoais">
       <p class="pf-intro">Produtos e estudos que criei por conta própria, da ideia ao app funcionando.</p>
-      <div class="card-grid">
-      <a href="produtos.html#fit-pepe" class="p-card">
-        <div class="thumb"><img src="assets/thumb-fit-pepe.jpg" alt="Telas do app My Fit Pepe" loading="lazy"></div>
-        <div class="body">
+      <div class="cases">
+      <article class="case" id="fitpepe">
+        <a class="case-media" href="produtos.html#fit-pepe" tabindex="-1" aria-hidden="true"><img src="assets/thumb-fit-pepe.jpg" alt="Três telas do app My Fit Pepe" loading="lazy"></a>
+        <div class="case-body">
           <div class="tags"><span class="tag">App</span><span class="tag">Saúde</span></div>
-          <h3>My Fit Pepe</h3>
-          <p>Dieta, treino e evolução no mesmo app, com o Pepe, um mascote que reage ao seu dia.</p>
-          <div class="cta">Ver o app →</div>
+          <h3 class="case-title"><a href="produtos.html#fit-pepe">My Fit Pepe</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>Acompanhar dieta, treino e peso em planilhas soltas cansa, e é fácil largar no meio do caminho.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Um app instalável que junta calorias e macros, ficha de treino e evolução, com o Pepe ficando feliz ou tristinho conforme o seu dia.</dd></div>
+            <div><dt>Resultado</dt><dd>App funcionando no celular, inclusive sem internet, com vídeo de apresentação e versão de teste aberta.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>React</li><li>PWA</li><li>Funciona offline</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="produtos.html#fit-pepe">Ver o vídeo</a><a class="btn btn-ghost" href="exemplos/fit-pepe/index.html" target="_blank" rel="noopener">Abrir o app</a></div>
         </div>
-      </a>
-      <a href="produtos.html#medidor-estudos" class="p-card">
-        <div class="thumb"><img src="assets/produtos/medidor-painel.jpg" alt="Painel do Medidor de Estudos" style="object-position:top left;" loading="lazy"></div>
-        <div class="body">
+      </article>
+      <article class="case" id="medidor">
+        <a class="case-media" href="produtos.html#medidor-estudos" tabindex="-1" aria-hidden="true"><img src="assets/produtos/medidor-painel.jpg" alt="Painel do Medidor de Estudos" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
           <div class="tags"><span class="tag">App</span><span class="tag">Educação</span></div>
-          <h3>Medidor de Estudos</h3>
-          <p>Plataforma para turmas e para quem estuda sozinho acompanhar trilha, tempo, questões e desempenho.</p>
-          <div class="cta">Ver o app →</div>
+          <h3 class="case-title"><a href="produtos.html#medidor-estudos">Medidor de Estudos</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>Quem estuda em grupo perde o ritmo quando não enxerga o próprio progresso nem o da turma.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Uma plataforma com trilha de aulas, cronômetro, banco de questões, simulados e o painel da turma, montada para cada prova.</dd></div>
+            <div><dt>Resultado</dt><dd>Plataforma no ar e oferecida como produto, com uma demonstração aberta para outras turmas testarem.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>Next.js</li><li>React</li><li>Supabase</li><li>pdf.js</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="produtos.html#medidor-estudos">Ver como funciona</a><a class="btn btn-ghost" href="exemplos/medidor-estudos/" target="_blank" rel="noopener">Testar a demonstração</a></div>
         </div>
-      </a>
-      <a href="projetos/observatorios-projeto.html" class="p-card">
-        <div class="thumb"><img src="assets/capa-observatorio.png" alt="Guia para Observatório de Projetos" loading="lazy"></div>
-        <div class="body">
+      </article>
+      <article class="case" id="observatorio">
+        <a class="case-media" href="projetos/observatorios-projeto.html" tabindex="-1" aria-hidden="true"><img src="assets/capa-observatorio.png" alt="Workshop do Guia para Observatório de Projetos" loading="lazy"></a>
+        <div class="case-body">
           <div class="tags"><span class="tag">Pesquisa</span><span class="tag">Gestão</span></div>
-          <h3>Guia para Observatório de Projetos</h3>
-          <p>Modelo MPO aplicado à concepção prática de observatórios de projetos, fruto do meu mestrado.</p>
-          <div class="cta">Ver projeto →</div>
+          <h3 class="case-title"><a href="projetos/observatorios-projeto.html">Guia para Observatório de Projetos</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>Observatórios de projetos ajudam a organizar dados, mas faltavam métodos que orientassem como criar um.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Um guia e um canvas baseados no Modelo MPO, avaliados com pesquisa qualitativa no meu mestrado e aplicados em workshop.</dd></div>
+            <div><dt>Resultado</dt><dd>Guia de 19 páginas e canvas publicados em acesso aberto, prontos para qualquer equipe usar.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>Modelo MPO</li><li>Pesquisa qualitativa</li><li>Workshop</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/observatorios-projeto.html">Ver o caso completo</a></div>
         </div>
-      </a>
+      </article>
       </div>
     </div>
   </div>
@@ -153,6 +183,6 @@
   </div>
 </footer>
 
-<script src="assets/delight.js?v=20261025b" defer></script>
+<script src="assets/delight.js?v=20261025c" defer></script>
 </body>
 </html>

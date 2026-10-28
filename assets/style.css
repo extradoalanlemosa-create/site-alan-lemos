@@ -552,3 +552,11 @@ nav.main-nav a::after{height:2px; border-radius:2px; background:var(--grad);}
   .pf-cover{aspect-ratio:16/10;}
   .pf-body{padding:24px 22px;}
 }
+
+/* ===== Vamos colaborar: destaques e ferramentas no painel de cada função ===== */
+.func-highlights{list-style:none; padding:0; margin:14px 0 16px; display:grid; gap:8px;}
+.func-highlights li{position:relative; padding-left:20px; font-size:15px; color:var(--ink-soft); line-height:1.55;}
+.func-highlights li::before{content:""; position:absolute; left:2px; top:.62em; width:8px; height:8px; border-radius:50%; background:var(--grad);}
+.func-highlights strong{color:var(--ink);}
+.func-tools{font-size:14.5px; color:var(--ink); margin:0 0 16px;}
+.func-tools .eyebrow{margin-right:8px;}

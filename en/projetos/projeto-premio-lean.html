@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lean Efficiency in Construction Award · Alan Lemos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1C2430;
+  --graphite:#3A3A38;
+  --paper:#FAF9F5;
+  --paper-dim:#F2F0EA;
+  --line:#E4E1D8;
+  --stone:#9B9990;
+  --ink:#22201C;
+  --terracotta:#C48A5A;
+  --terracotta-d:#AD744A;
+  --font-display:'Fraunces',serif;
+  --font-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:960px;margin:0 auto;padding:0 32px}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--graphite)}
+.logo-mark{width:38px;height:38px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:38px;height:38px}
+.back-link{font-size:13.5px;color:var(--stone);display:flex;align-items:center;gap:6px;transition:color .15s}
+.back-link:hover{color:var(--terracotta-d)}
+
+/* HERO / HEADER DO PROJETO */
+.project-hero{padding:36px 0 44px;border-bottom:1px solid var(--line)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
+.h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,48px);line-height:1.12;color:var(--navy);max-width:18ch;margin-bottom:16px}
+.hero-sub{color:var(--stone);font-size:16px;max-width:56ch;margin-bottom:22px}
+.client-badge{display:flex;align-items:center;gap:9px;margin-bottom:26px}
+.client-badge img{width:22px;height:22px}
+.client-badge span{font-size:12.5px;color:var(--stone)}
+.client-badge strong{color:var(--graphite);font-weight:600}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:13px 24px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:all .18s}
+.btn-primary{background:var(--terracotta);color:#fff}
+.btn-primary:hover{background:var(--terracotta-d);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--graphite);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--stone)}
+
+/* SECTIONS */
+section{padding:56px 0}
+.section-line{border-top:1px solid var(--line)}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--terracotta-d);margin-bottom:10px}
+.section-title{font-family:var(--font-display);font-weight:500;font-size:28px;color:var(--navy);margin-bottom:36px;max-width:26ch}
+
+/* PROBLEMA -> SOLUCAO -> RESULTADO */
+.psr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.psr-card{padding:30px 28px;position:relative}
+.psr-card + .psr-card{border-left:1px solid var(--line)}
+.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.psr-num::before{content:'';width:16px;height:1px;background:var(--terracotta)}
+.psr-heading{font-family:var(--font-display);font-size:19px;color:var(--navy);margin-bottom:12px;font-weight:500}
+.psr-text{font-size:14.5px;color:#5b584f;line-height:1.7}
+.psr-card.result{background:var(--navy);color:#fff}
+.psr-card.result .psr-num{color:rgba(255,255,255,.55)}
+.psr-card.result .psr-heading{color:#fff}
+.psr-card.result .psr-text{color:rgba(255,255,255,.78)}
+.psr-arrow{position:absolute;top:30px;right:-13px;width:26px;height:26px;background:var(--paper);border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--stone);z-index:2}
+
+@media(max-width:760px){
+  .psr-grid{grid-template-columns:1fr}
+  .psr-card + .psr-card{border-left:none;border-top:1px solid var(--line)}
+  .psr-arrow{display:none}
+}
+
+/* DEMO FRAME */
+.demo-intro{max-width:62ch;color:#5b584f;font-size:15px;margin-bottom:28px}
+.browser-chrome{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25)}
+.chrome-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--paper-dim);border-bottom:1px solid var(--line)}
+.chrome-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.chrome-url{flex:1;text-align:center;font-size:11.5px;color:var(--stone);font-family:var(--font-body)}
+.demo-wide{width:min(1240px,calc(100vw - 32px));position:relative;left:50%;transform:translateX(-50%)}
+.demo-iframe{display:block;width:100%;height:min(820px,85vh);border:0;background:#f5f4f2}
+.demo-open{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--terracotta-d);margin-top:14px}
+.demo-open:hover{text-decoration:underline}
+.demo-foot{text-align:center}
+.demo-caption{text-align:center;font-size:12.5px;color:var(--stone);margin-top:14px}
+
+/* TECH STACK */
+.tech-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tech-item{background:#fff;padding:22px 20px;display:flex;flex-direction:column}
+.tech-name{font-weight:600;font-size:14px;color:var(--navy);margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;line-height:1.3}
+.tech-dot{width:7px;height:7px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:6px}
+.tech-desc{font-size:12.5px;color:var(--stone);line-height:1.55;padding-left:15px}
+
+@media(max-width:900px){
+  .tech-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  .tech-grid{grid-template-columns:1fr}
+  .tech-item{padding:18px 20px}
+}
+
+/* CTA FINAL */
+.final-cta{background:var(--navy);border-radius:18px;padding:56px 48px;text-align:center;color:#fff}
+.final-cta .section-title{color:#fff;margin:0 auto 12px;font-size:26px}
+.final-cta p{color:rgba(255,255,255,.65);max-width:44ch;margin:0 auto 30px;font-size:14.5px}
+.final-cta .cta-row{justify-content:center}
+.final-cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.28)}
+.final-cta .btn-ghost:hover{border-color:#fff}
+
+footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)}
+
+</style>
+<link rel="alternate" hreflang="pt-BR" href="../../projetos/projeto-premio-lean.html">
+<link rel="alternate" hreflang="en" href="projeto-premio-lean.html">
+<link rel="alternate" hreflang="x-default" href="../../projetos/projeto-premio-lean.html">
+<script>/* idioma: lembra a escolha do visitante e abre as páginas sempre nesse idioma */(function(){try{var K='site-lang',d=document.documentElement,here=(d.lang||'').indexOf('en')===0?'en':'pt',pref=localStorage.getItem(K);if(pref&&pref!==here&&!/[?&]lang=/.test(location.search)){var alt=document.querySelector('link[rel=alternate][hreflang="'+(pref==='en'?'en':'pt-BR')+'"]');if(alt){location.replace(alt.href+location.hash);return;}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem(K,a.getAttribute('data-lang'));}catch(_){}}},true);}catch(e){}})();</script>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav">
+    <a href="../index.html" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(25,20)">
+            <path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/>
+            <line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/>
+          </g>
+        </svg>
+      </span>
+      Alan Lemos
+    </a>
+    <a href="../portfolio.html" class="back-link">← Back to portfolio</a><a href="../../projetos/projeto-premio-lean.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
+</div>
+
+<div class="wrap">
+  <header class="project-hero">
+    <div class="tags">
+      <span class="tag">Construction management</span>
+      <span class="tag">Data &amp; governance</span>
+      <span class="tag">Audit</span>
+    </div>
+    <h1 class="h1">Lean Efficiency in Construction Award</h1>
+    <p class="hero-sub">A monthly ranking system for a construction management software company that recognizes client construction sites for excellence in Lean management, with automatic indicator calculation, results auditing before publishing, and a logged-in area for each site to follow its progress.</p>
+    <div class="client-badge">
+      <span>Project built for a <strong>Lean management software company</strong> for civil construction</span>
+    </div>
+    <div class="cta-row">
+      <a href="#demo" class="btn btn-primary">See the logged-in area prototype</a>
+      <a href="https://premio.agilean.com.br/" target="_blank" rel="noopener" class="btn btn-ghost">↗ See the award's official website</a>
+    </div>
+  </header>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">How the project started</div>
+    <h2 class="section-title">From scattered spreadsheets to an audit trail</h2>
+    <div class="psr-grid">
+      <div class="psr-card">
+        <div class="psr-num">Problem</div>
+        <h3 class="psr-heading">Monthly ranking with no audit trail</h3>
+        <p class="psr-text">Calculating the monthly highlight from each site's Lean indicators (IDC, IDP, PPC, IRR, PPCQ) and deciding who makes the podium depended on manual checks: no history of who changed what, no safeguard before publishing a wrong number, and post-result tasks (logo, certificate, contacting the winning site) were scattered across teams.</p>
+        <div class="psr-arrow">→</div>
+      </div>
+      <div class="psr-card">
+        <div class="psr-num">Solution</div>
+        <h3 class="psr-heading">Automatic calculation, auditing and governance</h3>
+        <p class="psr-text">A Supabase backend calculates the month's ranking from the indicators entered for each site. Before any result goes live, the admin audits it on a dedicated screen: compares calculation runs, can override an indicator with a recorded reason or make a site ineligible, and only releases the month with a click on "mark as audited". Each highlighted site gets an automatic checklist of tasks per team, plus its own logged-in area to follow its progress, download a certificate and send a testimonial.</p>
+        <div class="psr-arrow">→</div>
+      </div>
+      <div class="psr-card result">
+        <div class="psr-num">Result</div>
+        <h3 class="psr-heading">2nd place in the company's internal AI competition</h3>
+        <p class="psr-text">The dashboard is in production, it's the public face of the company's monthly award, and it replaced scattered spreadsheets with a single audit and data governance trail, the theme that took this project to 2nd place in the company's internal AI competition.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="section-line" id="demo">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Try it</div>
+    <h2 class="section-title">The logged-in area, as a prototype</h2>
+    <p class="demo-intro">Below is a replica of the post-login area, with the same interface as the production system but with fictional sites, builders and numbers: the real area works with real client data and can't be exposed here. Log in as a superuser and click around: change the period, open each site's tips and progress, edit an indicator, mark the month as audited, manage the checklist and runs, or use "View as site" to generate the certificate and send a testimonial as if you were the client. Nothing is saved. The demo is in Portuguese.</p>
+    <div class="demo-wide">
+      <div class="browser-chrome">
+        <div class="chrome-bar">
+          <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
+          <span class="chrome-url">logged-in area · lean efficiency award · demo</span>
+        </div>
+        <iframe class="demo-iframe" src="../../projetos/premio-lean-demo.html" title="Demo of the Lean Efficiency Award logged-in area (fictional data)" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="demo-foot">
+      <a class="demo-open" href="../../projetos/premio-lean-demo.html" target="_blank" rel="noopener">↗ Open the demo in full screen</a>
+      <p class="demo-caption">Fictional data. No real client information is used in this demo.</p>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <div class="eyebrow">Under the hood</div>
+    <h2 class="section-title">Technologies used</h2>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Supabase</div>
+        <div class="tech-desc">Postgres + Edge Functions: ranking calculation, role-based authentication (site/admin) and audit trail.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Vanilla JavaScript</div>
+        <div class="tech-desc">The entire logged-in area runs on a single HTML file, with no framework, calling the functions directly.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>pptxgenjs</div>
+        <div class="tech-desc">Builds the monthly highlights presentation as a .pptx right in the browser, when the admin clicks.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>RD Station</div>
+        <div class="tech-desc">Captures leads from the "Schedule a demo" form on the award's public page.</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name"><span class="tech-dot"></span>Claude</div>
+        <div class="tech-desc">Support in development, in modeling the audit trail and in prototyping this page.</div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="final-cta">
+      <h2 class="section-title">Liked what you saw?</h2>
+      <p>This is one of the planning and management projects with applied AI that I've implemented. See other cases in the portfolio to learn about the rest of my work.</p>
+      <div class="cta-row">
+        <a href="../portfolio.html" class="btn btn-primary">← Back to portfolio</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>Alan Lemos · Planning and management of projects, products and data with applied AI.</footer>
+
+
+<script src="../../assets/delight.js?v=20261029a" defer></script>
+</body>
+</html>

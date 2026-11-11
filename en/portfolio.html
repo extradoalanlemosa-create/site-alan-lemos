@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio · Alan Lemos</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=20261029a">
+<link rel="alternate" hreflang="pt-BR" href="../portfolio.html">
+<link rel="alternate" hreflang="en" href="portfolio.html">
+<link rel="alternate" hreflang="x-default" href="../portfolio.html">
+<script>/* idioma: lembra a escolha do visitante e abre as páginas sempre nesse idioma */(function(){try{var K='site-lang',d=document.documentElement,here=(d.lang||'').indexOf('en')===0?'en':'pt',pref=localStorage.getItem(K);if(pref&&pref!==here&&!/[?&]lang=/.test(location.search)){var alt=document.querySelector('link[rel=alternate][hreflang="'+(pref==='en'?'en':'pt-BR')+'"]');if(alt){location.replace(alt.href+location.hash);return;}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem(K,a.getAttribute('data-lang'));}catch(_){}}},true);}catch(e){}})();</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="brandmark">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/></g></svg>
+      <span>Alan Lemos</span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="sobre.html">About</a>
+      <a href="servicos.html">Services<span class="soon-badge">•</span></a>
+      <a href="produtos.html">Products<span class="soon-badge">•</span></a>
+      <a href="conteudos.html">Content<span class="soon-badge">•</span></a>
+      <a href="../portfolio.html" class="lang-switch" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a>
+      <a href="vamos-colaborar.html" class="btn btn-primary" style="padding:9px 18px; font-size:12.5px;">Let's work together</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:44px;">
+  <div class="wrap" style="max-width:720px;">
+    <span class="eyebrow">Selected work</span>
+    <h1 class="hero-title">Portfolio</h1>
+    <p class="hero-lede">Each project told as a case study: the problem, what I did, the result and the tools. On one side, what I built at the company where I work; on the other, what I created on my own.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="pf-tabs" role="tablist" aria-label="Project types">
+      <button type="button" role="tab" id="tab-empresa" aria-controls="painel-empresa" aria-selected="true" class="pf-tab">At work <span class="pf-count">3</span></button>
+      <button type="button" role="tab" id="tab-pessoais" aria-controls="painel-pessoais" aria-selected="false" class="pf-tab">Personal projects <span class="pf-count">3</span></button>
+    </div>
+
+    <div class="pf-panel" role="tabpanel" id="painel-empresa" aria-labelledby="tab-empresa">
+      <p class="pf-intro">Projects I built at the company where I work, a construction management software company, bringing support, data and AI together.</p>
+      <div class="cases">
+      <article class="case" id="atendente">
+        <a class="case-media" href="projetos/atendente-virtual.html" tabindex="-1" aria-hidden="true"><img src="../assets/thumb-atendente-virtual.png" alt="ClaudIA widget answering a customer on the website" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">AI</span><span class="tag">Customer service</span></div>
+          <h3 class="case-title"><a href="projetos/atendente-virtual.html">Tier-1 Virtual Support Agent</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>Engineers spent constant time answering recurring customer questions instead of focusing on strategic work.</dd></div>
+            <div><dt>What I did</dt><dd>A tier-1 AI agent on the phone line, the website widget and email, with a revised knowledge base and flows that recognize who is talking.</dd></div>
+            <div><dt>Result</dt><dd>30% of conversations resolved by AI in the very first month, across the three main contact channels.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>Cloudhumans</li><li>n8n</li><li>Bizagi</li><li>Zendesk</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/atendente-virtual.html">See the full case</a></div>
+        </div>
+      </article>
+      <article class="case" id="zendesk">
+        <a class="case-media" href="projetos/projeto-zendesk.html" tabindex="-1" aria-hidden="true"><img src="../assets/thumb-zendesk.png" alt="Smart support app in the Zendesk ticket sidebar" style="object-position:top center;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Automation</span><span class="tag">Zendesk</span></div>
+          <h3 class="case-title"><a href="projetos/projeto-zendesk.html">Zendesk Support App</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>Agents lost time classifying every ticket and filling in forms by hand, with results that varied from person to person.</dd></div>
+            <div><dt>What I did</dt><dd>An app in the ticket sidebar that classifies by SLA, suggests a title, runs the diagnosis, drafts replies and builds the escalation script for the tier-3 team.</dd></div>
+            <div><dt>Result</dt><dd>Faster replies and standardized classification, applied straight to the ticket.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>Zendesk Apps</li><li>React</li><li>OpenAI API</li><li>Zendesk API</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/projeto-zendesk.html">See the full case</a><a class="btn btn-ghost" href="projetos/projeto-zendesk.html#demo">Try the demo</a></div>
+        </div>
+      </article>
+      <article class="case" id="premio">
+        <a class="case-media" href="projetos/projeto-premio-lean.html" tabindex="-1" aria-hidden="true"><img src="../assets/thumb-premio-lean.png" alt="Monthly ranking of the Lean Efficiency in Construction Award" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Data</span><span class="tag">Construction</span></div>
+          <h3 class="case-title"><a href="projetos/projeto-premio-lean.html">Lean Efficiency in Construction Award</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>The monthly ranking of construction sites was calculated by hand, with no change history and no safeguard before publishing a wrong number.</dd></div>
+            <div><dt>What I did</dt><dd>Automatic calculation of Lean indicators, an audit screen before publishing, a checklist per team and a logged-in area for each construction site.</dd></div>
+            <div><dt>Result</dt><dd>In production as the public face of the award, and 2nd place in the company's internal AI competition.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>Supabase</li><li>JavaScript</li><li>pptxgenjs</li><li>RD Station</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/projeto-premio-lean.html">See the full case</a><a class="btn btn-ghost" href="projetos/projeto-premio-lean.html#demo">Try the logged-in area</a></div>
+        </div>
+      </article>
+      </div>
+    </div>
+
+    <div class="pf-panel" role="tabpanel" id="painel-pessoais" aria-labelledby="tab-pessoais">
+      <p class="pf-intro">Products and studies I created on my own, from idea to working app.</p>
+      <div class="cases">
+      <article class="case" id="fitpepe">
+        <a class="case-media" href="produtos.html#fit-pepe" tabindex="-1" aria-hidden="true"><img src="../assets/thumb-fit-pepe.jpg" alt="Three screens of the My Fit Pepe app" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">App</span><span class="tag">Health</span></div>
+          <h3 class="case-title"><a href="produtos.html#fit-pepe">My Fit Pepe</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>Tracking diet, workouts and weight in scattered spreadsheets is tiring, and it's easy to give up halfway.</dd></div>
+            <div><dt>What I did</dt><dd>An installable app that brings together calories and macros, workout plans and progress, with Pepe getting happy or a little sad depending on your day.</dd></div>
+            <div><dt>Result</dt><dd>App running on the phone, even offline, with a presentation video and an open test version.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>React</li><li>PWA</li><li>Works offline</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="produtos.html#fit-pepe">Watch the video</a><a class="btn btn-ghost" href="../exemplos/fit-pepe/index.html" target="_blank" rel="noopener">Open the app</a></div>
+        </div>
+      </article>
+      <article class="case" id="medidor">
+        <a class="case-media" href="produtos.html#medidor-estudos" tabindex="-1" aria-hidden="true"><img src="../assets/produtos/medidor-painel.jpg" alt="Medidor de Estudos dashboard" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">App</span><span class="tag">Education</span></div>
+          <h3 class="case-title"><a href="produtos.html#medidor-estudos">Medidor de Estudos</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>People who study in groups lose momentum when they can't see their own progress or the group's.</dd></div>
+            <div><dt>What I did</dt><dd>A platform with a lesson track, timer, question bank, mock exams and a group dashboard, set up for each exam.</dd></div>
+            <div><dt>Result</dt><dd>Platform live and offered as a product, with an open demo for other study groups to try.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>Next.js</li><li>React</li><li>Supabase</li><li>pdf.js</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="produtos.html#medidor-estudos">See how it works</a><a class="btn btn-ghost" href="../exemplos/medidor-estudos/" target="_blank" rel="noopener">Try the demo</a></div>
+        </div>
+      </article>
+      <article class="case" id="observatorio">
+        <a class="case-media" href="projetos/observatorios-projeto.html" tabindex="-1" aria-hidden="true"><img src="../assets/capa-observatorio.png" alt="Workshop for the Project Observatory Design Guide" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Research</span><span class="tag">Management</span></div>
+          <h3 class="case-title"><a href="projetos/observatorios-projeto.html">Project Observatory Design Guide</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>Project observatories help organize data, but there were no methods to guide how to create one.</dd></div>
+            <div><dt>What I did</dt><dd>A guide and a canvas based on the MPO Model, evaluated through qualitative research in my master's and applied in a workshop.</dd></div>
+            <div><dt>Result</dt><dd>A 19-page guide and canvas published in open access, ready for any team to use.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>MPO Model</li><li>Qualitative research</li><li>Workshop</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/observatorios-projeto.html">See the full case</a></div>
+        </div>
+      </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* Abas do portfólio: "Na empresa" e "Projetos pessoais". Sem JavaScript, as duas listas aparecem uma embaixo da outra. */
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll('.pf-tab'));
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    document.documentElement.classList.add('pf-js');
+    function show(i, focus) {
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        panels[k].hidden = !on;
+      });
+      if (focus) tabs[i].focus();
+      if (document.body.dataset.pfHash !== 'off') { try { history.replaceState(null, '', i === 1 ? '#pessoais' : '#empresa'); } catch (e) {} }
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show((i + 1) % tabs.length, true); }
+      });
+    });
+    show(location.hash === '#pessoais' ? 1 : 0);
+  })();
+</script>
+
+<footer>
+  <div class="wrap">
+    <div class="fmark">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/></g></svg>
+      <span>Alan Lemos</span>
+    </div>
+    <div class="flinks">
+      <a href="mailto:contato@alanlemos.com.br">contato@alanlemos.com.br</a>
+      <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener">LinkedIn</a>
+      <span>Fortaleza, CE</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/delight.js?v=20261029a" defer></script>
+</body>
+</html>

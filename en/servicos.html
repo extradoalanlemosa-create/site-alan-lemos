@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services · Custom websites and apps · Alan Lemos</title>
+<meta name="description" content="Custom websites and apps, from the first draft to launch on your own domain. See examples and request a quote.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=20261029a">
+<style>
+  /* vitrine de exemplos */
+  .showcase{display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:center; padding:36px 0; border-top:1px solid var(--line);}
+  .showcase:first-of-type{border-top:none; padding-top:0;}
+  .showcase.flip .shot{order:2;}
+  .showcase .shot{display:block; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper-2); box-shadow:0 18px 40px -22px rgba(27,42,56,.35); transition:transform .2s ease, box-shadow .2s ease;}
+  .showcase .shot:hover{transform:translateY(-3px); box-shadow:0 24px 48px -22px rgba(27,42,56,.4);}
+  .showcase .shot img{display:block; width:100%; aspect-ratio:1100/650; object-fit:cover;}
+  .showcase .kind{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--terracotta);}
+  .showcase h3{font-family:'Fraunces', serif; font-weight:500; font-size:28px; line-height:1.15; color:var(--navy); margin:8px 0 12px;}
+  .showcase p{color:var(--ink-soft); font-size:15px; margin-bottom:14px;}
+  .feat{list-style:none; display:grid; gap:7px; margin:0 0 22px;}
+  .feat li{position:relative; padding-left:18px; font-size:14px; color:var(--ink);}
+  .feat li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:7px; border-radius:50%; background:var(--terracotta);}
+  .showcase .actions{display:flex; gap:12px; flex-wrap:wrap;}
+  .showcase .note{font-size:12.5px; color:var(--ink-soft); margin-top:12px;}
+
+  /* passos */
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; counter-reset:step;}
+  .step{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px;}
+  .step::before{counter-increment:step; content:"0" counter(step); font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--terracotta);}
+  .step h3{font-family:'Fraunces', serif; font-weight:500; font-size:19px; color:var(--navy); margin:8px 0 6px;}
+  .step p{font-size:14px; color:var(--ink-soft);}
+
+  .offer-list{list-style:none; display:grid; gap:6px; margin:4px 0 0;}
+  .offer-list li{font-size:14px; color:var(--ink-soft); padding-left:16px; position:relative;}
+  .offer-list li::before{content:"→"; position:absolute; left:0; color:var(--terracotta); font-size:12px; top:2px;}
+
+  @media (max-width:900px){
+    .showcase, .showcase.flip{grid-template-columns:1fr; gap:24px;}
+    .showcase.flip .shot{order:0;}
+    .steps{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .steps{grid-template-columns:1fr;}
+    .showcase h3{font-size:24px;}
+  }
+</style>
+<link rel="alternate" hreflang="pt-BR" href="../servicos.html">
+<link rel="alternate" hreflang="en" href="servicos.html">
+<link rel="alternate" hreflang="x-default" href="../servicos.html">
+<script>/* idioma: lembra a escolha do visitante e abre as páginas sempre nesse idioma */(function(){try{var K='site-lang',d=document.documentElement,here=(d.lang||'').indexOf('en')===0?'en':'pt',pref=localStorage.getItem(K);if(pref&&pref!==here&&!/[?&]lang=/.test(location.search)){var alt=document.querySelector('link[rel=alternate][hreflang="'+(pref==='en'?'en':'pt-BR')+'"]');if(alt){location.replace(alt.href+location.hash);return;}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem(K,a.getAttribute('data-lang'));}catch(_){}}},true);}catch(e){}})();</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="brandmark">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/></g></svg>
+      <span>Alan Lemos</span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="sobre.html">About</a>
+      <a href="servicos.html" class="active">Services</a>
+      <a href="produtos.html">Products</a>
+      <a href="conteudos.html">Content</a>
+      <a href="../servicos.html" class="lang-switch" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a>
+      <a href="vamos-colaborar.html" class="btn btn-primary" style="padding:9px 18px; font-size:12.5px;">Let's work together</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:52px;">
+  <div class="wrap" style="max-width:760px;">
+    <span class="eyebrow">Services · now taking new projects</span>
+    <h1 class="hero-title">Custom websites and apps</h1>
+    <p class="hero-lede">I build tailor-made websites and apps for people and businesses, from the first draft to launch on your own domain. I use applied AI in development to deliver fast, without giving up the finish and the details that make the project feel like yours.</p>
+    <div class="hero-actions">
+      <a href="mailto:contato@alanlemos.com.br?subject=Quote%20for%20a%20custom%20website%20or%20app" class="btn btn-primary">Request a quote</a>
+      <a href="#exemplos" class="btn btn-ghost">See examples</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">What I build</span>
+        <h2 class="section-title">From invitations to apps</h2>
+      </div>
+    </div>
+    <div class="role-grid">
+      <div class="role-card">
+        <span class="num">01</span>
+        <h3>Custom websites</h3>
+        <p>Pages designed around your goal, with their own identity and working well on mobile.</p>
+        <ul class="offer-list">
+          <li>Wedding, birthday and event websites</li>
+          <li>Landing and sales pages</li>
+          <li>Professional websites and portfolios</li>
+          <li>Forms, maps, gift registries and members-only areas</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="num">02</span>
+        <h3>Custom apps</h3>
+        <p>Web apps that open in any browser and can be installed on your phone's home screen.</p>
+        <ul class="offer-list">
+          <li>Personal apps: habits, workouts, finances</li>
+          <li>Internal tools and dashboards for your business</li>
+          <li>Logged-in areas and systems with a database</li>
+          <li>Clickable prototypes to validate an idea</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tinted" id="exemplos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Examples</span>
+        <h2 class="section-title">Projects I've built</h2>
+      </div>
+      <p class="section-lede">Open them and click around: these are the real versions, running right here on the site.</p>
+    </div>
+
+    <div class="showcase">
+      <a class="shot" href="../exemplos/site-casamento/index.html" target="_blank" rel="noopener" aria-label="Open the wedding website">
+        <img src="../assets/thumb-site-casamento.jpg" alt="Digital invitation from Márcio and Luana&#x27;s wedding website, with an envelope and wax seal">
+      </a>
+      <div>
+        <span class="kind">Custom website</span>
+        <h3>Márcio &amp; Luana</h3>
+        <p>A digital invitation for my sister's wedding: guests open the envelope by tapping the seal, with music and falling petals, and find everything they need in one place.</p>
+        <ul class="feat">
+          <li>Animated invitation with the couple's soundtrack</li>
+          <li>Story, ceremony and reception with map and directions</li>
+          <li>Gift registry split into shares, with Pix payment</li>
+          <li>Individual RSVP</li>
+          <li>Password-protected dashboard for the couple to follow everything</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="../exemplos/site-casamento/index.html" target="_blank" rel="noopener">See the website ↗</a>
+        </div>
+        <p class="note">Demo copy: RSVPs and gifts made here are not sent to the couple. The website is in Portuguese.</p>
+      </div>
+    </div>
+
+    <div class="showcase flip">
+      <a class="shot" href="../exemplos/fit-pepe/index.html" target="_blank" rel="noopener" aria-label="Open the Fit Pepe app">
+        <img src="../assets/thumb-fit-pepe.jpg" alt="Three screens of the Fit Pepe app: daily summary with Pepe the mascot, workout plan and weight progress">
+      </a>
+      <div>
+        <span class="kind">Custom app · prototype</span>
+        <h3>Fit Pepe</h3>
+        <p>A workout, diet and body progress log with Pepe, a mascot that reacts to your day: he's happy when your workouts and meals are on track.</p>
+        <ul class="feat">
+          <li>Daily calories and macros, based on the diet plan</li>
+          <li>Workout plan with sets, loads and an automatic cycle</li>
+          <li>Monthly weight and body fat % progress</li>
+          <li>Installs on the phone and works offline</li>
+          <li>Data stored only on the user's device</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="../exemplos/fit-pepe/index.html" target="_blank" rel="noopener">Open the app ↗</a>
+        </div>
+        <p class="note">Best on mobile. It opens with sample data for you to explore. The app is in Portuguese.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-title">From the first chat to a live website</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Conversation</h3>
+        <p>I learn the goal, who will use it, what it needs to have and the references you like.</p>
+      </div>
+      <div class="step">
+        <h3>Prototype</h3>
+        <p>You get a first clickable version to see and try, instead of just imagining it.</p>
+      </div>
+      <div class="step">
+        <h3>Adjustments</h3>
+        <p>Together we refine copy, colors and features until it feels like yours.</p>
+      </div>
+      <div class="step">
+        <h3>Launch</h3>
+        <p>I publish it on your domain and show you how to follow and use it day to day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tinted">
+  <div class="wrap" style="text-align:center; max-width:600px;">
+    <span class="eyebrow">Hire me</span>
+    <h2 class="section-title" style="margin:12px 0 16px;">Have an idea for a website or app?</h2>
+    <p class="section-lede" style="margin:0 auto 26px;">Tell me what you need: who it's for, what it should do, whether you already have a domain and which references you like. I'll get back to you with a proposal.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="mailto:contato@alanlemos.com.br?subject=Quote%20for%20a%20custom%20website%20or%20app" class="btn btn-primary">contato@alanlemos.com.br</a>
+      <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener" class="btn btn-ghost">Message me on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fmark">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/></g></svg>
+      <span>Alan Lemos</span>
+    </div>
+    <div class="flinks">
+      <a href="mailto:contato@alanlemos.com.br">contato@alanlemos.com.br</a>
+      <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener">LinkedIn</a>
+      <span>Fortaleza, CE</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/delight.js?v=20261029a" defer></script>
+</body>
+</html>

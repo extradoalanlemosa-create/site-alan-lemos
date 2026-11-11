@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content · Alan Lemos</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=20261029a">
+
+<style>
+  .content-grid{grid-template-columns:repeat(auto-fill, minmax(300px,1fr));}
+  .p-card .thumb.post-cover{position:relative; aspect-ratio:16/10; background:linear-gradient(135deg,#1B2A38 0%,#243B4E 55%,#C1502E 140%); color:#fff; display:flex; flex-direction:column; justify-content:flex-end; padding:22px 24px; overflow:hidden;}
+  .post-cover::before{content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; border:1px solid rgba(255,255,255,.14);}
+  .post-cover::after{content:""; position:absolute; right:-10px; top:-10px; width:120px; height:120px; border-radius:50%; border:1px solid rgba(255,255,255,.10);}
+  .post-cover .pc-kicker{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:#F1DCD1; margin-bottom:6px;}
+  .post-cover .pc-title{font-family:'Fraunces',serif; font-weight:500; font-size:30px; line-height:1.1;}
+  .post-meta{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
+  .article{max-width:680px; margin:0 auto;}
+  .article p{font-size:17px; line-height:1.75; color:var(--ink); margin-bottom:20px;}
+  .article .lead{font-size:19px; color:var(--navy);}
+  .article-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; padding-top:26px; border-top:1px solid var(--line);}
+  .related{max-width:680px; margin:0 auto; background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px;}
+  .related .eyebrow{display:block; margin-bottom:6px;}
+  .related a.r-title{font-family:'Fraunces',serif; font-size:20px; color:var(--navy); text-decoration:none;}
+  .related a.r-title:hover{color:var(--terracotta);}
+  .related p{font-size:14px; color:var(--ink-soft); margin-top:6px;}
+</style>
+<link rel="alternate" hreflang="pt-BR" href="../conteudos.html">
+<link rel="alternate" hreflang="en" href="conteudos.html">
+<link rel="alternate" hreflang="x-default" href="../conteudos.html">
+<script>/* idioma: lembra a escolha do visitante e abre as páginas sempre nesse idioma */(function(){try{var K='site-lang',d=document.documentElement,here=(d.lang||'').indexOf('en')===0?'en':'pt',pref=localStorage.getItem(K);if(pref&&pref!==here&&!/[?&]lang=/.test(location.search)){var alt=document.querySelector('link[rel=alternate][hreflang="'+(pref==='en'?'en':'pt-BR')+'"]');if(alt){location.replace(alt.href+location.hash);return;}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem(K,a.getAttribute('data-lang'));}catch(_){}}},true);}catch(e){}})();</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="brandmark">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/></g></svg>
+      <span>Alan Lemos</span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="sobre.html">About</a>
+      <a href="servicos.html">Services</a>
+      <a href="produtos.html">Products</a>
+      <a href="conteudos.html" class="active">Content</a>
+      <a href="../conteudos.html" class="lang-switch" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a>
+      <a href="vamos-colaborar.html" class="btn btn-primary" style="padding:9px 18px; font-size:12.5px;">Let's work together</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:44px;">
+  <div class="wrap" style="max-width:720px;">
+    <span class="eyebrow">Logbook</span>
+    <h1 class="hero-title">Content</h1>
+    <p class="hero-lede">Stories, lessons and behind-the-scenes notes on project management, products, data and applied AI.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="card-grid content-grid">
+      <a href="conteudos/lovable-day.html" class="p-card">
+        <div class="thumb"><img src="../assets/conteudos/lovable-day-capa.jpg" alt="Lovable Day badge with Alan Lemos&#x27;s name, with the event stage in the background" loading="lazy"></div>
+        <div class="body">
+          <div class="tags"><span class="tag">AI</span><span class="tag">Events</span></div>
+          <div class="post-meta">Oct 19, 2026 · 5 min read</div>
+          <h3>From an internal AI project to Lovable Day</h3>
+          <p>How an internal AI project competition took me to Lovable Day in São Paulo, and 7 lessons I brought back.</p>
+          <div class="cta">Read →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="tinted">
+  <div class="wrap" style="text-align:center; max-width:560px;">
+    <span class="eyebrow">Follow along</span>
+    <h2 class="section-title" style="margin:12px 0 16px;">New content arrives here and on LinkedIn</h2>
+    <p class="section-lede" style="margin:0 auto 24px;">Follow me on LinkedIn to see the next posts as soon as they're out.</p>
+    <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener" class="btn btn-navy">Follow on LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fmark">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/></g></svg>
+      <span>Alan Lemos</span>
+    </div>
+    <div class="flinks">
+      <a href="mailto:contato@alanlemos.com.br">contato@alanlemos.com.br</a>
+      <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener">LinkedIn</a>
+      <span>Fortaleza, CE</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/delight.js?v=20261029a" defer></script>
+</body>
+</html>

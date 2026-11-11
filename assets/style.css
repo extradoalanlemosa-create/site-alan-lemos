@@ -560,3 +560,12 @@ nav.main-nav a::after{height:2px; border-radius:2px; background:var(--grad);}
 .func-highlights strong{color:var(--ink);}
 .func-tools{font-size:14.5px; color:var(--ink); margin:0 0 16px;}
 .func-tools .eyebrow{margin-right:8px;}
+
+/* ===== Seletor de idioma (PT / EN) ===== */
+nav.main-nav a.lang-switch{display:inline-flex; align-items:center; gap:6px; padding:6px 11px; border:1px solid var(--line-strong);
+  border-radius:999px; font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.06em; color:var(--ink-soft);}
+nav.main-nav a.lang-switch::after{display:none;}
+nav.main-nav a.lang-switch:hover{color:var(--terracotta); border-color:var(--terracotta);}
+@media (max-width:980px){
+  nav.main-nav a.lang-switch{align-self:flex-start; margin-top:16px; padding:8px 14px; font-size:13px; border-bottom:1px solid var(--line-strong);}
+}

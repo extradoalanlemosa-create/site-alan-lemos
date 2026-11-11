@@ -13,6 +13,10 @@
    =================================================================== */
 (function () {
   "use strict";
+  var EN = (document.documentElement.lang || "").indexOf("en") === 0;
+  var TXT = EN
+    ? { open: "Open menu", close: "Close menu", top: "Back to top", tip: "reel the tape back in · back to top" }
+    : { open: "Abrir menu", close: "Fechar menu", top: "Voltar ao topo", tip: "recolher a trena · voltar ao topo" };
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var G1 = "#C1502E", G2 = "#F0A35E", G3 = "#9DB4E8", INK = "#2B3540";
   var GRAD = "linear-gradient(140deg," + G1 + " 0%," + G2 + " 50%," + G3 + " 100%)";
@@ -143,7 +147,7 @@
     btn.type = "button";
     btn.className = "menu-toggle";
     btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-label", "Abrir menu");
+    btn.setAttribute("aria-label", TXT.open);
     if (!nav.id) nav.id = "menu-principal";
     btn.setAttribute("aria-controls", nav.id);
     btn.innerHTML = "<span></span><span></span>";
@@ -151,7 +155,7 @@
     function set(open) {
       topbar.classList.toggle("nav-open", open);
       btn.setAttribute("aria-expanded", open ? "true" : "false");
-      btn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      btn.setAttribute("aria-label", open ? TXT.close : TXT.open);
     }
     btn.addEventListener("click", function () { set(!topbar.classList.contains("nav-open")); });
     nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
@@ -254,7 +258,7 @@
     tape.innerHTML =
       '<div class="dl-blade"></div>' +
       '<div class="dl-end">' + END_SVG + "</div>" +
-      '<button type="button" class="dl-case" aria-label="Voltar ao topo">' + CASE_SVG + '<span class="dl-tip">recolher a trena · voltar ao topo</span></button>';
+      '<button type="button" class="dl-case" aria-label="' + TXT.top + '">' + CASE_SVG + '<span class="dl-tip">' + TXT.tip + '</span></button>';
     var blade = tape.querySelector(".dl-blade");
     var end = tape.querySelector(".dl-end");
     var hand = tape.querySelector(".dl-end svg");
@@ -263,7 +267,7 @@
     var dot = document.createElement("button");
     dot.type = "button";
     dot.className = "dl-dot";
-    dot.setAttribute("aria-label", "Voltar ao topo");
+    dot.setAttribute("aria-label", TXT.top);
     dot.innerHTML =
       '<svg viewBox="0 0 46 46" aria-hidden="true"><defs>' +
       '<linearGradient id="dl-dg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="' + G1 + '"/><stop offset=".55" stop-color="' + G2 + '"/><stop offset="1" stop-color="' + G3 + '"/></linearGradient>' +

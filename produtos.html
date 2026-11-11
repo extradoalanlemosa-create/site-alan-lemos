@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261027a">
+<link rel="stylesheet" href="assets/style.css?v=20261029a">
 <style>
   /* Destaque do My Fit Pepe com o vídeo promocional */
   .pp-feature .wrap{display:grid; grid-template-columns:300px 1fr; gap:72px; align-items:center;}
@@ -53,6 +53,10 @@
     .ms-steps{grid-template-columns:1fr; margin-top:36px;}
   }
 </style>
+<link rel="alternate" hreflang="pt-BR" href="produtos.html">
+<link rel="alternate" hreflang="en" href="en/produtos.html">
+<link rel="alternate" hreflang="x-default" href="produtos.html">
+<script>/* idioma: lembra a escolha do visitante e abre as páginas sempre nesse idioma */(function(){try{var K='site-lang',d=document.documentElement,here=(d.lang||'').indexOf('en')===0?'en':'pt',pref=localStorage.getItem(K);if(pref&&pref!==here&&!/[?&]lang=/.test(location.search)){var alt=document.querySelector('link[rel=alternate][hreflang="'+(pref==='en'?'en':'pt-BR')+'"]');if(alt){location.replace(alt.href+location.hash);return;}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem(K,a.getAttribute('data-lang'));}catch(_){}}},true);}catch(e){}})();</script>
 </head>
 <body>
 
@@ -69,6 +73,7 @@
       <a href="servicos.html">Serviços</a>
       <a href="produtos.html" class="active">Produtos</a>
       <a href="conteudos.html">Conteúdos</a>
+      <a href="en/produtos.html" class="lang-switch" data-lang="en" hreflang="en" lang="en" title="Read in English" aria-label="Read in English"><span aria-hidden="true">🌐</span> EN</a>
       <a href="vamos-colaborar.html" class="btn btn-primary" style="padding:9px 18px; font-size:12.5px;">Vamos colaborar?</a>
     </nav>
   </div>
@@ -215,6 +220,6 @@
   </div>
 </footer>
 
-<script src="assets/delight.js?v=20261027a" defer></script>
+<script src="assets/delight.js?v=20261029a" defer></script>
 </body>
 </html>

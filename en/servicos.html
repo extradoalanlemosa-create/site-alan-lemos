@@ -8,18 +8,18 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=20261029a">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=20261118a">
 <style>
   /* vitrine de exemplos */
   .showcase{display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:center; padding:36px 0; border-top:1px solid var(--line);}
   .showcase:first-of-type{border-top:none; padding-top:0;}
   .showcase.flip .shot{order:2;}
-  .showcase .shot{display:block; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper-2); box-shadow:0 18px 40px -22px rgba(27,42,56,.35); transition:transform .2s ease, box-shadow .2s ease;}
-  .showcase .shot:hover{transform:translateY(-3px); box-shadow:0 24px 48px -22px rgba(27,42,56,.4);}
+  .showcase .shot{display:block; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper-2); box-shadow:none; transition:transform .2s ease, box-shadow .2s ease;}
+  .showcase .shot:hover{ box-shadow:none;}
   .showcase .shot img{display:block; width:100%; aspect-ratio:1100/650; object-fit:cover;}
-  .showcase .kind{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--terracotta);}
-  .showcase h3{font-family:'Fraunces', serif; font-weight:500; font-size:28px; line-height:1.15; color:var(--navy); margin:8px 0 12px;}
+  .showcase .kind{font-family:var(--sans); font-size:12px; letter-spacing:.06em; text-transform:none; color:var(--terracotta);}
+  .showcase h3{font-family:var(--sans); font-weight:500; font-size:28px; line-height:1.15; color:var(--navy); margin:8px 0 12px;}
   .showcase p{color:var(--ink-soft); font-size:15px; margin-bottom:14px;}
   .feat{list-style:none; display:grid; gap:7px; margin:0 0 22px;}
   .feat li{position:relative; padding-left:18px; font-size:14px; color:var(--ink);}
@@ -30,8 +30,8 @@
   /* passos */
   .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; counter-reset:step;}
   .step{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px;}
-  .step::before{counter-increment:step; content:"0" counter(step); font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--terracotta);}
-  .step h3{font-family:'Fraunces', serif; font-weight:500; font-size:19px; color:var(--navy); margin:8px 0 6px;}
+  .step::before{counter-increment:step; content:"0" counter(step); font-family:var(--sans); font-size:12px; color:var(--terracotta);}
+  .step h3{font-family:var(--sans); font-weight:500; font-size:19px; color:var(--navy); margin:8px 0 6px;}
   .step p{font-size:14px; color:var(--ink-soft);}
 
   .offer-list{list-style:none; display:grid; gap:6px; margin:4px 0 0;}
@@ -232,6 +232,6 @@
   </div>
 </footer>
 
-<script src="../assets/delight.js?v=20261029a" defer></script>
+<script src="../assets/delight.js?v=20261118a" defer></script>
 </body>
 </html>

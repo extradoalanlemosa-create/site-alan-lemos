@@ -7,7 +7,7 @@
 <title>Lean Efficiency in Construction Award · Alan Lemos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -20,7 +20,7 @@
   --ink:#22201C;
   --terracotta:#C48A5A;
   --terracotta-d:#AD744A;
-  --font-display:'Fraunces',serif;
+  --font-display:var(--sans);
   --font-body:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth}
@@ -40,7 +40,7 @@ img{max-width:100%;display:block}
 /* HERO / HEADER DO PROJETO */
 .project-hero{padding:36px 0 44px;border-bottom:1px solid var(--line)}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:none;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
 .h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,48px);line-height:1.12;color:var(--navy);max-width:18ch;margin-bottom:16px}
 .hero-sub{color:var(--stone);font-size:16px;max-width:56ch;margin-bottom:22px}
 .client-badge{display:flex;align-items:center;gap:9px;margin-bottom:26px}
@@ -57,14 +57,14 @@ img{max-width:100%;display:block}
 /* SECTIONS */
 section{padding:56px 0}
 .section-line{border-top:1px solid var(--line)}
-.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--terracotta-d);margin-bottom:10px}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:none;color:var(--terracotta-d);margin-bottom:10px}
 .section-title{font-family:var(--font-display);font-weight:500;font-size:28px;color:var(--navy);margin-bottom:36px;max-width:26ch}
 
 /* PROBLEMA -> SOLUCAO -> RESULTADO */
 .psr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
 .psr-card{padding:30px 28px;position:relative}
 .psr-card + .psr-card{border-left:1px solid var(--line)}
-.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:none;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .psr-num::before{content:'';width:16px;height:1px;background:var(--terracotta)}
 .psr-heading{font-family:var(--font-display);font-size:19px;color:var(--navy);margin-bottom:12px;font-weight:500}
 .psr-text{font-size:14.5px;color:#5b584f;line-height:1.7}
@@ -82,7 +82,7 @@ section{padding:56px 0}
 
 /* DEMO FRAME */
 .demo-intro{max-width:62ch;color:#5b584f;font-size:15px;margin-bottom:28px}
-.browser-chrome{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25)}
+.browser-chrome{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;box-shadow:none}
 .chrome-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--paper-dim);border-bottom:1px solid var(--line)}
 .chrome-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
 .chrome-url{flex:1;text-align:center;font-size:11.5px;color:var(--stone);font-family:var(--font-body)}
@@ -140,7 +140,7 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
       </span>
       Alan Lemos
     </a>
-    <a href="../portfolio.html" class="back-link">← Back to portfolio</a><a href="../../projetos/projeto-premio-lean.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
+    <a href="../portfolio.html" class="back-link">← Back to portfolio</a><a href="../../projetos/projeto-premio-lean.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
 </div>
 
 <div class="wrap">
@@ -259,6 +259,6 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 <footer>Alan Lemos · Planning and management of projects, products and data with applied AI.</footer>
 
 
-<script src="../../assets/delight.js?v=20261029a" defer></script>
+<script src="../../assets/delight.js?v=20261118a" defer></script>
 </body>
 </html>

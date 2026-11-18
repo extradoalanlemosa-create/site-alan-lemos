@@ -7,7 +7,7 @@
 <title>Smart Support App for Zendesk · Alan Lemos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -20,7 +20,7 @@
   --ink:#22201C;
   --terracotta:#C48A5A;
   --terracotta-d:#AD744A;
-  --font-display:'Fraunces',serif;
+  --font-display:var(--sans);
   --font-body:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth}
@@ -40,7 +40,7 @@ img{max-width:100%;display:block}
 /* HERO / HEADER DO PROJETO */
 .project-hero{padding:36px 0 44px;border-bottom:1px solid var(--line)}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:none;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
 .h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,48px);line-height:1.12;color:var(--navy);max-width:16ch;margin-bottom:16px}
 .hero-sub{color:var(--stone);font-size:16px;max-width:52ch;margin-bottom:28px}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap}
@@ -53,14 +53,14 @@ img{max-width:100%;display:block}
 /* SECTIONS */
 section{padding:56px 0}
 .section-line{border-top:1px solid var(--line)}
-.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--terracotta-d);margin-bottom:10px}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:none;color:var(--terracotta-d);margin-bottom:10px}
 .section-title{font-family:var(--font-display);font-weight:500;font-size:28px;color:var(--navy);margin-bottom:36px;max-width:24ch}
 
 /* PROBLEMA -> SOLUCAO -> RESULTADO */
 .psr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
 .psr-card{padding:30px 28px;position:relative}
 .psr-card + .psr-card{border-left:1px solid var(--line)}
-.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:none;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .psr-num::before{content:'';width:16px;height:1px;background:var(--terracotta)}
 .psr-heading{font-family:var(--font-display);font-size:19px;color:var(--navy);margin-bottom:12px;font-weight:500}
 .psr-text{font-size:14.5px;color:#5b584f;line-height:1.7}
@@ -78,7 +78,7 @@ section{padding:56px 0}
 
 /* DEMO FRAME */
 .demo-intro{max-width:58ch;color:#5b584f;font-size:15px;margin-bottom:28px}
-.browser-chrome{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -30px rgba(28,36,48,.25)}
+.browser-chrome{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;box-shadow:none}
 .chrome-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--paper-dim);border-bottom:1px solid var(--line)}
 .chrome-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
 .chrome-url{flex:1;text-align:center;font-size:11.5px;color:var(--stone);font-family:var(--font-body)}
@@ -129,12 +129,12 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 #demoEmbed .bgr{background:#38a169;color:#fff}#demoEmbed .bgr:hover:not(:disabled){background:#2f855a}
 #demoEmbed .bgy{background:var(--g2);color:var(--g7)}#demoEmbed .bgy:hover:not(:disabled){background:var(--g3)}
 #demoEmbed .dhdr{background:#111;padding:0 12px;display:flex;align-items:center;height:42px;gap:10px}
-#demoEmbed .dhdr-tag{font-size:10px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+#demoEmbed .dhdr-tag{font-size:10px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:.4px;text-transform:none}
 #demoEmbed .dhdr-name{color:#fff;font-size:12px;font-weight:700}
 #demoEmbed .ticker{background:var(--orl);border-bottom:1px solid var(--orb);padding:7px 12px;font-size:11.5px;color:var(--ord);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px}
-#demoEmbed .sbadge{font-size:9.5px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:rgba(241,90,41,.15);color:var(--or)}
+#demoEmbed .sbadge{font-size:9.5px;font-weight:700;text-transform:none;padding:2px 7px;border-radius:20px;background:rgba(241,90,41,.15);color:var(--or)}
 #demoEmbed .dmain{padding:10px}
-#demoEmbed .lbl{font-size:10px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px}
+#demoEmbed .lbl{font-size:10px;font-weight:700;color:var(--g5);text-transform:none;letter-spacing:.4px;display:block;margin-bottom:4px}
 #demoEmbed .card{background:var(--g1);border:1px solid var(--g3);border-radius:8px;padding:10px;margin-bottom:8px}
 #demoEmbed .mb6{margin-bottom:6px}#demoEmbed .mb8{margin-bottom:8px}
 #demoEmbed .tabs{display:flex;border-bottom:2px solid var(--g2);margin-bottom:10px;overflow-x:auto}
@@ -180,7 +180,7 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
       </span>
       Alan Lemos
     </a>
-    <a href="../portfolio.html" class="back-link">← Back to portfolio</a><a href="../../projetos/projeto-zendesk.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
+    <a href="../portfolio.html" class="back-link">← Back to portfolio</a><a href="../../projetos/projeto-zendesk.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
 </div>
 
 <div class="wrap">
@@ -442,6 +442,6 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 })();
 </script>
 
-<script src="../../assets/delight.js?v=20261029a" defer></script>
+<script src="../../assets/delight.js?v=20261118a" defer></script>
 </body>
 </html>

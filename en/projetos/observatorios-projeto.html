@@ -7,7 +7,7 @@
 <title>Project Observatory Design Guide | Alan Lemos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#FBFAF7;
@@ -21,7 +21,7 @@
     --line:#E2DBCD;
     --muted:#7A766B;
 
-    --serif:'Fraunces',serif;
+    --serif:var(--sans);
     --sans:'Inter',sans-serif;
 
     --content-w:1120px;
@@ -76,7 +76,7 @@
     display:grid; grid-template-columns:1.35fr 1fr; gap:64px; align-items:start;
   }
   .eyebrow{
-    font-size:12.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+    font-size:12.5px; font-weight:600; letter-spacing:.14em; text-transform:none;
     color:var(--terracotta); margin:0 0 18px;
   }
   h1.title{
@@ -101,9 +101,9 @@
     white-space:nowrap;
   }
   .btn-primary{background:var(--terracotta); color:#fff; border:1px solid var(--terracotta);}
-  .btn-primary:hover{background:var(--terracotta-deep); border-color:var(--terracotta-deep); transform:translateY(-1px); box-shadow:0 8px 20px -8px rgba(162,78,34,.55);}
+  .btn-primary:hover{background:var(--terracotta-deep); border-color:var(--terracotta-deep);  box-shadow:0 8px 20px -8px rgba(162,78,34,.55);}
   .btn-secondary{background:transparent; color:var(--navy); border:1px solid var(--navy);}
-  .btn-secondary:hover{background:var(--navy); color:#fff; transform:translateY(-1px);}
+  .btn-secondary:hover{background:var(--navy); color:#fff; }
   .btn:focus-visible{outline:2px solid var(--terracotta); outline-offset:3px;}
   .btn svg{flex-shrink:0;}
 
@@ -113,7 +113,7 @@
     padding:22px; margin-top:6px;
   }
   .triad-label{
-    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:none;
     color:var(--muted); margin:0 0 16px;
   }
   .triad-block{
@@ -137,10 +137,10 @@
   /* ---------- FEATURED IMAGE ---------- */
   .feature{max-width:var(--content-w); margin:56px auto 0; padding:0 var(--edge);}
   .feature-frame{
-    position:relative; border-radius:16px; overflow:hidden;
+    position:relative; border-radius:4px; overflow:hidden;
     aspect-ratio:16/8.2; background:
-      repeating-linear-gradient(135deg, #EFEAE0, #EFEAE0 12px, #F5F1E8 12px, #F5F1E8 24px);
-    border:1px dashed #C9C2B2;
+      #F6F7F9;
+    border:1px dashed #CDD3DC;
     display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;
   }
   .feature-frame .icon{
@@ -157,7 +157,7 @@
   .story{max-width:var(--content-w); margin:80px auto 0; padding:0 var(--edge);}
   .section-head{margin-bottom:40px;}
   .section-kicker{
-    font-size:12.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+    font-size:12.5px; font-weight:600; letter-spacing:.14em; text-transform:none;
     color:var(--terracotta); margin:0 0 10px;
   }
   h2.section-title{
@@ -176,7 +176,7 @@
   }
   .step-marker span{
     display:block; font-family:var(--sans); font-size:11px; font-weight:600;
-    letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:6px;
+    letter-spacing:.1em; text-transform:none; color:var(--muted); margin-top:6px;
   }
   .step h3{
     font-family:var(--serif); font-weight:500; font-size:22px; color:var(--navy);
@@ -207,14 +207,14 @@
     padding:30px; display:flex; flex-direction:column; gap:16px;
     transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
   }
-  .dl-card:hover{border-color:var(--terracotta); box-shadow:0 14px 30px -18px rgba(30,43,58,.35); transform:translateY(-2px);}
+  .dl-card:hover{border-color:var(--terracotta); box-shadow:none; }
   .dl-icon{
     width:44px; height:44px; border-radius:10px; background:var(--navy);
     display:flex; align-items:center; justify-content:center;
   }
   .dl-card.zenodo .dl-icon{background:var(--terracotta);}
   .dl-meta{
-    font-size:11.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+    font-size:11.5px; font-weight:600; letter-spacing:.09em; text-transform:none;
     color:var(--muted); margin:0;
   }
   .dl-card h3{font-family:var(--serif); font-weight:500; font-size:20px; color:var(--navy); margin:0;}
@@ -307,7 +307,7 @@
   }
   .rc-head{
     font-size:11.5px; font-weight:700; letter-spacing:.03em; color:#111214;
-    text-transform:uppercase; border-bottom:1.5px solid #17181A;
+    text-transform:none; border-bottom:1.5px solid #17181A;
     padding:0 0 5px 4px; margin-bottom:10px; align-self:end;
   }
   .rc-cell{
@@ -399,7 +399,7 @@
   <a class="back-link" href="../portfolio.html">
     <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Back to portfolio
-  </a><a href="../../projetos/observatorios-projeto.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
+  </a><a href="../../projetos/observatorios-projeto.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
 
 <header class="hero">
   <div class="hero-grid">
@@ -731,6 +731,6 @@
   }
 </script>
 
-<script src="../../assets/delight.js?v=20261029a" defer></script>
+<script src="../../assets/delight.js?v=20261118a" defer></script>
 </body>
 </html>

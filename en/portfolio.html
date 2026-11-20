@@ -46,7 +46,7 @@
 <section style="padding-top:0;">
   <div class="wrap">
     <div class="pf-tabs" role="tablist" aria-label="Project types">
-      <button type="button" role="tab" id="tab-empresa" aria-controls="painel-empresa" aria-selected="true" class="pf-tab">At work <span class="pf-count">4</span></button>
+      <button type="button" role="tab" id="tab-empresa" aria-controls="painel-empresa" aria-selected="true" class="pf-tab">At work <span class="pf-count">7</span></button>
       <button type="button" role="tab" id="tab-pessoais" aria-controls="painel-pessoais" aria-selected="false" class="pf-tab">Personal projects <span class="pf-count">3</span></button>
     </div>
 
@@ -107,6 +107,48 @@
           </dl>
           <ul class="case-tools" aria-label="Tools"><li>Supabase</li><li>SQL</li><li>JavaScript</li><li>CloudChat</li></ul>
           <div class="case-actions"><a class="btn btn-primary" href="projetos/painel-atendimento.html">See the full case</a><a class="btn btn-ghost" href="projetos/painel-atendimento.html#demo">Try the dashboard</a></div>
+        </div>
+      </article>
+      <article class="case" id="solicitacoes">
+        <a class="case-media" href="projetos/solicitacoes.html" tabindex="-1" aria-hidden="true"><img src="../assets/thumb-solicitacoes.png" alt="Kanban of the ticket queue with made-up data" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Support management</span><span class="tag">Processes</span></div>
+          <h3 class="case-title"><a href="projetos/solicitacoes.html">Support ticket queue with SLA</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>Tickets arrived by email with no single view of who needed to act, what was with the tech team and which deadlines had passed.</dd></div>
+            <div><dt>What I did</dt><dd>I defined the statuses and the priority and deadline rules per tag and built the queue, with list, Kanban, ticket view and Jira link.</dd></div>
+            <div><dt>Result</dt><dd>Every ticket shows whether it is on time, late or paused, and the deadline only pauses while the team waits for the customer.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>Supabase</li><li>CloudChat</li><li>Jira</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/solicitacoes.html">See the full case</a><a class="btn btn-ghost" href="projetos/solicitacoes.html#demo">Try the queue</a></div>
+        </div>
+      </article>
+      <article class="case" id="central-ajuda">
+        <a class="case-media" href="projetos/central-ajuda.html" tabindex="-1" aria-hidden="true"><img src="../assets/thumb-central-ajuda.png" alt="Help center home page with made-up data" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Customer experience</span><span class="tag">Self-service</span></div>
+          <h3 class="case-title"><a href="projetos/central-ajuda.html">Curated help center</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>The help portal mixed drafts, outdated articles and internal content, with links to systems the company no longer used.</dd></div>
+            <div><dt>What I did</dt><dd>I defined the publishing rules and built the help center: sync, publish, feature and hide, accent-insensitive search and ticket tracking for customers.</dd></div>
+            <div><dt>Result</dt><dd>Customers only see what was published, enforced by the database, and publishing freezes the approved version.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>Supabase</li><li>Edge Functions</li><li>React</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/central-ajuda.html">See the full case</a><a class="btn btn-ghost" href="projetos/central-ajuda.html#demo">Try the help center</a></div>
+        </div>
+      </article>
+      <article class="case" id="conversas">
+        <a class="case-media" href="projetos/conversas.html" tabindex="-1" aria-hidden="true"><img src="../assets/thumb-conversas.png" alt="Conversations inbox with made-up data" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">AI customer support</span><span class="tag">WhatsApp</span></div>
+          <h3 class="case-title"><a href="projetos/conversas.html">Support conversations inbox</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problem</dt><dd>To reply to a customer and open a ticket, the team switched between the chat tool, the queue and spreadsheets, losing context along the way.</dd></div>
+            <div><dt>What I did</dt><dd>I defined the access and sending rules and built the inbox: filters, full conversation, WhatsApp templates, internal notes, AI writing tools and tickets from the conversation.</dd></div>
+            <div><dt>Result</dt><dd>Conversation, linked tickets and history stay together, and the AI suggests and summarizes without sending anything on its own.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Tools"><li>CloudChat</li><li>React</li><li>Supabase</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/conversas.html">See the full case</a><a class="btn btn-ghost" href="projetos/conversas.html#demo">Try the inbox</a></div>
         </div>
       </article>
       </div>

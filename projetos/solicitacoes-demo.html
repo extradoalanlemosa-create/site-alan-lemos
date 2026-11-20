@@ -328,14 +328,14 @@ function render(){
   if(S.modo==="lista")renderLista(L,agora);else renderKanban(V.filter(bate),agora);
   if(S.aberto)renderSheet(agora);
 }
-const COLS=[["id","Nº"],["status","Status"],["sol","Solicitação"],["tipo","Tipo"],["empresa","Empresa"],["obra","Obra"],["nome","Solicitante"],["prio","Prioridade"],["urg","Prazo"],["prim","1ª resposta"],["ult","Última interação"],["atd","Atendente"],["csm","CSM"],["jira","Jira"]];
+const COLS=[["id","Nº"],["status","Status"],["sol","Solicitação"],["tipo","Tipo"],["empresa","Empresa"],["obra","Obra"],["nome","Solicitante"],["prio","Prioridade"],["urg","Prazo"],["prim","1ª resposta"],["ult","Última interação"],["atd","Responsável"],["csm","CSM"],["jira","Jira"]];
 function chaveOrd(c,k,agora){switch(k){case"urg":return ordem(c,agora);case"prio":return PRIO_ORD[prioDe(c.tags)];case"sol":return norm(curto(c));case"tipo":return c.tags.length?parseTag(melhorTag(c.tags)).tipo:"~";case"ult":return-(c.ult?c.ult.em:0);case"atd":return c.atendente||"~";case"jira":return c.jira[0]||"~";case"prim":return c.prim?c.prim-c.criado:9e15;default:return c[k]??"~"}}
 function cmp(a,b){if(Array.isArray(a)){for(let i=0;i<a.length;i++){if(a[i]!==b[i])return a[i]<b[i]?-1:1}return 0}return a<b?-1:a>b?1:0}
 function renderLista(L,agora){
   const arr=L.slice().sort((a,b)=>cmp(chaveOrd(a,S.ord,agora),chaveOrd(b,S.ord,agora))*S.dir);
   const tam=25,pags=Math.max(1,Math.ceil(arr.length/tam));if(S.pag>=pags)S.pag=pags-1;const vis=arr.slice(S.pag*tam,S.pag*tam+tam);
   const pr=p=>`<span class="pl ${{Urgente:"p-urg",Alta:"p-alta","Média":"p-media",Baixa:"p-baixa"}[p]}">${p}</span>`;
-  const ult=c=>c.ult?`${{cliente:"Cliente",atendente:"Atendente",sistema:"Sistema"}[c.ult.de]}<span class="sub">há ${dd(agora-c.ult.em)}</span>`:"—";
+  const ult=c=>c.ult?`${{cliente:"Cliente",atendente:"Equipe",sistema:"Sistema"}[c.ult.de]}<span class="sub">há ${dd(agora-c.ult.em)}</span>`:"—";
   $("#view").innerHTML=`<div class="tw"><table><thead><tr>${COLS.map(([k,l])=>`<th class="${k==="sol"?"stk c-sol":""}"><button data-o="${k}">${l}${S.ord===k?(S.dir>0?" ↑":" ↓"):""}</button></th>`).join("")}</tr></thead><tbody>`+
   (vis.length?vis.map(c=>{const t=c.tags.length?parseTag(melhorTag(c.tags)):null;return`<tr class="cl" data-id="${c.id}" tabindex="0">
     <td><span class="num">#${c.id}</span>${c.origem?`<span class="sub">da conversa #${c.origem}</span>`:""}</td><td>${STATUS[c.status]}</td>

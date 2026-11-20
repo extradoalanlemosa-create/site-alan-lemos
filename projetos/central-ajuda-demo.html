@@ -312,7 +312,7 @@ Medições, inspeções e consulta de tarefas.
 
 ## O que precisa de internet
 Relatórios, importação de cronograma e convites.`);
-art(7,"Como falar com o suporte","Canais e horários",`## Canais
+art(7,"Como falar com a nossa equipe","Canais e horários",`## Canais
 Chat no aplicativo, WhatsApp e e-mail.
 
 ## Horário
@@ -372,7 +372,7 @@ function home(){
   return`<header class="hero"><div class="in"><span class="badge">Central de ajuda</span><h1>Como podemos <em>ajudar</em>?</h1><p>Guias passo a passo para tirar o máximo do aplicativo de obras.</p>
   <label class="big">${icon.busca}<input type="search" id="bs" placeholder="Busque por um assunto, ex.: criar inspeção" aria-label="Buscar artigos"></label></div></header>
   <div class="wrap">${cur()?curBanner():""}
-  <div class="track"><span class="ic">📥</span><div><b>Acompanhe suas solicitações</b><p>Veja o status dos chamados abertos por você com o suporte.</p></div><a href="#/chamados">Ver meus chamados ›</a></div>
+  <div class="track"><span class="ic">📥</span><div><b>Acompanhe suas solicitações</b><p>Veja o status dos chamados abertos por você com a nossa equipe.</p></div><a href="#/chamados">Ver meus chamados ›</a></div>
   ${destaques.length?`<p class="eb">Mais procurados</p><h2 class="h2">Em destaque</h2><div class="feat">${destaques.map(a=>`<a href="#/a/${a.id}"><b>${esc(a.titulo)}</b><span>${esc(a.desc)}</span></a>`).join("")}</div>`:""}
   <p class="eb">Explore por assunto</p><h2 class="h2">Categorias</h2>
   <div class="cats">${cats.map((c,i)=>{const n=artsDe(c.id).length;return`<article class="cat ${c.hidden?"hid":""}"><span class="ic" aria-hidden="true">${c.ic}</span>
@@ -397,7 +397,7 @@ function busca(q){const termos=norm(q).split(/\s+/).filter(Boolean);
     const rank=termos.reduce((s,t)=>s+(norm(a.titulo).includes(t)?3:0)+(txt.split(t).length-1),0);return ok?{a,rank}:null}).filter(Boolean).sort((x,y)=>y.rank-x.rank).slice(0,30)}
   const trecho=a=>{const plano=(a.pubMd||a.md).replace(/[#*:|>+`\[\]()]/g," ").replace(/\s+/g," ");const p=norm(plano).indexOf(termos[0]||"");const ini=Math.max(0,p-50);let s=esc(plano.slice(ini,ini+150));termos.forEach(t=>{const re=new RegExp("("+t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");s=s.replace(re,"<mark>$1</mark>")});return(ini?"…":"")+s+"…"};
   return`<header class="hero sm"><div class="in"><span class="badge">Busca</span><h1 style="font-size:26px">Resultados para “${esc(q)}”</h1><p>${q.trim().length<2?"Digite pelo menos 2 letras.":res.length+" artigo"+(res.length===1?"":"s")+(cur()?" no acervo inteiro (equipe)":" publicados")}</p></div></header>
-  <div class="wrap">${res.length?`<div class="res">${res.map(({a})=>{const[k,l]=status(a);return`<a href="#/a/${a.id}"><b>${esc(a.titulo)}</b>${cur()?` <span class="st ${k}">${l}</span>`:""}<p>${trecho(a)}</p></a>`}).join("")}</div>`:q.trim().length>=2?`<div class="empty">Nenhum artigo encontrado. Tente outra palavra ou <a href="#/chamados" style="color:var(--accent-strong)">fale com o suporte</a>.</div>`:""}</div>`}
+  <div class="wrap">${res.length?`<div class="res">${res.map(({a})=>{const[k,l]=status(a);return`<a href="#/a/${a.id}"><b>${esc(a.titulo)}</b>${cur()?` <span class="st ${k}">${l}</span>`:""}<p>${trecho(a)}</p></a>`}).join("")}</div>`:q.trim().length>=2?`<div class="empty">Nenhum artigo encontrado. Tente outra palavra ou <a href="#/chamados" style="color:var(--accent-strong)">fale com a nossa equipe</a>.</div>`:""}</div>`}
 function chamados(){return`<header class="hero sm"><div class="in"><span class="badge">Meus chamados</span><h1 style="font-size:28px">Suas solicitações</h1><p>${cur()?"Pré-visualização como o cliente Marina Teixeira (Alfa Construtora) vê.":"Chamados em que você participa."}</p></div></header>
   <div class="wrap"><div class="tw"><table class="tb"><thead><tr><th>Nº</th><th>Assunto</th><th>Empresa</th><th>Obra</th><th>Aberto em</th><th>Status</th></tr></thead><tbody>${CHAMADOS.map(c=>`<tr><td><b>#${c.id}</b></td><td>${esc(c.titulo)}</td><td>${esc(c.empresa)}</td><td>${esc(c.obra)}</td><td>${c.em}</td><td><span class="st ${c.status==="Resolvido"?"pub":c.status==="Aberto"?"mud":"ras"}">${c.status}</span></td></tr>`).join("")}</tbody></table></div>
   <p style="font-size:12.5px;color:var(--muted);margin-top:10px">O cliente vê só número, assunto, empresa, obra, data e status: nunca notas internas, prioridade ou o Jira.</p></div>`}

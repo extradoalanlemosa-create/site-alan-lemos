@@ -133,7 +133,7 @@ dialog::backdrop{background:var(--scrim)}
 <div class="shell" id="shell">
   <section class="lw" aria-label="Lista de conversas">
     <div class="lf">
-      <div class="r"><select id="fCaixa" aria-label="Caixa de entrada"><option value="">Todas as caixas</option><option value="101">Atendimento | WhatsApp</option><option value="102">Chat do site</option><option value="104">Suporte N2 | WhatsApp</option></select>
+      <div class="r"><select id="fCaixa" aria-label="Caixa de entrada"><option value="">Todas as caixas</option><option value="101">Relacionamento | WhatsApp</option><option value="102">Chat do site</option><option value="104">Especialistas N2 | WhatsApp</option></select>
       <select id="fAtr" aria-label="Atribuição"><option value="me">Minhas</option><option value="un">Sem responsável</option><option value="all" selected>Todas</option></select></div>
       <div class="seg" role="group" aria-label="Status" id="fSt"><button data-s="open" aria-pressed="true">Abertas</button><button data-s="pending" aria-pressed="false">Pendentes</button><button data-s="resolved" aria-pressed="false">Resolvidas</button><button data-s="all" aria-pressed="false">Todas</button></div>
       <input type="search" id="fBusca" placeholder="Buscar (mín. 3 letras)" aria-label="Buscar conversas">
@@ -149,7 +149,7 @@ dialog::backdrop{background:var(--scrim)}
 "use strict";
 const ME={id:7,nome:"Você (demo)"};
 const AGENTES=[{id:7,nome:"Você (demo)"},{id:8,nome:"Bruno Lima"},{id:9,nome:"Fernanda Melo"},{id:1,nome:"ClaudIA (IA)"}];
-const CAIXAS={101:{nome:"Atendimento | WhatsApp",t:"wa"},102:{nome:"Chat do site",t:"web"},104:{nome:"Suporte N2 | WhatsApp",t:"wa"}};
+const CAIXAS={101:{nome:"Relacionamento | WhatsApp",t:"wa"},102:{nome:"Chat do site",t:"web"},104:{nome:"Especialistas N2 | WhatsApp",t:"wa"}};
 const NOW=Date.now(),M=60e3,H=60*M;
 let MID=50000;
 const m=(o)=>Object.assign({id:++MID,privada:false,anexo:null,status:null,respondeA:null},o);
@@ -158,7 +158,7 @@ const C=[
   m({o:"cli",a:"Marina Teixeira",em:NOW-62*M,t:"Bom dia! Não consigo abrir o relatório da obra"}),
   m({o:"ia",a:"ClaudIA",em:NOW-61*M,t:"Bom dia, Marina! Em Relatórios › Semanal, escolha a obra e toque em Gerar. Se continuar carregando, me mande um print da tela.",status:"read"}),
   m({o:"cli",a:"Marina Teixeira",em:NOW-55*M,t:"",anexo:{tipo:"img",nome:"print.png"}}),
-  m({o:"sys",em:NOW-54*M,t:"ClaudIA transferiu a conversa para Atendimento humano (N2)"}),
+  m({o:"sys",em:NOW-54*M,t:"ClaudIA transferiu a conversa para um especialista (N2)"}),
   m({o:"nt",a:"ClaudIA",em:NOW-54*M,t:"Resumo: cliente não consegue abrir o relatório semanal; já enviou print. Motivo: Relatório não abre.",privada:true}),
   m({o:"eq",a:"Você (demo)",em:NOW-40*M,t:"Oi, Marina! Já estou olhando. O relatório é da obra Residencial Norte?",status:"read"}),
   m({o:"cli",a:"Marina Teixeira",em:NOW-12*M,t:"Isso, Residencial Norte. Continua só carregando",respondeA:"prev"}),
@@ -186,7 +186,7 @@ const C=[
   m({o:"sys",em:NOW-29*H,t:"Conversa marcada como resolvida"})]}];
 C.forEach(c=>c.msgs.forEach((x,i)=>{if(x.respondeA==="prev")x.respondeA=c.msgs.filter(y=>y.o==="eq")[0].id}));
 const MODELOS=[{nome:"retorno_chamado",idioma:"pt_BR",txt:"Olá {{primeiro_nome}}, sobre o chamado {{numero}}: {{mensagem}}",params:["primeiro_nome","numero","mensagem"],ex:{primeiro_nome:"",numero:"13531",mensagem:"já corrigimos, pode testar de novo."}},
- {nome:"retomar_conversa",idioma:"pt_BR",txt:"Oi {{primeiro_nome}}! Aqui é do suporte. Podemos continuar o atendimento de ontem?",params:["primeiro_nome"],ex:{primeiro_nome:""}}];
+ {nome:"retomar_conversa",idioma:"pt_BR",txt:"Oi {{primeiro_nome}}! Aqui é da equipe de relacionamento. Podemos continuar a conversa de ontem?",params:["primeiro_nome"],ex:{primeiro_nome:""}}];
 
 const S={sel:9001,st:"open",atr:"all",caixa:"",busca:"",aba:"resp",cita:null,mobile:false,modelo:0};
 const $=s=>document.querySelector(s);

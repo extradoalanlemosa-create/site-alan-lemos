@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel de experiência do cliente · Alan Lemos</title>
+<meta name="description" content="Painel que mostra quanto a IA resolve sozinha, quem está esperando resposta agora e onde os clientes ficam insatisfeitos, com demonstração em dados fictícios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1B2230; --ink-2:#5A6372; --ink-3:#8A93A3;
+  --paper:#FFFFFF; --paper-2:#F6F7F9; --line:#E4E7EC; --line-2:#CDD3DC;
+  --navy:#022754; --navy-d:#01173A; --navy-tint:#E4EBF5;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.wrap{max-width:960px;margin:0 auto;padding:0 32px}
+
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:26px 0}
+.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:500;color:var(--ink)}
+.logo svg{width:34px;height:34px}
+.nav-r{display:flex;align-items:center;gap:14px}
+.back-link{font-size:13.5px;color:var(--ink-2)}
+.back-link:hover{color:var(--navy)}
+.lang{display:inline-flex;align-items:center;padding:5px 10px;border:1px solid var(--line-2);border-radius:4px;font-size:12px;font-weight:500;color:var(--ink-2)}
+.lang:hover{border-color:var(--ink-3);color:var(--ink)}
+
+.project-hero{padding:40px 0 48px;border-bottom:1px solid var(--line)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tag{font-size:12px;font-weight:500;color:var(--navy);background:var(--navy-tint);padding:4px 10px;border-radius:4px}
+.h1{font-weight:300;font-size:clamp(32px,4.6vw,48px);line-height:1.12;letter-spacing:-.015em;max-width:20ch;margin-bottom:18px}
+.hero-sub{color:var(--ink-2);font-size:16.5px;max-width:58ch;margin-bottom:16px}
+.client{font-size:13px;color:var(--ink-3);margin-bottom:28px}
+.client strong{color:var(--ink-2);font-weight:500}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:12px 22px;border-radius:4px;border:1px solid transparent}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--navy-d)}
+.btn-ghost{color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--ink-3)}
+
+section{padding:56px 0}
+.section-line{border-top:1px solid var(--line)}
+.section-title{font-weight:300;font-size:30px;line-height:1.2;letter-spacing:-.01em;margin-bottom:28px;max-width:26ch}
+.lede{color:var(--ink-2);max-width:62ch;margin:-12px 0 28px;font-size:15.5px}
+
+.psr-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.psr-card{padding:28px 26px}
+.psr-card + .psr-card{border-left:1px solid var(--line)}
+.psr-num{font-size:13px;color:var(--ink-3);margin-bottom:12px}
+.psr-heading{font-size:18px;font-weight:500;line-height:1.35;margin-bottom:10px}
+.psr-text{font-size:14.5px;color:var(--ink-2);line-height:1.7}
+.psr-card.result{background:var(--navy);color:#fff}
+.psr-card.result .psr-num{color:rgba(255,255,255,.6)}
+.psr-card.result .psr-text{color:rgba(255,255,255,.8)}
+
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+.area{padding:20px 24px 20px 0;border-bottom:1px solid var(--line)}
+.area:nth-child(even){padding:20px 0 20px 24px;border-left:1px solid var(--line)}
+.area h3{font-size:15.5px;font-weight:500;margin-bottom:4px}
+.area p{font-size:14.5px;color:var(--ink-2)}
+
+.demo-wide{width:min(1240px,calc(100vw - 32px));position:relative;left:50%;transform:translateX(-50%)}
+.browser{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--paper-2);border-bottom:1px solid var(--line)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.url{flex:1;text-align:center;font-size:11.5px;color:var(--ink-3)}
+.demo-iframe{display:block;width:100%;height:min(840px,86vh);border:0;background:var(--paper-2)}
+.demo-foot{text-align:center;margin-top:14px}
+.demo-open{font-size:13.5px;font-weight:500;color:var(--navy);text-decoration:underline;text-underline-offset:3px}
+.demo-caption{font-size:12.5px;color:var(--ink-3);margin-top:8px}
+
+.principles{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.principles h3{font-size:15.5px;font-weight:500;margin-bottom:6px}
+.principles p{font-size:14.5px;color:var(--ink-2)}
+
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.tech-item{padding:20px;border-left:1px solid var(--line)}
+.tech-item:first-child{border-left:0}
+.tech-name{font-weight:500;font-size:14.5px;margin-bottom:6px}
+.tech-desc{font-size:13px;color:var(--ink-2);line-height:1.55}
+
+.final-cta{border-top:1px solid var(--line);padding:56px 0 24px;text-align:center}
+.final-cta .section-title{margin:0 auto 10px;font-size:26px}
+.final-cta p{color:var(--ink-2);max-width:46ch;margin:0 auto 26px;font-size:15px}
+.final-cta .cta-row{justify-content:center}
+footer{padding:28px 0 48px;text-align:center;font-size:12.5px;color:var(--ink-3)}
+
+@media(max-width:860px){
+  .psr-grid{grid-template-columns:1fr}
+  .psr-card + .psr-card{border-left:0;border-top:1px solid var(--line)}
+  .principles{grid-template-columns:1fr;gap:20px}
+  .tech-grid{grid-template-columns:repeat(2,1fr)}
+  .tech-item:nth-child(3){border-left:0}
+  .tech-item:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media(max-width:640px){
+  .wrap{padding:0 16px}
+  .areas{grid-template-columns:1fr}
+  .area,.area:nth-child(even){padding:16px 0;border-left:0}
+  .tech-grid{grid-template-columns:1fr}
+  .tech-item{border-left:0;border-top:1px solid var(--line)}
+  .tech-item:first-child{border-top:0}
+  .back-link{display:none}
+  .demo-iframe{height:78vh}
+}
+</style>
+<link rel="alternate" hreflang="pt-BR" href="painel-indicadores.html">
+<link rel="alternate" hreflang="en" href="../en/projetos/painel-indicadores.html">
+<link rel="alternate" hreflang="x-default" href="painel-indicadores.html">
+<script>/* idioma: lembra a escolha do visitante e abre as páginas sempre nesse idioma */(function(){try{var K='site-lang',d=document.documentElement,here=(d.lang||'').indexOf('en')===0?'en':'pt',pref=localStorage.getItem(K);if(pref&&pref!==here&&!/[?&]lang=/.test(location.search)){var alt=document.querySelector('link[rel=alternate][hreflang="'+(pref==='en'?'en':'pt-BR')+'"]');if(alt){location.replace(alt.href+location.hash);return;}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem(K,a.getAttribute('data-lang'));}catch(_){}}},true);}catch(e){}})();</script>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 160 160" fill="none" aria-hidden="true"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" stroke="#1B2230" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#1B2230" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#1B2230" stroke-width="5.5"/></g></svg>
+      Alan Lemos
+    </a>
+    <div class="nav-r">
+      <a href="../portfolio.html" class="back-link">← Voltar ao portfólio</a>
+      <a href="../en/projetos/painel-indicadores.html" class="lang" data-lang="en" hreflang="en" lang="en" title="Read in English">EN</a>
+    </div>
+  </nav>
+</div>
+
+<div class="wrap">
+  <header class="project-hero">
+    <div class="tags"><span class="tag">Dados e indicadores</span><span class="tag">IA aplicada</span><span class="tag">Operações</span></div>
+    <h1 class="h1">Painel de experiência do cliente</h1>
+    <p class="hero-sub">Um painel único para a equipe saber quanto a IA resolve sozinha, quem está esperando resposta agora, quanto tempo cada etapa leva e onde os clientes ficam insatisfeitos. Cada número abre a lista de chamados que o forma.</p>
+    <p class="client">Projeto feito para uma <strong>empresa de software para construção civil</strong></p>
+    <div class="cta-row">
+      <a href="#demo" class="btn btn-primary">Testar o painel</a>
+      <a href="#regras" class="btn btn-ghost">Como os números são calculados</a>
+    </div>
+  </header>
+</div>
+
+<div class="wrap">
+  <section>
+    <h2 class="section-title">Do achismo a um número que todos conferem</h2>
+    <div class="psr-grid">
+      <div class="psr-card">
+        <div class="psr-num">Problema</div>
+        <h3 class="psr-heading">Ninguém tinha a mesma visão dos números</h3>
+        <p class="psr-text">Com a IA no primeiro contato, surgiram perguntas que a ferramenta de chat não respondia: quanto ela resolve sozinha, quais assuntos sempre acabam com uma pessoa, quem está esperando há horas e se o cliente saiu satisfeito. Cada resposta exigia exportar dados e montar planilha.</p>
+      </div>
+      <div class="psr-card">
+        <div class="psr-num">O que eu fiz</div>
+        <h3 class="psr-heading">Sete áreas, um só jeito de calcular</h3>
+        <p class="psr-text">Defini os indicadores e as regras de cálculo e construí o painel: visão geral, retenção da IA, volume, satisfação, equipe, fila em tempo real e uma página que explica cada regra. Todo cálculo mora no banco de dados; a página só desenha.</p>
+      </div>
+      <div class="psr-card result">
+        <div class="psr-num">Resultado</div>
+        <h3 class="psr-heading">O mesmo número em todo lugar</h3>
+        <p class="psr-text">Com o mesmo filtro, o cartão, o gráfico, a lista de chamados e o resumo que a equipe vê no seu assistente dão o mesmo resultado. A fila em tempo real mostra quem espera há mais de 10 horas úteis.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="section-line" id="demo">
+<div class="wrap">
+  <section>
+    <h2 class="section-title">Experimente o painel</h2>
+    <p class="lede">Uma réplica com a mesma lógica do painel em produção, rodando sobre cerca de dois mil chamados inventados. Troque o período, filtre por área, equipe ou CSM, clique num número ou numa coluna para ver os chamados por trás, e abra um chamado para ver a conversa.</p>
+    <div class="demo-wide">
+      <div class="browser">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">painel de indicadores · demonstração</span></div>
+        <iframe class="demo-iframe" src="painel-indicadores-demo.html" title="Demonstração do painel com dados fictícios" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="demo-foot">
+      <a class="demo-open" href="painel-indicadores-demo.html" target="_blank" rel="noopener">Abrir a demonstração em tela cheia</a>
+      <p class="demo-caption">Dados fictícios. Nenhuma informação real de cliente é usada nesta demonstração.</p>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <h2 class="section-title">O que cada área responde</h2>
+    <div class="areas">
+      <div class="area"><h3>Visão geral</h3><p>Chamados, retenção da IA, fila agora, satisfação e tempos do período, comparados com o período anterior.</p></div>
+      <div class="area"><h3>ClaudIA (IA)</h3><p>Quanto a IA resolve sozinha, como isso evolui e quais motivos mais vão para uma pessoa.</p></div>
+      <div class="area"><h3>Volume</h3><p>Ranking por organização, obra, CSM, motivo, produto, canal ou responsável.</p></div>
+      <div class="area"><h3>Satisfação</h3><p>Nota média, positivas e negativas, nota por quem atendeu e os comentários dos clientes.</p></div>
+      <div class="area"><h3>Equipe</h3><p>Chamados, primeira resposta e resolução de cada pessoa da equipe, em horas úteis.</p></div>
+      <div class="area"><h3>Tempo real</h3><p>Quem está esperando a primeira resposta humana, em qual caixa e há quanto tempo.</p></div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="section-line" id="regras">
+<div class="wrap">
+  <section>
+    <h2 class="section-title">Decisões que deixam o número confiável</h2>
+    <ul class="principles">
+      <li><h3>Retenção com regra clara</h3><p>A IA resolveu sozinha (N1) ou passou para uma pessoa (N2). Retenção é N1 dividido por N1 + N2, sem interpretação manual.</p></li>
+      <li><h3>Horas úteis, não de relógio</h3><p>A espera e a resposta humana contam de segunda a sexta, das 8h às 18h, sem feriados. Quem escreve sexta à noite não pesa contra a equipe no fim de semana.</p></li>
+      <li><h3>Mediana em vez de média</h3><p>Poucas conversas muito longas não distorcem o tempo típico de resposta e de resolução.</p></li>
+    </ul>
+  </section>
+</div>
+</div>
+
+<div class="section-line">
+<div class="wrap">
+  <section>
+    <h2 class="section-title">Tecnologias usadas</h2>
+    <div class="tech-grid">
+      <div class="tech-item"><div class="tech-name">Supabase (Postgres)</div><div class="tech-desc">Funções SQL calculam todos os indicadores; o painel só consulta.</div></div>
+      <div class="tech-item"><div class="tech-name">JavaScript sem framework</div><div class="tech-desc">Página leve, com gráficos desenhados à mão em SVG.</div></div>
+      <div class="tech-item"><div class="tech-name">CloudChat</div><div class="tech-desc">Origem das conversas, copiadas para o banco a cada poucos minutos.</div></div>
+      <div class="tech-item"><div class="tech-name">Claude</div><div class="tech-desc">Apoio no desenvolvimento e na escrita das regras de cálculo.</div></div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="wrap">
+  <div class="final-cta">
+    <h2 class="section-title">Quer ver os outros projetos?</h2>
+    <p>Este é um dos projetos de dados e IA aplicada que fiz na empresa. O portfólio tem os demais.</p>
+    <div class="cta-row"><a href="../portfolio.html" class="btn btn-primary">Voltar ao portfólio</a><a href="../vamos-colaborar.html" class="btn btn-ghost">Vamos conversar</a></div>
+  </div>
+</div>
+
+<footer>Alan Lemos · Planejamento e gestão de projetos, produtos e dados com IA aplicada.</footer>
+</body>
+</html>

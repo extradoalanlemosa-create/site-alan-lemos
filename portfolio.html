@@ -46,7 +46,7 @@
 <section style="padding-top:0;">
   <div class="wrap">
     <div class="pf-tabs" role="tablist" aria-label="Tipos de projeto">
-      <button type="button" role="tab" id="tab-empresa" aria-controls="painel-empresa" aria-selected="true" class="pf-tab">Na empresa <span class="pf-count">4</span></button>
+      <button type="button" role="tab" id="tab-empresa" aria-controls="painel-empresa" aria-selected="true" class="pf-tab">Na empresa <span class="pf-count">7</span></button>
       <button type="button" role="tab" id="tab-pessoais" aria-controls="painel-pessoais" aria-selected="false" class="pf-tab">Projetos pessoais <span class="pf-count">3</span></button>
     </div>
 
@@ -107,6 +107,48 @@
           </dl>
           <ul class="case-tools" aria-label="Ferramentas"><li>Supabase</li><li>SQL</li><li>JavaScript</li><li>CloudChat</li></ul>
           <div class="case-actions"><a class="btn btn-primary" href="projetos/painel-atendimento.html">Ver o caso completo</a><a class="btn btn-ghost" href="projetos/painel-atendimento.html#demo">Testar o painel</a></div>
+        </div>
+      </article>
+      <article class="case" id="solicitacoes">
+        <a class="case-media" href="projetos/solicitacoes.html" tabindex="-1" aria-hidden="true"><img src="assets/thumb-solicitacoes.png" alt="Kanban da fila de solicitações com dados fictícios" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Gestão de suporte</span><span class="tag">Processos</span></div>
+          <h3 class="case-title"><a href="projetos/solicitacoes.html">Fila de solicitações com SLA</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>Os chamados chegavam por e-mail sem uma visão única de quem precisava agir, do que estava com a tecnologia e de quais prazos já tinham estourado.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Defini os status e as regras de prioridade e prazo por etiqueta e construí a fila, com lista, Kanban, ficha do chamado e vínculo com o Jira.</dd></div>
+            <div><dt>Resultado</dt><dd>Cada chamado mostra se está no prazo, atrasado ou pausado, e o prazo pausa só quando a equipe aguarda o cliente.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>Supabase</li><li>CloudChat</li><li>Jira</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/solicitacoes.html">Ver o caso completo</a><a class="btn btn-ghost" href="projetos/solicitacoes.html#demo">Testar a fila</a></div>
+        </div>
+      </article>
+      <article class="case" id="central-ajuda">
+        <a class="case-media" href="projetos/central-ajuda.html" tabindex="-1" aria-hidden="true"><img src="assets/thumb-central-ajuda.png" alt="Página inicial da central de ajuda com dados fictícios" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Experiência do cliente</span><span class="tag">Autoatendimento</span></div>
+          <h3 class="case-title"><a href="projetos/central-ajuda.html">Central de ajuda com curadoria</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>O portal de ajuda misturava rascunhos, artigos antigos e conteúdo interno, com links para sistemas que a empresa já tinha deixado de usar.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Defini as regras de publicação e construí a central: sincronização, publicar, destacar e ocultar, busca sem acento e acompanhamento de chamados pelo cliente.</dd></div>
+            <div><dt>Resultado</dt><dd>O cliente só vê o que foi publicado, garantido pelo banco de dados, e publicar congela a versão aprovada.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>Supabase</li><li>Edge Functions</li><li>React</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/central-ajuda.html">Ver o caso completo</a><a class="btn btn-ghost" href="projetos/central-ajuda.html#demo">Testar a central</a></div>
+        </div>
+      </article>
+      <article class="case" id="conversas">
+        <a class="case-media" href="projetos/conversas.html" tabindex="-1" aria-hidden="true"><img src="assets/thumb-conversas.png" alt="Caixa de conversas com dados fictícios" style="object-position:top left;" loading="lazy"></a>
+        <div class="case-body">
+          <div class="tags"><span class="tag">Atendimento com IA</span><span class="tag">WhatsApp</span></div>
+          <h3 class="case-title"><a href="projetos/conversas.html">Caixa de conversas do atendimento</a></h3>
+          <dl class="case-steps">
+            <div><dt>Problema</dt><dd>Para responder um cliente e abrir um chamado, a equipe alternava entre a ferramenta de chat, a fila e planilhas, e perdia o contexto no caminho.</dd></div>
+            <div><dt>O que eu fiz</dt><dd>Defini as regras de acesso e de envio e construí a caixa: filtros, conversa completa, modelos do WhatsApp, notas internas, IA de escrita e chamado a partir da conversa.</dd></div>
+            <div><dt>Resultado</dt><dd>Conversa, chamados ligados e histórico ficam juntos, e a IA sugere e resume sem enviar nada sozinha.</dd></div>
+          </dl>
+          <ul class="case-tools" aria-label="Ferramentas"><li>CloudChat</li><li>React</li><li>Supabase</li><li>Claude</li></ul>
+          <div class="case-actions"><a class="btn btn-primary" href="projetos/conversas.html">Ver o caso completo</a><a class="btn btn-ghost" href="projetos/conversas.html#demo">Testar a caixa</a></div>
         </div>
       </article>
       </div>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Conversas · demonstração com dados fictícios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--font:'Manrope','Segoe UI',system-ui,-apple-system,sans-serif;--ink:#10111A;--ink-2:#3B3D4A;--muted:#62667A;--faint:#9A9CAA;--bg:#F7F6FA;--line:#DDDDE6;--line-soft:#ECEBF2;--pill:#EEEDF5;--hover:#F3F2F8;--accent:#FF6028;--accent-strong:#D9480F;--accent-tint:#FDEBE4;--note:#FFF8DB;--note-line:#F0E2A6;--red-ink:#C2262B;--red-bg:#FEF2F2;--green-ink:#047857;--green-bg:#ECFDF5;--blue:#2a78d6;--scrim:rgba(16,17,26,.45);--shadow:0 1px 2px rgba(16,17,26,.08)}
+html,body{height:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.top{padding:14px 20px 10px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.top h1{font-size:20px;font-weight:800;letter-spacing:.01em;line-height:1.15}
+.top p{font-size:12.5px;color:var(--muted)}
+.dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.dot i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.shell{flex:1;min-height:0;display:grid;grid-template-columns:340px 1fr;margin:0 20px 18px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.lw{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.lf{padding:10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.lf .r{display:flex;gap:6px}
+.lf select,.lf input{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;font-size:12.5px;background:#fff;min-width:0;flex:1}
+.lf input{background:var(--bg)}
+.seg{display:flex;background:var(--pill);border-radius:6px;padding:3px;gap:1px}
+.seg button{flex:1;padding:4px 6px;border-radius:4px;font-size:12px;color:var(--ink-2);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
+.ls{flex:1;overflow-y:auto}
+.it{display:grid;grid-template-columns:36px 1fr auto;gap:10px;padding:11px 12px;border-bottom:1px solid var(--line-soft);width:100%;text-align:left;position:relative}
+.it:hover{background:var(--hover)}
+.it[aria-current="true"]{background:var(--accent-tint)}
+.it[aria-current="true"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+.av{width:36px;height:36px;border-radius:50%;background:var(--pill);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--ink-2)}
+.it .n{font-size:13.5px;font-weight:700;display:flex;gap:6px;align-items:center;min-width:0}
+.it .n span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it .p{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it .m{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:11px;color:var(--faint)}
+.un{background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;border-radius:10px;min-width:18px;height:18px;padding:0 5px;display:flex;align-items:center;justify-content:center}
+.lb{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+.lb span{font-size:10.5px;background:var(--pill);border-radius:3px;padding:0 5px;color:var(--ink-2)}
+.ch{font-size:10px;border-radius:3px;padding:0 4px;font-weight:700}
+.ch.wa{background:#DCF8E8;color:#0F7A3D}.ch.web{background:#E7F0FC;color:#1c5cab}
+.cv{display:flex;flex-direction:column;min-height:0;min-width:0}
+.cvh{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cvh .who b{font-size:14.5px}
+.cvh .who p{font-size:12px;color:var(--muted)}
+.cvh .acts{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.cvh select{height:30px;border:1px solid var(--line);border-radius:6px;padding:0 6px;font-size:12.5px;background:#fff}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12.5px;background:#fff;white-space:nowrap}
+.btn:hover{background:var(--hover)}
+.btn-a{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.btn-a:hover{background:var(--accent-strong)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.back{display:none}
+.tks{padding:6px 14px;border-bottom:1px solid var(--line-soft);font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--bg)}
+.tks .tk{background:#fff;border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--ink-2)}
+.msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:8px;background:#FAFAFC}
+.b{max-width:70%;padding:8px 11px 6px;border-radius:10px;font-size:13.5px;position:relative;box-shadow:var(--shadow)}
+.b.cli{align-self:flex-start;background:#fff;border:1px solid var(--line-soft)}
+.b.eq{align-self:flex-end;background:var(--accent);color:#fff}
+.b.nt{align-self:flex-end;background:var(--note);border:1px solid var(--note-line);color:#5B4508}
+.b.sys{align-self:center;background:none;box-shadow:none;color:var(--muted);font-size:12px;padding:2px 6px}
+.b .au{font-size:11px;font-weight:700;opacity:.8;margin-bottom:2px}
+.b .ft{display:flex;justify-content:flex-end;gap:6px;align-items:center;font-size:10.5px;opacity:.75;margin-top:3px}
+.b.eq .ft{opacity:.9}
+.ck{letter-spacing:-2px;font-weight:700}
+.ck.rd{color:#BFE3FF}
+.fail{color:#fff;background:var(--red-ink);border-radius:3px;padding:0 4px;letter-spacing:0;font-weight:600}
+.q{border-left:3px solid currentColor;opacity:.8;padding:3px 8px;margin-bottom:5px;font-size:12px;border-radius:3px;background:rgba(0,0,0,.05)}
+.b.eq .q{background:rgba(255,255,255,.18)}
+.rp{position:absolute;top:4px;width:24px;height:24px;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--ink-2);font-size:12px;display:none;align-items:center;justify-content:center}
+.b.cli .rp{right:-30px}.b.eq .rp{left:-30px}
+.b:hover .rp,.rp:focus{display:flex}
+.img{width:200px;height:120px;border-radius:6px;background:linear-gradient(135deg,#E5E7EB,#CBD5E1);display:flex;align-items:center;justify-content:center;color:#475569;font-size:12px;margin-bottom:4px}
+.aud{display:flex;align-items:center;gap:8px;min-width:200px}
+.aud button{width:28px;height:28px;border-radius:50%;background:var(--pill);display:flex;align-items:center;justify-content:center}
+.aud i{flex:1;height:4px;border-radius:2px;background:var(--line);position:relative;overflow:hidden}
+.aud i::after{content:"";position:absolute;inset:0;width:var(--p,0%);background:var(--accent)}
+.cmp{border-top:1px solid var(--line);padding:10px 12px;background:#fff}
+.tabs{display:flex;gap:4px;margin-bottom:8px;align-items:center;flex-wrap:wrap}
+.tabs button{font-size:12.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--line)}
+.tabs button[aria-pressed="true"]{background:var(--accent-tint);border-color:#F6C9B5;color:var(--accent-strong);font-weight:600}
+.tabs button.nota[aria-pressed="true"]{background:var(--note);border-color:var(--note-line);color:#5B4508}
+.tabs .sp{flex:1}
+.cmp textarea{width:100%;min-height:64px;max-height:40vh;border:1px solid var(--line);border-radius:6px;padding:8px 10px;resize:vertical}
+.cmp textarea.nota{background:var(--note)}
+.cr{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.cr label{display:flex;align-items:center;gap:6px}
+.qb{display:flex;justify-content:space-between;gap:8px;align-items:center;background:var(--bg);border-left:3px solid var(--accent);border-radius:4px;padding:5px 8px;font-size:12px;margin-bottom:6px}
+.win{background:#FFF4E5;border:1px solid #F1C48B;color:#8A4B00;border-radius:6px;padding:7px 10px;font-size:12.5px;margin-bottom:8px}
+.ia{position:relative}
+.menu{position:absolute;bottom:34px;right:0;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(16,17,26,.12);padding:4px;min-width:200px;z-index:20;display:none}
+.menu.on{display:block}
+.menu button{display:block;width:100%;text-align:left;padding:7px 10px;border-radius:5px;font-size:12.5px}
+.menu button:hover{background:var(--hover)}
+.menu hr{border:0;border-top:1px solid var(--line-soft);margin:4px 0}
+.tpl{display:flex;flex-direction:column;gap:8px}
+.tpl label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted)}
+.tpl input,.tpl select{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;font-size:13px;color:var(--ink)}
+.tpl .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.prev{background:#E9FBEF;border:1px solid #C7EED6;border-radius:8px;padding:8px 10px;font-size:13px;color:#0B4F2B;white-space:pre-wrap}
+.empty{margin:auto;color:var(--muted);text-align:center;padding:30px}
+dialog{margin:auto;border:0;border-radius:10px;padding:0;width:min(520px,calc(100vw - 24px));font-family:var(--font);color:var(--ink)}
+dialog::backdrop{background:var(--scrim)}
+.dh{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.dh h2{font-size:16px;font-weight:700}
+.dbd{padding:14px 18px;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.sg{border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.sg b{display:block;font-size:13.5px}
+.sg span{font-size:12px;color:var(--muted)}
+.df{padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}
+.x{font-size:22px;line-height:1;padding:2px 8px;border-radius:6px;color:var(--muted)}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;padding:9px 14px;border-radius:6px;z-index:80;opacity:0;transition:opacity .15s;pointer-events:none;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1}
+@media (max-width:760px){
+  .top{padding:12px 12px 8px}
+  .shell{grid-template-columns:1fr;margin:0 0 0;border-radius:0;border-left:0;border-right:0}
+  .shell.aberta .lw{display:none}.shell:not(.aberta) .cv{display:none}
+  .back{display:inline-flex}
+  .b{max-width:86%}.rp{display:none!important}
+  .tpl .grid{grid-template-columns:1fr}
+  .cvh .acts{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<div class="top"><div><h1>CONVERSAS</h1><p>WhatsApp e chat do site dos clientes. Demonstração com dados fictícios: nada é enviado.</p></div><span class="dot" id="vigia"><i></i>0 esperando resposta</span></div>
+<div class="shell" id="shell">
+  <section class="lw" aria-label="Lista de conversas">
+    <div class="lf">
+      <div class="r"><select id="fCaixa" aria-label="Caixa de entrada"><option value="">Todas as caixas</option><option value="101">Atendimento | WhatsApp</option><option value="102">Chat do site</option><option value="104">Suporte N2 | WhatsApp</option></select>
+      <select id="fAtr" aria-label="Atribuição"><option value="me">Minhas</option><option value="un">Sem responsável</option><option value="all" selected>Todas</option></select></div>
+      <div class="seg" role="group" aria-label="Status" id="fSt"><button data-s="open" aria-pressed="true">Abertas</button><button data-s="pending" aria-pressed="false">Pendentes</button><button data-s="resolved" aria-pressed="false">Resolvidas</button><button data-s="all" aria-pressed="false">Todas</button></div>
+      <input type="search" id="fBusca" placeholder="Buscar (mín. 3 letras)" aria-label="Buscar conversas">
+    </div>
+    <div class="ls" id="lista"></div>
+  </section>
+  <section class="cv" id="cv" aria-label="Conversa"></section>
+</div>
+<dialog id="dlgTk" aria-labelledby="tk-t"><div class="dh"><h2 id="tk-t">Criar ticket a partir da conversa</h2><button class="x" onclick="this.closest('dialog').close()" aria-label="Fechar">×</button></div>
+<div class="dbd" id="tkB"></div><div class="df"><button class="btn" onclick="this.closest('dialog').close()">Cancelar</button><button class="btn btn-a" id="tkOk">Abrir chamado</button></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script>
+"use strict";
+const ME={id:7,nome:"Você (demo)"};
+const AGENTES=[{id:7,nome:"Você (demo)"},{id:8,nome:"Bruno Lima"},{id:9,nome:"Fernanda Melo"},{id:1,nome:"ClaudIA (IA)"}];
+const CAIXAS={101:{nome:"Atendimento | WhatsApp",t:"wa"},102:{nome:"Chat do site",t:"web"},104:{nome:"Suporte N2 | WhatsApp",t:"wa"}};
+const NOW=Date.now(),M=60e3,H=60*M;
+let MID=50000;
+const m=(o)=>Object.assign({id:++MID,privada:false,anexo:null,status:null,respondeA:null},o);
+const C=[
+ {id:9001,caixa:101,status:"open",nome:"Marina Teixeira",tel:"+55 11 99999-0001",resp:7,etq:["duvida"],nao:2,pode:true,chamados:[],msgs:[
+  m({o:"cli",a:"Marina Teixeira",em:NOW-62*M,t:"Bom dia! Não consigo abrir o relatório da obra"}),
+  m({o:"ia",a:"ClaudIA",em:NOW-61*M,t:"Bom dia, Marina! Em Relatórios › Semanal, escolha a obra e toque em Gerar. Se continuar carregando, me mande um print da tela.",status:"read"}),
+  m({o:"cli",a:"Marina Teixeira",em:NOW-55*M,t:"",anexo:{tipo:"img",nome:"print.png"}}),
+  m({o:"sys",em:NOW-54*M,t:"ClaudIA transferiu a conversa para Atendimento humano (N2)"}),
+  m({o:"nt",a:"ClaudIA",em:NOW-54*M,t:"Resumo: cliente não consegue abrir o relatório semanal; já enviou print. Motivo: Relatório não abre.",privada:true}),
+  m({o:"eq",a:"Você (demo)",em:NOW-40*M,t:"Oi, Marina! Já estou olhando. O relatório é da obra Residencial Norte?",status:"read"}),
+  m({o:"cli",a:"Marina Teixeira",em:NOW-12*M,t:"Isso, Residencial Norte. Continua só carregando",respondeA:"prev"}),
+  m({o:"cli",a:"Marina Teixeira",em:NOW-11*M,t:"",anexo:{tipo:"aud",dur:"0:14"}})]},
+ {id:9002,caixa:101,status:"open",nome:"Paulo Ramos",tel:"+55 11 99999-0002",resp:null,etq:[],nao:1,pode:false,chamados:[],msgs:[
+  m({o:"cli",a:"Paulo Ramos",em:NOW-27*H,t:"Vocês conseguem me ligar amanhã cedo?"}),
+  m({o:"eq",a:"Bruno Lima",em:NOW-26.5*H,t:"Claro, Paulo. Ligo às 9h.",status:"delivered"}),
+  m({o:"eq",a:"Bruno Lima",em:NOW-25*H,t:"Paulo, tentei ligar e não consegui.",status:"failed",erro:"Janela de 24 h fechada"})]},
+ {id:9003,caixa:102,status:"pending",nome:"Helena Prado",tel:null,email:"helena@cliente-exemplo.com.br",resp:8,etq:["problema"],nao:0,pode:true,chamados:[{id:13531,t:"Erro ao salvar o planejamento",s:"Em espera"}],msgs:[
+  m({o:"cli",a:"Helena Prado",em:NOW-3*H,t:"O planejamento dá erro quando salvo"}),
+  m({o:"eq",a:"Bruno Lima",em:NOW-2.8*H,t:"Helena, abri o chamado #13531 com o time técnico. Assim que tiver novidade te aviso por aqui.",status:"read"}),
+  m({o:"cli",a:"Helena Prado",em:NOW-2.7*H,t:"Obrigada, vou testar de novo amanhã"})]},
+ {id:9004,caixa:104,status:"open",nome:"Rui Alves",tel:"+55 85 98888-1100",resp:9,etq:["problema","medicao"],nao:0,pode:true,chamados:[],msgs:[
+  m({o:"cli",a:"Rui Alves",em:NOW-95*M,t:"A medição do mês não bate com o painel"}),
+  m({o:"eq",a:"Fernanda Melo",em:NOW-80*M,t:"Rui, o painel atualiza a cada hora. Pode conferir de novo daqui a pouco?",status:"read"})]},
+ {id:9005,caixa:101,status:"open",nome:"Sofia Campos",tel:"+55 21 97777-2200",resp:null,etq:["duvida"],nao:3,pode:true,chamados:[],msgs:[
+  m({o:"cli",a:"Sofia Campos",em:NOW-8*M,t:"Oi! Como convido um estagiário para a obra?"}),
+  m({o:"ia",a:"ClaudIA",em:NOW-8*M+20e3,t:"Oi, Sofia! Em Equipe › Convidar, digite o e-mail e escolha o perfil Leitura.",status:"read"}),
+  m({o:"cli",a:"Sofia Campos",em:NOW-6*M,t:"Fiz isso mas ele disse que o convite não chegou"}),
+  m({o:"cli",a:"Sofia Campos",em:NOW-5*M,t:"Podem verificar?"})]},
+ {id:9006,caixa:101,status:"resolved",nome:"Lia Moraes",tel:"+55 11 96666-3300",resp:7,etq:["duvida"],nao:0,pode:true,chamados:[],msgs:[
+  m({o:"cli",a:"Lia Moraes",em:NOW-30*H,t:"Como exporto as medições para Excel?"}),
+  m({o:"ia",a:"ClaudIA",em:NOW-30*H+15e3,t:"Em qualquer lista, toque em Exportar e escolha Excel. A exportação respeita os filtros da tela.",status:"read"}),
+  m({o:"cli",a:"Lia Moraes",em:NOW-29.8*H,t:"Perfeito, obrigada!"}),
+  m({o:"sys",em:NOW-29*H,t:"Conversa marcada como resolvida"})]}];
+C.forEach(c=>c.msgs.forEach((x,i)=>{if(x.respondeA==="prev")x.respondeA=c.msgs.filter(y=>y.o==="eq")[0].id}));
+const MODELOS=[{nome:"retorno_chamado",idioma:"pt_BR",txt:"Olá {{primeiro_nome}}, sobre o chamado {{numero}}: {{mensagem}}",params:["primeiro_nome","numero","mensagem"],ex:{primeiro_nome:"",numero:"13531",mensagem:"já corrigimos, pode testar de novo."}},
+ {nome:"retomar_conversa",idioma:"pt_BR",txt:"Oi {{primeiro_nome}}! Aqui é do suporte. Podemos continuar o atendimento de ontem?",params:["primeiro_nome"],ex:{primeiro_nome:""}}];
+
+const S={sel:9001,st:"open",atr:"all",caixa:"",busca:"",aba:"resp",cita:null,mobile:false,modelo:0};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const ini=n=>n.split(" ").map(p=>p[0]).slice(0,2).join("");
+const hm=ms=>new Intl.DateTimeFormat("pt-BR",{timeZone:"America/Sao_Paulo",hour:"2-digit",minute:"2-digit"}).format(ms);
+function rel(ms){const d=Date.now()-ms;if(d<M)return"agora";if(d<H)return Math.round(d/M)+" min";if(d<24*H)return Math.round(d/H)+" h";if(d<48*H)return"ontem";return new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"2-digit"}).format(ms)}
+const ult=c=>c.msgs.filter(x=>x.o!=="sys").slice(-1)[0];
+const previa=c=>{const u=ult(c);if(!u)return"";if(u.anexo&&!u.t)return u.anexo.tipo==="aud"?"🎤 Áudio":"📎 Anexo";return(u.privada?"🔒 ":"")+u.t.replace(/\*([^*\n]+)\*\n?/g,"$1: ")};
+const esperando=c=>c.status==="open"&&(c.resp===ME.id||c.resp==null)&&ult(c)&&ult(c).o==="cli";
+
+function lista(){
+  const q=norm(S.busca).trim();
+  return C.filter(c=>(S.st==="all"||c.status===S.st)&&(!S.caixa||c.caixa==S.caixa)&&(S.atr==="all"||(S.atr==="me"?c.resp===ME.id:c.resp==null))&&(q.length<3||norm(c.nome+" "+(c.tel||"")+" "+c.msgs.map(x=>x.t).join(" ")).includes(q)))
+    .sort((a,b)=>ult(b).em-ult(a).em)}
+function renderLista(){
+  const L=lista();const q=S.busca.trim();
+  $("#lista").innerHTML=(q&&q.length<3?`<p class="empty" style="padding:14px;font-size:12.5px">Digite pelo menos 3 letras.</p>`:"")+(L.length?L.map(c=>`<button class="it" data-c="${c.id}" aria-current="${c.id===S.sel}"><span class="av">${ini(c.nome)}</span><span style="min-width:0"><span class="n"><span>${esc(c.nome)}</span><span class="ch ${CAIXAS[c.caixa].t}">${CAIXAS[c.caixa].t==="wa"?"WA":"Site"}</span></span><span class="p">${esc(previa(c))}</span>${c.etq.length?`<span class="lb">${c.etq.map(e=>`<span>${esc(e)}</span>`).join("")}</span>`:""}</span><span class="m">${rel(ult(c).em)}${c.nao?`<span class="un" aria-label="${c.nao} não lidas">${c.nao}</span>`:""}</span></button>`).join(""):`<p class="empty">Nenhuma conversa com esses filtros.</p>`);
+  const n=C.filter(esperando).length;$("#vigia").innerHTML=`<i style="${n?"":"background:var(--line)"}"></i>${n} esperando resposta`;
+  document.title=(n?`(${n}) `:"")+"Conversas · demonstração";
+}
+function check(x){if(x.o!=="eq"&&x.o!=="ia")return"";if(x.status==="failed")return`<span class="fail">Não enviada</span>`;
+  return x.status==="read"?'<span class="ck rd" title="Lida">✓✓</span>':x.status==="delivered"?'<span class="ck" title="Entregue">✓✓</span>':'<span class="ck" title="Enviada">✓</span>'}
+function bolha(c,x){
+  if(x.o==="sys")return`<div class="b sys">${esc(x.t)} · ${hm(x.em)}</div>`;
+  const cls=x.o==="cli"?"cli":x.privada?"nt":"eq";
+  const cit=x.respondeA?c.msgs.find(y=>y.id===x.respondeA):null;
+  const anexo=x.anexo?(x.anexo.tipo==="img"?`<div class="img">🖼 ${esc(x.anexo.nome)}</div>`:`<div class="aud"><button data-play aria-label="Tocar áudio">▶</button><i></i><span style="font-size:11px">${x.anexo.dur}</span></div>`):"";
+  const podeCitar=!x.privada&&c.pode&&x.id>0;
+  return`<div class="b ${cls}" data-m="${x.id}">${x.o!=="cli"?`<div class="au">${esc(x.a)}${x.privada?" 🔒 nota interna":""}</div>`:""}${cit?`<div class="q">${esc(cit.a)}: ${esc(cit.t||(cit.anexo?"[anexo]":""))}</div>`:""}${anexo}${x.t?`<div style="white-space:pre-wrap">${esc(x.t).replace(/\*([^*\n]+)\*/g,"<b>$1</b>")}</div>`:""}<div class="ft">${x.erro?esc(x.erro)+" ·":""}${hm(x.em)} ${check(x)}</div>${podeCitar?`<button class="rp" data-cita="${x.id}" aria-label="Responder a esta mensagem">↩</button>`:""}</div>`}
+function renderConversa(){
+  const c=C.find(x=>x.id===S.sel);
+  if(!c){$("#cv").innerHTML=`<p class="empty">Escolha uma conversa à esquerda.</p>`;return}
+  if(!c.pode&&S.aba==="resp")S.aba="modelo";
+  const cita=S.cita?c.msgs.find(x=>x.id===S.cita):null;
+  const mod=MODELOS[S.modelo];const vals=S.vals||{};
+  const prevMod=mod.txt.replace(/\{\{(\w+)\}\}/g,(_,k)=>vals[k]||(k==="primeiro_nome"?c.nome.split(" ")[0]:mod.ex[k])||`{{${k}}}`);
+  $("#cv").innerHTML=`<div class="cvh"><button class="btn back" id="voltar">‹ Voltar</button><span class="av">${ini(c.nome)}</span><div class="who"><b>${esc(c.nome)}</b><p>${CAIXAS[c.caixa].nome} · ${esc(c.tel||c.email||"")} · #${c.id}</p></div>
+    <div class="acts"><select id="resp" aria-label="Responsável"><option value="">Sem responsável</option>${AGENTES.map(a=>`<option value="${a.id}" ${a.id===c.resp?"selected":""}>${esc(a.nome)}</option>`).join("")}</select>
+    <button class="btn" id="naoLida">Marcar não lida</button><button class="btn" id="ticket">Criar ticket</button><button class="btn btn-a" id="stBtn">${c.status==="resolved"?"Reabrir":"Resolver"}</button></div></div>
+  <div class="tks"><span>Chamados ligados:</span>${c.chamados.length?c.chamados.map(t=>`<span class="tk">#${t.id} · ${esc(t.t)} · ${t.s}</span>`).join(""):"nenhum"}</div>
+  <div class="msgs" id="msgs">${c.msgs.map(x=>bolha(c,x)).join("")}</div>
+  <div class="cmp">${!c.pode?`<div class="win">A janela de 24 h do WhatsApp fechou. Para falar com o cliente, use um modelo aprovado; ou deixe uma nota interna.</div>`:""}
+    <div class="tabs" role="group" aria-label="Tipo de mensagem">${c.pode?`<button data-aba="resp" aria-pressed="${S.aba==="resp"}">Responder</button>`:""}<button data-aba="modelo" aria-pressed="${S.aba==="modelo"}">Modelo</button><button class="nota" data-aba="nota" aria-pressed="${S.aba==="nota"}">Nota interna</button><span class="sp"></span>
+    ${S.aba!=="modelo"?`<span class="ia"><button class="btn" id="iaBtn" aria-haspopup="menu" aria-expanded="false">✨ Ferramentas de escrita</button><div class="menu" id="iaMenu" role="menu">${[["melhorar","Melhorar"],["corrigir","Corrigir"],["encurtar","Encurtar"],["expandir","Expandir"],["amigavel","Tom amigável"],["formal","Tom formal"]].map(([k,l])=>`<button role="menuitem" data-ia="${k}">${l}</button>`).join("")}<hr><button role="menuitem" data-ia="sugerir">Sugerir resposta</button><button role="menuitem" data-ia="resumir">Resumir a conversa</button></div></span>`:""}</div>
+    ${S.aba==="modelo"?`<div class="tpl"><label>Modelo aprovado<select id="modSel">${MODELOS.map((x,i)=>`<option value="${i}" ${i===S.modelo?"selected":""}>${x.nome} (${x.idioma})</option>`).join("")}</select></label>
+      <div class="grid">${mod.params.map(p=>`<label>${p}<input data-par="${p}" value="${esc(vals[p]??(p==="primeiro_nome"?c.nome.split(" ")[0]:mod.ex[p]))}"></label>`).join("")}</div><div class="prev" aria-label="Prévia">${esc(prevMod)}</div>
+      <div class="cr"><span>Modelos aprovados funcionam mesmo com a janela fechada.</span><button class="btn btn-a" id="envModelo">Enviar modelo</button></div></div>`:
+    `${cita&&S.aba==="resp"?`<div class="qb"><span>Respondendo a <b>${esc(cita.a)}</b>: ${esc((cita.t||"[anexo]").slice(0,60))}</span><button id="tiraCita" aria-label="Remover citação">×</button></div>`:""}
+    <textarea id="txt" class="${S.aba==="nota"?"nota":""}" placeholder="${S.aba==="nota"?"Nota interna: só a equipe vê.":"Escreva a resposta… (Ctrl+Enter envia)"}" aria-label="Mensagem">${esc(S.rasc||"")}</textarea>
+    <div class="cr"><label>${S.aba==="resp"?`<input type="checkbox" id="assin" ${S.assin!==false?"checked":""}> Assinar com meu nome`:"🔒 O cliente não vê"}</label><button class="btn btn-a" id="enviar">${S.aba==="nota"?"Salvar nota":"Enviar"}</button></div>`}
+  </div>`;
+  const ms=$("#msgs");ms.scrollTop=ms.scrollHeight;
+}
+function render(){renderLista();renderConversa();$("#shell").classList.toggle("aberta",S.mobile)}
+function abre(id){const c=C.find(x=>x.id===id);S.sel=id;S.cita=null;S.rasc="";S.vals=null;S.aba=c.pode?"resp":"modelo";c.nao=0;S.mobile=true;render()}
+function envia(c,t,priv,extra={}){const x=m(Object.assign({o:priv?"eq":"eq",a:ME.nome,em:Date.now(),t,privada:priv,status:priv?null:"sent",respondeA:priv?null:S.cita},extra));c.msgs.push(x);S.cita=null;S.rasc="";
+  if(!priv){setTimeout(()=>{x.status="delivered";if(S.sel===c.id)renderConversa()},1200);setTimeout(()=>{x.status="read";if(S.sel===c.id)renderConversa()},3200)}render()}
+const IA={melhorar:t=>t.replace(/\bvc\b/gi,"você").replace(/\bpq\b/gi,"porque").replace(/^./,c=>c.toUpperCase()).replace(/([^.!?])$/,"$1."),
+  corrigir:t=>t.replace(/\bvc\b/gi,"você").replace(/\bnao\b/gi,"não").replace(/\bta\b/gi,"está").replace(/^./,c=>c.toUpperCase()),
+  encurtar:t=>t.split(/(?<=[.!?])\s+/)[0],expandir:t=>t+" Se precisar, posso te mandar o passo a passo com imagens.",
+  amigavel:t=>"Oi! "+t+" 😊",formal:t=>"Prezado(a), "+t.replace(/^./,c=>c.toLowerCase())+" Permaneço à disposição.",
+  sugerir:c=>`Oi, ${c.nome.split(" ")[0]}! Obrigado pelo retorno. Vou verificar com o time técnico e te respondo por aqui ainda hoje.`,
+  resumir:c=>`Resumo: ${c.nome} relatou "${(c.msgs.find(x=>x.o==="cli")||{}).t||"um problema"}". ${c.chamados.length?"Já existe o chamado #"+c.chamados[0].id+".":"Ainda não há chamado aberto."} Última mensagem: ${previa(c)}.`};
+
+/* eventos */
+$("#lista").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b)abre(+b.dataset.c)});
+$("#fSt").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(!b)return;S.st=b.dataset.s;document.querySelectorAll("#fSt button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderLista()});
+$("#fCaixa").onchange=e=>{S.caixa=e.target.value;renderLista()};$("#fAtr").onchange=e=>{S.atr=e.target.value;renderLista()};
+$("#fBusca").oninput=e=>{S.busca=e.target.value;renderLista()};
+$("#cv").addEventListener("input",e=>{if(e.target.id==="txt")S.rasc=e.target.value;if(e.target.dataset.par){S.vals=S.vals||{};S.vals[e.target.dataset.par]=e.target.value;const c=C.find(x=>x.id===S.sel),mod=MODELOS[S.modelo];
+  $(".prev").textContent=mod.txt.replace(/\{\{(\w+)\}\}/g,(_,k)=>S.vals[k]??(k==="primeiro_nome"?c.nome.split(" ")[0]:mod.ex[k]))}});
+$("#cv").addEventListener("keydown",e=>{if(e.target.id==="txt"&&e.key==="Enter"&&(e.ctrlKey||e.metaKey)){e.preventDefault();$("#enviar").click()}});
+$("#cv").addEventListener("change",e=>{const c=C.find(x=>x.id===S.sel);
+  if(e.target.id==="resp"){const v=e.target.value?+e.target.value:null,ag=AGENTES.find(a=>a.id===v);c.resp=v;c.msgs.push(m({o:"sys",em:Date.now(),t:v?`Conversa atribuída a ${ag.nome}`:"Conversa sem responsável"}));toast(v===1?"Atribuída à IA.":"Responsável atualizado.");render()}
+  if(e.target.id==="modSel"){S.modelo=+e.target.value;S.vals=null;renderConversa()}
+  if(e.target.id==="assin")S.assin=e.target.checked});
+$("#cv").addEventListener("click",e=>{const c=C.find(x=>x.id===S.sel);let b;
+  if(e.target.closest("#voltar")){S.mobile=false;return render()}
+  if((b=e.target.closest("[data-aba]"))){S.aba=b.dataset.aba;if(S.aba!=="resp")S.cita=null;return renderConversa()}
+  if((b=e.target.closest("[data-cita]"))){if(S.aba!=="resp")S.aba="resp";S.cita=+b.dataset.cita;renderConversa();$("#txt").focus();return}
+  if(e.target.closest("#tiraCita")){S.cita=null;return renderConversa()}
+  if(e.target.closest("#enviar")){const t=$("#txt").value.trim();if(!t)return toast("Escreva a mensagem primeiro.");
+    const final=S.aba==="resp"&&S.assin!==false?`*${ME.nome}*\n${t}`:t;envia(c,final,S.aba==="nota");toast(S.aba==="nota"?"Nota interna salva.":"Mensagem enviada (simulação).");return}
+  if(e.target.closest("#envModelo")){envia(c,$(".prev").textContent,false);toast("Modelo enviado. A janela de 24 h reabre quando o cliente responder.");return}
+  if(e.target.closest("#iaBtn")){const mn=$("#iaMenu");mn.classList.toggle("on");e.target.closest("#iaBtn").setAttribute("aria-expanded",mn.classList.contains("on"));return}
+  if((b=e.target.closest("[data-ia]"))){const k=b.dataset.ia,ta=$("#txt"),t=ta.value.trim();$("#iaMenu").classList.remove("on");
+    if(k==="sugerir"||k==="resumir"){S.rasc=IA[k](c);if(k==="resumir"){S.aba="nota"}renderConversa();toast("Texto gerado para você revisar. Nada foi enviado.");return}
+    if(!t)return toast("Escreva um texto primeiro, ou use Sugerir resposta.");S.rasc=IA[k](t);renderConversa();toast("Texto ajustado. Revise antes de enviar.");return}
+  if(e.target.closest("#stBtn")){c.status=c.status==="resolved"?"open":"resolved";c.msgs.push(m({o:"sys",em:Date.now(),t:c.status==="resolved"?"Conversa marcada como resolvida":"Conversa reaberta"}));toast(c.status==="resolved"?"Conversa resolvida.":"Conversa reaberta.");return render()}
+  if(e.target.closest("#naoLida")){c.nao=Math.max(1,c.nao);S.mobile=false;toast("Marcada como não lida.");return render()}
+  if(e.target.closest("#ticket")){const cli=c.msgs.filter(x=>x.o==="cli"&&x.t).map(x=>x.t);
+    $("#tkB").innerHTML=`<p style="color:var(--muted)">A IA leu a conversa e sugeriu ${Math.min(2,cli.length)} chamado${cli.length>1?"s":""}. Escolha um; a conversa fica ligada ao chamado.</p>`+cli.slice(0,2).map((t,i)=>`<label class="sg"><input type="radio" name="sg" value="${i}" ${i===0?"checked":""}> <b>${esc(t.slice(0,60))}</b><span>Etiqueta sugerida: ${/relat/i.test(t)?"relatorio-nao-abre_planejamento_problema_n2":/convite|convid/i.test(t)?"incluir-usuario_planejamento_solicitação_n2":/medi/i.test(t)?"dados-divergentes_medicao_problema_n2":"etiqueta-a-definir_planejamento_problema_n2"}</span></label>`).join("");
+    $("#dlgTk").showModal();return}
+  if((b=e.target.closest("[data-play]"))){const bar=b.nextElementSibling;let p=0;b.textContent="❚❚";const iv=setInterval(()=>{p+=7;bar.style.setProperty("--p",p+"%");if(p>=100){clearInterval(iv);b.textContent="▶";bar.style.setProperty("--p","0%")}},100)}
+});
+$("#tkOk").onclick=()=>{const c=C.find(x=>x.id===S.sel);const v=+(document.querySelector('input[name=sg]:checked')||{value:0}).value;const t=c.msgs.filter(x=>x.o==="cli"&&x.t)[v];const id=13600+Math.floor(Math.random()*90);
+  c.chamados.push({id,t:t?t.t.slice(0,50):"Novo chamado",s:"Novo"});c.msgs.push(m({o:"nt",a:"Sistema",em:Date.now(),t:`Chamado #${id} aberto a partir desta conversa.`,privada:true}));$("#dlgTk").close();toast(`Chamado #${id} aberto e ligado à conversa.`);render()};
+document.addEventListener("click",e=>{if(!e.target.closest(".ia")){const mn=$("#iaMenu");if(mn)mn.classList.remove("on")}});
+let tt;function toast(x){const t=$("#toast");t.textContent=x;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2800)}
+// Vigia: uma mensagem nova de cliente chega depois de alguns segundos
+setTimeout(()=>{const c=C.find(x=>x.id===9004);c.msgs.push(m({o:"cli",a:"Rui Alves",em:Date.now(),t:"Conferi agora e continua diferente. Mando print?"}));if(S.sel!==9004)c.nao++;
+  render();toast("Nova mensagem de Rui Alves.")},15000);
+if(innerWidth<=760)S.mobile=false;
+render();
+</script>
+</body>
+</html>

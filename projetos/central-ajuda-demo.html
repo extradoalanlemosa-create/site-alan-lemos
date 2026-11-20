@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Central de ajuda · demonstração com dados fictícios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--font:'Manrope','Segoe UI',system-ui,-apple-system,sans-serif;--ink:#10111A;--ink-2:#3B3D4A;--muted:#62667A;--faint:#9A9CAA;--bg:#F7F6FA;--line:#DDDDE6;--line-soft:#ECEBF2;--pill:#EEEDF5;--hover:#F3F2F8;--dark:#17181F;--dark-2:#242530;--accent:#FF6028;--accent-strong:#D9480F;--accent-tint:#FDEBE4;--green-bg:#ECFDF5;--green-ink:#047857;--amber-bg:#FFFBEB;--amber-ink:#8A5106;--red-bg:#FEF2F2;--red-ink:#C2262B;--blue-bg:#E7F0FC;--blue-ink:#1c5cab;--shadow:0 1px 2px rgba(16,17,26,.08)}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nav{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);height:56px;display:flex;align-items:center;gap:14px;padding:0 20px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;white-space:nowrap}
+.brand i{width:26px;height:26px;border-radius:6px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-size:14px}
+.nt{display:flex;gap:4px}
+.nt a{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;font-size:13.5px;color:var(--ink-2);white-space:nowrap}
+.nt a[aria-current="page"]{background:var(--accent-tint);color:var(--accent-strong);font-weight:600}
+.nsearch{flex:1;max-width:380px;display:none}
+.nsearch input{width:100%;height:34px;border:1px solid var(--line);border-radius:6px;background:var(--bg);padding:0 10px 0 32px;font-size:13px}
+.nsearch{position:relative}.nsearch svg{position:absolute;left:10px;top:9px;color:var(--faint)}
+.nr{margin-left:auto;display:flex;align-items:center;gap:10px}
+.mode{display:inline-flex;background:var(--pill);border-radius:7px;padding:3px}
+.mode button{font-size:12.5px;padding:5px 10px;border-radius:5px;color:var(--ink-2);white-space:nowrap;display:flex;align-items:center;gap:5px}
+.mode button[aria-pressed="true"]{background:var(--dark);color:#fff;font-weight:600}
+.me{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);white-space:nowrap}
+.me b{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}
+.hero{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-160px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(255,96,40,.32),transparent 65%);pointer-events:none}
+.hero .in{max-width:1000px;margin:0 auto;padding:44px 24px 48px;position:relative;z-index:1}
+.hero.sm .in{padding:24px 24px 28px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#FFB194;border:1px solid rgba(255,96,40,.5);border-radius:20px;padding:3px 10px}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(28px,4.4vw,40px);font-weight:800;letter-spacing:-.02em;margin:14px 0 6px;line-height:1.1}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:#C9CAD6;font-size:14px}
+.big{display:block;margin-top:20px;max-width:520px;position:relative}
+.big input{width:100%;height:48px;border-radius:8px;border:0;padding:0 14px 0 42px;font-size:14.5px;color:var(--ink)}
+.big svg{position:absolute;left:14px;top:15px;color:var(--faint)}
+.crumb{font-size:12.5px;color:#C9CAD6;display:flex;gap:6px;flex-wrap:wrap}
+.crumb a:hover{color:#fff}
+.wrap{max-width:1000px;margin:0 auto;padding:24px}
+.cur{background:var(--dark);color:#fff;border-radius:10px;padding:18px 20px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:16px}
+.cur::after{content:"";position:absolute;right:-60px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,96,40,.25),transparent 65%)}
+.cur h2{font-size:16.5px;font-weight:700;margin:8px 0 10px}
+.stats{display:flex;gap:26px;flex-wrap:wrap}
+.stats b{display:block;font-size:20px;font-weight:800}
+.stats span{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#C9CAD6}
+.cur .r{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;position:relative;z-index:1}
+.cur .r div{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.cur .r small{font-size:11.5px;color:#C9CAD6}
+.bd{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:7px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.2);color:#fff;white-space:nowrap}
+.bd:hover{background:rgba(255,255,255,.08)}
+.ba{background:var(--accent);border-color:var(--accent);font-weight:600}
+.ba:hover{background:var(--accent-strong)}
+.ba:disabled{opacity:.7}
+.track{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.track .ic{width:36px;height:36px;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center;flex:none}
+.track b{font-size:14px}
+.track p{font-size:12.5px;color:var(--muted)}
+.track a{margin-left:auto;color:var(--accent-strong);font-size:13px;font-weight:600;white-space:nowrap}
+.eb{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.h2{font-size:20px;font-weight:700;margin:2px 0 14px}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;position:relative}
+.cat.hid{opacity:.6;border-style:dashed}
+.cat .ic{width:36px;height:36px;border-radius:8px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:17px}
+.cat h3{font-size:15px;font-weight:700;margin:12px 0 4px}
+.cat p{font-size:12.5px;color:var(--muted);flex:1}
+.cat .f{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12.5px}
+.cat .f b{font-weight:600;color:var(--ink-2)}
+.cat .f a{color:var(--accent-strong);font-weight:600}
+.ctl{position:absolute;top:12px;right:12px;display:flex;gap:4px}
+.ctl button{width:26px;height:26px;border:1px solid var(--line);border-radius:6px;font-size:12px;color:var(--ink-2);background:#fff;display:flex;align-items:center;justify-content:center}
+.ctl button:hover{background:var(--hover)}
+.ctl button:disabled{opacity:.35;cursor:default}
+.feat{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:26px}
+.feat a{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.feat a:hover{border-color:var(--faint)}
+.feat b{font-size:14px;display:block}
+.feat span{font-size:12.5px;color:var(--muted)}
+.list{background:#fff;border:1px solid var(--line);border-radius:10px}
+.row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line-soft)}
+.row:last-child{border-bottom:0}
+.row .doc{width:26px;height:26px;border-radius:6px;background:var(--pill);display:flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+.row a.t{flex:1;font-size:13.5px;font-weight:600}
+.row a.t:hover{color:var(--accent-strong)}
+.st{font-size:11px;border-radius:20px;padding:1px 9px;white-space:nowrap}
+.st::before{content:"● ";font-size:8px;vertical-align:1px}
+.st.pub{background:var(--green-bg);color:var(--green-ink)}.st.ras{background:var(--pill);color:var(--muted)}.st.mud{background:var(--amber-bg);color:var(--amber-ink)}.st.fora{background:var(--red-bg);color:var(--red-ink)}
+.vis{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.vis .st{font-size:11.5px}
+.bl{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:6px 11px;border-radius:6px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+.bl:hover{background:var(--hover)}
+.art{display:grid;grid-template-columns:200px 1fr 190px;gap:22px;align-items:start}
+.lnav{position:sticky;top:76px;font-size:12.5px}
+.lnav a{display:block;padding:6px 10px;border-radius:6px;color:var(--ink-2);border-left:2px solid transparent}
+.lnav a[aria-current="page"]{background:var(--accent-tint);color:var(--accent-strong);border-left-color:var(--accent);font-weight:600}
+.toc{position:sticky;top:76px;font-size:12px}
+.toc a{display:block;padding:3px 0;color:var(--muted)}
+.toc a:hover{color:var(--ink)}
+.cbar{background:var(--dark);color:#fff;border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;font-size:12.5px}
+.cbar div{display:flex;gap:6px;flex-wrap:wrap}
+.doc-c{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px 28px 30px}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-bottom:8px}
+.chip{background:var(--pill);border-radius:4px;padding:1px 6px;color:var(--ink-2)}
+.doc-c h1{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.2;margin-bottom:12px}
+.md h2{font-size:16.5px;font-weight:700;margin:22px 0 6px;scroll-margin-top:80px}
+.md h3{font-size:14.5px;font-weight:700;margin:16px 0 4px;scroll-margin-top:80px}
+.md p{color:var(--ink-2);margin:6px 0;font-size:14px;line-height:1.65}
+.md ul,.md ol{padding-left:20px;color:var(--ink-2);margin:6px 0}
+.md li{margin:3px 0}
+.md hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+.md a{color:var(--accent-strong);text-decoration:underline;text-underline-offset:2px}
+.md code{background:var(--pill);border-radius:4px;padding:0 4px;font-size:12.5px}
+.md table{border-collapse:collapse;margin:8px 0;font-size:13px}
+.md th,.md td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.md th{background:var(--bg)}
+.co{border-radius:8px;padding:10px 12px;margin:10px 0;font-size:13.5px;border:1px solid}
+.co.info{background:var(--blue-bg);border-color:#C9DBF4;color:#173B6B}.co.tip{background:var(--green-bg);border-color:#BFE8D7;color:#065F46}.co.warning{background:var(--amber-bg);border-color:#F1E0AE;color:#6B3F05}
+.pn{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.pn a{flex:1;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12.5px}
+.pn a:hover{border-color:var(--faint)}
+.pn a span{display:block;color:var(--muted);font-size:11px}
+.res{background:#fff;border:1px solid var(--line);border-radius:10px}
+.res a{display:block;padding:12px 16px;border-bottom:1px solid var(--line-soft)}
+.res a:last-child{border-bottom:0}
+.res a:hover{background:var(--hover)}
+.res b{font-size:14px}
+.res p{font-size:12.5px;color:var(--muted);margin-top:2px}
+.res mark{background:#FFE7D6;color:inherit;border-radius:2px}
+.empty{padding:30px;text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:10px}
+table.tb{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
+.tb th{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--bg);white-space:nowrap}
+.tb td{padding:10px 12px;border-bottom:1px solid var(--line-soft)}
+.tw{border:1px solid var(--line);border-radius:10px;overflow:auto}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;padding:9px 14px;border-radius:6px;z-index:80;opacity:0;transition:opacity .15s;pointer-events:none;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1}
+@media (max-width:900px){.art{grid-template-columns:1fr}.lnav,.toc{display:none}.cats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .nav{flex-wrap:wrap;height:auto;padding:8px 12px;gap:8px}
+  .nt a span{display:none}.me span{display:none}
+  .cats,.feat{grid-template-columns:1fr}
+  .wrap{padding:16px 12px}.hero .in{padding:30px 16px 34px}
+  .doc-c{padding:20px 16px}
+  .cur .r{align-items:flex-start}.cur .r div{justify-content:flex-start}
+  .track{flex-wrap:wrap}.track a{margin-left:48px}
+}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Central de ajuda">
+  <a class="brand" href="#/"><i aria-hidden="true">?</i>Central de ajuda</a>
+  <div class="nt"><a href="#/" id="nArt"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg><span>Artigos</span></a><a href="#/chamados" id="nCh"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1z"/></svg><span>Meus chamados</span></a></div>
+  <label class="nsearch" id="nsWrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="search" id="ns" placeholder="Busque por um assunto, ex.: gerar relatório" aria-label="Buscar artigos"></label>
+  <div class="nr">
+    <div class="mode" role="group" aria-label="Modo de visualização"><button data-mode="cur" aria-pressed="true">✎ Curadoria</button><button data-mode="cli" aria-pressed="false">👁 Visão do cliente</button></div>
+    <span class="me"><b id="av">VC</b><span id="who">Você (equipe)</span></span>
+  </div>
+</nav>
+<main id="app"></main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ===== Acervo fictício (espelho do portal de ajuda) ===== */
+const CATS=[
+ {id:1,nome:"Primeiros passos",desc:"Acesso, convite e primeiras configurações.",ic:"🚀",pos:1,hidden:false},
+ {id:2,nome:"Planejamento",desc:"Cronograma, metas semanais e restrições.",ic:"🗓",pos:2,hidden:false},
+ {id:3,nome:"Medição",desc:"Registrar, conferir e aprovar medições.",ic:"📏",pos:3,hidden:false},
+ {id:4,nome:"Qualidade",desc:"Inspeções, checklists e não conformidades.",ic:"✅",pos:4,hidden:false},
+ {id:5,nome:"Relatórios",desc:"Relatórios da obra e exportações.",ic:"📊",pos:5,hidden:false},
+ {id:6,nome:"Integração com MS Project",desc:"Importar e atualizar cronogramas.",ic:"⚡",pos:6,hidden:false},
+ {id:7,nome:"Perguntas frequentes",desc:"Respostas rápidas para dúvidas comuns.",ic:"💬",pos:7,hidden:false},
+ {id:8,nome:"Material interno",desc:"Procedimentos só da equipe.",ic:"🔒",pos:8,hidden:true}];
+const A=[];let AID=100;
+function art(cat,titulo,desc,md,o={}){A.push(Object.assign({id:++AID,cat,titulo,desc,md,pub:true,pubMd:md,featured:false,fora:false,mudou:false,pos:A.filter(x=>x.cat===cat).length,atualizado:"27/10/2026",publicado:"05/11/2026"},o))}
+art(1,"Como acessar o aplicativo","Primeiro acesso em 3 passos",`## Antes de começar
+Você precisa do convite enviado pela sua empresa.
+
+:::info
+Use o mesmo e-mail que recebeu o convite.
+:::
+
+## Passo a passo
+1. Abra o aplicativo.
+2. Digite e-mail e senha.
+3. Escolha a obra.
+
+## Esqueci a senha
+Toque em **Esqueci minha senha** na tela de entrada. O link chega em até 2 minutos.
+
+Veja também [como convidar um usuário](#/a/102).`,{featured:true});
+art(1,"Como convidar um usuário para a obra","Dê acesso a engenheiros e estagiários",`## Quem pode convidar
+Só administradores da obra.
+
+## Convidando
+1. Abra **Equipe** no menu da obra.
+2. Toque em **Convidar** e digite o e-mail.
+3. Escolha o perfil: *leitura*, *edição* ou *administrador*.
+
+:::tip
+O convite vale por 7 dias. Depois disso, envie de novo.
+:::`);
+art(1,"Trocar de obra no aplicativo","Quando você participa de mais de uma obra",`## Trocando
+Toque no nome da obra no topo e escolha outra da lista.
+
+## A obra não aparece
+Peça ao administrador para conferir se você foi convidado para ela.`);
+art(2,"Como montar o planejamento semanal","Metas da semana a partir do cronograma",`## O que é
+O planejamento semanal transforma o cronograma em tarefas da semana para cada equipe.
+
+## Montando
+1. Abra **Planejamento › Semana**.
+2. Arraste as tarefas do cronograma para a semana.
+3. Defina a equipe responsável e a meta.
+
+## Fechando a semana
+Na sexta, marque o que foi concluído. O percentual de tarefas concluídas aparece no painel da obra.`,{featured:true});
+art(2,"Registrar uma restrição","O que impede uma tarefa de começar",`## Quando usar
+Quando falta material, projeto ou liberação para uma tarefa começar.
+
+## Registrando
+1. Abra a tarefa.
+2. Toque em **Restrição** e descreva o que falta.
+3. Defina o responsável e a data limite.
+
+:::warning
+Restrição sem data limite não entra no relatório semanal.
+:::`);
+art(2,"Erro ao salvar o planejamento","O que fazer quando aparece erro inesperado",`## Confira a conexão
+O planejamento é salvo no servidor. Sem internet, ele fica pendente.
+
+## Atualize o aplicativo
+Versões antigas podem não salvar. Confira a versão em **Configurações › Sobre**.`,{pub:false,pubMd:null,publicado:null});
+art(3,"Como registrar uma medição","Passo a passo da medição",`## Registrando
+Abra a obra e toque em **Medir**.
+
+| Campo | Exemplo |
+|---|---|
+| Parede | 3 |
+| Valor | 12,5 m² |
+
+++Atenção++: salve antes de sair da tela.
+
+## Fotos
+Você pode anexar até 5 fotos por medição.`,{featured:true});
+art(3,"Aprovar uma medição","Conferência antes do fechamento do mês",`## Quem aprova
+Engenheiros com perfil de edição.
+
+## Aprovando
+1. Abra **Medição › Pendentes**.
+2. Confira os valores e as fotos.
+3. Toque em **Aprovar** ou **Devolver** com um comentário.`,{mudou:true,md:`## Quem aprova
+Engenheiros com perfil de edição ou administrador.
+
+## Aprovando
+1. Abra **Medição › Pendentes**.
+2. Confira os valores e as fotos.
+3. Toque em **Aprovar** ou **Devolver** com um comentário.
+
+## Aprovação em lote
+Selecione várias medições e toque em **Aprovar selecionadas**.`});
+art(3,"Medição não bate com o painel","Por que os números podem ficar diferentes",`## Atualização do painel
+O painel recalcula a cada hora. Uma medição aprovada agora pode levar até uma hora para aparecer.
+
+## Medições devolvidas
+Medições devolvidas não entram no total até serem corrigidas.`);
+art(4,"Criar uma inspeção","Checklist de qualidade em campo",`## Criando
+1. Abra **Qualidade › Inspeções**.
+2. Escolha o modelo de checklist.
+3. Preencha em campo e toque em **Enviar**.
+
+## Sem internet
+A inspeção fica salva no aparelho e é enviada quando a conexão volta.`);
+art(4,"Por que não consigo enviar inspeções?","Os três motivos mais comuns",`## 1. Aplicativo desatualizado
+Mantenha o aplicativo sempre atualizado e confira no topo o status: **Sincronizado** ou **Offline**.
+
+## 2. Item obrigatório não preenchido
+A inspeção só é enviada com todos os itens obrigatórios respondidos.
+
+## 3. Conexão com a internet
+Sem conexão, a inspeção fica na fila e sai sozinha depois.`,{featured:true});
+art(5,"Gerar o relatório semanal da obra","PDF com avanço, restrições e fotos",`## Gerando
+Em **Relatórios › Semanal**, escolha a obra e o período e toque em **Gerar**.
+
+## Enviando para o cliente
+O PDF pode ser baixado ou enviado por e-mail direto do aplicativo.`);
+art(5,"Exportar dados para planilha","Medições e tarefas em Excel",`## Exportando
+Em qualquer lista, toque em **Exportar** e escolha o formato.
+
+:::info
+A exportação respeita os filtros aplicados na tela.
+:::`);
+art(6,"Importar cronograma do MS Project","Arquivo .mpp ou .xml",`## Formatos aceitos
+Arquivos **.mpp** e **.xml** salvos pelo MS Project.
+
+## Importando
+1. Abra **Planejamento › Cronograma**.
+2. Toque em **Importar** e escolha o arquivo.
+3. Confira as tarefas antes de confirmar.`);
+art(6,"Atualizar um cronograma já importado","Sem perder o planejamento semanal",`## Reimportando
+Importe o arquivo novo por cima. Tarefas com o mesmo código são atualizadas; tarefas novas são criadas.`,{pub:false,pubMd:null,publicado:null});
+art(7,"Posso usar o aplicativo sem internet?","Sim, com algumas limitações",`## O que funciona offline
+Medições, inspeções e consulta de tarefas.
+
+## O que precisa de internet
+Relatórios, importação de cronograma e convites.`);
+art(7,"Como falar com o suporte","Canais e horários",`## Canais
+Chat no aplicativo, WhatsApp e e-mail.
+
+## Horário
+Segunda a sexta, das 8h às 18h. Fora desse horário, a assistente virtual responde e encaminha para a equipe.`);
+art(7,"Artigo antigo de instalação","Removido do portal de origem",`## Instalação
+Texto antigo.`,{fora:true});
+art(8,"Procedimento interno de escalonamento","Só para a equipe",`## Quando escalar
+Problemas que afetam mais de uma obra.`);
+
+const CHAMADOS=[{id:13552,status:"Aberto",titulo:"Relatório semanal não carrega",empresa:"Alfa Construtora",obra:"Residencial Norte",em:"18/11/2026"},{id:13531,status:"Em espera",titulo:"Erro ao salvar o planejamento",empresa:"Alfa Construtora",obra:"Torre Sul",em:"12/11/2026"},{id:13470,status:"Resolvido",titulo:"Incluir usuário novo",empresa:"Alfa Construtora",obra:"Residencial Norte",em:"30/10/2026"}];
+
+/* ===== Estado ===== */
+const S={mode:"cur",ultimaSync:"20/11 08:42"};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+const cur=()=>S.mode==="cur";
+const catVis=c=>!c.hidden;
+const visivelCliente=a=>a.pub&&!a.fora&&catVis(CATS.find(c=>c.id===a.cat));
+const artsDe=cid=>A.filter(a=>a.cat===cid&&(cur()||visivelCliente(a))).sort((x,y)=>x.pos-y.pos);
+const status=a=>a.fora?["fora","Fora da origem"]:!a.pub?["ras","Rascunho"]:a.mudou?["mud","Mudou depois"]:["pub","Publicado"];
+const minutos=md=>Math.max(1,Math.round(md.split(/\s+/).length/200));
+
+/* ===== Markdown seguro: só produz texto escapado e um conjunto fechado de marcas ===== */
+function inline(s){
+  let t=esc(s);
+  t=t.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\+\+(.+?)\+\+/g,"<u>$1</u>").replace(/(^|[^*])\*(?!\s)(.+?)\*/g,"$1<em>$2</em>").replace(/`(.+?)`/g,"<code>$1</code>");
+  t=t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(m,txt,href)=>{const h=href.replace(/&amp;/g,"&");
+    if(/^#\/a\/\d+$/.test(h)){const id=+h.split("/")[2],a=A.find(x=>x.id===id);return a&&(cur()||visivelCliente(a))?`<a href="${h}">${txt}</a>`:txt}
+    if(/^(https?:|mailto:|tel:)/i.test(h))return`<a href="${esc(h)}" rel="noopener" target="_blank">${txt}</a>`;return txt});
+  return t}
+function md(src){
+  const L=src.split("\n");let o="",i=0,toc=[],lista=null;
+  const fecha=()=>{if(lista){o+=`</${lista}>`;lista=null}};
+  while(i<L.length){const l=L[i];
+    if(/^:::(info|tip|warning)\s*$/.test(l)){fecha();const k=l.slice(3).trim();let b=[];i++;while(i<L.length&&!/^:::\s*$/.test(L[i]))b.push(L[i++]);o+=`<div class="co ${k}">${inline(b.join(" "))}</div>`;i++;continue}
+    if(/^\|/.test(l)){fecha();const rows=[];while(i<L.length&&/^\|/.test(L[i]))rows.push(L[i++]);const cel=r=>r.replace(/^\||\|$/g,"").split("|").map(c=>c.trim());
+      o+=`<table><thead><tr>${cel(rows[0]).map(c=>`<th>${inline(c)}</th>`).join("")}</tr></thead><tbody>${rows.slice(2).map(r=>`<tr>${cel(r).map(c=>`<td>${inline(c)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;continue}
+    let m;
+    if((m=l.match(/^(##|###)\s+(.*)/))){fecha();const id="s"+toc.length;toc.push([m[1].length,m[2],id]);o+=`<h${m[1].length} id="${id}">${inline(m[2])}</h${m[1].length}>`}
+    else if((m=l.match(/^(\d+)\.\s+(.*)/))){if(lista!=="ol"){fecha();o+="<ol>";lista="ol"}o+=`<li>${inline(m[2])}</li>`}
+    else if((m=l.match(/^[-*]\s+(.*)/))){if(lista!=="ul"){fecha();o+="<ul>";lista="ul"}o+=`<li>${inline(m[1])}</li>`}
+    else if(/^---\s*$/.test(l)){fecha();o+="<hr>"}
+    else if(l.trim()){fecha();o+=`<p>${inline(l)}</p>`}else fecha();
+    i++}
+  fecha();return{html:o,toc}}
+
+/* ===== Telas ===== */
+const icon={busca:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>'};
+function curBanner(){const tot=A.filter(a=>!a.fora).length;
+  return`<section class="cur" aria-label="Modo curadoria"><div style="position:relative;z-index:1"><span class="badge">Modo curadoria</span><h2>Você vê tudo. O cliente só vê o que você publicar.</h2>
+  <div class="stats"><div><b>${A.filter(a=>a.pub&&!a.fora).length}</b><span>Publicados</span></div><div><b>${A.filter(a=>!a.pub&&!a.fora).length}</b><span>Sem publicar</span></div><div><b>${A.filter(a=>a.mudou).length}</b><span>Alterados</span></div><div><b>${tot}</b><span>No portal de origem</span></div></div></div>
+  <div class="r"><div><a class="bd" href="#/curadoria">⚙ Gerenciar artigos</a><button class="bd ba" id="sync">⟳ Sincronizar portal</button></div><small>Última sincronização em ${S.ultimaSync}</small></div></section>`}
+function home(){
+  const cats=CATS.filter(c=>cur()||catVis(c)).sort((a,b)=>a.pos-b.pos);
+  const destaques=A.filter(a=>a.featured&&visivelCliente(a));
+  return`<header class="hero"><div class="in"><span class="badge">Central de ajuda</span><h1>Como podemos <em>ajudar</em>?</h1><p>Guias passo a passo para tirar o máximo do aplicativo de obras.</p>
+  <label class="big">${icon.busca}<input type="search" id="bs" placeholder="Busque por um assunto, ex.: criar inspeção" aria-label="Buscar artigos"></label></div></header>
+  <div class="wrap">${cur()?curBanner():""}
+  <div class="track"><span class="ic">📥</span><div><b>Acompanhe suas solicitações</b><p>Veja o status dos chamados abertos por você com o suporte.</p></div><a href="#/chamados">Ver meus chamados ›</a></div>
+  ${destaques.length?`<p class="eb">Mais procurados</p><h2 class="h2">Em destaque</h2><div class="feat">${destaques.map(a=>`<a href="#/a/${a.id}"><b>${esc(a.titulo)}</b><span>${esc(a.desc)}</span></a>`).join("")}</div>`:""}
+  <p class="eb">Explore por assunto</p><h2 class="h2">Categorias</h2>
+  <div class="cats">${cats.map((c,i)=>{const n=artsDe(c.id).length;return`<article class="cat ${c.hidden?"hid":""}"><span class="ic" aria-hidden="true">${c.ic}</span>
+    ${cur()?`<div class="ctl"><button data-mv="${c.id}" data-d="-1" aria-label="Subir" ${i===0?"disabled":""}>↑</button><button data-mv="${c.id}" data-d="1" aria-label="Descer" ${i===cats.length-1?"disabled":""}>↓</button><button data-hide="${c.id}" aria-label="${c.hidden?"Mostrar aos clientes":"Ocultar dos clientes"}" title="${c.hidden?"Oculta dos clientes":"Visível para clientes"}">${c.hidden?"🚫":"👁"}</button></div>`:""}
+    <h3>${esc(c.nome)}</h3><p>${esc(c.desc)}${c.hidden?" · <b>oculta dos clientes</b>":""}</p><div class="f"><b>${n} artigo${n===1?"":"s"}</b><a href="#/c/${c.id}">Abrir ›</a></div></article>`}).join("")}</div></div>`}
+function categoria(cid){const c=CATS.find(x=>x.id===cid);if(!c||(!cur()&&!catVis(c)))return naoAchou();const arts=artsDe(cid);
+  return`<header class="hero sm"><div class="in"><nav class="crumb" aria-label="Caminho"><a href="#/">Central de ajuda</a>/<span>${esc(c.nome)}</span></nav><span class="badge" style="margin-top:10px">Categoria</span><h1 style="font-size:28px">${esc(c.nome)}</h1></div></header>
+  <div class="wrap">${cur()?`<div class="vis"><span class="st ${c.hidden?"fora":"pub"}">${c.hidden?"Categoria oculta dos clientes":"Categoria visível para clientes"}</span><button class="bl" data-hide="${c.id}">${c.hidden?"👁 Mostrar aos clientes":"🚫 Ocultar dos clientes"}</button></div>`:""}
+  ${arts.length?`<div class="list">${arts.map((a,i)=>{const[k,l]=status(a);return`<div class="row"><span class="doc" aria-hidden="true">📄</span><a class="t" href="#/a/${a.id}">${esc(a.titulo)}</a>${cur()?`<span class="st ${k}">${l}</span><span class="ctl" style="position:static"><button data-amv="${a.id}" data-d="-1" aria-label="Subir" ${i===0?"disabled":""}>↑</button><button data-amv="${a.id}" data-d="1" aria-label="Descer" ${i===arts.length-1?"disabled":""}>↓</button></span>`:""}<a href="#/a/${a.id}" aria-label="Abrir">›</a></div>`}).join("")}</div>`:`<div class="empty">Nenhum artigo publicado nesta categoria ainda.</div>`}</div>`}
+function artigo(id){const a=A.find(x=>x.id===id);if(!a||(!cur()&&!visivelCliente(a)))return naoAchou();
+  const c=CATS.find(x=>x.id===a.cat),irmaos=artsDe(a.cat),k=irmaos.indexOf(a);
+  const fonte=cur()?a.md:(a.pubMd||a.md);const r=md(fonte);const[sk,sl]=status(a);
+  const barra=cur()?`<div class="cbar"><span>${a.fora?"<b>Fora da origem.</b> Este artigo saiu do portal de origem e não é apagado daqui.":a.pub?(a.mudou?"<b>Mudou depois.</b> O texto mudou na origem; os clientes ainda veem a versão publicada em "+a.publicado+".":"<b>Publicado</b> em "+a.publicado+". Os clientes veem esta versão."):"<b>Rascunho.</b> Os clientes não veem este artigo."}</span><div>
+    ${!a.fora&&a.pub?`<button class="bd" data-feat="${a.id}">${a.featured?"★ Tirar do destaque":"☆ Destacar na home"}</button>`:""}${a.mudou?`<button class="bd ba" data-pub="${a.id}">Publicar a versão nova</button>`:""}${!a.fora?(a.pub?`<button class="bd" data-unpub="${a.id}">Despublicar</button>`:`<button class="bd ba" data-pub="${a.id}">Publicar</button>`):""}</div></div>`:"";
+  return`<header class="hero sm"><div class="in" style="padding:14px 24px"><nav class="crumb" aria-label="Caminho"><a href="#/">Central de ajuda</a>/<a href="#/c/${c.id}">${esc(c.nome)}</a>/<span>${esc(a.titulo)}</span></nav></div></header>
+  <div class="wrap"><div class="art"><nav class="lnav" aria-label="Artigos da categoria"><p class="eb" style="margin:0 0 6px 10px">${esc(c.nome)}</p>${irmaos.map(x=>`<a href="#/a/${x.id}" ${x===a?'aria-current="page"':""}>${esc(x.titulo)}</a>`).join("")}</nav>
+  <div>${barra}<article class="doc-c"><div class="meta"><span class="chip">${esc(c.nome)}</span><span>Atualizado em ${a.atualizado}</span><span>·</span><span>${minutos(fonte)} min de leitura</span>${cur()?`<span class="st ${sk}">${sl}</span>`:""}</div><h1>${esc(a.titulo)}</h1><div class="md">${r.html}</div></article>
+  <div class="pn">${k>0?`<a href="#/a/${irmaos[k-1].id}"><span>‹ Anterior</span>${esc(irmaos[k-1].titulo)}</a>`:"<span></span>"}${k<irmaos.length-1?`<a href="#/a/${irmaos[k+1].id}" style="text-align:right"><span>Próximo ›</span>${esc(irmaos[k+1].titulo)}</a>`:"<span></span>"}</div></div>
+  <aside class="toc"><p class="eb" style="margin-bottom:6px">Nesta página</p>${r.toc.map(([n,t,id])=>`<a href="javascript:void 0" data-toc="${id}" style="padding-left:${n===3?10:0}px">${esc(t)}</a>`).join("")}</aside></div></div>`}
+function busca(q){const termos=norm(q).split(/\s+/).filter(Boolean);
+  let res=[];if(norm(q).trim().length>=2){res=A.filter(a=>cur()||visivelCliente(a)).map(a=>{const txt=norm(a.titulo+" "+a.desc+" "+(cur()?a.md:a.pubMd||a.md));const ok=termos.every(t=>txt.includes(t));
+    const rank=termos.reduce((s,t)=>s+(norm(a.titulo).includes(t)?3:0)+(txt.split(t).length-1),0);return ok?{a,rank}:null}).filter(Boolean).sort((x,y)=>y.rank-x.rank).slice(0,30)}
+  const trecho=a=>{const plano=(a.pubMd||a.md).replace(/[#*:|>+`\[\]()]/g," ").replace(/\s+/g," ");const p=norm(plano).indexOf(termos[0]||"");const ini=Math.max(0,p-50);let s=esc(plano.slice(ini,ini+150));termos.forEach(t=>{const re=new RegExp("("+t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");s=s.replace(re,"<mark>$1</mark>")});return(ini?"…":"")+s+"…"};
+  return`<header class="hero sm"><div class="in"><span class="badge">Busca</span><h1 style="font-size:26px">Resultados para “${esc(q)}”</h1><p>${q.trim().length<2?"Digite pelo menos 2 letras.":res.length+" artigo"+(res.length===1?"":"s")+(cur()?" no acervo inteiro (equipe)":" publicados")}</p></div></header>
+  <div class="wrap">${res.length?`<div class="res">${res.map(({a})=>{const[k,l]=status(a);return`<a href="#/a/${a.id}"><b>${esc(a.titulo)}</b>${cur()?` <span class="st ${k}">${l}</span>`:""}<p>${trecho(a)}</p></a>`}).join("")}</div>`:q.trim().length>=2?`<div class="empty">Nenhum artigo encontrado. Tente outra palavra ou <a href="#/chamados" style="color:var(--accent-strong)">fale com o suporte</a>.</div>`:""}</div>`}
+function chamados(){return`<header class="hero sm"><div class="in"><span class="badge">Meus chamados</span><h1 style="font-size:28px">Suas solicitações</h1><p>${cur()?"Pré-visualização como o cliente Marina Teixeira (Alfa Construtora) vê.":"Chamados em que você participa."}</p></div></header>
+  <div class="wrap"><div class="tw"><table class="tb"><thead><tr><th>Nº</th><th>Assunto</th><th>Empresa</th><th>Obra</th><th>Aberto em</th><th>Status</th></tr></thead><tbody>${CHAMADOS.map(c=>`<tr><td><b>#${c.id}</b></td><td>${esc(c.titulo)}</td><td>${esc(c.empresa)}</td><td>${esc(c.obra)}</td><td>${c.em}</td><td><span class="st ${c.status==="Resolvido"?"pub":c.status==="Aberto"?"mud":"ras"}">${c.status}</span></td></tr>`).join("")}</tbody></table></div>
+  <p style="font-size:12.5px;color:var(--muted);margin-top:10px">O cliente vê só número, assunto, empresa, obra, data e status: nunca notas internas, prioridade ou o Jira.</p></div>`}
+function curadoria(){if(!cur())return naoAchou();
+  return`<header class="hero sm"><div class="in"><span class="badge">Curadoria</span><h1 style="font-size:28px">Gerenciar artigos</h1><p>Publicar congela uma cópia: se o texto mudar na origem, o cliente continua vendo a versão publicada até você publicar de novo.</p></div></header>
+  <div class="wrap">${curBanner()}<div class="tw"><table class="tb"><thead><tr><th>Artigo</th><th>Categoria</th><th>Situação</th><th>Destaque</th><th></th></tr></thead><tbody>${A.slice().sort((a,b)=>a.cat-b.cat||a.pos-b.pos).map(a=>{const[k,l]=status(a);const c=CATS.find(x=>x.id===a.cat);return`<tr><td><a href="#/a/${a.id}" style="font-weight:600">${esc(a.titulo)}</a></td><td>${esc(c.nome)}${c.hidden?' <span class="st fora">oculta</span>':""}</td><td><span class="st ${k}">${l}</span></td><td>${a.featured?"★":"—"}</td><td style="white-space:nowrap">${a.fora?"":a.pub?`${a.mudou?`<button class="bl" data-pub="${a.id}">Publicar nova versão</button> `:""}<button class="bl" data-unpub="${a.id}">Despublicar</button>`:`<button class="bl" data-pub="${a.id}">Publicar</button>`}</td></tr>`}).join("")}</tbody></table></div></div>`}
+const naoAchou=()=>`<div class="wrap"><div class="empty" style="margin-top:30px">Artigo não encontrado ou não publicado. <a href="#/" style="color:var(--accent-strong)">Voltar à central</a></div></div>`;
+
+function render(){
+  const h=location.hash.replace(/^#/,"")||"/";let m,html;
+  document.querySelectorAll(".mode button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===S.mode));
+  $("#av").textContent=cur()?"VC":"MT";$("#who").textContent=cur()?"Você (equipe)":"Marina T. (cliente)";
+  if((m=h.match(/^\/c\/(\d+)/)))html=categoria(+m[1]);else if((m=h.match(/^\/a\/(\d+)/)))html=artigo(+m[1]);
+  else if((m=h.match(/^\/busca\/(.*)/)))html=busca(decodeURIComponent(m[1]));else if(h==="/chamados")html=chamados();else if(h==="/curadoria")html=curadoria();else html=home();
+  $("#app").innerHTML=html;
+  $("#nArt").setAttribute("aria-current",h!=="/chamados"?"page":"false");$("#nCh").setAttribute("aria-current",h==="/chamados"?"page":"false");
+  $("#nsWrap").style.display=h==="/"?"none":"block";
+  const bs=$("#bs");if(bs)bs.addEventListener("input",deb(e=>{if(e.target.value.trim().length>=2)location.hash="#/busca/"+encodeURIComponent(e.target.value)},350));
+}
+function deb(fn,ms){let t;return e=>{clearTimeout(t);t=setTimeout(()=>fn(e),ms)}}
+$("#ns").addEventListener("input",deb(e=>{location.hash="#/busca/"+encodeURIComponent(e.target.value)},350));
+window.addEventListener("hashchange",()=>{render();if(!/^#\/busca/.test(location.hash))window.scrollTo(0,0);else{const i=$("#ns");if(document.activeElement!==i){i.value=decodeURIComponent(location.hash.slice(8));}}});
+document.querySelector(".mode").addEventListener("click",e=>{const b=e.target.closest("[data-mode]");if(!b)return;S.mode=b.dataset.mode;if(!cur()&&location.hash==="#/curadoria")location.hash="#/";render();toast(cur()?"Curadoria: você vê rascunhos e categorias ocultas.":"Visão do cliente: só o que foi publicado em categoria visível.")});
+$("#app").addEventListener("click",e=>{
+  let b;
+  if((b=e.target.closest("[data-toc]"))){const el=document.getElementById(b.dataset.toc);if(el)el.scrollIntoView({behavior:"smooth"});return}
+  if((b=e.target.closest("[data-mv]"))){const c=CATS.find(x=>x.id===+b.dataset.mv),ord=CATS.slice().sort((a,b)=>a.pos-b.pos),i=ord.indexOf(c),j=i+ +b.dataset.d;if(ord[j]){[c.pos,ord[j].pos]=[ord[j].pos,c.pos];render();toast("Ordem das categorias salva.")}return}
+  if((b=e.target.closest("[data-amv]"))){const a=A.find(x=>x.id===+b.dataset.amv),ord=A.filter(x=>x.cat===a.cat).sort((x,y)=>x.pos-y.pos),i=ord.indexOf(a),j=i+ +b.dataset.d;if(ord[j]){[a.pos,ord[j].pos]=[ord[j].pos,a.pos];render()}return}
+  if((b=e.target.closest("[data-hide]"))){const c=CATS.find(x=>x.id===+b.dataset.hide);c.hidden=!c.hidden;render();toast(c.hidden?`"${c.nome}" e seus artigos sumiram para o cliente.`:`"${c.nome}" voltou a aparecer para o cliente.`);return}
+  if((b=e.target.closest("[data-pub]"))){const a=A.find(x=>x.id===+b.dataset.pub);a.pub=true;a.pubMd=a.md;a.mudou=false;a.publicado="20/11/2026";render();toast("Publicado. O cliente vê esta versão.");return}
+  if((b=e.target.closest("[data-unpub]"))){const a=A.find(x=>x.id===+b.dataset.unpub);a.pub=false;a.featured=false;render();toast("Despublicado. O artigo não foi apagado.");return}
+  if((b=e.target.closest("[data-feat]"))){const a=A.find(x=>x.id===+b.dataset.feat);a.featured=!a.featured;render();toast(a.featured?"Aparece em destaque na página inicial.":"Saiu do destaque.");return}
+  if(e.target.closest("#sync")){const bt=e.target.closest("#sync");bt.disabled=true;bt.textContent="Sincronizando…";setTimeout(()=>{S.ultimaSync=new Intl.DateTimeFormat("pt-BR",{timeZone:"America/Sao_Paulo",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).format(Date.now()).replace(",","");render();toast(`Sincronizado: ${A.length} artigos (0 novos, ${A.filter(a=>a.mudou).length} alterados).`)},900)}
+});
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2800)}
+render();
+</script>
+</body>
+</html>

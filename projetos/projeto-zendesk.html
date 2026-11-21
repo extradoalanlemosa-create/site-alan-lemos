@@ -11,105 +11,109 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#1C2430;
-  --graphite:#3A3A38;
-  --paper:#FAF9F5;
-  --paper-dim:#F2F0EA;
-  --line:#E4E1D8;
-  --stone:#9B9990;
-  --ink:#22201C;
-  --terracotta:#C48A5A;
-  --terracotta-d:#AD744A;
-  --font-display:var(--sans);
-  --font-body:'Inter',sans-serif;
+  --ink:#1B2230; --ink-2:#5A6372; --ink-3:#8A93A3;
+  --paper:#FFFFFF; --paper-2:#F6F7F9; --line:#E4E7EC; --line-2:#CDD3DC;
+  --navy:#022754; --navy-d:#01173A; --navy-tint:#E4EBF5;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
 .wrap{max-width:960px;margin:0 auto;padding:0 32px}
 
-/* NAV */
-.nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--graphite)}
-.logo-mark{width:38px;height:38px;display:flex;align-items:center;justify-content:center}
-.logo-mark svg{width:38px;height:38px}
-.back-link{font-size:13.5px;color:var(--stone);display:flex;align-items:center;gap:6px;transition:color .15s}
-.back-link:hover{color:var(--terracotta-d)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:26px 0}
+.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:500;color:var(--ink)}
+.logo svg{width:34px;height:34px}
+.nav-r{display:flex;align-items:center;gap:14px}
+.back-link{font-size:13.5px;color:var(--ink-2)}
+.back-link:hover{color:var(--navy)}
+.lang{display:inline-flex;align-items:center;padding:5px 10px;border:1px solid var(--line-2);border-radius:4px;font-size:12px;font-weight:500;color:var(--ink-2)}
+.lang:hover{border-color:var(--ink-3);color:var(--ink)}
 
-/* HERO / HEADER DO PROJETO */
-.project-hero{padding:36px 0 44px;border-bottom:1px solid var(--line)}
+.project-hero{padding:40px 0 48px;border-bottom:1px solid var(--line)}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.tag{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:none;color:var(--terracotta-d);background:rgba(196,138,90,.1);border:1px solid rgba(196,138,90,.28);padding:5px 11px;border-radius:20px}
-.h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,48px);line-height:1.12;color:var(--navy);max-width:16ch;margin-bottom:16px}
-.hero-sub{color:var(--stone);font-size:16px;max-width:52ch;margin-bottom:28px}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:13px 24px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:all .18s}
-.btn-primary{background:var(--terracotta);color:#fff}
-.btn-primary:hover{background:var(--terracotta-d);transform:translateY(-1px)}
-.btn-ghost{background:transparent;color:var(--graphite);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--stone)}
+.tag{font-size:12px;font-weight:500;color:var(--navy);background:var(--navy-tint);padding:4px 10px;border-radius:4px}
+.h1{font-weight:300;font-size:clamp(32px,4.6vw,48px);line-height:1.12;letter-spacing:-.015em;max-width:20ch;margin-bottom:18px}
+.hero-sub{color:var(--ink-2);font-size:16.5px;max-width:58ch;margin-bottom:16px}
+.client{font-size:13px;color:var(--ink-3);margin-bottom:28px}
+.client strong{color:var(--ink-2);font-weight:500}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:12px 22px;border-radius:4px;border:1px solid transparent}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--navy-d)}
+.btn-ghost{color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--ink-3)}
 
-/* SECTIONS */
 section{padding:56px 0}
 .section-line{border-top:1px solid var(--line)}
-.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:none;color:var(--terracotta-d);margin-bottom:10px}
-.section-title{font-family:var(--font-display);font-weight:500;font-size:28px;color:var(--navy);margin-bottom:36px;max-width:24ch}
+.section-title{font-weight:300;font-size:30px;line-height:1.2;letter-spacing:-.01em;margin-bottom:28px;max-width:26ch}
+.lede{color:var(--ink-2);max-width:62ch;margin:-12px 0 28px;font-size:15.5px}
 
-/* PROBLEMA -> SOLUCAO -> RESULTADO */
-.psr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
-.psr-card{padding:30px 28px;position:relative}
+.psr-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.psr-card{padding:28px 26px}
 .psr-card + .psr-card{border-left:1px solid var(--line)}
-.psr-num{font-family:var(--font-display);font-size:13px;color:var(--stone);letter-spacing:.05em;text-transform:none;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.psr-num::before{content:'';width:16px;height:1px;background:var(--terracotta)}
-.psr-heading{font-family:var(--font-display);font-size:19px;color:var(--navy);margin-bottom:12px;font-weight:500}
-.psr-text{font-size:14.5px;color:#5b584f;line-height:1.7}
+.psr-num{font-size:13px;color:var(--ink-3);margin-bottom:12px}
+.psr-heading{font-size:18px;font-weight:500;line-height:1.35;margin-bottom:10px}
+.psr-text{font-size:14.5px;color:var(--ink-2);line-height:1.7}
 .psr-card.result{background:var(--navy);color:#fff}
-.psr-card.result .psr-num{color:rgba(255,255,255,.55)}
-.psr-card.result .psr-heading{color:#fff}
-.psr-card.result .psr-text{color:rgba(255,255,255,.78)}
-.psr-arrow{position:absolute;top:30px;right:-13px;width:26px;height:26px;background:var(--paper);border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--stone);z-index:2}
+.psr-card.result .psr-num{color:rgba(255,255,255,.6)}
+.psr-card.result .psr-text{color:rgba(255,255,255,.8)}
 
-@media(max-width:760px){
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+.area{padding:20px 24px 20px 0;border-bottom:1px solid var(--line)}
+.area:nth-child(even){padding:20px 0 20px 24px;border-left:1px solid var(--line)}
+.area h3{font-size:15.5px;font-weight:500;margin-bottom:4px}
+.area p{font-size:14.5px;color:var(--ink-2)}
+
+.demo-wide{width:min(1240px,calc(100vw - 32px));position:relative;left:50%;transform:translateX(-50%)}
+.browser{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--paper-2);border-bottom:1px solid var(--line)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.url{flex:1;text-align:center;font-size:11.5px;color:var(--ink-3)}
+.demo-iframe{display:block;width:100%;height:min(840px,86vh);border:0;background:var(--paper-2)}
+.demo-foot{text-align:center;margin-top:14px}
+.demo-open{font-size:13.5px;font-weight:500;color:var(--navy);text-decoration:underline;text-underline-offset:3px}
+.demo-caption{font-size:12.5px;color:var(--ink-3);margin-top:8px}
+
+.principles{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.principles h3{font-size:15.5px;font-weight:500;margin-bottom:6px}
+.principles p{font-size:14.5px;color:var(--ink-2)}
+
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.tech-item{padding:20px;border-left:1px solid var(--line)}
+.tech-item:first-child{border-left:0}
+.tech-name{font-weight:500;font-size:14.5px;margin-bottom:6px}
+.tech-desc{font-size:13px;color:var(--ink-2);line-height:1.55}
+
+.final-cta{border-top:1px solid var(--line);padding:56px 0 24px;text-align:center}
+.final-cta .section-title{margin:0 auto 10px;font-size:26px}
+.final-cta p{color:var(--ink-2);max-width:46ch;margin:0 auto 26px;font-size:15px}
+.final-cta .cta-row{justify-content:center}
+footer{padding:28px 0 48px;text-align:center;font-size:12.5px;color:var(--ink-3)}
+
+@media(max-width:860px){
   .psr-grid{grid-template-columns:1fr}
-  .psr-card + .psr-card{border-left:none;border-top:1px solid var(--line)}
-  .psr-arrow{display:none}
-}
-
-/* DEMO FRAME */
-.demo-intro{max-width:58ch;color:#5b584f;font-size:15px;margin-bottom:28px}
-.browser-chrome{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;box-shadow:none}
-.chrome-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--paper-dim);border-bottom:1px solid var(--line)}
-.chrome-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.chrome-url{flex:1;text-align:center;font-size:11.5px;color:var(--stone);font-family:var(--font-body)}
-.demo-frame-wrap{width:100%;max-width:420px;margin:0 auto}
-.demo-caption{text-align:center;font-size:12.5px;color:var(--stone);margin-top:14px}
-
-/* TECH STACK: grid fechado, 5 colunas iguais, sem sobra */
-.tech-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.tech-item{background:#fff;padding:22px 20px;display:flex;flex-direction:column}
-.tech-name{font-weight:600;font-size:14px;color:var(--navy);margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;line-height:1.3}
-.tech-dot{width:7px;height:7px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:6px}
-.tech-desc{font-size:12.5px;color:var(--stone);line-height:1.55;padding-left:15px}
-
-@media(max-width:900px){
-  .tech-grid{grid-template-columns:repeat(3,1fr)}
+  .psr-card + .psr-card{border-left:0;border-top:1px solid var(--line)}
+  .principles{grid-template-columns:1fr;gap:20px}
+  .tech-grid{grid-template-columns:repeat(2,1fr)}
+  .tech-item:nth-child(3){border-left:0}
+  .tech-item:nth-child(n+3){border-top:1px solid var(--line)}
 }
 @media(max-width:640px){
+  .wrap{padding:0 16px}
+  .areas{grid-template-columns:1fr}
+  .area,.area:nth-child(even){padding:16px 0;border-left:0}
   .tech-grid{grid-template-columns:1fr}
-  .tech-item{padding:18px 20px}
+  .tech-item{border-left:0;border-top:1px solid var(--line)}
+  .tech-item:first-child{border-top:0}
+  .back-link{display:none}
+  .demo-iframe{height:78vh}
 }
 
-/* CTA FINAL */
-.final-cta{background:var(--navy);border-radius:18px;padding:56px 48px;text-align:center;color:#fff}
-.final-cta .section-title{color:#fff;margin:0 auto 12px;font-size:26px}
-.final-cta p{color:rgba(255,255,255,.65);max-width:44ch;margin:0 auto 30px;font-size:14.5px}
-.final-cta .cta-row{justify-content:center}
-.final-cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.28)}
-.final-cta .btn-ghost:hover{border-color:#fff}
-
-footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)}
-
+.demo-frame-wrap{width:100%;max-width:420px;margin:0 auto}
+@media(min-width:861px){.tech-grid.n5{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:860px){.tech-grid.n5 .tech-item:nth-child(5){border-left:0;border-top:1px solid var(--line)}}
 /* ===== DEMO EMBUTIDA (escopada em #demoEmbed) ===== */
 #demoEmbed{
   --or:#F15A29;--ord:#d44e22;--orl:#fff3ef;--orb:#ffd0bf;
@@ -169,18 +173,14 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 <div class="wrap">
   <nav class="nav">
     <a href="../index.html" class="logo">
-      <span class="logo-mark">
-        <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g transform="translate(25,20)">
-            <path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/>
-            <line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/>
-          </g>
-        </svg>
-      </span>
+      <svg viewBox="0 0 160 160" fill="none" aria-hidden="true"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" stroke="#1B2230" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#1B2230" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#1B2230" stroke-width="5.5"/></g></svg>
       Alan Lemos
     </a>
-    <a href="../portfolio.html" class="back-link">← Voltar ao portfólio</a><a href="../en/projetos/projeto-zendesk.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="en" hreflang="en" lang="en" title="Read in English" aria-label="Read in English"><span aria-hidden="true">🌐</span> EN</a></nav>
+    <div class="nav-r">
+      <a href="../portfolio.html" class="back-link">← Voltar ao portfólio</a>
+      <a href="../en/projetos/projeto-zendesk.html" class="lang" data-lang="en" hreflang="en" lang="en" title="Read in English">EN</a>
+    </div>
+  </nav>
 </div>
 
 <div class="wrap">
@@ -193,7 +193,7 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
     <h1 class="h1">Aplicativo Inteligente no Zendesk</h1>
     <p class="hero-sub">App nativo na sidebar do ticket que usa IA para classificar chamados, redigir respostas e montar scripts de escalonamento, reduzindo o tempo que os agentes gastam preenchendo e interpretando cada chamado manualmente.</p>
     <div class="cta-row">
-      <a href="#demo" class="btn btn-primary">▶ Testar demonstração</a>
+      <a href="#demo" class="btn btn-primary">Testar demonstração</a>
     </div>
   </header>
 </div>
@@ -201,20 +201,17 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 <div class="section-line">
 <div class="wrap">
   <section>
-    <div class="eyebrow">Como o projeto nasceu</div>
     <h2 class="section-title">Do formulário manual à classificação automática</h2>
     <div class="psr-grid">
       <div class="psr-card">
         <div class="psr-num">Problema</div>
         <h3 class="psr-heading">Tempo perdido em classificação manual</h3>
         <p class="psr-text">A equipe perdia tempo significativo preenchendo formulários e classificando cada chamado (prioridade, motivo, produto) de acordo com a política de SLA. Um processo repetitivo, manual e sujeito a inconsistência entre pessoas da equipe.</p>
-        <div class="psr-arrow">→</div>
       </div>
       <div class="psr-card">
         <div class="psr-num">Solução</div>
         <h3 class="psr-heading">Um app com IA embutida no ticket</h3>
         <p class="psr-text">App nativo do Zendesk, integrado à API da OpenAI, que lê a descrição do chamado, classifica automaticamente, sugere título, gera diagnóstico técnico, redige respostas ao cliente e monta o script de escalonamento para o time de N3.</p>
-        <div class="psr-arrow">→</div>
       </div>
       <div class="psr-card result">
         <div class="psr-num">Resultado</div>
@@ -229,14 +226,13 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 <div class="section-line" id="demo">
 <div class="wrap">
   <section>
-    <div class="eyebrow">Experimente</div>
     <h2 class="section-title">A ferramenta, funcionando</h2>
-    <p class="demo-intro">Abaixo está a interface real do app rodando com um chamado de exemplo. Clique em <strong>Analisar</strong>, gere uma resposta ou monte o script: as respostas de IA aqui são simuladas para funcionar sem uma chave de API real; no ambiente de produção, cada ação chama a API da OpenAI e grava direto no ticket via Zendesk Apps Framework.</p>
+    <p class="lede">Abaixo está a interface real do app rodando com um chamado de exemplo. Clique em <strong>Analisar</strong>, gere uma resposta ou monte o script: as respostas de IA aqui são simuladas para funcionar sem uma chave de API real; no ambiente de produção, cada ação chama a API da OpenAI e grava direto no ticket via Zendesk Apps Framework.</p>
     <div class="demo-frame-wrap">
-      <div class="browser-chrome">
-        <div class="chrome-bar">
-          <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
-          <span class="chrome-url">sidebar do ticket · zendesk</span>
+      <div class="browser">
+        <div class="bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="url">sidebar do ticket · zendesk</span>
         </div>
 
         <!-- ===== DEMO EMBUTIDA ===== -->
@@ -331,27 +327,26 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 <div class="section-line">
 <div class="wrap">
   <section>
-    <div class="eyebrow">Sob o capô</div>
     <h2 class="section-title">Tecnologias usadas</h2>
-    <div class="tech-grid">
+    <div class="tech-grid n5">
       <div class="tech-item">
-        <div class="tech-name"><span class="tech-dot"></span>Zendesk Apps Framework</div>
+        <div class="tech-name">Zendesk Apps Framework</div>
         <div class="tech-desc">App nativo embutido na sidebar do ticket (ZAF SDK).</div>
       </div>
       <div class="tech-item">
-        <div class="tech-name"><span class="tech-dot"></span>React / JavaScript</div>
+        <div class="tech-name">React / JavaScript</div>
         <div class="tech-desc">Interface do app, com estado e abas de análise, mensagem e script.</div>
       </div>
       <div class="tech-item">
-        <div class="tech-name"><span class="tech-dot"></span>OpenAI API (GPT-4o-mini)</div>
+        <div class="tech-name">OpenAI API (GPT-4o-mini)</div>
         <div class="tech-desc">Classificação por SLA, diagnóstico técnico e geração de texto.</div>
       </div>
       <div class="tech-item">
-        <div class="tech-name"><span class="tech-dot"></span>Zendesk REST API</div>
+        <div class="tech-name">Zendesk REST API</div>
         <div class="tech-desc">Aplicação de campos, vínculo de organizações, notas e comentários.</div>
       </div>
       <div class="tech-item">
-        <div class="tech-name"><span class="tech-dot"></span>Claude</div>
+        <div class="tech-name">Claude</div>
         <div class="tech-desc">Apoio no desenvolvimento e na prototipagem do app.</div>
       </div>
     </div>
@@ -360,18 +355,14 @@ footer{padding:30px 0 50px;text-align:center;font-size:12.5px;color:var(--stone)
 </div>
 
 <div class="wrap">
-  <section>
-    <div class="final-cta">
-      <h2 class="section-title">Gostou do que viu?</h2>
-      <p>Esse é um dos projetos de planejamento e gestão com IA aplicada que já implementei. Veja outros cases do portfólio para conhecer o restante do trabalho.</p>
-      <div class="cta-row">
-        <a href="../portfolio.html" class="btn btn-primary">← Voltar ao portfólio</a>
-      </div>
-    </div>
-  </section>
+  <div class="final-cta">
+    <h2 class="section-title">Quer ver os outros projetos?</h2>
+    <p>Este é um dos projetos de IA aplicada que fiz na empresa. O portfólio tem os demais.</p>
+    <div class="cta-row"><a href="../portfolio.html" class="btn btn-primary">Voltar ao portfólio</a><a href="../vamos-colaborar.html" class="btn btn-ghost">Vamos conversar</a></div>
+  </div>
 </div>
 
-<footer>Alan Lemos · Planejamento e Gestão de projetos, produtos e dados com IA aplicada.</footer>
+<footer>Alan Lemos · Planejamento e gestão de projetos, produtos e dados com IA aplicada.</footer>
 
 <script>
 (function(){

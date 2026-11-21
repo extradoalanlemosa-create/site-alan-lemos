@@ -272,7 +272,7 @@ html:not(.pf-js) .pf-tabs{display:none;}
 .mini-head{font-family:var(--sans); font-weight:500; font-size:15px; color:var(--ink); margin:0 0 6px; padding-bottom:12px; border-bottom:1px solid var(--line);}
 .mini{display:grid; grid-template-columns:160px minmax(0,1fr); gap:18px; align-items:center; padding:12px; border:1px solid var(--line); border-radius:var(--radius); background:var(--white); text-decoration:none; color:var(--ink); transition:border-color .15s ease;}
 .mini:hover{border-color:var(--navy);}
-.mini-thumb{display:block; aspect-ratio:4/3; border-radius:2px; overflow:hidden; background:var(--paper-2);}
+.mini-thumb{display:block; aspect-ratio:4/3; border-radius:4px; overflow:hidden; background:var(--paper-2); border:1px solid var(--line);}
 .mini-thumb img{display:block; width:100%; height:100%; object-fit:cover;}
 .mini-body{display:grid; gap:6px; min-width:0;}
 .mini-title{font-family:var(--sans); font-weight:500; font-size:16.5px; line-height:1.3; letter-spacing:-.01em; color:var(--ink);}

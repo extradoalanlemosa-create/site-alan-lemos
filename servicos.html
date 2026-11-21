@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Serviços · Sites e apps personalizados · Alan Lemos</title>
-<meta name="description" content="Construção de sites e apps personalizados, do primeiro rascunho até a publicação no seu domínio. Veja exemplos e peça um orçamento.">
+<title>Serviços · Sites e ferramentas digitais sob medida · Alan Lemos</title>
+<meta name="description" content="Sites e ferramentas digitais sob medida para pequenas empresas de obras, engenharia e serviços. Escopo, prazo e preço fechados antes de começar.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,14 @@
   .offer-list li{font-size:14px; color:var(--ink-soft); padding-left:16px; position:relative;}
   .offer-list li::before{content:"→"; position:absolute; left:0; color:var(--terracotta); font-size:12px; top:2px;}
 
+  .why{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .why div{border-top:2px solid var(--terracotta); padding-top:16px;}
+  .why h3{font-family:var(--sans); font-weight:500; font-size:18px; color:var(--navy); margin-bottom:6px;}
+  .why p{font-size:14.5px; color:var(--ink-soft);}
+  .role-card .for{font-size:12.5px; color:var(--terracotta); letter-spacing:.02em;}
+
   @media (max-width:900px){
+    .why{grid-template-columns:1fr;}
     .showcase, .showcase.flip{grid-template-columns:1fr; gap:24px;}
     .showcase.flip .shot{order:0;}
     .steps{grid-template-columns:1fr 1fr;}
@@ -75,12 +82,12 @@
 </header>
 
 <section class="hero" style="padding-bottom:52px;">
-  <div class="wrap" style="max-width:760px;">
-    <span class="eyebrow">Serviços · agenda aberta para novos projetos</span>
-    <h1 class="hero-title">Sites e apps personalizados</h1>
-    <p class="hero-lede">Crio sites e aplicativos sob medida para pessoas e negócios, do primeiro rascunho até a publicação no seu domínio. Uso IA aplicada no desenvolvimento para entregar rápido, sem abrir mão do acabamento e dos detalhes que fazem o projeto ter a sua cara.</p>
+  <div class="wrap" style="max-width:780px;">
+    <span class="eyebrow">Serviços · vagas de fundação abertas</span>
+    <h1 class="hero-title">Sites e ferramentas digitais sob medida para pequenas empresas</h1>
+    <p class="hero-lede">Para construtoras, escritórios de engenharia e prestadores de serviço que precisam ser encontrados e organizar o dia a dia. Sou engenheiro civil e trabalho com gestão de projetos e produtos: você recebe escopo, prazo e preço fechados antes de começar, e uma versão navegável logo no início, para decidir vendo e não imaginando.</p>
     <div class="hero-actions">
-      <a href="mailto:contato@alanlemos.com.br?subject=Or%C3%A7amento%20de%20site%20ou%20app%20personalizado" class="btn btn-primary">Pedir um orçamento</a>
+      <a href="mailto:contato@alanlemos.com.br?subject=Conversa%20sobre%20site%20ou%20ferramenta%20digital" class="btn btn-primary">Agendar uma conversa de 20 min</a>
       <a href="#exemplos" class="btn btn-ghost">Ver exemplos</a>
     </div>
   </div>
@@ -90,38 +97,75 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <span class="eyebrow">O que eu construo</span>
-        <h2 class="section-title">Do convite ao aplicativo</h2>
+        <span class="eyebrow">Por que comigo</span>
+        <h2 class="section-title">Quem constrói o seu site entende o seu negócio</h2>
       </div>
+    </div>
+    <div class="why">
+      <div>
+        <h3>Vivência de obra</h3>
+        <p>Já coordenei obras, fiz orçamentos, medições e cronogramas. Falo a língua de quem está no canteiro e no escritório.</p>
+      </div>
+      <div>
+        <h3>Método de produto</h3>
+        <p>Cada projeto começa pelo problema que você quer resolver, segue com protótipo e termina com o que dá para medir: contatos recebidos, tempo economizado, retrabalho evitado.</p>
+      </div>
+      <div>
+        <h3>Estrutura enxuta</h3>
+        <p>Uso IA aplicada no desenvolvimento para entregar rápido, com hospedagem de baixo custo. O domínio e o conteúdo ficam no seu nome.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tinted">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">O que eu entrego</span>
+        <h2 class="section-title">Três formas de trabalhar juntos</h2>
+      </div>
+      <p class="section-lede">Preço fechado em cada proposta, definido depois da conversa inicial.</p>
     </div>
     <div class="role-grid">
       <div class="role-card">
-        <span class="num">01</span>
-        <h3>Sites personalizados</h3>
-        <p>Páginas pensadas para o seu objetivo, com identidade própria e funcionando bem no celular.</p>
+        <span class="for">Para ser encontrado e contratado</span>
+        <h3>Site profissional</h3>
+        <p>Um site com a cara da sua empresa, que funciona bem no celular e leva o visitante a pedir orçamento.</p>
         <ul class="offer-list">
-          <li>Sites de casamento, aniversário e eventos</li>
-          <li>Páginas de apresentação e de vendas</li>
-          <li>Sites profissionais e portfólios</li>
-          <li>Formulários, mapas, lista de presentes e área restrita</li>
+          <li>Apresentação, serviços e obras realizadas</li>
+          <li>Botão de WhatsApp e formulário de orçamento</li>
+          <li>Publicação no seu domínio, com e-mail profissional</li>
+          <li>Pronto para aparecer nas buscas do Google</li>
         </ul>
       </div>
       <div class="role-card">
-        <span class="num">02</span>
-        <h3>Apps personalizados</h3>
-        <p>Aplicativos web que abrem em qualquer navegador e podem ser instalados na tela inicial do celular.</p>
+        <span class="for">Para organizar a operação</span>
+        <h3>Ferramenta sob medida</h3>
+        <p>Começa com um diagnóstico curto do seu processo e vira uma ferramenta que a equipe usa no dia a dia, no navegador ou no celular.</p>
         <ul class="offer-list">
-          <li>Apps de uso pessoal: hábitos, treino, finanças</li>
-          <li>Ferramentas internas e painéis para o seu negócio</li>
-          <li>Áreas logadas e sistemas com banco de dados</li>
-          <li>Protótipos clicáveis para validar uma ideia</li>
+          <li>Painéis de acompanhamento de obras e indicadores</li>
+          <li>Controle de medições, pedidos e solicitações</li>
+          <li>Automações com IA para tarefas repetitivas</li>
+          <li>Protótipo clicável para validar uma ideia de app</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="for">Para não ficar na mão depois</span>
+        <h3>Acompanhamento mensal</h3>
+        <p>Mantenho o site ou a ferramenta funcionando e evoluindo, com ajustes combinados todo mês.</p>
+        <ul class="offer-list">
+          <li>Atualização de textos, fotos e obras</li>
+          <li>Pequenas melhorias e novas funções</li>
+          <li>Relatório simples de acessos e contatos</li>
+          <li>Suporte direto comigo, sem intermediário</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<section class="tinted" id="exemplos">
+<section id="exemplos">
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -138,13 +182,12 @@
       <div>
         <span class="kind">Site personalizado</span>
         <h3>Site de casamento de Márcio &amp; Luana</h3>
-        <p>Convite digital para o casamento da minha irmã: o convidado abre o envelope tocando no lacre, com música e pétalas caindo, e encontra tudo o que precisa num só lugar.</p>
+        <p>Convite digital para o casamento da minha irmã, com identidade própria e tudo o que o convidado precisa num só lugar. Mostra o nível de acabamento e as funções que levo para qualquer site.</p>
         <ul class="feat">
-          <li>Convite animado com trilha sonora do casal</li>
-          <li>História, cerimônia e recepção com mapa e rota</li>
-          <li>Lista de presentes por cotas, com pagamento via Pix</li>
-          <li>Confirmação de presença individual</li>
-          <li>Painel dos noivos com acesso protegido para acompanhar tudo</li>
+          <li>Formulário de confirmação individual</li>
+          <li>Mapa e rota até o local</li>
+          <li>Pagamento via Pix integrado</li>
+          <li>Painel com acesso protegido para acompanhar tudo</li>
         </ul>
         <div class="actions">
           <a class="btn btn-navy" href="exemplos/site-casamento/index.html" target="_blank" rel="noopener">Ver o site ↗</a>
@@ -154,18 +197,35 @@
     </div>
 
     <div class="showcase flip">
+      <a class="shot" href="projetos/painel-indicadores.html" aria-label="Ver o painel de experiência do cliente">
+        <img src="assets/thumb-painel-indicadores.png" alt="Painel de indicadores com gráficos e métricas de acompanhamento">
+      </a>
+      <div>
+        <span class="kind">Ferramenta interna · demonstração</span>
+        <h3>Painel de experiência do cliente</h3>
+        <p>Painel que reúne os números de uma operação numa tela só, para quem gerencia decidir com dados. A mesma lógica serve para acompanhar obras, medições e prazos.</p>
+        <ul class="feat">
+          <li>Indicadores principais em destaque</li>
+          <li>Filtros por período para comparar resultados</li>
+          <li>Dados fictícios, com a estrutura de um painel real</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="projetos/painel-indicadores.html">Ver o painel</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase">
       <a class="shot" href="exemplos/fit-pepe/index.html" target="_blank" rel="noopener" aria-label="Abrir o app Fit Pepe">
         <img src="assets/thumb-fit-pepe.jpg" alt="Três telas do app Fit Pepe: resumo do dia com o mascote Pepe, ficha de treino e evolução de peso">
       </a>
       <div>
         <span class="kind">App personalizado · protótipo</span>
         <h3>Fit Pepe</h3>
-        <p>Diário de treino, dieta e progresso corporal com o Pepe, um mascote que reage ao seu dia: fica feliz quando treino e refeições estão em dia.</p>
+        <p>Diário de treino, dieta e progresso com um mascote que reage ao seu dia. Mostra um app que instala no celular e funciona mesmo sem internet.</p>
         <ul class="feat">
-          <li>Calorias e macros do dia, a partir do plano de dieta</li>
-          <li>Ficha de treino com séries, cargas e ciclo automático</li>
-          <li>Evolução mensal de peso e % de gordura</li>
-          <li>Instala no celular e funciona offline</li>
+          <li>Instala na tela inicial do celular</li>
+          <li>Funciona offline</li>
           <li>Dados guardados só no aparelho de quem usa</li>
         </ul>
         <div class="actions">
@@ -177,42 +237,86 @@
   </div>
 </section>
 
-<section>
+<section class="tinted">
   <div class="wrap">
     <div class="section-head">
       <div>
         <span class="eyebrow">Como funciona</span>
-        <h2 class="section-title">Do primeiro papo ao site no ar</h2>
+        <h2 class="section-title">Da primeira conversa ao projeto no ar</h2>
       </div>
     </div>
     <div class="steps">
       <div class="step">
         <h3>Conversa</h3>
-        <p>Entendo o objetivo, quem vai usar, o que precisa ter e as referências de que você gosta.</p>
+        <p>20 minutos, sem compromisso, para entender o objetivo, quem vai usar e o que precisa ter.</p>
       </div>
       <div class="step">
-        <h3>Protótipo</h3>
-        <p>Você recebe uma primeira versão navegável para ver e clicar, em vez de só imaginar.</p>
+        <h3>Proposta fechada</h3>
+        <p>Você recebe escopo, prazo e preço por escrito. Só começamos quando estiver tudo claro.</p>
       </div>
       <div class="step">
-        <h3>Ajustes</h3>
-        <p>Refinamos juntos textos, cores e funcionalidades até ficar com a sua cara.</p>
+        <h3>Protótipo e ajustes</h3>
+        <p>Uma primeira versão navegável para ver e clicar, e refinamos juntos até ficar certo.</p>
       </div>
       <div class="step">
         <h3>Publicação</h3>
-        <p>Coloco no ar, no seu domínio, e te mostro como acompanhar e usar no dia a dia.</p>
+        <p>Coloco no ar, te mostro como usar no dia a dia e combinamos o acompanhamento, se fizer sentido.</p>
       </div>
     </div>
   </div>
 </section>
 
+<section>
+  <div class="wrap" style="max-width:760px;">
+    <span class="eyebrow">Vagas de fundação</span>
+    <h2 class="section-title" style="margin:12px 0 16px;">Condição especial para os primeiros clientes</h2>
+    <p class="section-lede">Estou abrindo esse serviço agora e quero dar atenção total aos primeiros projetos. Por isso, as 2 primeiras vagas têm condição especial, em troca de um retorno sincero no final e, se fizer sentido para você, um depoimento.</p>
+    <div class="hero-actions" style="margin-top:22px;">
+      <a href="mailto:contato@alanlemos.com.br?subject=Quero%20uma%20vaga%20de%20funda%C3%A7%C3%A3o" class="btn btn-primary">Quero uma das vagas</a>
+    </div>
+  </div>
+</section>
+
 <section class="tinted">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Perguntas frequentes</span>
+        <h2 class="section-title">Antes de conversar</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Atende só empresas de obras?</summary>
+        <p>Não. O foco são pequenas empresas de obras, engenharia e serviços, porque é onde minha experiência faz mais diferença, mas atendo outros negócios e projetos pessoais também.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Quanto custa?</summary>
+        <p>Depende do que o projeto precisa ter. Depois da conversa inicial, você recebe uma proposta com preço fechado, sem cobrança por hora e sem surpresa no meio do caminho.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Quanto tempo leva?</summary>
+        <p>O prazo entra na proposta, combinado antes de começar. Você vê uma primeira versão navegável logo nas primeiras etapas.</p>
+      </details>
+      <details class="faq-item">
+        <summary>O site fica no meu nome?</summary>
+        <p>Sim. O domínio e o conteúdo são seus. Se um dia quiser seguir com outra pessoa, você leva tudo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Atende fora de Fortaleza?</summary>
+        <p>Sim. O trabalho é 100% remoto, para qualquer lugar do Brasil.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="wrap" style="text-align:center; max-width:600px;">
     <span class="eyebrow">Contrate</span>
-    <h2 class="section-title" style="margin:12px 0 16px;">Tem uma ideia de site ou app?</h2>
-    <p class="section-lede" style="margin:0 auto 26px;">Me conta o que você precisa: para quem é, o que ele deve fazer, se já tem domínio e quais referências você gosta. Eu te retorno com uma proposta.</p>
+    <h2 class="section-title" style="margin:12px 0 16px;">Vamos ver se faz sentido?</h2>
+    <p class="section-lede" style="margin:0 auto 26px;">Me conta em poucas linhas o que você precisa e para quem é. Eu respondo com um horário para a conversa de 20 minutos.</p>
     <div class="hero-actions" style="justify-content:center;">
-      <a href="mailto:contato@alanlemos.com.br?subject=Or%C3%A7amento%20de%20site%20ou%20app%20personalizado" class="btn btn-primary">contato@alanlemos.com.br</a>
+      <a href="mailto:contato@alanlemos.com.br?subject=Conversa%20sobre%20site%20ou%20ferramenta%20digital" class="btn btn-primary">contato@alanlemos.com.br</a>
       <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener" class="btn btn-ghost">Falar pelo LinkedIn</a>
     </div>
   </div>

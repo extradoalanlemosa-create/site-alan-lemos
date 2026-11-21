@@ -380,32 +380,66 @@
 <link rel="alternate" hreflang="en" href="observatorios-projeto.html">
 <link rel="alternate" hreflang="x-default" href="../../projetos/observatorios-projeto.html">
 <script>/* idioma: lembra a escolha do visitante e abre as páginas sempre nesse idioma */(function(){try{var K='site-lang',d=document.documentElement,here=(d.lang||'').indexOf('en')===0?'en':'pt',pref=localStorage.getItem(K);if(pref&&pref!==here&&!/[?&]lang=/.test(location.search)){var alt=document.querySelector('link[rel=alternate][hreflang="'+(pref==='en'?'en':'pt-BR')+'"]');if(alt){location.replace(alt.href+location.hash);return;}}document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem(K,a.getAttribute('data-lang'));}catch(_){}}},true);}catch(e){}})();</script>
+<style>/* repaginada nov/2026: mesmo visual das outras páginas de projeto */
+:root{--paper:#FFFFFF;--graphite:#1B2230;--navy:#022754;--navy-soft:#5A6372;--terracotta:#022754;--terracotta-deep:#01173A;--terracotta-tint:#E4EBF5;--cream:#F6F7F9;--line:#E4E7EC;--muted:#5A6372;--content-w:960px;--edge:32px}
+@media(max-width:640px){:root{--edge:16px}}
+*{box-shadow:none!important}
+.accent-bar,.eyebrow,.section-kicker{display:none!important}
+.reveal{opacity:1!important;transform:none!important;transition:none!important}
+.nwrap{max-width:960px;margin:0 auto;padding:0 var(--edge)}
+.nnav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:26px 0}
+.nlogo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:500;color:#1B2230;text-decoration:none}
+.nlogo svg{width:34px;height:34px}
+.nnav-r{display:flex;align-items:center;gap:14px}
+.nback{font-size:13.5px;color:#5A6372;text-decoration:none}
+.nback:hover{color:var(--navy)}
+.nlang{display:inline-flex;align-items:center;padding:5px 10px;border:1px solid #CDD3DC;border-radius:4px;font-size:12px;font-weight:500;color:#5A6372;text-decoration:none}
+.nlang:hover{border-color:#8A93A3;color:#1B2230}
+@media(max-width:640px){.nback{display:none}}
+.hero{padding-top:40px}
+h1.title{font-weight:300;font-size:clamp(32px,4.6vw,48px);line-height:1.12;letter-spacing:-.015em;color:#1B2230}
+h2.section-title{font-weight:300;font-size:30px;line-height:1.2;color:#1B2230}
+.section-head{margin-bottom:28px}
+.tag{font-size:12px;color:var(--navy);background:var(--terracotta-tint);border:0;border-radius:4px;padding:4px 10px}
+.dek{font-size:16.5px;color:#5A6372}
+.btn{border-radius:4px;font-weight:500;font-size:14px;padding:12px 22px}
+.btn-primary:hover{background:var(--terracotta-deep);border-color:var(--terracotta-deep)}
+.btn-secondary{color:#1B2230;border-color:#CDD3DC}
+.btn-secondary:hover{background:transparent;color:#1B2230;border-color:#8A93A3}
+.triad,.dl-card,.feature-main,.feature-side,.canvas-name-row,.credential .badge,.pill,.dl-icon{border-radius:4px}
+.triad-name,.step h3,.dl-card h3{font-weight:500;color:#1B2230}
+.triad-block.b2{border-color:#4A78B5}.triad-block.b3{border-color:#8A93A3}
+.step h3{font-size:18px}.step.result h3{color:var(--navy)}
+.step-marker{color:#8A93A3}
+.pill{background:#F6F7F9}
+.dl-card.zenodo .dl-icon{background:var(--navy)}
+.dl-card:hover{border-color:#CDD3DC}
+.nfinal{max-width:960px;margin:72px auto 0;padding:56px var(--edge) 24px;border-top:1px solid var(--line);text-align:center}
+.nfinal h2{font-weight:300;font-size:26px;line-height:1.2;color:#1B2230;margin:0 0 10px}
+.nfinal p{color:#5A6372;max-width:46ch;margin:0 auto 26px;font-size:15px}
+.nfinal .nrow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.nfinal .btn-ghost{color:#1B2230;border:1px solid #CDD3DC;background:transparent}
+.nfinal .btn-ghost:hover{border-color:#8A93A3}
+footer.nfoot{padding:28px var(--edge) 48px;text-align:center;font-size:12.5px;color:#8A93A3}
+</style>
 </head>
 <body>
 
-<div class="accent-bar"><span></span></div>
 
-<nav class="nav">
-  <a class="brand" href="../index.html" aria-label="Alan Lemos, home">
-    <svg width="38" height="38" viewBox="0 0 160 160" fill="none">
-      <g transform="translate(25,20)">
-        <path d="M 35 20 L 35 100 L 95 100" fill="none" stroke="#3A3A38" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <line x1="35" y1="20" x2="95" y2="100" stroke="#3A3A38" stroke-width="6" stroke-linecap="round"/>
-        <line x1="35" y1="62" x2="65" y2="62" stroke="#3A3A38" stroke-width="5.5"/>
-      </g>
-    </svg>
-    <span class="brand-name">ALAN LEMOS</span>
-  </a>
-  <a class="back-link" href="../portfolio.html">
-    <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to portfolio
-  </a><a href="../../projetos/observatorios-projeto.html" class="lang-switch" style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(58,58,56,.25);border-radius:999px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;text-decoration:none;color:inherit;white-space:nowrap" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português" aria-label="Ler em português"><span aria-hidden="true">🌐</span> PT</a></nav>
+
+<div class="nwrap"><nav class="nnav">
+  <a href="../index.html" class="nlogo">
+      <svg viewBox="0 0 160 160" fill="none" aria-hidden="true"><g transform="translate(25,20)"><path d="M 35 20 L 35 100 L 95 100" stroke="#1B2230" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="20" x2="95" y2="100" stroke="#1B2230" stroke-width="6" stroke-linecap="round"/><line x1="35" y1="62" x2="65" y2="62" stroke="#1B2230" stroke-width="5.5"/></g></svg>
+      Alan Lemos
+    </a>
+  <div class="nnav-r"><a href="../portfolio.html" class="nback">← Back to portfolio</a><a href="../../projetos/observatorios-projeto.html" class="nlang" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Ler em português">PT</a></div>
+</nav></div>
 
 <header class="hero">
   <div class="hero-grid">
     <div>
       <p class="eyebrow">Project · Guide &amp; Workshop</p>
-      <h1 class="title">Design Guide for<br>Project Observatories</h1>
+      <h1 class="title">Design Guide for Project Observatories</h1>
       <div class="tags">
         <span class="tag">Planning</span>
         <span class="tag">PMO &amp; Observatories</span>
@@ -622,28 +656,13 @@
   </div>
 </section>
 
-<div class="closing reveal">
-  <a class="back-link" href="../portfolio.html">
-    <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to portfolio
-  </a>
-  <a class="btn btn-primary" href="mailto:contato@alanlemos.com.br?subject=Applying%20the%20Project%20Observatory%20Guide">
-    Want to hire me?
-  </a>
+<div class="nfinal">
+  <h2>Want to apply the guide in your organization?</h2>
+  <p>I can run the workshop with your team or help structure your observatory.</p>
+  <div class="nrow"><a class="btn btn-primary" href="../vamos-colaborar.html">Let's talk</a><a class="btn btn-ghost" href="../portfolio.html">Back to portfolio</a></div>
 </div>
 
-<footer>
-  <p class="foot-tagline">Planning and management of projects, products and data with applied AI.</p>
-  <div class="foot-mark">
-    <svg width="18" height="18" viewBox="0 0 26 26" fill="none">
-      <rect width="26" height="26" rx="6" fill="#F2EEE5"/>
-      <path d="M6.5 17.5L17.5 6.5" stroke="#3A3A38" stroke-width="2.3" stroke-linecap="round"/>
-      <path d="M17.5 6.5H10.5" stroke="#3A3A38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M17.5 6.5V13.5" stroke="#3A3A38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span>ALAN LEMOS · ALANLEMOS.COM.BR</span>
-  </div>
-</footer>
+<footer class="nfoot">Alan Lemos · Project, product and data management with applied AI.</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>

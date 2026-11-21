@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services · Custom websites and apps · Alan Lemos</title>
-<meta name="description" content="Custom websites and apps, from the first draft to launch on your own domain. See examples and request a quote.">
+<title>Services · Custom websites and digital tools · Alan Lemos</title>
+<meta name="description" content="Custom websites and digital tools for small construction, engineering and service businesses. Fixed scope, timeline and price before we start.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23FFFFFF' rx='20'/%3E%3Cg transform='translate(25,20)'%3E%3Cpath d='M 35 20 L 35 100 L 95 100' fill='none' stroke='%233A3A38' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cline x1='35' y1='20' x2='95' y2='100' stroke='%233A3A38' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='35' y1='62' x2='65' y2='62' stroke='%233A3A38' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,14 @@
   .offer-list li{font-size:14px; color:var(--ink-soft); padding-left:16px; position:relative;}
   .offer-list li::before{content:"→"; position:absolute; left:0; color:var(--terracotta); font-size:12px; top:2px;}
 
+  .why{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .why div{border-top:2px solid var(--terracotta); padding-top:16px;}
+  .why h3{font-family:var(--sans); font-weight:500; font-size:18px; color:var(--navy); margin-bottom:6px;}
+  .why p{font-size:14.5px; color:var(--ink-soft);}
+  .role-card .for{font-size:12.5px; color:var(--terracotta); letter-spacing:.02em;}
+
   @media (max-width:900px){
+    .why{grid-template-columns:1fr;}
     .showcase, .showcase.flip{grid-template-columns:1fr; gap:24px;}
     .showcase.flip .shot{order:0;}
     .steps{grid-template-columns:1fr 1fr;}
@@ -75,12 +82,12 @@
 </header>
 
 <section class="hero" style="padding-bottom:52px;">
-  <div class="wrap" style="max-width:760px;">
-    <span class="eyebrow">Services · now taking new projects</span>
-    <h1 class="hero-title">Custom websites and apps</h1>
-    <p class="hero-lede">I build tailor-made websites and apps for people and businesses, from the first draft to launch on your own domain. I use applied AI in development to deliver fast, without giving up the finish and the details that make the project feel like yours.</p>
+  <div class="wrap" style="max-width:780px;">
+    <span class="eyebrow">Services · founding spots open</span>
+    <h1 class="hero-title">Custom websites and digital tools for small businesses</h1>
+    <p class="hero-lede">For construction companies, engineering firms and service providers that need to be found and to organize their day to day. I am a civil engineer working in project and product management: you get a fixed scope, timeline and price before we start, and a clickable first version early on, so you decide by seeing, not imagining.</p>
     <div class="hero-actions">
-      <a href="mailto:contato@alanlemos.com.br?subject=Quote%20for%20a%20custom%20website%20or%20app" class="btn btn-primary">Request a quote</a>
+      <a href="mailto:contato@alanlemos.com.br?subject=Call%20about%20a%20website%20or%20digital%20tool" class="btn btn-primary">Book a 20-minute call</a>
       <a href="#exemplos" class="btn btn-ghost">See examples</a>
     </div>
   </div>
@@ -90,129 +97,226 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <span class="eyebrow">What I build</span>
-        <h2 class="section-title">From invitations to apps</h2>
+        <span class="eyebrow">Why me</span>
+        <h2 class="section-title">The person building your site understands your business</h2>
       </div>
     </div>
-    <div class="role-grid">
-      <div class="role-card">
-        <span class="num">01</span>
-        <h3>Custom websites</h3>
-        <p>Pages designed around your goal, with their own identity and working well on mobile.</p>
-        <ul class="offer-list">
-          <li>Wedding, birthday and event websites</li>
-          <li>Landing and sales pages</li>
-          <li>Professional websites and portfolios</li>
-          <li>Forms, maps, gift registries and members-only areas</li>
-        </ul>
-      </div>
-      <div class="role-card">
-        <span class="num">02</span>
-        <h3>Custom apps</h3>
-        <p>Web apps that open in any browser and can be installed on your phone's home screen.</p>
-        <ul class="offer-list">
-          <li>Personal apps: habits, workouts, finances</li>
-          <li>Internal tools and dashboards for your business</li>
-          <li>Logged-in areas and systems with a database</li>
-          <li>Clickable prototypes to validate an idea</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="tinted" id="exemplos">
-  <div class="wrap">
-    <div class="section-head">
+    <div class="why">
       <div>
-        <span class="eyebrow">Examples</span>
-        <h2 class="section-title">Projects I've built</h2>
+        <h3>Construction background</h3>
+        <p>I have coordinated construction works and handled budgets, progress measurements and schedules. I speak the language of both the job site and the office.</p>
       </div>
-      <p class="section-lede">Open them and click around: these are the real versions, running right here on the site.</p>
-    </div>
-
-    <div class="showcase">
-      <a class="shot" href="../exemplos/site-casamento/index.html" target="_blank" rel="noopener" aria-label="Open the wedding website">
-        <img src="../assets/thumb-site-casamento.jpg" alt="Digital invitation from Márcio and Luana&#x27;s wedding website, with an envelope and wax seal">
-      </a>
       <div>
-        <span class="kind">Custom website</span>
-        <h3>Márcio &amp; Luana</h3>
-        <p>A digital invitation for my sister's wedding: guests open the envelope by tapping the seal, with music and falling petals, and find everything they need in one place.</p>
-        <ul class="feat">
-          <li>Animated invitation with the couple's soundtrack</li>
-          <li>Story, ceremony and reception with map and directions</li>
-          <li>Gift registry split into shares, with Pix payment</li>
-          <li>Individual RSVP</li>
-          <li>Password-protected dashboard for the couple to follow everything</li>
-        </ul>
-        <div class="actions">
-          <a class="btn btn-navy" href="../exemplos/site-casamento/index.html" target="_blank" rel="noopener">See the website ↗</a>
-        </div>
-        <p class="note">Demo copy: RSVPs and gifts made here are not sent to the couple. The website is in Portuguese.</p>
+        <h3>Product method</h3>
+        <p>Every project starts from the problem you want to solve, moves through a prototype and ends with something you can measure: leads received, time saved, rework avoided.</p>
       </div>
-    </div>
-
-    <div class="showcase flip">
-      <a class="shot" href="../exemplos/fit-pepe/index.html" target="_blank" rel="noopener" aria-label="Open the Fit Pepe app">
-        <img src="../assets/thumb-fit-pepe.jpg" alt="Three screens of the Fit Pepe app: daily summary with Pepe the mascot, workout plan and weight progress">
-      </a>
       <div>
-        <span class="kind">Custom app · prototype</span>
-        <h3>Fit Pepe</h3>
-        <p>A workout, diet and body progress log with Pepe, a mascot that reacts to your day: he's happy when your workouts and meals are on track.</p>
-        <ul class="feat">
-          <li>Daily calories and macros, based on the diet plan</li>
-          <li>Workout plan with sets, loads and an automatic cycle</li>
-          <li>Monthly weight and body fat % progress</li>
-          <li>Installs on the phone and works offline</li>
-          <li>Data stored only on the user's device</li>
-        </ul>
-        <div class="actions">
-          <a class="btn btn-navy" href="../exemplos/fit-pepe/index.html" target="_blank" rel="noopener">Open the app ↗</a>
-        </div>
-        <p class="note">Best on mobile. It opens with sample data for you to explore. The app is in Portuguese.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">How it works</span>
-        <h2 class="section-title">From the first chat to a live website</h2>
-      </div>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <h3>Conversation</h3>
-        <p>I learn the goal, who will use it, what it needs to have and the references you like.</p>
-      </div>
-      <div class="step">
-        <h3>Prototype</h3>
-        <p>You get a first clickable version to see and try, instead of just imagining it.</p>
-      </div>
-      <div class="step">
-        <h3>Adjustments</h3>
-        <p>Together we refine copy, colors and features until it feels like yours.</p>
-      </div>
-      <div class="step">
-        <h3>Launch</h3>
-        <p>I publish it on your domain and show you how to follow and use it day to day.</p>
+        <h3>Lean setup</h3>
+        <p>I use applied AI in development to deliver fast, with low-cost hosting. The domain and the content stay in your name.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="tinted">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">What I deliver</span>
+        <h2 class="section-title">Three ways to work together</h2>
+      </div>
+      <p class="section-lede">Fixed price in every proposal, set after the first call.</p>
+    </div>
+    <div class="role-grid">
+      <div class="role-card">
+        <span class="for">To be found and hired</span>
+        <h3>Professional website</h3>
+        <p>A website that looks like your company, works well on mobile and leads visitors to ask for a quote.</p>
+        <ul class="offer-list">
+          <li>Company overview, services and completed projects</li>
+          <li>WhatsApp button and quote request form</li>
+          <li>Launch on your own domain, with a professional email</li>
+          <li>Ready to show up in Google searches</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="for">To organize operations</span>
+        <h3>Custom tool</h3>
+        <p>It starts with a short review of your process and becomes a tool your team uses every day, in the browser or on the phone.</p>
+        <ul class="offer-list">
+          <li>Dashboards to track projects and indicators</li>
+          <li>Tracking of progress measurements, orders and requests</li>
+          <li>AI automations for repetitive tasks</li>
+          <li>Clickable prototype to validate an app idea</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="for">So you are not left on your own</span>
+        <h3>Monthly support</h3>
+        <p>I keep your website or tool running and improving, with changes agreed every month.</p>
+        <ul class="offer-list">
+          <li>Updates to text, photos and projects</li>
+          <li>Small improvements and new features</li>
+          <li>Simple report on visits and leads</li>
+          <li>Direct support from me, no middleman</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="exemplos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Examples</span>
+        <h2 class="section-title">Projects I have built</h2>
+      </div>
+      <p class="section-lede">Open them and click around: these are the real versions, running here on the site.</p>
+    </div>
+
+    <div class="showcase">
+      <a class="shot" href="../exemplos/site-casamento/index.html" target="_blank" rel="noopener" aria-label="Open the wedding website">
+        <img src="../assets/thumb-site-casamento.jpg" alt="Digital invitation from Márcio and Luana's wedding website, with an envelope and wax seal">
+      </a>
+      <div>
+        <span class="kind">Custom website</span>
+        <h3>Márcio &amp; Luana's wedding website</h3>
+        <p>A digital invitation for my sister's wedding, with its own visual identity and everything guests need in one place. It shows the level of finish and the features I bring to any website.</p>
+        <ul class="feat">
+          <li>Individual RSVP form</li>
+          <li>Map and directions to the venue</li>
+          <li>Built-in Pix payments</li>
+          <li>Password-protected dashboard to follow everything</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="../exemplos/site-casamento/index.html" target="_blank" rel="noopener">View the website ↗</a>
+        </div>
+        <p class="note">Demo copy: RSVPs and gifts made here are not sent to the couple. The website itself is in Portuguese.</p>
+      </div>
+    </div>
+
+    <div class="showcase flip">
+      <a class="shot" href="projetos/painel-indicadores.html" aria-label="View the customer experience dashboard">
+        <img src="../assets/thumb-painel-indicadores.png" alt="Indicators dashboard with charts and tracking metrics">
+      </a>
+      <div>
+        <span class="kind">Internal tool · demo</span>
+        <h3>Customer experience dashboard</h3>
+        <p>A dashboard that brings an operation's numbers into a single screen, so managers can decide with data. The same logic works for tracking construction projects, progress measurements and deadlines.</p>
+        <ul class="feat">
+          <li>Key indicators up front</li>
+          <li>Period filters to compare results</li>
+          <li>Fictitious data, with the structure of a real dashboard</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="projetos/painel-indicadores.html">View the dashboard</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase">
+      <a class="shot" href="../exemplos/fit-pepe/index.html" target="_blank" rel="noopener" aria-label="Open the Fit Pepe app">
+        <img src="../assets/thumb-fit-pepe.jpg" alt="Three screens of the Fit Pepe app: daily summary with the Pepe mascot, workout plan and weight progress">
+      </a>
+      <div>
+        <span class="kind">Custom app · prototype</span>
+        <h3>Fit Pepe</h3>
+        <p>A workout, diet and progress log with a mascot that reacts to your day. It shows an app that installs on the phone and works even without internet.</p>
+        <ul class="feat">
+          <li>Installs on the phone's home screen</li>
+          <li>Works offline</li>
+          <li>Data stored only on the user's device</li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn-navy" href="../exemplos/fit-pepe/index.html" target="_blank" rel="noopener">Open the app ↗</a>
+        </div>
+        <p class="note">Best on mobile. It opens with sample data for you to explore. The app itself is in Portuguese.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tinted">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-title">From the first call to the project going live</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Call</h3>
+        <p>20 minutes, no commitment, to understand the goal, who will use it and what it needs to do.</p>
+      </div>
+      <div class="step">
+        <h3>Fixed proposal</h3>
+        <p>You get scope, timeline and price in writing. We only start once everything is clear.</p>
+      </div>
+      <div class="step">
+        <h3>Prototype and tweaks</h3>
+        <p>A clickable first version to see and try, and we refine it together until it is right.</p>
+      </div>
+      <div class="step">
+        <h3>Launch</h3>
+        <p>I put it live, show you how to use it day to day and we agree on ongoing support, if it makes sense.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:760px;">
+    <span class="eyebrow">Founding spots</span>
+    <h2 class="section-title" style="margin:12px 0 16px;">Special terms for the first clients</h2>
+    <p class="section-lede">I am opening this service now and want to give the first projects my full attention. That is why the first 2 spots come with special terms, in exchange for honest feedback at the end and, if you are comfortable with it, a testimonial.</p>
+    <div class="hero-actions" style="margin-top:22px;">
+      <a href="mailto:contato@alanlemos.com.br?subject=I%20want%20a%20founding%20spot" class="btn btn-primary">I want one of the spots</a>
+    </div>
+  </div>
+</section>
+
+<section class="tinted">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">Before we talk</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Do you only work with construction companies?</summary>
+        <p>No. The focus is small construction, engineering and service businesses, because that is where my experience makes the biggest difference, but I also work with other businesses and personal projects.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How much does it cost?</summary>
+        <p>It depends on what the project needs. After the first call you get a proposal with a fixed price, no hourly billing and no surprises halfway through.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long does it take?</summary>
+        <p>The timeline is part of the proposal, agreed before we start. You see a clickable first version in the early stages.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is the website in my name?</summary>
+        <p>Yes. The domain and the content are yours. If you ever want to continue with someone else, you take everything with you.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you work outside Fortaleza?</summary>
+        <p>Yes. The work is 100% remote, anywhere in Brazil.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="wrap" style="text-align:center; max-width:600px;">
     <span class="eyebrow">Hire me</span>
-    <h2 class="section-title" style="margin:12px 0 16px;">Have an idea for a website or app?</h2>
-    <p class="section-lede" style="margin:0 auto 26px;">Tell me what you need: who it's for, what it should do, whether you already have a domain and which references you like. I'll get back to you with a proposal.</p>
+    <h2 class="section-title" style="margin:12px 0 16px;">Shall we see if it is a fit?</h2>
+    <p class="section-lede" style="margin:0 auto 26px;">Tell me in a few lines what you need and who it is for. I will reply with a time for the 20-minute call.</p>
     <div class="hero-actions" style="justify-content:center;">
-      <a href="mailto:contato@alanlemos.com.br?subject=Quote%20for%20a%20custom%20website%20or%20app" class="btn btn-primary">contato@alanlemos.com.br</a>
+      <a href="mailto:contato@alanlemos.com.br?subject=Call%20about%20a%20website%20or%20digital%20tool" class="btn btn-primary">contato@alanlemos.com.br</a>
       <a href="https://www.linkedin.com/in/alan-lemos-amaral-647aba1ba" target="_blank" rel="noopener" class="btn btn-ghost">Message me on LinkedIn</a>
     </div>
   </div>
